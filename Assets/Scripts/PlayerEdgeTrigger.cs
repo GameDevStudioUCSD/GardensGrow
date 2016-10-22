@@ -5,17 +5,14 @@ public class PlayerEdgeTrigger : MonoBehaviour {
 	public bool isTriggered;
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("Enter");
 		isTriggered = true;
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
-		Debug.Log ("Stay");
 		isTriggered = true;
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		Debug.Log ("Exit");
 		isTriggered = false;
 	}
 }

@@ -12,16 +12,16 @@ public class PlayerGridObject : MoveableGridObject {
 	protected virtual void Update () {
 		base.Update();
 		if (Input.GetKey(KeyCode.DownArrow)) {
-			Move(0);
+			Move(Globals.Direction.South);
         }
 		else if (Input.GetKey(KeyCode.LeftArrow)) {
-			Move(1);
+			Move(Globals.Direction.West);
         }
 		else if (Input.GetKey(KeyCode.UpArrow)) {
-			Move(2);
+			Move(Globals.Direction.North);
         }
 		else if (Input.GetKey(KeyCode.RightArrow)) {
-			Move(3);
+			Move(Globals.Direction.East);
 		}
 	}
 }
