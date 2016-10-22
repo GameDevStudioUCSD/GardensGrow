@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class MoveableGridObject : RotateableGridObject {
-	public BoxCollider2D southCollider;
-	public BoxCollider2D westCollider;
-	public BoxCollider2D northCollider;
-	public BoxCollider2D eastCollider;
+	public PlayerEdgeTrigger southCollider;
+	public PlayerEdgeTrigger westCollider;
+	public PlayerEdgeTrigger northCollider;
+	public PlayerEdgeTrigger eastCollider;
 	private const float pixelSize = Globals.pixelSize;
 
 	private bool southCollision = false;
@@ -21,31 +21,26 @@ public class MoveableGridObject : RotateableGridObject {
 	protected virtual void Move(int direction)
 	{
 		Rotate(direction);
-		if (direction == 0 && !southCollision) {
+		if (direction == 0 && !southCollider.isTriggered) {
 			Vector3 position = this.transform.position;
             position.y -= pixelSize;
             this.transform.position = position;
         }
-		else if (direction == 1 && !westCollision) {
+		else if (direction == 1 && !westCollider.isTriggered) {
 			Vector3 position = this.transform.position;
             position.x -= pixelSize;
             this.transform.position = position;
         }
-		else if (direction == 2 && !northCollision) {
+		else if (direction == 2 && !northCollider.isTriggered) {
 			Vector3 position = this.transform.position;
             position.y += pixelSize;
             this.transform.position = position;
         }
-		else if (direction == 3 && !eastCollision) {
+		else if (direction == 3 && !eastCollider.isTriggered) {
 			Vector3 position = this.transform.position;
             position.x += pixelSize;
             this.transform.position = position;
         }
-	}
-
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		Debug.Log("ENTERED COLLIDER");
 	}
 
 
