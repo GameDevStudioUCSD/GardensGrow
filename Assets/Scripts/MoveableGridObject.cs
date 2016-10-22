@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveableGridObject : RotateableGridObject {
 
-	private const float pixelSize = 0.0625f;
+	//private const float pixelSize = 0.0625f;
 	public BoxCollider2D southCollider;
 	public BoxCollider2D westCollider;
 	public BoxCollider2D northCollider;
