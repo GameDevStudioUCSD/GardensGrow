@@ -4,12 +4,12 @@ using System.Collections;
 public class PlayerGridObject : MoveableGridObject {
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
 		base.Update();
 		if (Input.GetKey(KeyCode.DownArrow)) {
 			Move(0);

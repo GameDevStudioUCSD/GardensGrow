@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class MoveableGridObject : RotateableGridObject {
-
-	private const float pixelSize = 0.0625f;
 	public BoxCollider2D southCollider;
 	public BoxCollider2D westCollider;
 	public BoxCollider2D northCollider;
@@ -20,7 +18,7 @@ public class MoveableGridObject : RotateableGridObject {
 	}
 
 	// Direction: 0 = South, 1 = West, 2 = North, 3 = East
-	public void Move(int direction)
+	protected virtual void Move(int direction)
 	{
 		Rotate(direction);
 		if (direction == 0 && !southCollision) {
@@ -43,6 +41,11 @@ public class MoveableGridObject : RotateableGridObject {
             position.x += pixelSize;
             this.transform.position = position;
         }
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		Debug.Log("ENTERED COLLIDER");
 	}
 
 

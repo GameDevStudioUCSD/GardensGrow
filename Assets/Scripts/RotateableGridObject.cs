@@ -8,7 +8,7 @@ public class RotateableGridObject : GridObject {
 	public BoxCollider2D face;
 	
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		direction = 0;
 	}
 
