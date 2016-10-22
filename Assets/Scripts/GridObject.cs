@@ -10,7 +10,7 @@ public class GridObject : MonoBehaviour {
 	void Start () {
 	}
 
-	void Update() {
+	protected virtual void Update() {
 		if (!Application.isPlaying) {
          float snapInverse = 1/snapValue;
          

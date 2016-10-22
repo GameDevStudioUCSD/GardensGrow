@@ -11,10 +11,9 @@ public class RotateableGridObject : GridObject {
 	void Start () {
 		direction = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	protected virtual void Update() {
+		base.Update();
 	}
 
 	// Changes direction and direction sprite
