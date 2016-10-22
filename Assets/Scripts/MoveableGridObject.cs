@@ -18,25 +18,25 @@ public class MoveableGridObject : RotateableGridObject {
 	}
 
 	// Direction: 0 = South, 1 = West, 2 = North, 3 = East
-	protected virtual void Move(int direction)
+	protected virtual void Move(Globals.Direction direction)
 	{
 		Rotate(direction);
-		if (direction == 0 && !southCollision) {
+		if (direction == Globals.Direction.South && !southCollision) {
 			Vector3 position = this.transform.position;
             position.y -= pixelSize;
             this.transform.position = position;
         }
-		else if (direction == 1 && !westCollision) {
+		else if (direction == Globals.Direction.West && !westCollision) {
 			Vector3 position = this.transform.position;
             position.x -= pixelSize;
             this.transform.position = position;
         }
-		else if (direction == 2 && !northCollision) {
+		else if (direction == Globals.Direction.North && !northCollision) {
 			Vector3 position = this.transform.position;
             position.y += pixelSize;
             this.transform.position = position;
         }
-		else if (direction == 3 && !eastCollision) {
+		else if (direction == Globals.Direction.East && !eastCollision) {
 			Vector3 position = this.transform.position;
             position.x += pixelSize;
             this.transform.position = position;
