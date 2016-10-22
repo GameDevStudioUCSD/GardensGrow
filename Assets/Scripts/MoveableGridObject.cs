@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveableGridObject : GridObject {
 
-	private const float pixelSize = 0.0625f;
+	private const float pixelSize = Globals.pixelSize;
 
 	void Update() {
 
