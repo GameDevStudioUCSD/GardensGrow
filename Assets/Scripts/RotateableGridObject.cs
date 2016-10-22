@@ -8,13 +8,12 @@ public class RotateableGridObject : GridObject {
 	public BoxCollider2D face;
 	
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		direction = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	protected virtual void Update() {
+		base.Update();
 	}
 
 	// Changes direction and direction sprite

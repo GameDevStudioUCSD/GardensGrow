@@ -7,10 +7,10 @@ public class GridObject : MonoBehaviour {
     public float depth = 0; 
       
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 	}
 
-	void Update() {
+	protected virtual void Update() {
 		if (!Application.isPlaying) {
          float snapInverse = 1/snapValue;
          
