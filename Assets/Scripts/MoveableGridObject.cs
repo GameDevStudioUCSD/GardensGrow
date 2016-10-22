@@ -8,6 +8,7 @@ public class MoveableGridObject : RotateableGridObject {
 	public BoxCollider2D westCollider;
 	public BoxCollider2D northCollider;
 	public BoxCollider2D eastCollider;
+	private const float pixelSize = Globals.pixelSize;
 
 	private bool southCollision = false;
 	private bool westCollision = false;
