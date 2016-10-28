@@ -7,7 +7,7 @@ public class StaticGridObject : GridObject {
 	public BoxCollider2D barrier;
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		if (!isBarrier)
 		{
 		}

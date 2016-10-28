@@ -4,11 +4,11 @@ using System.Collections;
 public class RotateableGridObject : GridObject {
 
 	// 0 = South, 1 = West, 2 = North, 3 = East
-	private int direction;
+	protected Globals.Direction direction;
 	public BoxCollider2D face;
 	
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		direction = 0;
 	}
 
@@ -17,7 +17,7 @@ public class RotateableGridObject : GridObject {
 	}
 
 	// Changes direction and direction sprite
-	public void Rotate(int rotate)
+	public void Rotate(Globals.Direction rotate)
 	{
 		direction = rotate;
 		Debug.Log(direction);
