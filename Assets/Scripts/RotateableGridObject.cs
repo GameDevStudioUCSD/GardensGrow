@@ -20,7 +20,7 @@ public class RotateableGridObject : GridObject {
 	public void Rotate(Globals.Direction rotate)
 	{
 		direction = rotate;
-		Debug.Log(direction);
+		//Debug.Log(direction);
 
 	}
 }
