@@ -4,7 +4,7 @@ using System.Collections;
 public class RotateableGridObject : GridObject {
 
 	// 0 = South, 1 = West, 2 = North, 3 = East
-	private Globals.Direction direction;
+	protected Globals.Direction direction;
 	public BoxCollider2D face;
 	
 	// Use this for initialization
