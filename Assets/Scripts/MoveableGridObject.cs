@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveableGridObject : RotateableGridObject {
+public class MoveableGridObject : KillableGridObject {
 
 	public PlayerEdgeTrigger southCollider;
 	public PlayerEdgeTrigger westCollider;
