@@ -45,22 +45,26 @@ public class PlayerGridObject : MoveableGridObject {
 		switch (direction) {
 		case Globals.Direction.East:
 			if (!eastHitCollider.isTriggered) {
-				Instantiate (plants[plantNumber], new Vector3 (transform.position.x + 1, transform.position.y, 0), Quaternion.identity);
+				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x + 1, transform.position.y, 0), Quaternion.identity);
+				newPlant.Rotate(direction);
 			}
 			break;
 		case Globals.Direction.West:
 			if (!westHitCollider.isTriggered) {
-				Instantiate (plants[plantNumber], new Vector3 (transform.position.x - 1, transform.position.y, 0), Quaternion.identity);
+				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x - 1, transform.position.y, 0), Quaternion.identity);
+				newPlant.Rotate(direction);
 			}
 			break;
 		case Globals.Direction.South:
 			if (!southHitCollider.isTriggered) {
-				Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y - 1, 0), Quaternion.identity);
+				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y - 1, 0), Quaternion.identity);
+				newPlant.Rotate(direction);
 			}
 			break;
 		case Globals.Direction.North:
 			if (!northHitCollider.isTriggered) {
-				Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+				newPlant.Rotate(direction);
 			}
 			break;
 		default:

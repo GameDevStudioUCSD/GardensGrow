@@ -6,7 +6,7 @@ public class TurbinePlantObject : PlantGridObject
 
     public float speed;
     private float moveNum;
-    private EnemyGridObject enemy;
+    private MoveableGridObject enemy;
     private Globals.Direction enemyDir;
 
     public Collider2D southCollider;
@@ -30,9 +30,9 @@ public class TurbinePlantObject : PlantGridObject
     void OnTriggerEnter2D(Collider2D other)
     { 
         
-        if (other.GetComponent<EnemyGridObject>())
+        if (other.GetComponent<MoveableGridObject>())
         { 
-            enemy = other.GetComponent <EnemyGridObject>();
+            enemy = other.GetComponent <MoveableGridObject>();
 
             if (southCollider.IsTouching(other))
             {
@@ -58,7 +58,8 @@ public class TurbinePlantObject : PlantGridObject
              
         }
     }
-    IEnumerator Mover(Globals.Direction direction, EnemyGridObject enemy)
+
+    IEnumerator Mover(Globals.Direction direction, MoveableGridObject enemy)
     {
        if (direction == Globals.Direction.South)
         {

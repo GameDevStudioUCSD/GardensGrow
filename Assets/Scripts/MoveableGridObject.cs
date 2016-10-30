@@ -227,6 +227,4 @@ public class MoveableGridObject : KillableGridObject {
         else if (direction == Globals.Direction.East)
             gameObject.GetComponent<SpriteRenderer>().sprite = IdleSpriteEast;
     }
-
-
 }
