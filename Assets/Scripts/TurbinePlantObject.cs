@@ -17,7 +17,6 @@ public class TurbinePlantObject : PlantGridObject
     // Use this for initialization
     void Start()
     {
-        health = 20;
     }
 
     // Update is called once per frame
@@ -25,11 +24,9 @@ public class TurbinePlantObject : PlantGridObject
     {
 
     }
-    void Update()
-    {
-          
-        
-    }
+	protected virtual void Update() {
+		base.Update();
+	}
     void OnTriggerEnter2D(Collider2D other)
     { 
         

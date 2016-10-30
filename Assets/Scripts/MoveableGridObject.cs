@@ -19,13 +19,12 @@ public class MoveableGridObject : KillableGridObject {
     public Sprite IdleSpriteNorth;
     public Sprite IdleSpriteEast;
     public int walkSpriteFrameCount = 10;
-    private int currentFrame = 0;
-    private int currentSprite = 0;
+    protected int currentFrame = 0;
+    protected int currentSprite = 0;
     public System.Collections.Generic.List<Sprite> WalkSpriteSouth;
     public System.Collections.Generic.List<Sprite> WalkSpriteWest;
     public System.Collections.Generic.List<Sprite> WalkSpriteNorth;
     public System.Collections.Generic.List<Sprite> WalkSpriteEast;
-    protected Globals.Direction facing = Globals.Direction.South;
 
 	protected virtual void Update() {
 		base.Update();
@@ -38,7 +37,7 @@ public class MoveableGridObject : KillableGridObject {
 			Vector3 position = this.transform.position;
             position.y -= pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.South) {
+            if (direction == Globals.Direction.South) {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount) {
                     currentFrame = 0;
@@ -48,7 +47,7 @@ public class MoveableGridObject : KillableGridObject {
                 }
             }
             else {
-                facing = Globals.Direction.South;
+                direction = Globals.Direction.South;
                 currentFrame = 0;
                 currentSprite = 0;
                 gameObject.GetComponent<SpriteRenderer>().sprite = WalkSpriteSouth[0];
@@ -58,7 +57,7 @@ public class MoveableGridObject : KillableGridObject {
 			Vector3 position = this.transform.position;
             position.x -= pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.West) {
+            if (direction == Globals.Direction.West) {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount) {
                     currentFrame = 0;
@@ -68,7 +67,7 @@ public class MoveableGridObject : KillableGridObject {
                 }
             }
             else {
-                facing = Globals.Direction.West;
+                direction = Globals.Direction.West;
                 currentFrame = 0;
                 currentSprite = 0;
                 gameObject.GetComponent<SpriteRenderer>().sprite = WalkSpriteWest[0];
@@ -78,7 +77,7 @@ public class MoveableGridObject : KillableGridObject {
 			Vector3 position = this.transform.position;
             position.y += pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.North) {
+            if (direction == Globals.Direction.North) {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount) {
                     currentFrame = 0;
@@ -88,7 +87,7 @@ public class MoveableGridObject : KillableGridObject {
                 }
             }
             else {
-                facing = Globals.Direction.North;
+                direction = Globals.Direction.North;
                 currentFrame = 0;
                 currentSprite = 0;
                 gameObject.GetComponent<SpriteRenderer>().sprite = WalkSpriteNorth[0];
@@ -98,7 +97,7 @@ public class MoveableGridObject : KillableGridObject {
 			Vector3 position = this.transform.position;
             position.x += pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.East)
+            if (direction == Globals.Direction.East)
             {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount)
@@ -111,7 +110,7 @@ public class MoveableGridObject : KillableGridObject {
             }
             else
             {
-                facing = Globals.Direction.East;
+                direction = Globals.Direction.East;
                 currentFrame = 0;
                 currentSprite = 0;
                 gameObject.GetComponent<SpriteRenderer>().sprite = WalkSpriteEast[0];
@@ -126,7 +125,7 @@ public class MoveableGridObject : KillableGridObject {
             Vector3 position = this.transform.position;
             position.y -= pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.South)
+            if (direction == Globals.Direction.South)
             {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount)
@@ -139,7 +138,7 @@ public class MoveableGridObject : KillableGridObject {
             }
             else
             {
-                facing = Globals.Direction.South;
+                direction = Globals.Direction.South;
                 currentFrame = 0;
                 currentSprite = 0;
                 
@@ -150,7 +149,7 @@ public class MoveableGridObject : KillableGridObject {
             Vector3 position = this.transform.position;
             position.x -= pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.West)
+            if (direction == Globals.Direction.West)
             {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount)
@@ -163,7 +162,7 @@ public class MoveableGridObject : KillableGridObject {
             }
             else
             {
-                facing = Globals.Direction.West;
+                direction = Globals.Direction.West;
                 currentFrame = 0;
                 currentSprite = 0;
                 
@@ -174,7 +173,7 @@ public class MoveableGridObject : KillableGridObject {
             Vector3 position = this.transform.position;
             position.y += pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.North)
+            if (direction == Globals.Direction.North)
             {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount)
@@ -187,7 +186,7 @@ public class MoveableGridObject : KillableGridObject {
             }
             else
             {
-                facing = Globals.Direction.North;
+                direction = Globals.Direction.North;
                 currentFrame = 0;
                 currentSprite = 0;
                 
@@ -198,7 +197,7 @@ public class MoveableGridObject : KillableGridObject {
             Vector3 position = this.transform.position;
             position.x += pixelSize;
             this.transform.position = position;
-            if (facing == Globals.Direction.East)
+            if (direction == Globals.Direction.East)
             {
                 currentFrame++;
                 if (currentFrame >= walkSpriteFrameCount)
@@ -211,7 +210,7 @@ public class MoveableGridObject : KillableGridObject {
             }
             else
             {
-                facing = Globals.Direction.East;
+                direction = Globals.Direction.East;
                 currentFrame = 0;
                 currentSprite = 0;
                 
@@ -219,13 +218,13 @@ public class MoveableGridObject : KillableGridObject {
         }
     }
     protected virtual void Stop() {
-        if (facing == Globals.Direction.South)
+        if (direction == Globals.Direction.South)
             gameObject.GetComponent<SpriteRenderer>().sprite = IdleSpriteSouth;
-        else if (facing == Globals.Direction.West)
+        else if (direction == Globals.Direction.West)
             gameObject.GetComponent<SpriteRenderer>().sprite = IdleSpriteWest;
-        else if (facing == Globals.Direction.North)
+        else if (direction == Globals.Direction.North)
             gameObject.GetComponent<SpriteRenderer>().sprite = IdleSpriteNorth;
-        else if (facing == Globals.Direction.East)
+        else if (direction == Globals.Direction.East)
             gameObject.GetComponent<SpriteRenderer>().sprite = IdleSpriteEast;
     }
 

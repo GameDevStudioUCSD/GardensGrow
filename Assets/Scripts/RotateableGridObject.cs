@@ -9,6 +9,7 @@ public class RotateableGridObject : GridObject {
 	
 	// Use this for initialization
 	protected virtual void Start () {
+		base.Update ();
 		direction = 0;
 	}
 

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerGridObject : MoveableGridObject {
+	public PlantGridObject[] plants;
 
     // Use this for initialization
     protected virtual void Start () {
@@ -19,15 +20,19 @@ public class PlayerGridObject : MoveableGridObject {
 			Move (Globals.Direction.North);
 		} else if (Input.GetKey (KeyCode.RightArrow)) {
 			Move (Globals.Direction.East);
-		} else if (!(Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.RightArrow)))
-			Stop ();
-		else if (Input.GetKey (KeyCode.Z))
-			Plant ();
+		} else {
+			for (int i = 0; i < 10; ++i) {
+				if (Input.GetKeyDown ("" + i))
+					Plant(i);
+			}
+
+			if (!(Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.RightArrow)))
+				Stop ();
+		}
 	}
 		
-	protected virtual void Plant() {
+	protected virtual void Plant(int plantNumber) {
 		// Plant animation in that direction
-		gameObject.GetComponent<SpriteRenderer>().sprite = WalkSpriteWest[currentSprite];
 		// Check if there is space in front to plant
 			// If there is plant
 				// Instatiate new plant object 
@@ -36,7 +41,32 @@ public class PlayerGridObject : MoveableGridObject {
 			// Else make failure animation
 
 		// Start cooldown timer/reduce seed count
-	
+
+		switch (direction) {
+		case Globals.Direction.East:
+			if (!eastHitCollider.isTriggered) {
+				Instantiate (plants[plantNumber], new Vector3 (transform.position.x + 1, transform.position.y, 0), Quaternion.identity);
+			}
+			break;
+		case Globals.Direction.West:
+			if (!westHitCollider.isTriggered) {
+				Instantiate (plants[plantNumber], new Vector3 (transform.position.x - 1, transform.position.y, 0), Quaternion.identity);
+			}
+			break;
+		case Globals.Direction.South:
+			if (!southHitCollider.isTriggered) {
+				Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y - 1, 0), Quaternion.identity);
+			}
+			break;
+		case Globals.Direction.North:
+			if (!northHitCollider.isTriggered) {
+				Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+			}
+			break;
+		default:
+			break;
+		}
+
 	}
     protected virtual void LateUpdate() {
         float pixelSize = Globals.pixelSize;
