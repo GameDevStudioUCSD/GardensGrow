@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Vision))]
 public class SimpleMonsterAI : MonoBehaviour {
 
     public EnemyGridObject entity;

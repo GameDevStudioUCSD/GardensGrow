@@ -39,7 +39,7 @@ public class Vision : MonoBehaviour {
         // Assume we see nothing until we see it
         bool returnValue = false;
         // Consider everything we see
-        foreach (GameObject o in LookInDirection(GetLookRay()))
+        foreach (GameObject o in LookInDirection(direction))
         {
             // If we see the player, then return true.
             if (o.GetComponent<PlayerGridObject>())
