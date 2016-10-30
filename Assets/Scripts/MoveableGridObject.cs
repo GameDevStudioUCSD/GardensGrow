@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveableGridObject : RotateableGridObject {
+public class MoveableGridObject : KillableGridObject {
+
 	public PlayerEdgeTrigger southCollider;
 	public PlayerEdgeTrigger westCollider;
 	public PlayerEdgeTrigger northCollider;
@@ -31,7 +32,7 @@ public class MoveableGridObject : RotateableGridObject {
 	}
 
 	// Direction: 0 = South, 1 = West, 2 = North, 3 = East
-	protected virtual void Move(Globals.Direction direction) {
+	public virtual void Move(Globals.Direction direction) {
 		Rotate(direction);
 		if (direction == Globals.Direction.South && !southCollider.isTriggered) {
 			Vector3 position = this.transform.position;
@@ -117,7 +118,106 @@ public class MoveableGridObject : RotateableGridObject {
             }
         }
 	}
-
+    public virtual void MoveEnemy(Globals.Direction direction)
+    {
+        Rotate(direction);
+        if (direction == Globals.Direction.South && !southCollider.isTriggered)
+        {
+            Vector3 position = this.transform.position;
+            position.y -= pixelSize;
+            this.transform.position = position;
+            if (facing == Globals.Direction.South)
+            {
+                currentFrame++;
+                if (currentFrame >= walkSpriteFrameCount)
+                {
+                    currentFrame = 0;
+                    currentSprite++;
+                    if (currentSprite >= WalkSpriteSouth.Count) currentSprite = 0;
+                  
+                }
+            }
+            else
+            {
+                facing = Globals.Direction.South;
+                currentFrame = 0;
+                currentSprite = 0;
+                
+            }
+        }
+        else if (direction == Globals.Direction.West && !westCollider.isTriggered)
+        {
+            Vector3 position = this.transform.position;
+            position.x -= pixelSize;
+            this.transform.position = position;
+            if (facing == Globals.Direction.West)
+            {
+                currentFrame++;
+                if (currentFrame >= walkSpriteFrameCount)
+                {
+                    currentFrame = 0;
+                    currentSprite++;
+                    if (currentSprite >= WalkSpriteWest.Count) currentSprite = 0;
+                    
+                }
+            }
+            else
+            {
+                facing = Globals.Direction.West;
+                currentFrame = 0;
+                currentSprite = 0;
+                
+            }
+        }
+        else if (direction == Globals.Direction.North && !northCollider.isTriggered)
+        {
+            Vector3 position = this.transform.position;
+            position.y += pixelSize;
+            this.transform.position = position;
+            if (facing == Globals.Direction.North)
+            {
+                currentFrame++;
+                if (currentFrame >= walkSpriteFrameCount)
+                {
+                    currentFrame = 0;
+                    currentSprite++;
+                    if (currentSprite >= WalkSpriteNorth.Count) currentSprite = 0;
+                    
+                }
+            }
+            else
+            {
+                facing = Globals.Direction.North;
+                currentFrame = 0;
+                currentSprite = 0;
+                
+            }
+        }
+        else if (direction == Globals.Direction.East && !eastCollider.isTriggered)
+        {
+            Vector3 position = this.transform.position;
+            position.x += pixelSize;
+            this.transform.position = position;
+            if (facing == Globals.Direction.East)
+            {
+                currentFrame++;
+                if (currentFrame >= walkSpriteFrameCount)
+                {
+                    currentFrame = 0;
+                    currentSprite++;
+                    if (currentSprite >= WalkSpriteEast.Count) currentSprite = 0;
+                    
+                }
+            }
+            else
+            {
+                facing = Globals.Direction.East;
+                currentFrame = 0;
+                currentSprite = 0;
+                
+            }
+        }
+    }
     protected virtual void Stop() {
         if (facing == Globals.Direction.South)
             gameObject.GetComponent<SpriteRenderer>().sprite = IdleSpriteSouth;

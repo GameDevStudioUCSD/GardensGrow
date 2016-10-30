@@ -38,4 +38,12 @@ public class PlayerGridObject : MoveableGridObject {
 		// Start cooldown timer/reduce seed count
 	
 	}
+    protected virtual void LateUpdate() {
+        float pixelSize = Globals.pixelSize;
+        Vector3 current = this.transform.position;
+        current.x = Mathf.Floor(current.x / pixelSize + 0.5f) * pixelSize;
+        current.y = Mathf.Floor(current.y / pixelSize + 0.5f) * pixelSize;
+        current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
+        this.transform.position = current;
+    }
 }
