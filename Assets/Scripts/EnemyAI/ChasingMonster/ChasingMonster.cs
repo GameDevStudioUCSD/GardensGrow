@@ -23,11 +23,6 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionIdle()
-    {
-        yield return new WaitForSeconds(idleDelay);
-    }
-
     protected override IEnumerator ExecuteActionRandomizeDirection()
     {
         direction = (Globals.Direction)UnityEngine.Random.Range(0, 4);
@@ -43,6 +38,11 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
     protected override bool FinishedWandering()
     {
         return TimeInState() > wanderingDelay;
+    }
+
+    protected override bool IsBored()
+    {
+        return TimeInState() > (idleDelay);
     }
 
     protected override void OnEnable()
