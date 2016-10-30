@@ -24,7 +24,7 @@ public class MoveableGridObject : RotateableGridObject {
     public System.Collections.Generic.List<Sprite> WalkSpriteWest;
     public System.Collections.Generic.List<Sprite> WalkSpriteNorth;
     public System.Collections.Generic.List<Sprite> WalkSpriteEast;
-    private Globals.Direction facing = Globals.Direction.South;
+    protected Globals.Direction facing = Globals.Direction.South;
 
 	protected virtual void Update() {
 		base.Update();
