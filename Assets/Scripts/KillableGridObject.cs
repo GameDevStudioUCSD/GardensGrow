@@ -25,4 +25,9 @@ public class KillableGridObject : RotateableGridObject {
         Debug.Log("death");
         Destroy(gameObject);
     }
+
+    protected virtual void OnValidate()
+    {
+        TakeDamage(0);
+    }
 }
