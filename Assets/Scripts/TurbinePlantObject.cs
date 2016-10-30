@@ -7,7 +7,7 @@ public class TurbinePlantObject : PlantGridObject
     public float speed;
     private float moveNum;
     private EnemyGridObject enemy;
-
+    private Globals.Direction enemyDir;
 
     public Collider2D southCollider;
     public Collider2D northCollider;
@@ -32,49 +32,53 @@ public class TurbinePlantObject : PlantGridObject
     }
     void OnTriggerEnter2D(Collider2D other)
     { 
-
+        
         if (other.GetComponent<EnemyGridObject>())
         { 
             enemy = other.GetComponent <EnemyGridObject>();
 
-           if (southCollider.IsTouching(other))
-           {
-                StartCoroutine(Mover(Globals.Direction.South, enemy));
-            }
-           if (eastCollider.IsTouching(other))
+            if (southCollider.IsTouching(other))
             {
-                StartCoroutine(Mover(Globals.Direction.East, enemy));
+                enemyDir = Globals.Direction.South;
             }
-            if (northCollider.IsTouching(other))
+           else if (eastCollider.IsTouching(other))
             {
-                StartCoroutine(Mover(Globals.Direction.North, enemy));
+                enemyDir = Globals.Direction.East;
             }
-            if(westCollider.IsTouching(other))
+            else if (northCollider.IsTouching(other))
             {
-                StartCoroutine(Mover(Globals.Direction.West, enemy));
+                enemyDir = Globals.Direction.North;
             }
+            else if(westCollider.IsTouching(other))
+            {
+                enemyDir = Globals.Direction.West;
+            }
+
+            if(enemyDir == this.direction)
+            {
+                StartCoroutine(Mover(enemyDir, enemy));
+            }
+             
         }
     }
     IEnumerator Mover(Globals.Direction direction, EnemyGridObject enemy)
     {
-        if (direction == Globals.Direction.South)
+       if (direction == Globals.Direction.South)
         {
-            moveNum = (48.0f - (-1.0f)*enemy.GetComponent<Transform>().position.y * 6.25f) / 6.25f;
+            moveNum = (56.0f - (-1.0f)*enemy.GetComponent<Transform>().position.y * 12.0f) / 0.525f;
         }
         else if (direction == Globals.Direction.East)
         {
-            moveNum = (48.0f - (-1.0f)*enemy.GetComponent<Transform>().position.x * 6.25f) / 6.25f;
+            moveNum = (56.0f - (-1.0f)*enemy.GetComponent<Transform>().position.x * 12.0f) / 0.525f;
         }
-        else if (direction == Globals.Direction.North)
+        if (direction == Globals.Direction.North)
         {
-            moveNum = (48.0f - enemy.GetComponent<Transform>().position.y * 6.25f) / 6.25f;
+            moveNum = (56.0f - enemy.GetComponent<Transform>().position.y * 12.0f)/0.525f;
         }
         else if (direction == Globals.Direction.West)
         {
-            moveNum = (48.0f - enemy.GetComponent<Transform>().position.x * 6.25f) / 6.25f;
+            moveNum = (56.0f - enemy.GetComponent<Transform>().position.x * 12.0f) / 0.525f;
         }
-
-       // moveNum = (48.0f - enemy.GetComponent<Transform>().position.y*6.25f)/6.25f;
 
         for (int i = 0; i < moveNum; i++)
         {
