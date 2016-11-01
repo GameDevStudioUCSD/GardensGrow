@@ -33,16 +33,25 @@ public class Node {
         }
     }
 
-    public Node(Tile tile, Node parent=null, Globals.Direction directionTaken = Globals.Direction.None)
+    public Node(Tile tile, Node parent=null)
+    {
+        this.parent = parent;
+
+        isPatheable = tile.isPatheable;
+        worldPosition = tile.transform.position;
+        gridPosition = tile.transform.localPosition;
+        gCost = tile.gCost;
+    }
+
+    public Node(Tile tile, Node parent, Globals.Direction directionTaken)
     {
         this.parent = parent;
         this.directionTaken = directionTaken;
 
         isPatheable = tile.isPatheable;
-        worldPosition = tile.worldPosition;
-        gridPosition = tile.gridPosition;
+        worldPosition = tile.transform.position;
+        gridPosition = tile.transform.localPosition;
         gCost = tile.gCost;
-        hCost = tile.hCost;
     }
 
     public Node(Node other)
@@ -60,7 +69,7 @@ public class Node {
     public override string ToString()
     {
         //return base.ToString();
-        string output = "";
+        string output = "Position: " + gridPosition + " gCost: " + gCost + " hCost: " + hCost;
 
         return output;
     }

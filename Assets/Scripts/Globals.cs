@@ -3,7 +3,7 @@ public class Globals {
 
     public const float pixelSize = 0.125f;
 
-    public enum Direction { None=0, North, East, South, West };
+    public enum Direction { North, East, South, West };
     public static Vector2 DirectionToVector(Direction direction)
     {
         Vector2 dirr = Vector2.up;

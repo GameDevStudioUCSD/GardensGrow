@@ -1,99 +1,109 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class AStar {
+public class AStar : MonoBehaviour{
 
     public TileMap tileMap;
 
-    List<Globals.Direction> aStarAlgorithm(Vector2 currentPosition, Vector2 targetPosition)
-    {
-        List<Globals.Direction> path = new List<Globals.Direction>();
-        // Hold nodes we are currently looking at
-        PriorityQueue<int, Vector2> frontier = new PriorityQueue<int, Vector2>();
-        Dictionary<Vector2, Node> inPriorityQueue = new Dictionary<Vector2, Node>();
+    public Tile startTile;
+    public Tile targetTile;
 
-        // "Nodes" we have already seen
+    void Start()
+    {
+        // TODO: These are for debug purposes only
+        List<Globals.Direction> moves = FindPath(new Node(startTile), new Node(targetTile));
+
+        foreach(Globals.Direction dir in moves)
+        {
+            Debug.Log(dir);
+        }
+    }
+
+    public List<Globals.Direction> FindPath(Node startNode, Node targetNode)
+    {
+        // Result list of moves needed to get from startNode to targetNode
+        List<Globals.Direction> moves = new List<Globals.Direction>();
+
+        Vector2 startPosition = startNode.gridPosition;
+        Vector2 targetPosition = targetNode.gridPosition;
+
+        PriorityQueue<int, Vector2> frontier = new PriorityQueue<int, Vector2>();
+        Dictionary<Vector2, Node> frontierNodes = new Dictionary<Vector2, Node>();
+
         HashSet<Vector2> explored = new HashSet<Vector2>();
 
-        // Insert current node into PQ
-        Node startNode = new Node(currentPosition, null);
-        frontier.Enqueue(currentPosition, 0);
-        inPriorityQueue.Add(currentPosition, startNode);
+        // Add the start node to openSet
+        frontier.Enqueue(startNode.gridPosition, 0);
+        frontierNodes.Add(startNode.gridPosition, startNode);
 
-        while (!frontier.IsEmpty)
+        while(!frontier.IsEmpty)
         {
-            Vector2 currentNodePosition = frontier.Dequeue();
-            Node currentNode = null;
-            inPriorityQueue.TryGetValue(currentNodePosition, out currentNode);
+            // Get node with lowest fCost from frontier
+            Vector2 currentPosition = frontier.Dequeue();
+            Node currentNode = frontierNodes[currentPosition];
 
-            if (currentNode.position == targetPosition)
+            // Remove node with lowest fCost
+            frontierNodes.Remove(currentPosition);
+
+            // Remember not to expand this tile again
+            explored.Add(currentPosition);
+
+            // Check if we reached the goal
+            if(currentPosition == targetPosition)
             {
-                // Goal state found
-                while (currentNode.parent != null)
+                while(currentNode != startNode)
                 {
-                    path.Add(Globals.VectorsToDirection(currentNode.parent.position, currentNode.position));
+                    moves.Add(currentNode.directionTaken);
+
                     currentNode = currentNode.parent;
                 }
-
-                path.Reverse();
-
-                return path;
+                moves.Reverse();
+                return moves;
             }
 
-            int pathCost = currentNode.pathCost;
-
-            // Don't look at this state again
-            explored.Add(currentNode.position);
-
-            // Get successor nodes
-            List<Node> successorNodes = tileMap.GetSuccessors(currentNode);
-            foreach (Node successorNode in successorNodes)
+            // Go through all successor nodes
+            foreach(Node successorNode in tileMap.GetSuccessors(currentNode))
             {
-                Vector2 successorPosition = successorNode.position;
+                Vector2 successorPosition = successorNode.gridPosition;
 
-                // TODO: we are currently using 1 as our path costs but change it later
-                int newPathCost = pathCost + 1;
-                int newFCost = newPathCost + heuristic(successorNode.position, targetPosition);
+                // Calculate the gCost for this successorNode using currentNode's gCost
+                successorNode.gCost += currentNode.gCost;
+                successorNode.hCost = heuristic(successorNode, targetNode);
 
-                if (!inPriorityQueue.ContainsKey(successorPosition) && !explored.Contains(successorPosition))
+                // If this position is not in frontierNodes or explored, then we can add it
+                if (!frontierNodes.ContainsKey(successorPosition) && !explored.Contains(successorPosition))
                 {
-                    successorNode.pathCost = newPathCost;
-                    successorNode.fCost = newFCost;
-                    successorNode.parent = currentNode;
-                    // Push successor into PQ
-                    frontier.Enqueue(successorPosition, newFCost);
-                    inPriorityQueue.Add(successorPosition, successorNode);
-
-                    // TODO: Add to explored
-                    explored.Add(successorPosition);
+                    frontier.Enqueue(successorPosition, successorNode.fCost);
+                    frontierNodes.Add(successorPosition, successorNode);
                 }
-                else if (inPriorityQueue.ContainsKey(successorPosition))
+                // If this position is in frontierNodes but the new node has a better value, then we replace it
+                else if(frontierNodes.ContainsKey(successorPosition))
                 {
-                    // The node currently in the frontier
-                    Node frontierNode = null;
-                    inPriorityQueue.TryGetValue(successorPosition, out frontierNode);
+                    Node frontierNode = frontierNodes[successorPosition];
 
-                    // Compare current node's cost with new cost
-                    if (newFCost < frontierNode.fCost)
+                    if(successorNode.fCost < frontierNode.fCost)
                     {
-                        frontier.Replace(successorPosition, frontierNode.fCost, newFCost);
-                        inPriorityQueue[successorPosition] = successorNode;
+                        // Update frontier with better costing node
+                        frontier.Replace(successorPosition, frontierNode.fCost, successorNode.fCost);
+                        frontierNodes[successorPosition] = successorNode;
                     }
                 }
-            }
-        } // while
 
-        return null;
+            }
+        }
+
+        return moves;
     }
 
-    int heuristic(Vector2 currentPosition, Vector2 goalPosition)
+    private int heuristic(Node currentNode, Node goalNode)
+    {
+        Vector2 currentPosition = currentNode.gridPosition;
+        Vector2 goalPosition = goalNode.gridPosition;
+
+        return heuristic(currentPosition, goalPosition);
+    }
+    private int heuristic(Vector2 currentPosition, Vector2 goalPosition)
     {
         return (int)Vector2.Distance(currentPosition, goalPosition);
-    }
-
-    int pathCost(Vector2 currentPosition, Vector2 startPosition)
-    {
-        // TODO:
-        return 0;
     }
 }

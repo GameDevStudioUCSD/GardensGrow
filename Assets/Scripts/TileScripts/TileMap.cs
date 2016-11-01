@@ -10,8 +10,9 @@ public class TileMap : MonoBehaviour {
     // a grid to hold references to every Tile in the TileMap
     public Tile[,] grid;
 
-	// Use this for initialization
-	void Start () {
+    // Awake happens before Start and is preferred for generating references between objects
+    void Awake()
+    {
         grid = new Tile[mapDimension, mapDimension];
 
         // Get all Tiles that are children of this TileMap object
@@ -27,6 +28,11 @@ public class TileMap : MonoBehaviour {
         }
 
 	}
+
+    // Use this for initialization
+    void Start() {}
+
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -57,10 +63,6 @@ public class TileMap : MonoBehaviour {
     /// <returns>A list of nodes representing the successor nodes.</returns>
     public List<Node> GetSuccessors(Node currentNode)
     {
-        Vector2 gridPosition = currentNode.gridPosition;
-        int x = (int)gridPosition.x;
-        int y = (int)gridPosition.y;
-
         List<Node> successors = new List<Node>();
 
         foreach(Globals.Direction direction in System.Enum.GetValues(typeof(Globals.Direction)))
