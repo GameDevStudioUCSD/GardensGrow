@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Vision))]
 public class SimpleMonsterAI : MonoBehaviour {
 
     public TileMap tileMap;
 
     public EnemyGridObject entity;
-    public float updateRate = 1;
+    public float updateRate = 30;
     [Range(0,1)]
-    public float chanceToChangeDirection;
+    public float chanceToChangeDirection = 0.02f;
     private Globals.Direction movementDirection;
     // searching how far from goal (heuristic) and how far from start (path cost)
 
@@ -26,6 +27,8 @@ public class SimpleMonsterAI : MonoBehaviour {
         // get all successors
         // calculate
         // push into PQ
+        if(entity == null)
+            entity = GetComponent<EnemyGridObject>();
         InvokeRepeating("RandomMovement", 0, 1.0f/updateRate);
 
 	}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class Globals {
 
-    public const float pixelSize = 0.125f;
+    public const float pixelSize = 0.03125f;
 
     public enum Direction { North, East, South, West };
     public static Vector2 DirectionToVector(Direction direction)
