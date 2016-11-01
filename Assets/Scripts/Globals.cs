@@ -3,7 +3,7 @@ public class Globals {
 
     public const float pixelSize = 0.125f;
 
-    public enum Direction { North, East, South, West };
+    public enum Direction { None=0, North, East, South, West };
     public static Vector2 DirectionToVector(Direction direction)
     {
         Vector2 dirr = Vector2.up;
@@ -23,5 +23,25 @@ public class Globals {
                 break;
         }
         return dirr;
+    }
+
+    public static Direction VectorsToDirection(Vector2 currentPosition, Vector2 targetPosition)
+    {
+        if(targetPosition.x > currentPosition.x)
+        {
+            return Direction.East;
+        }
+        else if(targetPosition.x < currentPosition.x)
+        {
+            return Direction.West;
+        }
+        else if(targetPosition.y > currentPosition.y)
+        {
+            return Direction.North;
+        }
+        else
+        {
+            return Direction.South;
+        }
     }
 }
