@@ -16,7 +16,8 @@ public class MoveableGridObject : KillableGridObject {
 
     private Animator animator;
 
-    protected virtual void Start() {
+    protected override void Start() {
+        base.Start();
         animator = GetComponent<Animator>();
     }
 
@@ -54,8 +55,8 @@ public class MoveableGridObject : KillableGridObject {
     public virtual void MoveEnemy(Globals.Direction direction)
     {
         Rotate(direction);
+        if (animator == null) animator = GetComponent<Animator>();
         animator.SetInteger("Direction", (int)direction);
-        animator.SetBool("IsWalking", true);
         if (direction == Globals.Direction.South && !southCollider.isTriggered)
         {
             Vector3 position = this.transform.position;

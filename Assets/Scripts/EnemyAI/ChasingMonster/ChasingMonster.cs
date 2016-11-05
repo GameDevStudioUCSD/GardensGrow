@@ -10,6 +10,11 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
     [Range(0,5)]
     public int speed = 2;
     Vision visionModule;
+
+    protected override void Start() {
+        base.Start();
+    }
+
     public override void Reset()
     {
     }
@@ -23,7 +28,7 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
     {
         for (int i = 0; i < speed; i++ )
         {
-            Move(direction);
+            MoveEnemy(direction);
         }
         yield return null;
     }
@@ -36,7 +41,7 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionWander()
     {
-        Move(direction);
+        MoveEnemy(direction);
         yield return null;
     }
 
