@@ -41,7 +41,9 @@ public class PlayerGridObject : MoveableGridObject {
 			// Else make failure animation
 
 		// Start cooldown timer/reduce seed count
-
+        // TODO: use more general form of detecting direction
+        // Vector3 dirr = Globals.DirectionToVector(direction);
+        // PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], transform.position + dirr, Quaternion.identity);
 		switch (direction) {
 		case Globals.Direction.East:
 			if (!eastHitCollider.isTriggered) {

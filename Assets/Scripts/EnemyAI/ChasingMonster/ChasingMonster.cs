@@ -7,6 +7,8 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
     [Header("Delay Parameters")]
     public float idleDelay = 2;
     public float wanderingDelay = 3;
+    [Range(0,5)]
+    public int speed = 2;
     Vision visionModule;
     public override void Reset()
     {
@@ -19,7 +21,10 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionChasePlayer()
     {
-        Move(direction);
+        for (int i = 0; i < speed; i++ )
+        {
+            Move(direction);
+        }
         yield return null;
     }
 
