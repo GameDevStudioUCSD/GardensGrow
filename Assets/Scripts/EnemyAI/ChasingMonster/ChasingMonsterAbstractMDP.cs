@@ -17,6 +17,10 @@ public abstract class ChasingMonsterAbstractFSM : EnemyGridObject, IStateMachine
         RandomizeDirection = 3,
         Idle = 4
     }
+    protected override void Start() {
+        base.Start();
+    }
+
     protected virtual void OnEnable()
     {
         RunFSM();
