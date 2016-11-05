@@ -24,4 +24,24 @@ public class Globals {
         }
         return dirr;
     }
+
+    public static Direction VectorsToDirection(Vector2 currentPosition, Vector2 targetPosition)
+    {
+        if(targetPosition.x > currentPosition.x)
+        {
+            return Direction.East;
+        }
+        else if(targetPosition.x < currentPosition.x)
+        {
+            return Direction.West;
+        }
+        else if(targetPosition.y > currentPosition.y)
+        {
+            return Direction.North;
+        }
+        else
+        {
+            return Direction.South;
+        }
+    }
 }

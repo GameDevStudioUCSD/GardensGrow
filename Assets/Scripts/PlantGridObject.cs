@@ -3,8 +3,9 @@ using System.Collections;
 
 public class PlantGridObject : RotateableGridObject
 {
-
-    public int health;
+	protected virtual void Update() {
+		base.Update();
+	}
 
     public void Attack()
     {
