@@ -3,7 +3,6 @@ using System.Collections;
 
 public class RotateableGridObject : GridObject {
 
-	// 0 = South, 1 = West, 2 = North, 3 = East
 	public Globals.Direction direction;
 	public BoxCollider2D face;
 	

@@ -14,9 +14,16 @@ public class TurbinePlantObject : PlantGridObject
     public Collider2D eastCollider;
     public Collider2D westCollider;
 
+	private Animator animator;
+	int directionInt; // 0 North, 1 South, 2 East, 3 West
+
     // Use this for initialization
     void Start()
     {
+		// setting direction for corresponding animation
+		animator = GetComponent <Animator> ();
+
+
     }
 
     // Update is called once per frame
@@ -25,8 +32,31 @@ public class TurbinePlantObject : PlantGridObject
 
     }
 	protected virtual void Update() {
+
+		updateDirection ();
 		base.Update();
+
 	}
+
+	void updateDirection ()
+	{
+		switch (this.direction) {
+			case Globals.Direction.North:
+				directionInt = 0;
+				break;
+			case Globals.Direction.South:
+				directionInt = 1;
+				break;
+			case Globals.Direction.East:
+				directionInt = 2;
+				break;
+			case Globals.Direction.West:
+				directionInt = 3;
+				break;
+		}
+		animator.SetInteger ("Direction", directionInt);	
+	}
+
     void OnTriggerEnter2D(Collider2D other)
     { 
         
@@ -38,7 +68,7 @@ public class TurbinePlantObject : PlantGridObject
             {
                 enemyDir = Globals.Direction.South;
             }
-           else if (eastCollider.IsTouching(other))
+            else if (eastCollider.IsTouching(other))
             {
                 enemyDir = Globals.Direction.East;
             }
