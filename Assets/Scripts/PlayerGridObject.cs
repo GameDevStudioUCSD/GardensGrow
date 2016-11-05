@@ -6,7 +6,7 @@ public class PlayerGridObject : MoveableGridObject {
 
     // Use this for initialization
     protected virtual void Start () {
-	
+        base.Start();
 	}
 	
 	// Update is called once per frame
