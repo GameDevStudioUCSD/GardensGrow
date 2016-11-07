@@ -6,7 +6,7 @@ public class TerrainObject : MonoBehaviour
 {
     public Sprite[] sprites;
     public Sprite chosenSprite;
-    public bool randomize;
+    public bool lockSprite;
     private SpriteRenderer spriteRenderer;
     // Use this for initialization
     void Start ()
@@ -18,17 +18,19 @@ public class TerrainObject : MonoBehaviour
     void Update () {
 	    if (!Application.isPlaying)
 	    {
-	        if (sprites.Length > 0)
+	        if (!lockSprite)
 	        {
-	            if (!chosenSprite || randomize)
+	            if (sprites.Length > 0)
 	            {
-	                randomize = false;
-	                chosenSprite = sprites[(int) Random.Range(0, sprites.Length - 0.0001f)];
-	                spriteRenderer.sprite = chosenSprite;
-	            }
-	            else if (spriteRenderer.sprite != chosenSprite)
-	            {
-	                spriteRenderer.sprite = chosenSprite;
+	                if (!chosenSprite)
+	                {
+	                    chosenSprite = sprites[(int) Random.Range(0, sprites.Length - 0.0001f)];
+	                    spriteRenderer.sprite = chosenSprite;
+	                }
+	                else if (spriteRenderer.sprite != chosenSprite)
+	                {
+	                    spriteRenderer.sprite = chosenSprite;
+	                }
 	            }
 	        }
 	    }

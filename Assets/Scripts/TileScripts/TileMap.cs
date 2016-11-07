@@ -2,13 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TileMap : MonoBehaviour {
-
+public class TileMap : MonoBehaviour
+{
     // The TileMap grid will be mapDimension by mapDimension in size
-    public int mapDimension;
+    public int mapDimension;    
 
     // a grid to hold references to every Tile in the TileMap
     public Tile[,] grid;
+
+
+
+    // Gets grid coordinates of tile current object is on
+    public static Vector2 GetGridCoordinates(float x, float y)
+    {
+        return new Vector2((int)x, (int)y);
+
+    }
+
+
+
 
     // Awake happens before Start and is preferred for generating references between objects
     void Awake()
@@ -22,28 +34,61 @@ public class TileMap : MonoBehaviour {
         // and use it as index into the grid array
         foreach (Tile tile in myTiles)
         {
-            Vector3 tilePosition = tile.transform.localPosition;
+            Vector3 tilePosition = tile.transform.position;
 
-            grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
+            grid[(int) tilePosition.x, (int) tilePosition.y] = tile;
         }
+    }
 
-	}
 
-    // Use this for initialization
-    void Start() {}
+    //Fetches tile contaning given location if it exists, null otherwise.
+    public Tile GetTile(float x, float y)
+    {
+        // Stuff is actually standing in tile so y pivot is actually at bottom of object (feet), x is still center of obj, so need offset x to find right tile
+        if (x >= -0.5f && y >= 0)
+        {
+            x += 0.5f;
+            if (x < mapDimension && y < mapDimension)
+            {
+                if (grid != null)
+                {
+                    return grid[(int) x, (int) y];
+                }
+            }
+        }
+        return null;
+    }
 
     
-	
-	// Update is called once per frame
-	void Update () {
 
+    public Vector2 GetGridCoordinates(Vector3 position)
+    {
+        return GetGridCoordinates(position.x, position.y);
+    }
+
+    //Fetches tile contaning given location if it exists, null otherwise.
+    public Tile GetTile(Vector3 position)
+    {
+        return GetTile(position.x, position.y);
+    }
+
+
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
     }
 
 
     public Node NodeFromPosition(Vector2 position)
     {
-        int x = (int)position.x;
-        int y = (int)position.y;
+        int x = (int) position.x;
+        int y = (int) position.y;
 
         if (x < 0 || x > mapDimension || y < 0 || y > mapDimension)
         {
@@ -65,11 +110,11 @@ public class TileMap : MonoBehaviour {
     {
         List<Node> successors = new List<Node>();
 
-        foreach(Globals.Direction direction in System.Enum.GetValues(typeof(Globals.Direction)))
+        foreach (Globals.Direction direction in System.Enum.GetValues(typeof(Globals.Direction)))
         {
             Node candidateNode = NextNode(currentNode, direction);
 
-            if(candidateNode != null)
+            if (candidateNode != null)
             {
                 successors.Add(candidateNode);
             }
@@ -83,9 +128,9 @@ public class TileMap : MonoBehaviour {
         Vector2 nextPosition = NextPosition(currentNode.gridPosition, direction);
 
         // Check to see if position is valid in grid
-        if(IsPatheable(nextPosition))
+        if (IsPatheable(nextPosition))
         {
-            Tile nextTile = grid[(int)nextPosition.x, (int)nextPosition.y];
+            Tile nextTile = grid[(int) nextPosition.x, (int) nextPosition.y];
             // Convert tile into Node
             Node nextNode = new Node(nextTile, currentNode, direction);
             return nextNode;
@@ -104,8 +149,8 @@ public class TileMap : MonoBehaviour {
     /// <returns>The position after taking direction from current position.</returns>
     Vector2 NextPosition(Vector2 currentPosition, Globals.Direction direction)
     {
-        int x = (int)currentPosition.x;
-        int y = (int)currentPosition.y;
+        int x = (int) currentPosition.x;
+        int y = (int) currentPosition.y;
         switch (direction)
         {
             case Globals.Direction.North:
@@ -132,15 +177,6 @@ public class TileMap : MonoBehaviour {
     /// <returns>True if the Tile is patheable, false if Tile is not patheable or it does not exist.</returns>
     bool IsPatheable(Vector2 targetPosition)
     {
-        int x = (int)targetPosition.x;
-        int y = (int)targetPosition.y;
-
-        if (x < 0 || x > mapDimension || y < 0 || y > mapDimension)
-        {
-            return false;
-        }
-
-        return grid[x, y] != null ? grid[x, y].isPatheable : false;
+        return GetTile(targetPosition).isPathable();
     }
-
 }

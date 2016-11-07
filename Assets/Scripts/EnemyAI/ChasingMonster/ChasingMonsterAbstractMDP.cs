@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
-public abstract class ChasingMonsterAbstractFSM : EnemyGridObject, IStateMachine
+public abstract class ChasingMonsterAbstractFSM : Enemy, IStateMachine
 {
     protected float transitionedAt;
     [Header("State Machine Variables")]
@@ -17,11 +17,11 @@ public abstract class ChasingMonsterAbstractFSM : EnemyGridObject, IStateMachine
         RandomizeDirection = 3,
         Idle = 4
     }
-    protected override void Start() {
+    public override void Start() {
         base.Start();
     }
 
-    protected virtual void OnEnable()
+    public virtual void OnEnable()
     {
         RunFSM();
     }

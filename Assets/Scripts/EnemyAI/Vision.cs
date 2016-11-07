@@ -42,7 +42,7 @@ public class Vision : MonoBehaviour {
         foreach (GameObject o in LookInDirection(direction))
         {
             // If we see the player, then return true.
-            if (o.GetComponent<PlayerGridObject>())
+            if (o.GetComponent<Player>())
             {
                 returnValue = true;
                 break;

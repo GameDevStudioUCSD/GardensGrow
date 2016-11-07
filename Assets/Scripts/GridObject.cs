@@ -4,13 +4,19 @@ using System.Collections;
 [ExecuteInEditMode]
 public class GridObject : MonoBehaviour {
 	public float snapValue = 1;
-    public float depth = 0; 
-      
-	// Use this for initialization
-	protected virtual void Start () {
+    public float depth = 0;
+
+    public virtual void Awake()
+    {
+
+    }
+
+    // Use this for initialization
+    public virtual void Start () {
+
 	}
 
-	protected virtual void Update() {
+	public virtual void Update() {
 		if (!Application.isPlaying) {
          float snapInverse = 1/snapValue;
          
@@ -25,4 +31,9 @@ public class GridObject : MonoBehaviour {
          transform.position = new Vector3(x, y, z);
          }
      }
+
+    public virtual void OnDestroy()
+    {
+        
+    }
 }

@@ -6,7 +6,7 @@ public class SimpleMonsterAI : MonoBehaviour {
 
     public TileMap tileMap;
 
-    public EnemyGridObject entity;
+    public Enemy entity;
     public float updateRate = 30;
     [Range(0,1)]
     public float chanceToChangeDirection = 0.02f;
@@ -28,7 +28,7 @@ public class SimpleMonsterAI : MonoBehaviour {
         // calculate
         // push into PQ
         if(entity == null)
-            entity = GetComponent<EnemyGridObject>();
+            entity = GetComponent<Enemy>();
         InvokeRepeating("RandomMovement", 0, 1.0f/updateRate);
 
 	}

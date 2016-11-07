@@ -11,7 +11,7 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
     public int speed = 2;
     Vision visionModule;
 
-    protected override void Start() {
+    public override void Start() {
         base.Start();
     }
 
@@ -35,7 +35,7 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionRandomizeDirection()
     {
-        direction = (Globals.Direction)UnityEngine.Random.Range(0, 4);
+        SetDirection((Globals.Direction)UnityEngine.Random.Range(0, 4));
         yield return null;
     }
 
@@ -55,7 +55,7 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
         return TimeInState() > (idleDelay);
     }
 
-    protected override void OnEnable()
+    public override void OnEnable()
     {
         base.OnEnable();
         visionModule = GetComponent<Vision>();

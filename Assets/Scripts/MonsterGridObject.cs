@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MonsterGridObject : MoveableGridObject {
+public class MonsterGridObject : CollidableMoveableGridObject {
 
 	// Use this for initialization
-	void Start () {
-	
+	public override void Start() {
+	    base.Start();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    // Update is called once per frame
+    public override void Update () {
+        base.Update();
+    }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KillableGridObject : RotateableGridObject {
+public class Killable : CollidableMoveableRotateableGridObject {
 
     public int health = 100;
 	public PlayerEdgeTrigger southHitCollider;
