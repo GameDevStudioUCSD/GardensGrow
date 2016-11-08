@@ -41,10 +41,44 @@ public class TileMap : MonoBehaviour
     }
 
 
-    //Fetches tile contaning given location if it exists, null otherwise.
-    public Tile GetTile(float x, float y)
+    /// <summary>
+    /// Returns the tile an object is standing on. Uses the (0.5, 0) of a 1x1 object which has pivot at center (0.5, 0.5). 
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public Tile GetTileCenteredOn(float x, float y)
     {
-        // Stuff is actually standing in tile so y pivot is actually at bottom of object (feet), x is still center of obj, so need offset x to find right tile
+        x = Mathf.Round(x);
+        y = Mathf.Round(y);
+        if (x >= 0 && x < mapDimension && y >= 0 && y < mapDimension)
+        {
+            if (grid != null)
+            {
+                return grid[(int)x, (int)y];
+            }
+        }
+        return null;
+    }
+
+
+    /// <summary>
+    /// Returns the tile an object is standing on (and should be affected by the tile).
+    /// </summary>
+    /// <returns></returns>
+    public Tile GetTileCenteredOn(Vector3 position)
+    {
+        return GetTileCenteredOn(position.x, position.y);
+    }
+
+    /// <summary>
+    /// Returns the tile an object is standing on. Uses the (0.5, 0) of a 1x1 object which has pivot at center (0.5, 0.5). 
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public Tile GetTileStandingOn(float x, float y)
+    {
         if (x >= -0.5f && y >= 0)
         {
             x += 0.5f;
@@ -59,19 +93,26 @@ public class TileMap : MonoBehaviour
         return null;
     }
 
-    
 
+    /// <summary>
+    /// Returns the tile an object is standing on (and should be affected by the tile).
+    /// </summary>
+    /// <returns></returns>
+    public Tile GetTileStandingOn(Vector3 position)
+    {
+        return GetTileStandingOn(position.x, position.y);
+    }
+
+
+    /// <summary>
+    /// Returns the coordinates in the grid of the tile this point is at (==GetTileCenteredOn)
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
     public Vector2 GetGridCoordinates(Vector3 position)
     {
         return GetGridCoordinates(position.x, position.y);
     }
-
-    //Fetches tile contaning given location if it exists, null otherwise.
-    public Tile GetTile(Vector3 position)
-    {
-        return GetTile(position.x, position.y);
-    }
-
 
     // Use this for initialization
     void Start()
@@ -177,6 +218,6 @@ public class TileMap : MonoBehaviour
     /// <returns>True if the Tile is patheable, false if Tile is not patheable or it does not exist.</returns>
     bool IsPatheable(Vector2 targetPosition)
     {
-        return GetTile(targetPosition).isPathable();
+        return GetTileStandingOn(targetPosition).IsOpen();
     }
 }

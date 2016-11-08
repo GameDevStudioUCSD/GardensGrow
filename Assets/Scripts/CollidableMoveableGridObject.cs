@@ -104,7 +104,6 @@ public class CollidableMoveableGridObject : MoveableGridObject, Collidable
         Collidable other = collision.gameObject.GetComponent<Collidable>();
         if (other != null)
         {
-            Debug.Log(objectsInRange + " " + gameObject);
             objectsInRange.AddLast(collision.gameObject);
         }
     }

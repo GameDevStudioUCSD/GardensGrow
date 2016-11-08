@@ -25,6 +25,11 @@ public class MoveableGridObject : GridObject
 
     protected TileMap tileMap;
 
+    public override void Awake()
+    {
+        
+    }
+
     public override void Start()
     {
         count = 0;
@@ -43,7 +48,7 @@ public class MoveableGridObject : GridObject
     	base.Update();
 
         //Applies all UncollidableStaticGridObject effects of tile currently in
-        Tile t = tileMap.GetTile(gameObject.transform.position);
+        Tile t = tileMap.GetTileStandingOn(gameObject.transform.position);
         if (t != null)
         {
             t.ApplyEffects(this);

@@ -17,14 +17,15 @@ public class TurbinePlantObject : Plant
 
     private Animator animator;
 
+    public override void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Use this for initialization
     public override void Start() { 
         base.Start();
-        // setting direction for corresponding animation
-        animator = GetComponent<Animator>();
-//        Vector3 position = gameObject.transform.position;
-        
-        updateDirection(direction);
+        SetDirection(direction);
     }
 
 //    // Update is called once per frame
@@ -39,11 +40,11 @@ public class TurbinePlantObject : Plant
 //
 //	}
 //
-	void updateDirection (Globals.Direction dir)
+	public override void SetDirection (Globals.Direction dir)
 	{
-	    south1.enabled = south2.enabled = south3.enabled = north1.enabled = north2.enabled = north3.enabled = east1.enabled = east2.enabled = east3.enabled = west1.enabled = west2.enabled = west3.enabled = false;
+        base.SetDirection(dir);
 
-        direction = dir;
+	    south1.enabled = south2.enabled = south3.enabled = north1.enabled = north2.enabled = north3.enabled = east1.enabled = east2.enabled = east3.enabled = west1.enabled = west2.enabled = west3.enabled = false;
         switch (direction)
         {
             case Globals.Direction.East:
@@ -57,14 +58,14 @@ public class TurbinePlantObject : Plant
                 west3.enabled = true;
                 break;
             case Globals.Direction.North:
-                east1.enabled = true;
-                east2.enabled = true;
-                east3.enabled = true;
+                north1.enabled = true;
+                north2.enabled = true;
+                north3.enabled = true;
                 break;
             case Globals.Direction.South:
-                east1.enabled = true;
-                east2.enabled = true;
-                east3.enabled = true;
+                south1.enabled = true;
+                south2.enabled = true;
+                south3.enabled = true;
                 break;
         }
         animator.SetInteger ("Direction", (int)direction);	

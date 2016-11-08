@@ -10,13 +10,13 @@ public abstract class UncollidableStaticRotateableGridObject : UncollidableStati
         return direction;
     }
 
-    public void SetDirection(Globals.Direction dir)
+    public virtual void SetDirection(Globals.Direction dir)
     {
         direction = dir;
     }
 
-    public void Rotate(Globals.Direction dir)
+    public virtual void Rotate(Globals.Direction dir)
     {
-        direction = dir;
+        SetDirection(dir);
     }
 }

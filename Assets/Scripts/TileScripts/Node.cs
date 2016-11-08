@@ -37,7 +37,7 @@ public class Node {
     {
         this.parent = parent;
 
-        isPatheable = tile.isPathable();
+        isPatheable = tile.IsOpen();
         worldPosition = tile.transform.position;
         gridPosition = tile.transform.localPosition;
         gCost = tile.gCost;
@@ -48,7 +48,7 @@ public class Node {
         this.parent = parent;
         this.directionTaken = directionTaken;
 
-        isPatheable = tile.isPathable();
+        isPatheable = tile.IsOpen();
         worldPosition = tile.transform.position;
         gridPosition = tile.transform.localPosition;
         gCost = tile.gCost;

@@ -98,24 +98,30 @@ public class Player : CollidableMoveableRotateableGridObject
         // Vector3 dirr = Globals.DirectionToVector(direction);
         // Plant newPlant = (Plant)Instantiate(plants[plantNumber], transform.position + dirr, Quaternion.identity);
 
-        Vector2 pos = tileMap.GetGridCoordinates(gameObject.transform.position);
+        Vector3 gridCoordinates = gameObject.transform.position;//tileMap.GetGridCoordinates(gameObject.transform.position);
+
+        Tile t = null;
+        Plant newPlant;
         switch (direction)
         {
             case Globals.Direction.East:
-                Tile t = tileMap.GetTile(pos.x + 1, pos.y);
-                Debug.Log(t);
-                if (t != null && t.isPathable())
-                {
-                    Debug.Log(plants[plantNumber]);
-                    Plant newPlant = (Plant)Instantiate (plants[plantNumber], new Vector3 (transform.position.x + 1, transform.position.y, 1), Quaternion.identity);
-                }
+                t = tileMap.GetTileCenteredOn(gridCoordinates.x + 1, gridCoordinates.y);
                 break;
             case Globals.Direction.West:
+                t = tileMap.GetTileCenteredOn(gridCoordinates.x - 1, gridCoordinates.y);
                 break;
             case Globals.Direction.North:
+                t = tileMap.GetTileCenteredOn(gridCoordinates.x, gridCoordinates.y+1);
                 break;
             case Globals.Direction.South:
+                t = tileMap.GetTileCenteredOn(gridCoordinates.x, gridCoordinates.y-1);
                 break;
+        }
+
+        if (t != null && t.IsOpen())
+        {
+            newPlant = (Plant)Instantiate(plants[plantNumber], new Vector3(t.transform.position.x, t.transform.position.y, 1), Quaternion.identity);
+            newPlant.SetDirection(direction);
         }
 
         //        switch (direction) {

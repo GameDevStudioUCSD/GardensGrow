@@ -12,7 +12,7 @@ public abstract class UncollidableStaticGridObject : StaticGridObject
     {
         base.Start();
         //Assigns this object to a tile in the map, if it is in a tile location.
-        tile = GameObject.Find("TileMap").GetComponent<TileMap>().GetTile(gameObject.transform.position);
+        tile = GameObject.Find("TileMap").GetComponent<TileMap>().GetTileStandingOn(gameObject.transform.position);
         if (tile != null)
         {
             tile.AddUncollidableStaticGridObject(this);

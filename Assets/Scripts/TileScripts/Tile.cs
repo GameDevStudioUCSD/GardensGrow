@@ -62,6 +62,16 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void SetCollidableStaticGridObject(CollidableStaticGridObject obj)
+    {
+        collidableStaticGridObject = obj;
+    }
+
+    public void RemoveCollidableStaticGridObject(CollidableStaticGridObject obj)
+    {
+        collidableStaticGridObject = null;
+    }
+
     public void AddUncollidableStaticGridObject(UncollidableStaticGridObject obj)
     {
         uncollidableStaticGridObjects.AddLast(obj);
@@ -72,7 +82,7 @@ public class Tile : MonoBehaviour
         uncollidableStaticGridObjects.Remove(obj);
     }
 
-    public bool isPathable()
+    public bool IsOpen()
     {
         return collidableStaticGridObject == null;
     }
