@@ -2,7 +2,7 @@
 using System.Collections;
 
 [ExecuteInEditMode]
-public class TerrainObject : MonoBehaviour
+public class TerrainObject : StaticGridObject
 {
     public Sprite[] sprites;
     public Sprite chosenSprite;

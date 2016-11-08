@@ -10,6 +10,7 @@ public class StaticGridObject : GridObject {
 	protected virtual void Start () {
 		if (!isBarrier)
 		{
+			
 		}
 	}
 }

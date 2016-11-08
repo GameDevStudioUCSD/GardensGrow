@@ -22,14 +22,12 @@ public class TurbinePlantObject : PlantGridObject
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
-
-
     }
 
     // Update is called once per frame
-    public void Attack()
+    public void Attack(EnemyGridObject enemy)
     {
-
+    	enemy.TakeDamage(5);
     }
 	protected virtual void Update() {
 
@@ -59,9 +57,8 @@ public class TurbinePlantObject : PlantGridObject
 
     void OnTriggerEnter2D(Collider2D other)
     { 
-        
         if (other.GetComponent<MoveableGridObject>())
-        { 
+        {
             enemy = other.GetComponent <MoveableGridObject>();
 
             if (southCollider.IsTouching(other))
