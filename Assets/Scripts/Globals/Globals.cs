@@ -4,6 +4,9 @@ public class Globals {
     public const float pixelSize = 0.03125f;
 
     public enum Direction { North, East, South, West };
+
+    public static int[] inventory;
+
     public static Vector2 DirectionToVector(Direction direction)
     {
         Vector2 dirr = Vector2.up;

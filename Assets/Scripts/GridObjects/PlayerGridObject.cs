@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
+	public int[] inventory;
 
     // Use this for initialization
     protected virtual void Start () {
@@ -44,33 +45,36 @@ public class PlayerGridObject : MoveableGridObject {
         // TODO: use more general form of detecting direction
         // Vector3 dirr = Globals.DirectionToVector(direction);
         // PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], transform.position + dirr, Quaternion.identity);
-		switch (direction) {
-		case Globals.Direction.East:
-			if (!eastHitCollider.isTriggered) {
-				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x + 1, transform.position.y, 0), Quaternion.identity);
-				newPlant.Rotate(direction);
+        if (Globals.inventory[plantNumber] > 0){
+			switch (direction) {
+				case Globals.Direction.East:
+					if (!eastHitCollider.isTriggered) {
+						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x + 1, transform.position.y, 0), Quaternion.identity);
+						newPlant.Rotate(direction);
+					}
+					break;
+				case Globals.Direction.West:
+					if (!westHitCollider.isTriggered) {
+						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x - 1, transform.position.y, 0), Quaternion.identity);
+						newPlant.Rotate(direction);
+					}
+					break;
+				case Globals.Direction.South:
+					if (!southHitCollider.isTriggered) {
+						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y - 1, 0), Quaternion.identity);
+						newPlant.Rotate(direction);
+					}
+					break;
+				case Globals.Direction.North:
+					if (!northHitCollider.isTriggered) {
+						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
+						newPlant.Rotate(direction);
+					}
+					break;
+				default:
+					break;
 			}
-			break;
-		case Globals.Direction.West:
-			if (!westHitCollider.isTriggered) {
-				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x - 1, transform.position.y, 0), Quaternion.identity);
-				newPlant.Rotate(direction);
-			}
-			break;
-		case Globals.Direction.South:
-			if (!southHitCollider.isTriggered) {
-				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y - 1, 0), Quaternion.identity);
-				newPlant.Rotate(direction);
-			}
-			break;
-		case Globals.Direction.North:
-			if (!northHitCollider.isTriggered) {
-				PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y + 1, 0), Quaternion.identity);
-				newPlant.Rotate(direction);
-			}
-			break;
-		default:
-			break;
+			Globals.inventory[plantNumber]--;
 		}
 
 	}
