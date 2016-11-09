@@ -67,7 +67,7 @@ public class Tile : MonoBehaviour
         collidableStaticGridObject = obj;
     }
 
-    public void RemoveCollidableStaticGridObject(CollidableStaticGridObject obj)
+    public void RemoveCollidableStaticGridObject()
     {
         collidableStaticGridObject = null;
     }

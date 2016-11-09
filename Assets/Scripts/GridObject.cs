@@ -36,4 +36,13 @@ public class GridObject : MonoBehaviour {
     {
         
     }
+
+    public virtual void Destroy()
+    {
+        foreach (Transform child in gameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        Destroy(gameObject);
+    }
 }

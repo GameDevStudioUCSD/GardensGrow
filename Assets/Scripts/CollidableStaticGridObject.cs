@@ -3,7 +3,6 @@ using System.Collections;
 
 public class CollidableStaticGridObject : StaticGridObject, Collidable
 {
-    public float initialColliderWidth, initialColliderHeight;
 
     private BoxCollider2D boxCollider;
 
@@ -15,7 +14,6 @@ public class CollidableStaticGridObject : StaticGridObject, Collidable
         base.Start();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         boxCollider.isTrigger = true;
-        boxCollider.size = new Vector2(initialColliderWidth, initialColliderHeight);
 
         tile = GameObject.Find("TileMap").GetComponent<TileMap>().GetTileStandingOn(gameObject.transform.position);
         if (tile != null)
@@ -29,13 +27,21 @@ public class CollidableStaticGridObject : StaticGridObject, Collidable
         return gameObject;
     }
 
-    public float GetInitialColliderWidth()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        return initialColliderWidth;
+        //Collidable other = collision.gameObject.GetComponent<Collidable>();
+
     }
 
-    public float GetInitialColliderHeight()
+    void OnTriggerStay2D(Collider2D collision)
     {
-        return initialColliderHeight;
+        //Collidable other = collision.gameObject.GetComponent<Collidable>();
     }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        //Collidable other = collision.gameObject.GetComponent<Collidable>();
+
+    }
+
 }

@@ -13,7 +13,7 @@ public class TurbinePlantObject : Plant
     //    public Collider2D westCollider;
 
     //    public ConstantSpeedModifierObject one, two, three;
-    public ConstantSpeedModifierObject south1, south2, south3, north1, north2, north3, east1, east2, east3, west1, west2, west3;
+    public ConstantSpeedModifierObject south0, south1, south2, south3, north0, north1, north2, north3, east0, east1, east2, east3, west0, west1, west2, west3;
 
     private Animator animator;
 
@@ -48,21 +48,25 @@ public class TurbinePlantObject : Plant
         switch (direction)
         {
             case Globals.Direction.East:
+                east0.enabled = true;
                 east1.enabled = true;
                 east2.enabled = true;
                 east3.enabled = true;
                 break;
             case Globals.Direction.West:
+                west0.enabled = true;
                 west1.enabled = true;
                 west2.enabled = true;
                 west3.enabled = true;
                 break;
             case Globals.Direction.North:
+                north0.enabled = true;
                 north1.enabled = true;
                 north2.enabled = true;
                 north3.enabled = true;
                 break;
             case Globals.Direction.South:
+                south0.enabled = true;
                 south1.enabled = true;
                 south2.enabled = true;
                 south3.enabled = true;

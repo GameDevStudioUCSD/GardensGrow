@@ -34,7 +34,10 @@ public abstract class UncollidableStaticGridObject : StaticGridObject
 
     public override void OnDestroy()
     {
-        //tile.RemoveUncollidableStaticGridObject(this);
+        if (tile != null)
+        {
+            tile.RemoveUncollidableStaticGridObject(this);
+        }
         base.OnDestroy();
     }
 

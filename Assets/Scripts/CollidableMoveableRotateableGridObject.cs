@@ -7,7 +7,7 @@ public class CollidableMoveableRotateableGridObject : CollidableMoveableGridObje
     
     public Globals.Direction GetDirection()
     {
-        return direction;
+        return direction;   
     }
 
     public virtual void SetDirection(Globals.Direction dir)
