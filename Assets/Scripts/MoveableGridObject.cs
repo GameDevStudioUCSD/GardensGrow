@@ -24,6 +24,8 @@ public class MoveableGridObject : GridObject
 
     protected TileMap tileMap;
 
+    protected bool isPlayer;
+
     public override void Awake()
     {
         speedModifiers = new LinkedList<SpeedModifier>();
@@ -31,6 +33,7 @@ public class MoveableGridObject : GridObject
 
     public override void Start()
     {
+        isPlayer = false;
         base.Start();
         speedModifiers = new LinkedList<SpeedModifier>();
         baseSpeed = new SpeedModifier(Vector2.zero);
@@ -46,12 +49,30 @@ public class MoveableGridObject : GridObject
     	base.Update();
 
         //Applies all UncollidableStaticGridObject effects of tile currently in
-        Tile t = tileMap.GetTileStandingOn(gameObject.transform.position);
+        Tile t = null;
+        if (isPlayer)
+        {
+            t = tileMap.GetTileStandingOn(gameObject.transform.position);
+        }
+        else
+        {
+            t = tileMap.GetTileCenteredOn(gameObject.transform.position);
+        }
         if (t != null)
         {
             t.ApplyEffects(this);
         }
 
+        Move();
+
+        if (t != null)
+        {
+            t.ClearEffects(this);
+        }
+    }
+
+    protected void Move()
+    {
         // Computes movement speed and moves if can. 
         Vector2 movement = Vector2.zero;
         foreach (SpeedModifier m in speedModifiers)
@@ -153,11 +174,6 @@ public class MoveableGridObject : GridObject
         {
             movingTowardsDirection = Globals.Direction.None;
             //No actual movement
-        }
-
-        if (t != null)
-        {
-            t.ClearEffects(this);
         }
     }
 

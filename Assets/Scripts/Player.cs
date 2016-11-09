@@ -16,6 +16,7 @@ public class Player : CollidableMoveableRotateableGridObject
     public override void Start()
     {
         base.Start();
+        isPlayer = true;
         animator = gameObject.GetComponent<Animator>();
         horizontalMovementModifier = new SpeedModifier(Vector2.zero);
         verticalMovementModifier = new SpeedModifier(Vector2.zero);

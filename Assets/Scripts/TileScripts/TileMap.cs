@@ -79,7 +79,7 @@ public class TileMap : MonoBehaviour
     /// <returns></returns>
     public Tile GetTileStandingOn(float x, float y)
     {
-        if (x >= -0.5f && y >= 0)
+        if (x >= -0.5f && y >= -0.2f)
         {
             x += 0.5f;
             if (x < mapDimension && y < mapDimension)
