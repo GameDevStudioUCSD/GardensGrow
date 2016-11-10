@@ -1,22 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class AStar : MonoBehaviour{
+public class AStar {
 
     public TileMap tileMap;
 
     public Tile startTile;
     public Tile targetTile;
 
-    void Start()
+    public AStar(TileMap tileMap)
     {
-        // TODO: These are for debug purposes only
-        List<Globals.Direction> moves = FindPath(new Node(startTile), new Node(targetTile));
+        this.tileMap = tileMap;
+    }
 
-        foreach(Globals.Direction dir in moves)
-        {
-            Debug.Log(dir);
-        }
+    public AStar(TileMap tileMap, Tile startTile, Tile targetTile)
+    {
+        this.tileMap = tileMap;
+        this.startTile = startTile;
+        this.targetTile = targetTile;
+    }
+
+    public List<Globals.Direction> FindPath(Tile startTile, Tile targetTile)
+    {
+        return FindPath(new Node(startTile), new Node(targetTile));
     }
 
     public List<Globals.Direction> FindPath(Node startNode, Node targetNode)
