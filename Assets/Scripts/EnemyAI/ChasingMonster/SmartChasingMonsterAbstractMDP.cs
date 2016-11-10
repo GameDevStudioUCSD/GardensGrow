@@ -61,13 +61,10 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
             
             try {
             // The following switch statement handles the MDP's state transition logic
-            switch(state) {                case State.FollowPath:
+            switch(state) {                
+              
+                case State.FollowPath:
                 
-                    if( true ) {
-                        // Probability of transition 100.0%
-                        if( true )
-                            state = State.PathingDelay;
-                    }
                     if( Disabled() ) {
                         // Probability of transition 100.0%
                         if( true )
@@ -81,7 +78,7 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     if( PathFinished() ) {
                         // Probability of transition 100.0%
                         if( true )
-                            state = State.Idle;
+                            state = State.PathingDelay;
                     }
                     break;
                 case State.Wander:

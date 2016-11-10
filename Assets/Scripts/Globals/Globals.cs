@@ -6,6 +6,7 @@ public class Globals {
     public enum Direction { North, East, South, West };
 
     public static string ground_tag = "Ground";
+    public static string player_tag = "Player";
 
     public static string ground_layer = "Ground";
 
