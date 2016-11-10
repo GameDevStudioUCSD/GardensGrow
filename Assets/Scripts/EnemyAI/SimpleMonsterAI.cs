@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(Vision))]
 public class SimpleMonsterAI : MonoBehaviour {
