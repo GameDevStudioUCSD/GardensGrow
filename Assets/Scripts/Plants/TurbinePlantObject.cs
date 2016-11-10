@@ -78,7 +78,8 @@ public class TurbinePlantObject : PlantGridObject
             enemy = other.GetComponent <MoveableGridObject>();
             if (directionalCollider.IsTouching(other))
             {
-            	enemy.Move(direction);
+            	enemy.TakeDamage(1);
+              	enemy.Move(direction);
             }
         }
     }
