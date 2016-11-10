@@ -7,6 +7,7 @@ public class MoveableGridObject : KillableGridObject {
 	public PlayerEdgeTrigger westCollider;
 	public PlayerEdgeTrigger northCollider;
 	public PlayerEdgeTrigger eastCollider;
+
 	private const float pixelSize = Globals.pixelSize;
 
 	private bool southCollision = false;
@@ -85,4 +86,5 @@ public class MoveableGridObject : KillableGridObject {
     protected virtual void Stop() {
         animator.SetBool("IsWalking", false);
     }
+
 }

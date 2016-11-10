@@ -143,4 +143,32 @@ public class TileMap : MonoBehaviour {
         return grid[x, y] != null ? grid[x, y].isPatheable : false;
     }
 
+    /// <summary>
+    /// Finds the closest Tile to a world position.
+    /// </summary>
+    /// <param name="worldPosition">Vector2 in world coordinates.</param>
+    /// <returns></returns>
+    public Tile GetNearestTile(Vector2 worldPosition)
+    {
+        Debug.Log("Does position match? " + worldPosition);
+        float roundedX = Mathf.Round(worldPosition.x);
+        float roundedY = Mathf.Round(worldPosition.y);
+
+        // Find the position relative to the tile map (Tiles are indexed by their positions relative to TileMap)
+        Vector3 localPosition = this.transform.InverseTransformPoint(roundedX, roundedY, 0.0f);
+        Debug.Log("Find tile at local: " + localPosition);
+
+        int x = (int)localPosition.x;
+        int y = (int)localPosition.y;
+
+        // Check if in bound
+        if (x < 0 || x > mapDimension || y < 0 || y > mapDimension)
+        {
+            Debug.Log("tile out of bound");
+            return null;
+        }
+
+        Debug.Log("Finding tile at grid: " + x + ", " + y);
+        return grid[x, y];
+    }
 }

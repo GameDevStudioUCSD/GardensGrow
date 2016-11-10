@@ -5,6 +5,10 @@ public class Globals {
 
     public enum Direction { North, East, South, West };
 
+    public static string ground_tag = "Ground";
+
+    public static string ground_layer = "Ground";
+
     public static int[] inventory;
 
     public static Vector2 DirectionToVector(Direction direction)
