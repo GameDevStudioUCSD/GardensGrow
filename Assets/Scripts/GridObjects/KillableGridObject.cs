@@ -40,7 +40,7 @@ public class KillableGridObject : RotateableGridObject {
         Debug.Log("death");
         if(this.gameObject.tag == "Player")
         {
-            gameOverText.text = "Game Over";
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
