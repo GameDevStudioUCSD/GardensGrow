@@ -73,15 +73,10 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionFollowPath()
     {
-        if (path.Count > 0 && currentPathIndex < path.Count)
+        for (int i = 0; i < speed; i++)
         {
-            for (int i = 0; i < speed; i++)
-            {
-                MoveEnemy(path[0]);
-            }
+            MoveEnemy(path[currentPathIndex]);
         }
-        // TODO: this doesn't work but keep it for right now
-        currentPathIndex++;
         yield return null;
     }
 
@@ -126,7 +121,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
     protected override bool PathFinished()
     {
-        return currentPathIndex >= path.Count;
+        return TimeInState() > pathingDelay;
     }
 
     protected override void OnEnable()

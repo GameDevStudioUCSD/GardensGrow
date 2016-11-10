@@ -73,18 +73,14 @@ public class TurbinePlantObject : PlantGridObject
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.GetComponent<MoveableGridObject>())
+        enemy = other.GetComponent<MoveableGridObject>();
+        if (enemy)
         {
-            enemy = other.GetComponent <MoveableGridObject>();
-            if (directionalCollider.IsTouching(other))
-            {
-            	enemy.Move(direction);
-            }
+           	enemy.Move(direction);
         }
     }
 
     void onTriggerExit2D (Collider2D other) {
-    	enemy = null;
     }
 
     IEnumerator Mover(Globals.Direction direction, MoveableGridObject enemy)
