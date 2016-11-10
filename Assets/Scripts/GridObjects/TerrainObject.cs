@@ -11,6 +11,7 @@ public class TerrainObject : StaticGridObject
     // Use this for initialization
     void Start ()
     {
+    	base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

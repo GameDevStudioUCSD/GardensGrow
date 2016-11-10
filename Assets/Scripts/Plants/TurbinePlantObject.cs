@@ -7,12 +7,13 @@ public class TurbinePlantObject : PlantGridObject
     public float speed;
     private float moveNum;
     private MoveableGridObject enemy;
-    private Globals.Direction enemyDir;
 
     public Collider2D southCollider;
     public Collider2D northCollider;
     public Collider2D eastCollider;
     public Collider2D westCollider;
+
+    private Collider2D directionalCollider;
 
 	private Animator animator;
 	int directionInt; // 0 North, 1 South, 2 East, 3 West
@@ -33,57 +34,57 @@ public class TurbinePlantObject : PlantGridObject
 
 		updateDirection ();
 		base.Update();
-
 	}
 
 	void updateDirection ()
 	{
 		switch (this.direction) {
 			case Globals.Direction.North:
+				southCollider.enabled = false;
+				eastCollider.enabled = false;
+				westCollider.enabled = false;
+				directionalCollider = northCollider;
 				directionInt = 0;
 				break;
 			case Globals.Direction.South:
+				eastCollider.enabled = false;
+				northCollider.enabled = false;
+				westCollider.enabled = false;
+				directionalCollider = southCollider;
 				directionInt = 1;
 				break;
 			case Globals.Direction.East:
+				southCollider.enabled = false;
+				northCollider.enabled = false;
+				westCollider.enabled = false;
+				directionalCollider = eastCollider;
 				directionInt = 2;
 				break;
 			case Globals.Direction.West:
+				southCollider.enabled = false;
+				eastCollider.enabled = false;
+				northCollider.enabled = false;
+				directionalCollider = westCollider;
 				directionInt = 3;
 				break;
 		}
 		animator.SetInteger ("Direction", directionInt);	
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    { 
+    void OnTriggerStay2D(Collider2D other)
+    {
         if (other.GetComponent<MoveableGridObject>())
         {
             enemy = other.GetComponent <MoveableGridObject>();
-
-            if (southCollider.IsTouching(other))
+            if (directionalCollider.IsTouching(other))
             {
-                enemyDir = Globals.Direction.South;
+            	enemy.Move(direction);
             }
-            else if (eastCollider.IsTouching(other))
-            {
-                enemyDir = Globals.Direction.East;
-            }
-            else if (northCollider.IsTouching(other))
-            {
-                enemyDir = Globals.Direction.North;
-            }
-            else if(westCollider.IsTouching(other))
-            {
-                enemyDir = Globals.Direction.West;
-            }
-
-            if(enemyDir == this.direction)
-            {
-                StartCoroutine(Mover(enemyDir, enemy));
-            }
-             
         }
+    }
+
+    void onTriggerExit2D (Collider2D other) {
+    	enemy = null;
     }
 
     IEnumerator Mover(Globals.Direction direction, MoveableGridObject enemy)

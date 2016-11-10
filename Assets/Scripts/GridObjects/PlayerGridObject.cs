@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
-	public int[] inventory;
 
     // Use this for initialization
     protected virtual void Start () {
