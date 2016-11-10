@@ -34,7 +34,6 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
     // Use this for initialization
     protected override void Start () {
-        Debug.Log("MONSTER IS STARTING");
         isDisabled = false;
         path = new List<Globals.Direction>();
         astarAlgorithm = new AStar(tileMap);
