@@ -9,7 +9,7 @@ public class Globals {
 
     public static string ground_layer = "Ground";
 
-    public static int[] inventory = {0, 10000};
+    public static int[] inventory = {0, 100};
 
     public static Vector2 DirectionToVector(Direction direction)
     {
