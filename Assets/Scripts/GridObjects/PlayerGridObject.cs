@@ -12,13 +12,13 @@ public class PlayerGridObject : MoveableGridObject {
 	// Update is called once per frame
 	protected virtual void Update () {
 		base.Update();
-		if (Input.GetKey (KeyCode.DownArrow)) {
+		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
 			Move (Globals.Direction.South);
-		} else if (Input.GetKey (KeyCode.LeftArrow)) {
+		} else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
 			Move (Globals.Direction.West);
-		} else if (Input.GetKey (KeyCode.UpArrow)) {
+		} else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
 			Move (Globals.Direction.North);
-		} else if (Input.GetKey (KeyCode.RightArrow)) {
+		} else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 			Move (Globals.Direction.East);
 		} else {
 			for (int i = 0; i < 10; ++i) {

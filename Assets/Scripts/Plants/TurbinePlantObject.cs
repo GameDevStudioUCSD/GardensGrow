@@ -23,6 +23,7 @@ public class TurbinePlantObject : PlantGridObject
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
+        setDirection();
     }
 
     // Update is called once per frame
@@ -32,11 +33,10 @@ public class TurbinePlantObject : PlantGridObject
     }
 	protected virtual void Update() {
 
-		updateDirection ();
 		base.Update();
 	}
 
-	void updateDirection ()
+	void setDirection ()
 	{
 		switch (this.direction) {
 			case Globals.Direction.North:
@@ -73,16 +73,21 @@ public class TurbinePlantObject : PlantGridObject
 
     void OnTriggerStay2D(Collider2D other)
     {
-        enemy = other.GetComponent<MoveableGridObject>();
-        if (enemy)
+        MoveableGridObject otherGridObject = other.GetComponent<MoveableGridObject>();
+        if (otherGridObject)
         {
-           	enemy.Move(direction);
+           	otherGridObject.Move(direction);
+        }
+
+        // TODO: the Attack function and take damage functions shouldn't be only in EnemyGridObject
+        EnemyGridObject enemyGridObject = other.GetComponent<EnemyGridObject>();
+        if(enemyGridObject)
+        {
+            Attack(enemyGridObject);
         }
     }
 
-    void onTriggerExit2D (Collider2D other) {
-    }
-
+    // TODO: is this not being used anymore?
     IEnumerator Mover(Globals.Direction direction, MoveableGridObject enemy)
     {
        if (direction == Globals.Direction.South)
