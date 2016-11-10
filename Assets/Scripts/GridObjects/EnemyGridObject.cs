@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿public class EnemyGridObject : MoveableGridObject {
 
-public class EnemyGridObject : MoveableGridObject {
 
-	// Use this for initialization
-	protected override void Start () {
+    // Use this for initialization
+	protected override void Start ()
+    {
         base.Start();
 	}
 

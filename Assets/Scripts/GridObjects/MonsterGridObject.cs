@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class MonsterGridObject : MoveableGridObject {
+﻿public class MonsterGridObject : MoveableGridObject {
 
 	// Use this for initialization
 	void Start () {

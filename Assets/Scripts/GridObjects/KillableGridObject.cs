@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+
+using UnityEngine.UI;
 using System.Collections;
+
 
 public class KillableGridObject : RotateableGridObject {
 
@@ -8,6 +11,9 @@ public class KillableGridObject : RotateableGridObject {
 	public PlayerEdgeTrigger westHitCollider;
 	public PlayerEdgeTrigger northHitCollider;
 	public PlayerEdgeTrigger eastHitCollider;
+
+    public Text gameOverText;
+    public Text hpBarPlayerText;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -20,14 +26,22 @@ public class KillableGridObject : RotateableGridObject {
 	}
 
     public virtual void TakeDamage (int damage) {
-        health -= damage;
+        if(health >= damage)
+            health -= damage;
+
+        if (this.gameObject.tag == "Player")
+            hpBarPlayerText.text = "HP: " + health;
+
         if (health <= 0)
             Die();
     }
 
     protected virtual void Die() {
         Debug.Log("death");
-        Destroy(gameObject);
+        if(this.gameObject.tag == "Player")
+        {
+            gameOverText.text = "Game Over";
+        }
     }
 
     protected virtual void OnValidate()
