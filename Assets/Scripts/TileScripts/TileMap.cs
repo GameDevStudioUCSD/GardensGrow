@@ -27,6 +27,8 @@ public class TileMap : MonoBehaviour {
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
         }
 
+        Debug.Log("TILEMAP FINISH AWAKE");
+
 	}
 
     // Use this for initialization
