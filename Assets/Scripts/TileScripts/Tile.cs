@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Tile : MonoBehaviour {
 
+    [Header("Gizmo Settings")]
+    [Tooltip("What color should this gizmo be?")]
+    public Color gizmoColor = Color.yellow;
+    public bool shouldDrawGizmos = true;
+
     public bool isPatheable = true;
 
     // Path cost 
@@ -18,4 +23,13 @@ public class Tile : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnDrawGizmos()
+    {
+        if (shouldDrawGizmos)
+        {
+            Gizmos.color = gizmoColor;
+            Gizmos.DrawWireCube(transform.position, Vector3.one);
+        }
+    }
 }
