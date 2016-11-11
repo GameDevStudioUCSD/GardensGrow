@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MoveableGridObject : KillableGridObject {
 
@@ -9,11 +8,6 @@ public class MoveableGridObject : KillableGridObject {
 	public PlayerEdgeTrigger eastCollider;
 
 	private const float pixelSize = Globals.pixelSize;
-
-	private bool southCollision = false;
-	private bool westCollision = false;
-	private bool northCollision = false;
-	private bool eastCollision = false;
 
     private Animator animator;
 

@@ -3,8 +3,20 @@
 public class POTAspectUtility : MonoBehaviour
 {
 
-    public int[] AspectRatio = new int[2] { 16, 11 };
-    public int PPU = 32;
+    public static int[] AspectRatio = new int[2] { 16, 11 };
+    public static int PPU = 32;
+    public static int multiplier {
+        get {
+            float multiplierW = (float)Screen.width / (AspectRatio[0] * PPU);
+            float multiplierH = (float)Screen.height / (AspectRatio[1] * PPU);
+
+            int intMultiplierW = Mathf.Max(1, Mathf.FloorToInt(multiplierW + 1.0f / AspectRatio[0]));
+            int intMultiplierH = Mathf.Max(1, Mathf.FloorToInt(multiplierH + 1.0f / AspectRatio[1]));
+
+            return intMultiplierW < intMultiplierH ? intMultiplierW : intMultiplierH;
+
+        }
+    }
     static Camera cam;
     static Camera backgroundCam;
 
@@ -43,7 +55,7 @@ public class POTAspectUtility : MonoBehaviour
         int intMultiplierW = Mathf.Max(1, Mathf.FloorToInt(multiplierW + 1.0f / AspectRatio[0]));
         int intMultiplierH = Mathf.Max(1, Mathf.FloorToInt(multiplierH + 1.0f / AspectRatio[1]));
 
-        float multiplier = intMultiplierW < intMultiplierH ? intMultiplierW : intMultiplierH;
+        int multiplier = intMultiplierW < intMultiplierH ? intMultiplierW : intMultiplierH;
 
         float insetW = 1.0f - (AspectRatio[0] * PPU * multiplier) / (float)Screen.width;
         float insetH = 1.0f - (AspectRatio[1] * PPU * multiplier) / (float)Screen.height;

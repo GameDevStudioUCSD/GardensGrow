@@ -1,27 +1,42 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
-	public int[] inventory;
 
     // Use this for initialization
     protected virtual void Start () {
+
         base.Start();
 	}
 	
 	// Update is called once per frame
 	protected virtual void Update () {
 		base.Update();
-		if (Input.GetKey (KeyCode.DownArrow)) {
+		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
 			Move (Globals.Direction.South);
-		} else if (Input.GetKey (KeyCode.LeftArrow)) {
-			Move (Globals.Direction.West);
-		} else if (Input.GetKey (KeyCode.UpArrow)) {
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+				Move (Globals.Direction.West);
+			}
+			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+				Move (Globals.Direction.East);
+			}
+		}
+		else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
 			Move (Globals.Direction.North);
-		} else if (Input.GetKey (KeyCode.RightArrow)) {
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+				Move (Globals.Direction.West);
+			}
+			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+				Move (Globals.Direction.East);
+			}
+		}
+		else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+			Move (Globals.Direction.West);
+		}
+		else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 			Move (Globals.Direction.East);
-		} else {
+		}
+		else {
 			for (int i = 0; i < 10; ++i) {
 				if (Input.GetKeyDown ("" + i))
 					Plant(i);

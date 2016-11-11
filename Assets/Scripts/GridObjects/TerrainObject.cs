@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [ExecuteInEditMode]
 public class TerrainObject : StaticGridObject
@@ -11,6 +10,7 @@ public class TerrainObject : StaticGridObject
     // Use this for initialization
     void Start ()
     {
+    	base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

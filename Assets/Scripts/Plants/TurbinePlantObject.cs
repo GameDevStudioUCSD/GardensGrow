@@ -7,12 +7,13 @@ public class TurbinePlantObject : PlantGridObject
     public float speed;
     private float moveNum;
     private MoveableGridObject enemy;
-    private Globals.Direction enemyDir;
 
     public Collider2D southCollider;
     public Collider2D northCollider;
     public Collider2D eastCollider;
     public Collider2D westCollider;
+
+    private Collider2D directionalCollider;
 
 	private Animator animator;
 	int directionInt; // 0 North, 1 South, 2 East, 3 West
@@ -22,96 +23,68 @@ public class TurbinePlantObject : PlantGridObject
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
+        setDirection();
     }
 
     // Update is called once per frame
     public void Attack(EnemyGridObject enemy)
     {
-    	enemy.TakeDamage(5);
+    	enemy.TakeDamage(10);
     }
 	protected virtual void Update() {
 
-		updateDirection ();
 		base.Update();
-
 	}
 
-	void updateDirection ()
+	void setDirection ()
 	{
 		switch (this.direction) {
 			case Globals.Direction.North:
+				southCollider.enabled = false;
+				eastCollider.enabled = false;
+				westCollider.enabled = false;
+				directionalCollider = northCollider;
 				directionInt = 0;
 				break;
 			case Globals.Direction.South:
+				eastCollider.enabled = false;
+				northCollider.enabled = false;
+				westCollider.enabled = false;
+				directionalCollider = southCollider;
 				directionInt = 1;
 				break;
 			case Globals.Direction.East:
+				southCollider.enabled = false;
+				northCollider.enabled = false;
+				westCollider.enabled = false;
+				directionalCollider = eastCollider;
 				directionInt = 2;
 				break;
 			case Globals.Direction.West:
+				southCollider.enabled = false;
+				eastCollider.enabled = false;
+				northCollider.enabled = false;
+				directionalCollider = westCollider;
 				directionInt = 3;
 				break;
 		}
 		animator.SetInteger ("Direction", directionInt);	
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    { 
-        if (other.GetComponent<MoveableGridObject>())
-        {
-            enemy = other.GetComponent <MoveableGridObject>();
-
-            if (southCollider.IsTouching(other))
-            {
-                enemyDir = Globals.Direction.South;
-            }
-            else if (eastCollider.IsTouching(other))
-            {
-                enemyDir = Globals.Direction.East;
-            }
-            else if (northCollider.IsTouching(other))
-            {
-                enemyDir = Globals.Direction.North;
-            }
-            else if(westCollider.IsTouching(other))
-            {
-                enemyDir = Globals.Direction.West;
-            }
-
-            if(enemyDir == this.direction)
-            {
-                StartCoroutine(Mover(enemyDir, enemy));
-            }
-             
-        }
-    }
-
-    IEnumerator Mover(Globals.Direction direction, MoveableGridObject enemy)
+    void OnTriggerStay2D(Collider2D other)
     {
-       if (direction == Globals.Direction.South)
+        MoveableGridObject otherGridObject = other.GetComponent<MoveableGridObject>();
+        if (otherGridObject)
         {
-            moveNum = (56.0f - (-1.0f)*enemy.GetComponent<Transform>().position.y * 12.0f) / 0.525f;
-        }
-        else if (direction == Globals.Direction.East)
-        {
-            moveNum = (56.0f - (-1.0f)*enemy.GetComponent<Transform>().position.x * 12.0f) / 0.525f;
-        }
-        if (direction == Globals.Direction.North)
-        {
-            moveNum = (56.0f - enemy.GetComponent<Transform>().position.y * 12.0f)/0.525f;
-        }
-        else if (direction == Globals.Direction.West)
-        {
-            moveNum = (56.0f - enemy.GetComponent<Transform>().position.x * 12.0f) / 0.525f;
+           	otherGridObject.Move(direction);
+            otherGridObject.TakeDamage(1);
         }
 
-        for (int i = 0; i < moveNum; i++)
+        // TODO: the Attack function and take damage functions shouldn't be only in EnemyGridObject
+        EnemyGridObject enemyGridObject = other.GetComponent<EnemyGridObject>();
+        if(enemyGridObject)
         {
-            enemy.MoveEnemy(direction);
-
-            yield return new WaitForSeconds(speed);
-        }    
+            Attack(enemyGridObject);
+        }
     }
-
-
 }
