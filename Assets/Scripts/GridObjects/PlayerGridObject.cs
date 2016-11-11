@@ -14,13 +14,29 @@ public class PlayerGridObject : MoveableGridObject {
 		base.Update();
 		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
 			Move (Globals.Direction.South);
-		} else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-			Move (Globals.Direction.West);
-		} else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+				Move (Globals.Direction.West);
+			}
+			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+				Move (Globals.Direction.East);
+			}
+		}
+		else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
 			Move (Globals.Direction.North);
-		} else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+				Move (Globals.Direction.West);
+			}
+			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+				Move (Globals.Direction.East);
+			}
+		}
+		else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+			Move (Globals.Direction.West);
+		}
+		else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 			Move (Globals.Direction.East);
-		} else {
+		}
+		else {
 			for (int i = 0; i < 10; ++i) {
 				if (Input.GetKeyDown ("" + i))
 					Plant(i);
