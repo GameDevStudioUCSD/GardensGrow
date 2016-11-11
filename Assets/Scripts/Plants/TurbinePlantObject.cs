@@ -29,7 +29,7 @@ public class TurbinePlantObject : PlantGridObject
     // Update is called once per frame
     public void Attack(EnemyGridObject enemy)
     {
-    	enemy.TakeDamage(5);
+    	enemy.TakeDamage(10);
     }
 	protected virtual void Update() {
 
@@ -77,6 +77,7 @@ public class TurbinePlantObject : PlantGridObject
         if (otherGridObject)
         {
            	otherGridObject.Move(direction);
+            otherGridObject.TakeDamage(1);
         }
 
         // TODO: the Attack function and take damage functions shouldn't be only in EnemyGridObject
@@ -86,34 +87,4 @@ public class TurbinePlantObject : PlantGridObject
             Attack(enemyGridObject);
         }
     }
-
-    // TODO: is this not being used anymore?
-    IEnumerator Mover(Globals.Direction direction, MoveableGridObject enemy)
-    {
-       if (direction == Globals.Direction.South)
-        {
-            moveNum = (56.0f - (-1.0f)*enemy.GetComponent<Transform>().position.y * 12.0f) / 0.525f;
-        }
-        else if (direction == Globals.Direction.East)
-        {
-            moveNum = (56.0f - (-1.0f)*enemy.GetComponent<Transform>().position.x * 12.0f) / 0.525f;
-        }
-        if (direction == Globals.Direction.North)
-        {
-            moveNum = (56.0f - enemy.GetComponent<Transform>().position.y * 12.0f)/0.525f;
-        }
-        else if (direction == Globals.Direction.West)
-        {
-            moveNum = (56.0f - enemy.GetComponent<Transform>().position.x * 12.0f) / 0.525f;
-        }
-
-        for (int i = 0; i < moveNum; i++)
-        {
-            enemy.MoveEnemy(direction);
-
-            yield return new WaitForSeconds(speed);
-        }    
-    }
-
-
 }
