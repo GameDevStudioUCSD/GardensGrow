@@ -6,7 +6,7 @@ using System.Collections;
 
 public class KillableGridObject : RotateableGridObject {
 
-    private int health = 100;
+    public int health;
 	public PlayerEdgeTrigger southHitCollider;
 	public PlayerEdgeTrigger westHitCollider;
 	public PlayerEdgeTrigger northHitCollider;
@@ -16,7 +16,10 @@ public class KillableGridObject : RotateableGridObject {
 
 	// Use this for initialization
 	protected virtual void Start () {
-        
+        if(this.gameObject.tag == "Player")
+        {
+            health = 100;
+        }
         base.Start();
 	}
 	
@@ -39,7 +42,7 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     protected virtual void Die() {
-        Debug.Log("death");
+        //Debug.Log("death");
         if(this.gameObject.tag == "Player")
         {
             Application.LoadLevel(Application.loadedLevel);
