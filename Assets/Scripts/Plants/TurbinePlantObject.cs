@@ -77,7 +77,6 @@ public class TurbinePlantObject : PlantGridObject
         if (otherGridObject)
         {
            	otherGridObject.Move(direction);
-            otherGridObject.TakeDamage(1);
         }
 
         // TODO: the Attack function and take damage functions shouldn't be only in EnemyGridObject
