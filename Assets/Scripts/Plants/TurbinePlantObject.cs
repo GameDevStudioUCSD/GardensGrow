@@ -27,10 +27,6 @@ public class TurbinePlantObject : PlantGridObject
     }
 
     // Update is called once per frame
-    public void Attack(EnemyGridObject enemy)
-    {
-    	enemy.TakeDamage(10);
-    }
 	protected virtual void Update() {
 
 		base.Update();
@@ -42,11 +38,13 @@ public class TurbinePlantObject : PlantGridObject
 			case Globals.Direction.North:
 				southCollider.enabled = false;
 				eastCollider.enabled = false;
+				northCollider.enabled = true;
 				westCollider.enabled = false;
 				directionalCollider = northCollider;
 				directionInt = 0;
 				break;
 			case Globals.Direction.South:
+				southCollider.enabled = true;
 				eastCollider.enabled = false;
 				northCollider.enabled = false;
 				westCollider.enabled = false;
@@ -55,6 +53,7 @@ public class TurbinePlantObject : PlantGridObject
 				break;
 			case Globals.Direction.East:
 				southCollider.enabled = false;
+				eastCollider.enabled = true;
 				northCollider.enabled = false;
 				westCollider.enabled = false;
 				directionalCollider = eastCollider;
@@ -64,6 +63,7 @@ public class TurbinePlantObject : PlantGridObject
 				southCollider.enabled = false;
 				eastCollider.enabled = false;
 				northCollider.enabled = false;
+				westCollider.enabled = true;
 				directionalCollider = westCollider;
 				directionInt = 3;
 				break;
@@ -77,13 +77,9 @@ public class TurbinePlantObject : PlantGridObject
         if (otherGridObject)
         {
            	otherGridObject.Move(direction);
-        }
-
-        // TODO: the Attack function and take damage functions shouldn't be only in EnemyGridObject
-        EnemyGridObject enemyGridObject = other.GetComponent<EnemyGridObject>();
-        if(enemyGridObject)
-        {
-            Attack(enemyGridObject);
+           	EnemyGridObject enemyGridObject = otherGridObject.GetComponent<EnemyGridObject>();
+           	if (enemyGridObject)
+            	enemyGridObject.TakeDamage(100);
         }
     }
 }

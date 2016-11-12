@@ -5,7 +5,6 @@ public class PlayerGridObject : MoveableGridObject {
 
     // Use this for initialization
     protected virtual void Start () {
-
         base.Start();
 	}
 	
@@ -20,6 +19,9 @@ public class PlayerGridObject : MoveableGridObject {
 			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 				Move (Globals.Direction.East);
 			}
+			else {
+				Move (Globals.Direction.South);
+			}
 		}
 		else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
 			Move (Globals.Direction.North);
@@ -29,12 +31,20 @@ public class PlayerGridObject : MoveableGridObject {
 			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 				Move (Globals.Direction.East);
 			}
+			else {
+				Move (Globals.Direction.North);
+			}
 		}
 		else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+			Move (Globals.Direction.West);
 			Move (Globals.Direction.West);
 		}
 		else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
 			Move (Globals.Direction.East);
+			Move (Globals.Direction.East);
+		}
+		else if (Input.GetKey (KeyCode.Space)) {
+			Attack();
 		}
 		else {
 			for (int i = 0; i < 10; ++i) {
@@ -91,8 +101,8 @@ public class PlayerGridObject : MoveableGridObject {
 			}
 			Globals.inventory[plantNumber]--;
 		}
-
 	}
+
     protected virtual void LateUpdate() {
         float pixelSize = Globals.pixelSize;
         Vector3 current = this.transform.position;
@@ -101,4 +111,5 @@ public class PlayerGridObject : MoveableGridObject {
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
     }
+
 }
