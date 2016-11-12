@@ -23,6 +23,7 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
     protected override void Start() {
         state = State.Idle;
         RunFSM();
+        base.Start();
     }
     private IEnumerator FSMThread( float delayRate ) {
         bool isRunning = true;

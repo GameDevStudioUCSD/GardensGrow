@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class KillableGridObject : RotateableGridObject {
 
     public int health;
@@ -39,10 +38,10 @@ public class KillableGridObject : RotateableGridObject {
         if(health >= damage)
             health -= damage;
 
-        if (this.gameObject.tag == "Player")
+        /*if (this.gameObject.tag == "Player")
         {
             hpBarPlayerText.text = "HP: " + health;
-        }
+        }*/
         if (health <= 0)
             Die();
     }
@@ -64,27 +63,25 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
+    	switch (direction)
+    	{
+    		case Globals.Direction.South:
+    			killList = southHitCollider.getList();
+    			break;
+			case Globals.Direction.East:
+    			killList = eastHitCollider.getList();
+    			break;
+			case Globals.Direction.North:
+    			killList = northHitCollider.getList();
+    			break;
+			case Globals.Direction.West:
+    			killList = westHitCollider.getList();
+    			break;
+    	}
     	for (int i = 0; i < killList.Count; i++)
     	{
     		killList[i].TakeDamage(5);
     	}
     }
 
-    public void OnTriggerStay2D(Collider2D other)
-    {
-		KillableGridObject killable = other.GetComponent<KillableGridObject>();
-        if (killable)
-        {
-        	killList.Add(killable);
-    	}
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-		KillableGridObject killable = other.GetComponent<KillableGridObject>();
-        if (killable)
-        {
-       		killList.Remove(killable);
-    	}
-    }
 }
