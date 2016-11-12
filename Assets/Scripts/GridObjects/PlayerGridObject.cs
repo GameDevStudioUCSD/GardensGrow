@@ -111,4 +111,15 @@ public class PlayerGridObject : MoveableGridObject {
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
     }
+
+    public void Attack()
+    {
+    	southCollider.isTriggered = false;
+    	eastCollider.isTriggered = false;
+    	northCollider.isTriggered = false;
+    	westCollider.isTriggered = false;
+
+    	base.Attack();
+    }
+
 }

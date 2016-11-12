@@ -81,6 +81,8 @@ public class KillableGridObject : RotateableGridObject {
     	for (int i = 0; i < killList.Count; i++)
     	{
     		killList[i].TakeDamage(5);
+    		if (killList[i] == null)
+    			killList.Remove(killList[i]);
     	}
     }
 
