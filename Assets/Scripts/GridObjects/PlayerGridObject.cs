@@ -112,4 +112,14 @@ public class PlayerGridObject : MoveableGridObject {
         this.transform.position = current;
     }
 
+    public void Attack()
+    {
+    	southCollider.isTriggered = false;
+    	eastCollider.isTriggered = false;
+    	northCollider.isTriggered = false;
+    	westCollider.isTriggered = false;
+
+    	base.Attack();
+    }
+
 }

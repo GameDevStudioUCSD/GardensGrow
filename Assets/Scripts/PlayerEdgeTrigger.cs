@@ -16,6 +16,11 @@ public class PlayerEdgeTrigger : MonoBehaviour {
     	}
 	}
 
+	void OnTriggerStay2D(Collider2D other) { 
+        if (!other.isTrigger)
+			isTriggered = true;
+	}
+
 	void OnTriggerExit2D(Collider2D other) {
         if(!other.isTrigger)
 			isTriggered = false;
