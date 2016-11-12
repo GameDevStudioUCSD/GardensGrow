@@ -79,7 +79,7 @@ public class TurbinePlantObject : PlantGridObject
            	otherGridObject.Move(direction);
            	EnemyGridObject enemyGridObject = otherGridObject.GetComponent<EnemyGridObject>();
            	if (enemyGridObject)
-            	enemyGridObject.TakeDamage(1);
+            	enemyGridObject.TakeDamage(100);
         }
     }
 }

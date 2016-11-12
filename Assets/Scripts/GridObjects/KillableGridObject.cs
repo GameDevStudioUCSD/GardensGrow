@@ -2,6 +2,7 @@
 
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class KillableGridObject : RotateableGridObject {
@@ -13,14 +14,19 @@ public class KillableGridObject : RotateableGridObject {
 	public PlayerEdgeTrigger eastHitCollider;
     
     public Text hpBarPlayerText;
+    private KillableGridObject toKill;
+
+    private List<KillableGridObject> killList;
 
 	// Use this for initialization
 	protected virtual void Start () {
+		killList = new List<KillableGridObject>();
         if(this.gameObject.tag == "Player")
         {
             health = 100;
         }
         base.Start();
+        toKill = null;
 	}
 	
 	// Update is called once per frame
@@ -47,10 +53,38 @@ public class KillableGridObject : RotateableGridObject {
         {
             Application.LoadLevel(Application.loadedLevel);
         }
+
+        Destroy(this.gameObject);
     }
 
     protected virtual void OnValidate()
     {
         TakeDamage(0);
+    }
+
+    protected virtual void Attack()
+    {
+    	for (int i = 0; i < killList.Count; i++)
+    	{
+    		killList[i].TakeDamage(5);
+    	}
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+		KillableGridObject killable = other.GetComponent<KillableGridObject>();
+        if (killable)
+        {
+        	killList.Add(killable);
+    	}
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+		KillableGridObject killable = other.GetComponent<KillableGridObject>();
+        if (killable)
+        {
+       		killList.Remove(killable);
+    	}
     }
 }

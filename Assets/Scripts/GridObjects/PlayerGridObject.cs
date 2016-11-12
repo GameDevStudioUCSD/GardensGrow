@@ -44,6 +44,9 @@ public class PlayerGridObject : MoveableGridObject {
 			Move (Globals.Direction.East);
 			Move (Globals.Direction.East);
 		}
+		else if (Input.GetKey (KeyCode.Space)) {
+			Attack();
+		}
 		else {
 			for (int i = 0; i < 10; ++i) {
 				if (Input.GetKeyDown ("" + i))
@@ -99,8 +102,8 @@ public class PlayerGridObject : MoveableGridObject {
 			}
 			Globals.inventory[plantNumber]--;
 		}
-
 	}
+
     protected virtual void LateUpdate() {
         float pixelSize = Globals.pixelSize;
         Vector3 current = this.transform.position;
