@@ -111,4 +111,5 @@ public class PlayerGridObject : MoveableGridObject {
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
     }
+
 }

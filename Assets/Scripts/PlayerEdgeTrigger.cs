@@ -10,20 +10,15 @@ public class PlayerEdgeTrigger : MonoBehaviour {
 		isTriggered = true;
 
 		KillableGridObject killable = other.GetComponent<KillableGridObject>();
-        if (killable != null)
+        if (killable != null && !killList.Contains(killable))
         {
         	killList.Add(killable);
     	}
 	}
 
-	void OnTriggerStay2D(Collider2D other) { 
-        if (!other.isTrigger)
-		isTriggered = true;
-	}
-
 	void OnTriggerExit2D(Collider2D other) {
         if(!other.isTrigger)
-		isTriggered = false;
+			isTriggered = false;
 
 		KillableGridObject killable = other.GetComponent<KillableGridObject>();
         if (killable != null)
