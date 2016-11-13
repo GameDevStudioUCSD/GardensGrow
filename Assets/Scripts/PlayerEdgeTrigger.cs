@@ -10,6 +10,7 @@ public class PlayerEdgeTrigger : MonoBehaviour
 	void Update ()
 	{
 		if (isTriggered && !other) {
+			Debug.Log ("other doesn't exist, trigger = false");
 			isTriggered = false;
 		}
 	}
@@ -24,7 +25,6 @@ public class PlayerEdgeTrigger : MonoBehaviour
 			killList.Add (killable);
 		}
 
-<<<<<<< HEAD
 		this.other = other;
 	}
 
@@ -47,28 +47,17 @@ public class PlayerEdgeTrigger : MonoBehaviour
 		}
 
 		this.other = other;
-=======
-		KillableGridObject killable = other.GetComponent<KillableGridObject>();
-        if (killable != null && !killList.Contains(killable))
-        {
-        	killList.Add(killable);
-    	}
-	}
-
-	void OnTriggerStay2D(Collider2D other) { 
-        if (!other.isTrigger)
-			isTriggered = true;
-	}
-
-	void OnTriggerExit2D(Collider2D other) {
-        if(!other.isTrigger)
-			isTriggered = false;
->>>>>>> a687dd34bc805c49ef55460165f27ed0341fbf85
-
 	}
 
 	public List<KillableGridObject> getList ()
 	{
 		return killList;
+	}
+
+	// removes a killable grid object from the list
+	public void removeFromList (KillableGridObject killable)
+	{
+		if (killable != null)
+			killList.Remove (killable);
 	}
 }

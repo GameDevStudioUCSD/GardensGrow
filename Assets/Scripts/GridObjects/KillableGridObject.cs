@@ -33,7 +33,8 @@ public class KillableGridObject : RotateableGridObject {
         base.Update();
 	}
 
-    public virtual void TakeDamage (int damage) {
+	// returns true if the attack kill the object
+    public virtual bool TakeDamage (int damage) {
        
         if(health >= damage)
             health -= damage;
@@ -42,8 +43,12 @@ public class KillableGridObject : RotateableGridObject {
         {
             hpBarPlayerText.text = "HP: " + health;
         }*/
-        if (health <= 0)
-            Die();
+		if (health <= 0) {
+			Die ();
+			return true;
+		}
+
+		return false;
     }
 
     protected virtual void Die() {
@@ -63,26 +68,37 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
+		PlayerEdgeTrigger attackCollider = null;
+		
     	switch (direction)
     	{
-    		case Globals.Direction.South:
-    			killList = southHitCollider.getList();
-    			break;
+			case Globals.Direction.South:
+				killList = southHitCollider.getList ();
+				attackCollider = southHitCollider;
+	    		break;
 			case Globals.Direction.East:
-    			killList = eastHitCollider.getList();
-    			break;
+				killList = eastHitCollider.getList ();
+				attackCollider = eastHitCollider;
+	    		break;
 			case Globals.Direction.North:
-    			killList = northHitCollider.getList();
-    			break;
+				killList = northHitCollider.getList ();
+				attackCollider = northHitCollider;
+	    		break;
 			case Globals.Direction.West:
-    			killList = westHitCollider.getList();
-    			break;
+				killList = westHitCollider.getList ();
+				attackCollider = westHitCollider;
+	    		break;
     	}
+
+
+		// clears references to the killed object in the PlayerEdgeTrigger
+		// that collided with the killed object
     	for (int i = 0; i < killList.Count; i++)
     	{
-    		killList[i].TakeDamage(5);
-    		if (killList[i] == null)
-    			killList.Remove(killList[i]);
+			if (killList [i].TakeDamage (5)) {
+				if (attackCollider != null)
+					attackCollider.removeFromList (killList[i]);
+			}
     	}
     }
 
