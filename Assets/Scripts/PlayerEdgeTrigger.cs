@@ -10,7 +10,6 @@ public class PlayerEdgeTrigger : MonoBehaviour
 	void Update ()
 	{
 		if (isTriggered && !other) {
-			Debug.Log ("other doesn't exist, trigger = false");
 			isTriggered = false;
 		}
 	}

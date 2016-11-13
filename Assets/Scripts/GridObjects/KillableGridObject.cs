@@ -95,6 +95,7 @@ public class KillableGridObject : RotateableGridObject {
 			if (killList [i].TakeDamage (5)) {
 				if (attackCollider != null)
 					attackCollider.removeFromList (killList[i]);
+				attackCollider.isTriggered = false;
 			}
     	}
     }
