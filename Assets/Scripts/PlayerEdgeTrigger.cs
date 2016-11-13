@@ -49,7 +49,7 @@ public class PlayerEdgeTrigger : MonoBehaviour
 
 	}
 
-	public List<KillableGridObject> getList ()
+	public List<KillableGridObject> getKillList ()
 	{
 		return killList;
 	}

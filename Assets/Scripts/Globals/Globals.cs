@@ -3,7 +3,7 @@ public class Globals {
 
     public const float pixelSize = 0.03125f;
 
-    public enum Direction { North, East, South, West };
+    public enum Direction { North=0, South=1, East=2, West=3 };
 
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";

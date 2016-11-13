@@ -81,4 +81,16 @@ public class MoveableGridObject : KillableGridObject {
         animator.SetBool("IsWalking", false);
     }
 
+    protected PlayerEdgeTrigger getHitColliderFromDirection(Globals.Direction dir)
+    {
+        switch(dir)
+        {
+            case Globals.Direction.North: return northHitCollider;
+            case Globals.Direction.East: return eastHitCollider;
+            case Globals.Direction.South: return southHitCollider;
+            case Globals.Direction.West: return westHitCollider;
+            default: return northHitCollider;
+        }
+    }
+
 }

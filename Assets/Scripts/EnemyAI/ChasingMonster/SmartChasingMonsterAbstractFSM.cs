@@ -1,29 +1,26 @@
 using UnityEngine;
 using System;
+using System.IO;
 using System.Collections;
 public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMachine{
     protected float transitionedAt;
     public int exceptionCount;
     public int shutDownFSMAfterNExceptions = 10;
     public Coroutine coroutine;
-
-
     public enum State { 
-        TakeStep = 0,
-        Wander = 1,
+        Idle = 0,
+        Attack = 1,
         ChasePlayer = 2,
-        RandomizeDirection = 3,
-        Idle = 4,
-        PathFind = 5,
-        Disabled = 6,
-        EvaluatePath = 7
-    }
+        TakeStep = 3,
+        PathFind = 4,
+        Disabled = 5,
+        EvaluatePath = 6
+    }  
 
-    public State state;
-    protected override void Start() {
-        state = State.Idle;
+    public State state = State.Idle;
+
+    protected virtual void Start() { 
         RunFSM();
-        base.Start();
     }
     private IEnumerator FSMThread( float delayRate ) {
         bool isRunning = true;
@@ -35,21 +32,17 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
             try {
             // The following switch statement handles the state machine's action logic
                 switch(state) {
-
-                    case State.PathFind:
-                        stateAction = ExecuteActionPathFind();
-                        break;
                     case State.TakeStep:
                         stateAction = ExecuteActionTakeStep();
                         break;
-                    case State.Wander:
-                        stateAction = ExecuteActionWander();
+                    case State.Attack:
+                        stateAction = ExecuteActionAttack();
                         break;
                     case State.ChasePlayer:
                         stateAction = ExecuteActionChasePlayer();
                         break;
-                    case State.RandomizeDirection:
-                        stateAction = ExecuteActionRandomizeDirection();
+                    case State.PathFind:
+                        stateAction = ExecuteActionPathFind();
                         break;
                     case State.Disabled:
                         stateAction = ExecuteActionDisabled();
@@ -67,27 +60,7 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
             
             try {
             // The following switch statement handles the MDP's state transition logic
-            switch(state) {
-                 case State.PathFind:
-                
-                    if( Disabled() ) {
-                        // Probability of transition 100.0%
-                        if( true )
-                            state = State.Disabled;
-                    }
-                    if( CanSeePlayer() ) {
-                        // Probability of transition 100.0%
-                        if( true )
-                            state = State.ChasePlayer;
-                    }
-                    else {
-                        // Probability of transition 100.0%
-                        if( true )
-                            state = State.TakeStep;
-                        
-                    }
-                    break;
-                case State.TakeStep:
+            switch(state) {                case State.TakeStep:
                 
                     if( Disabled() ) {
                         // Probability of transition 100.0%
@@ -99,25 +72,25 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                         if( true )
                             state = State.EvaluatePath;
                     }
-                    if( CanSeePlayer() ) {
+                    if( CanAttack() ) {
+                        // Probability of transition 100.0%
+                        if( true )
+                            state = State.Attack;
+                    }
+                    else if( CanSeePlayer() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.ChasePlayer;
                     }
                     break;
-                case State.Wander:
+                case State.Attack:
                 
                     if( Disabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
                     }
-                    if( CanSeePlayer() ) {
-                        // Probability of transition 100.0%
-                        if( true )
-                            state = State.ChasePlayer;
-                    }
-                    if( FinishedWandering() ) {
+                    if( FinishedAttack() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Idle;
@@ -133,29 +106,27 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     if( !CanSeePlayer() ) {
                         // Probability of transition 100.0%
                         if( true )
-                            state = State.RandomizeDirection;
+                            state = State.Idle;
                     }
+                    else if( CanAttack() )
+                        {
+                            if (true)
+                                state = State.Attack;
+                        }
                     break;
-                case State.RandomizeDirection:
+                case State.Idle:
                 
                     if( Disabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
                     }
-                    if( true ) {
+                    if( CanAttack() ) {
                         // Probability of transition 100.0%
                         if( true )
-                            state = State.Wander;
+                            state = State.Attack;
                     }
-                    break;
-                case State.Idle:
-                    if( Disabled() ) {
-                        // Probability of transition 100.0%
-                        if( true )
-                            state = State.Disabled;
-                    }
-                    if( CanSeePlayer() ) {
+                    else if( CanSeePlayer() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.ChasePlayer;
@@ -167,7 +138,30 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                         
                     }
                     break;
+                case State.PathFind:
                 
+                    if( Disabled() ) {
+                        // Probability of transition 100.0%
+                        if( true )
+                            state = State.Disabled;
+                    }
+                    if( CanAttack() ) {
+                        // Probability of transition 100.0%
+                        if( true )
+                            state = State.Attack;
+                    }
+                    else if( CanSeePlayer() ) {
+                        // Probability of transition 100.0%
+                        if( true )
+                            state = State.ChasePlayer;
+                    }
+                    else {
+                        // Probability of transition 100.0%
+                        if( true )
+                            state = State.TakeStep;
+                        
+                    }
+                    break;
                 case State.Disabled:
                 
                     if( Disabled() ) {
@@ -204,6 +198,11 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                         if( true )
                             state = State.ChasePlayer;
                     }
+                    if( CanAttack() ) {
+                        // Probability of transition 100.0%
+                        if( true )
+                            state = State.Attack;
+                    }
                     break;
             }            }
             catch(Exception e) {
@@ -224,17 +223,17 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
 
     // State Logic Functions
     protected abstract IEnumerator ExecuteActionTakeStep();
-    protected abstract IEnumerator ExecuteActionWander();
+    protected abstract IEnumerator ExecuteActionAttack();
     protected abstract IEnumerator ExecuteActionChasePlayer();
-    protected abstract IEnumerator ExecuteActionRandomizeDirection();
     protected abstract IEnumerator ExecuteActionPathFind();
     protected abstract IEnumerator ExecuteActionDisabled();
     protected abstract IEnumerator ExecuteActionEvaluatePath();
     // Transitional Logic Functions
+    protected abstract bool FinishedAttack();
     protected abstract bool FinishedPath();
     protected abstract bool CanSeePlayer();
-    protected abstract bool FinishedWandering();
     protected abstract bool Disabled();
+    protected abstract bool CanAttack();
     protected abstract bool FinishedStep();
     public void RunFSM()
     {

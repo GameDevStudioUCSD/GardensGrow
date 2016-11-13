@@ -5,6 +5,7 @@ public class TurbinePlantObject : PlantGridObject
 {
 
     public float speed;
+    public int damage = 5;
     private float moveNum;
     private MoveableGridObject enemy;
 
@@ -16,7 +17,6 @@ public class TurbinePlantObject : PlantGridObject
     private Collider2D directionalCollider;
 
 	private Animator animator;
-	int directionInt; // 0 North, 1 South, 2 East, 3 West
 
     // Use this for initialization
     void Start()
@@ -41,7 +41,6 @@ public class TurbinePlantObject : PlantGridObject
 				northCollider.enabled = true;
 				westCollider.enabled = false;
 				directionalCollider = northCollider;
-				directionInt = 0;
 				break;
 			case Globals.Direction.South:
 				southCollider.enabled = true;
@@ -49,7 +48,6 @@ public class TurbinePlantObject : PlantGridObject
 				northCollider.enabled = false;
 				westCollider.enabled = false;
 				directionalCollider = southCollider;
-				directionInt = 1;
 				break;
 			case Globals.Direction.East:
 				southCollider.enabled = false;
@@ -57,7 +55,6 @@ public class TurbinePlantObject : PlantGridObject
 				northCollider.enabled = false;
 				westCollider.enabled = false;
 				directionalCollider = eastCollider;
-				directionInt = 2;
 				break;
 			case Globals.Direction.West:
 				southCollider.enabled = false;
@@ -65,10 +62,9 @@ public class TurbinePlantObject : PlantGridObject
 				northCollider.enabled = false;
 				westCollider.enabled = true;
 				directionalCollider = westCollider;
-				directionInt = 3;
 				break;
 		}
-		animator.SetInteger ("Direction", directionInt);	
+		animator.SetInteger ("Direction", (int)direction);	
 	}
 
     void OnTriggerStay2D(Collider2D other)
@@ -79,7 +75,7 @@ public class TurbinePlantObject : PlantGridObject
            	otherGridObject.Move(direction);
            	EnemyGridObject enemyGridObject = otherGridObject.GetComponent<EnemyGridObject>();
            	if (enemyGridObject)
-            	enemyGridObject.TakeDamage(100);
+            	enemyGridObject.TakeDamage(damage);
         }
     }
 }

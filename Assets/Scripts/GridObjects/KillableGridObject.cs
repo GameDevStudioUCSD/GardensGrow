@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class KillableGridObject : RotateableGridObject {
 
     public int health;
+    public int damage = 10;
 	public PlayerEdgeTrigger southHitCollider;
 	public PlayerEdgeTrigger westHitCollider;
 	public PlayerEdgeTrigger northHitCollider;
@@ -20,10 +21,6 @@ public class KillableGridObject : RotateableGridObject {
 	// Use this for initialization
 	protected virtual void Start () {
 		killList = new List<KillableGridObject>();
-        if(this.gameObject.tag == "Player")
-        {
-            health = 100;
-        }
         base.Start();
         toKill = null;
 	}
@@ -66,21 +63,21 @@ public class KillableGridObject : RotateableGridObject {
     	switch (direction)
     	{
     		case Globals.Direction.South:
-    			killList = southHitCollider.getList();
+    			killList = southHitCollider.getKillList();
     			break;
 			case Globals.Direction.East:
-    			killList = eastHitCollider.getList();
+    			killList = eastHitCollider.getKillList();
     			break;
 			case Globals.Direction.North:
-    			killList = northHitCollider.getList();
+    			killList = northHitCollider.getKillList();
     			break;
 			case Globals.Direction.West:
-    			killList = westHitCollider.getList();
+    			killList = westHitCollider.getKillList();
     			break;
     	}
     	for (int i = 0; i < killList.Count; i++)
     	{
-    		killList[i].TakeDamage(5);
+    		killList[i].TakeDamage(damage);
     		if (killList[i] == null)
     			killList.Remove(killList[i]);
     	}
