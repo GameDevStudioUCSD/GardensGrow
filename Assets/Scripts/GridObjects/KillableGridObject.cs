@@ -33,8 +33,7 @@ public class KillableGridObject : RotateableGridObject {
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
        
-        if(health >= damage)
-            health -= damage;
+        health -= damage;
 
         /*if (this.gameObject.tag == "Player")
         {
@@ -71,15 +70,19 @@ public class KillableGridObject : RotateableGridObject {
     	{
     		case Globals.Direction.South:
     			killList = southHitCollider.getKillList();
+                attackCollider = southHitCollider;
     			break;
 			case Globals.Direction.East:
     			killList = eastHitCollider.getKillList();
+                attackCollider = eastHitCollider;
     			break;
 			case Globals.Direction.North:
     			killList = northHitCollider.getKillList();
+                attackCollider = northHitCollider;
     			break;
 			case Globals.Direction.West:
     			killList = westHitCollider.getKillList();
+                attackCollider = westHitCollider;
     			break;
     	}
 
