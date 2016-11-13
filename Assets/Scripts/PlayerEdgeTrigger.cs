@@ -46,11 +46,17 @@ public class PlayerEdgeTrigger : MonoBehaviour
 		}
 
 		this.other = other;
-
 	}
 
 	public List<KillableGridObject> getKillList ()
 	{
 		return killList;
+	}
+
+	// removes a killable grid object from the list
+	public void removeFromList (KillableGridObject killable)
+	{
+		if (killable != null)
+			killList.Remove (killable);
 	}
 }
