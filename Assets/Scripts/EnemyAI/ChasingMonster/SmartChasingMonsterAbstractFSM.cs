@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
-public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMachine{
+public abstract class SmartChasingMonsterAbstractFSM : MonsterGridObject, IStateMachine{
     protected float transitionedAt;
     public int exceptionCount;
     public int shutDownFSMAfterNExceptions = 10;
@@ -19,9 +19,11 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
 
     public State state = State.Idle;
 
-    protected virtual void Start() { 
+    protected override void Start() {
+        base.Start();
         RunFSM();
     }
+
     private IEnumerator FSMThread( float delayRate ) {
         bool isRunning = true;
         while(isRunning) {

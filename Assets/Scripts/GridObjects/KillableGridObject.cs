@@ -8,10 +8,10 @@ public class KillableGridObject : RotateableGridObject {
 
     public int health = 20;
     public int damage = 5;
-	public PlayerEdgeTrigger southHitCollider;
-	public PlayerEdgeTrigger westHitCollider;
-	public PlayerEdgeTrigger northHitCollider;
-	public PlayerEdgeTrigger eastHitCollider;
+	public EdgeTrigger southHitCollider;
+	public EdgeTrigger westHitCollider;
+	public EdgeTrigger northHitCollider;
+	public EdgeTrigger eastHitCollider;
     
     public Text hpBarPlayerText;
     private KillableGridObject toKill;
@@ -64,7 +64,7 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
-		PlayerEdgeTrigger attackCollider = null;
+		EdgeTrigger attackCollider = null;
 		
     	switch (direction)
     	{

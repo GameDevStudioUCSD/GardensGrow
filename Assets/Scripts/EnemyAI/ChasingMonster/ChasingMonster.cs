@@ -27,7 +27,7 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
     {
         for (int i = 0; i < speed; i++ )
         {
-            MoveEnemy(direction);
+            Move(direction);
         }
         yield return null;
     }
@@ -40,7 +40,7 @@ public class ChasingMonster : ChasingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionWander()
     {
-        MoveEnemy(direction);
+        Move(direction);
         yield return null;
     }
 

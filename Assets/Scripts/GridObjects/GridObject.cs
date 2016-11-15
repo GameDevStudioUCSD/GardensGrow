@@ -6,7 +6,7 @@ public class GridObject : MonoBehaviour {
     public float depth = 0; 
       
 	// Use this for initialization
-	protected virtual void Start () {
+	void Start () {
 	}
 
 	protected virtual void Update() {

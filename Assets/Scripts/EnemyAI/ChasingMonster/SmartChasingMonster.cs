@@ -36,7 +36,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     private bool attackOnCooldown;
 
      // Use this for initialization
-    protected override void Start ()
+    void Start ()
     {
         isDisabled = false;
         attackOnCooldown = false;
@@ -53,7 +53,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     protected override bool CanAttack()
     {
         // Check if there is something killable in collider facing direction
-        PlayerEdgeTrigger edgeTrigger = getHitColliderFromDirection(direction);
+        EdgeTrigger edgeTrigger = getHitColliderFromDirection(direction);
         return edgeTrigger.getKillList().Count > 0;
     }
 
@@ -81,7 +81,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     {
         for(int i = 0; i < speed; i++)
         {
-            MoveEnemy(direction);
+            Move(direction);
         }
         yield return null;
     }
@@ -155,7 +155,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     {
         for(int i = 0; i < speed; i++)
         {
-            MoveEnemy(path[currentPathIndex]);
+            Move(path[currentPathIndex]);
         }
         yield return null;
     }
@@ -193,4 +193,5 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     {
         return TimeInState() > pathingDelay;
     }
+
 }

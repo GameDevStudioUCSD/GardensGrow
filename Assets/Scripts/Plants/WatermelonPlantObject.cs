@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WatermellonPlantObject : PlantGridObject
+public class WaterMelonPlantObject : PlantGridObject
 {
 
     public float speed;

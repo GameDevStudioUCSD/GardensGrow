@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerEdgeTrigger : MonoBehaviour
+public class EdgeTrigger : MonoBehaviour
 {
 	public bool isTriggered;
 	Collider2D other;   	// the other collider
