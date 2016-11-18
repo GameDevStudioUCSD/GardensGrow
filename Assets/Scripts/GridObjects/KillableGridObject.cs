@@ -19,8 +19,12 @@ public class KillableGridObject : RotateableGridObject {
     private List<KillableGridObject> killList;
     private List<KillableGridObject> hitList = new List<KillableGridObject>();
     protected bool isAttacking = false;
-    private const int attackFrames = 26; //do not change this without adjusting the animation timing
-    private int numAttackFrames;
+    protected bool isDying = false;
+    private int attackFrame = 0;
+    private int dyingFrame = 0;
+    //do not change these without adjusting the animation timings
+    private const int numAttackFrames = 26;
+    private const int numDyingFrames = 11;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -32,12 +36,19 @@ public class KillableGridObject : RotateableGridObject {
 	// Update is called once per frame
 	protected virtual void Update () {
         base.Update();
-        if (isAttacking)
+        if (isDying)
         {
+            dyingFrame++;
+            if (dyingFrame >= numDyingFrames)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
+        else if (isAttacking) {
             EdgeTrigger attackCollider = null;
 
-            switch (direction)
-            {
+            switch (direction) {
                 case Globals.Direction.South:
                     killList = southHitCollider.getKillList();
                     attackCollider = southHitCollider;
@@ -69,10 +80,10 @@ public class KillableGridObject : RotateableGridObject {
                     }
                 }
             }
-            numAttackFrames++;
-            if (numAttackFrames >= attackFrames) {
+            attackFrame++;
+            if (attackFrame >= numAttackFrames) {
                 isAttacking = false;
-                numAttackFrames = 0;
+                attackFrame = 0;
                 hitList.Clear();
             }
         }
@@ -97,13 +108,11 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Die() {
         //Debug.Log("death");
-		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building")
-        {
+		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
             Debug.Log("Player has died");
             Application.LoadLevel(Application.loadedLevel);
         }
-
-        Destroy(this.gameObject);
+        isDying = true;
     }
 
     protected virtual void OnValidate()

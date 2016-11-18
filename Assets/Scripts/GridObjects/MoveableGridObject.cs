@@ -20,26 +20,28 @@ public class MoveableGridObject : KillableGridObject {
 
 	// Direction: 0 = South, 1 = West, 2 = North, 3 = East
 	public virtual void Move(Globals.Direction direction) {
-		Rotate(direction);
-        if (direction == Globals.Direction.South && !southCollider.isTriggered) {
-			Vector3 position = this.transform.position;
-            position.y -= pixelSize;
-            this.transform.position = position;
-        }
-		else if (direction == Globals.Direction.West && !westCollider.isTriggered) {
-			Vector3 position = this.transform.position;
-            position.x -= pixelSize;
-            this.transform.position = position;
-        }
-		else if (direction == Globals.Direction.North && !northCollider.isTriggered) {
-			Vector3 position = this.transform.position;
-            position.y += pixelSize;
-            this.transform.position = position;
-        }
-		else if (direction == Globals.Direction.East && !eastCollider.isTriggered) {
-			Vector3 position = this.transform.position;
-            position.x += pixelSize;
-            this.transform.position = position;
+        if (!isDying) {
+		    Rotate(direction);
+            if (direction == Globals.Direction.South && !southCollider.isTriggered) {
+			    Vector3 position = this.transform.position;
+                position.y -= pixelSize;
+                this.transform.position = position;
+            }
+		    else if (direction == Globals.Direction.West && !westCollider.isTriggered) {
+			    Vector3 position = this.transform.position;
+                position.x -= pixelSize;
+                this.transform.position = position;
+            }
+		    else if (direction == Globals.Direction.North && !northCollider.isTriggered) {
+			    Vector3 position = this.transform.position;
+                position.y += pixelSize;
+                this.transform.position = position;
+            }
+		    else if (direction == Globals.Direction.East && !eastCollider.isTriggered) {
+			    Vector3 position = this.transform.position;
+                position.x += pixelSize;
+                this.transform.position = position;
+            }
         }
 	}
 
