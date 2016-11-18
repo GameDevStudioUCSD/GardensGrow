@@ -25,33 +25,33 @@ public class PlayerGridObject : MoveableGridObject {
         verticalAxis = Input.GetAxisRaw("Vertical");
 
         // Up
-        if (verticalAxis > 0)
+        if (!isAttacking && verticalAxis > 0)
         {
             Move(Globals.Direction.North);
             // Double movespeed
             if (horizontalAxis == 0.0f) Move(Globals.Direction.North);
         }
         // Down
-        else if(verticalAxis < 0)
+        else if(!isAttacking && verticalAxis < 0)
         {
             Move(Globals.Direction.South);
             if (horizontalAxis == 0.0f) Move(Globals.Direction.South);
         }
 
         // Left
-        if(horizontalAxis < 0)
+        if(!isAttacking && horizontalAxis < 0)
         {
             Move(Globals.Direction.West);
             if (verticalAxis == 0.0f) Move(Globals.Direction.West);
         }
         // Right
-        else if(horizontalAxis > 0)
+        else if(!isAttacking && horizontalAxis > 0)
         {
             Move(Globals.Direction.East);
             if (verticalAxis == 0.0f) Move(Globals.Direction.East);
         }
 
-        if (horizontalAxis != 0.0f || verticalAxis != 0.0f)
+        if (!isAttacking && (horizontalAxis != 0.0f || verticalAxis != 0.0f))
         {
             animator.SetBool("IsWalking", true);
             animator.SetInteger("Direction", (int)direction);
@@ -96,8 +96,11 @@ public class PlayerGridObject : MoveableGridObject {
 		}
         */
 
-        if (Input.GetKey (KeyCode.Space)) {
-			Attack();
+        if (Input.GetKeyDown (KeyCode.Space)) {
+            if (!isAttacking) {
+                animator.SetTrigger("Attack");
+                Attack();
+            }
 		}
 		else {
 			for (int i = 0; i < 10; ++i) {
