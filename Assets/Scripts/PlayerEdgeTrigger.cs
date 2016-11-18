@@ -47,10 +47,6 @@ public class PlayerEdgeTrigger : MonoBehaviour
 		}
 
 		this.other = other;
-<<<<<<< HEAD
-=======
-
->>>>>>> 022cb231a3b7f44c128ad9b2845b5d9901fdaaca
 	}
 
 	public List<KillableGridObject> getList ()

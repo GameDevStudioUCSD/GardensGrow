@@ -56,7 +56,10 @@ public class WatermellonPlantObject : PlantGridObject
         }
 
         for(int i=0; i<100; i++)
-            seed.Move(direction);
+        {
+
+        }
+           // seed.Move(direction);
 
     }
     // Update is called once per frame
@@ -65,7 +68,7 @@ public class WatermellonPlantObject : PlantGridObject
 
         base.Update();
     }
-    /**
+    
     void setDirection()
     {
         switch (this.direction)
@@ -104,5 +107,5 @@ public class WatermellonPlantObject : PlantGridObject
                 break;
         }
         animator.SetInteger("Direction", directionInt); //this line animates?
-    }**/
+    }
 }
