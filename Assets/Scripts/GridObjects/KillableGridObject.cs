@@ -17,6 +17,7 @@ public class KillableGridObject : RotateableGridObject {
     private KillableGridObject toKill;
 
     private List<KillableGridObject> killList;
+    private List<KillableGridObject> hitList = new List<KillableGridObject>();
     protected bool isAttacking = false;
     private const int attackFrames = 26; //do not change this without adjusting the animation timing
     private int numAttackFrames;
@@ -58,19 +59,21 @@ public class KillableGridObject : RotateableGridObject {
 
             // clears references to the killed object in the PlayerEdgeTrigger
             // that collided with the killed object
-            for (int i = 0; i < killList.Count; i++)
-            {
-                if (killList[i].TakeDamage(damage))
-                {
-                    if (attackCollider != null)
-                        attackCollider.removeFromList(killList[i]);
-                    attackCollider.isTriggered = false;
+            for (int i = 0; i < killList.Count; i++) {
+                if (!hitList.Contains(killList[i])) {
+                    hitList.Add(killList[i]);
+                    if (killList[i].TakeDamage(damage)) {
+                        if (attackCollider != null)
+                            attackCollider.removeFromList(killList[i]);
+                        attackCollider.isTriggered = false;
+                    }
                 }
             }
             numAttackFrames++;
             if (numAttackFrames >= attackFrames) {
                 isAttacking = false;
                 numAttackFrames = 0;
+                hitList.Clear();
             }
         }
 	}
