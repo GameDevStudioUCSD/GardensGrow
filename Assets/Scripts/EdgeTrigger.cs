@@ -20,7 +20,7 @@ public class EdgeTrigger : MonoBehaviour
 			isTriggered = true;
 
 		KillableGridObject killable = other.GetComponent<KillableGridObject> ();
-		if (killable != null) {
+		if (killable != null && this.GetComponentInParent<KillableGridObject>().faction != killable.faction) {
 			killList.Add (killable);
 		}
 
