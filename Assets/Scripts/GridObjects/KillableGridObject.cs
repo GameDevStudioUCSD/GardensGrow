@@ -28,6 +28,8 @@ public class KillableGridObject : RotateableGridObject {
     private const int numDyingFrames = 11;
 
     public AudioSource audio;
+    public AudioClip attackSound;
+    public AudioClip hurtSound;
 
 	// Use this for initialization
 	protected virtual void Start () {
