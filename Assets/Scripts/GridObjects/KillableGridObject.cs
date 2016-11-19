@@ -17,6 +17,14 @@ public class KillableGridObject : RotateableGridObject {
     private KillableGridObject toKill;
 
     private List<KillableGridObject> killList;
+    private List<KillableGridObject> hitList = new List<KillableGridObject>();
+    protected bool isAttacking = false;
+    protected bool isDying = false;
+    private int attackFrame = 0;
+    private int dyingFrame = 0;
+    //do not change these without adjusting the animation timings
+    private const int numAttackFrames = 26;
+    private const int numDyingFrames = 11;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -28,6 +36,57 @@ public class KillableGridObject : RotateableGridObject {
 	// Update is called once per frame
 	protected virtual void Update () {
         base.Update();
+        if (isDying)
+        {
+            dyingFrame++;
+            if (dyingFrame >= numDyingFrames)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
+        else if (isAttacking) {
+            EdgeTrigger attackCollider = null;
+
+            switch (direction) {
+                case Globals.Direction.South:
+                    killList = southHitCollider.getKillList();
+                    attackCollider = southHitCollider;
+                    break;
+                case Globals.Direction.East:
+                    killList = eastHitCollider.getKillList();
+                    attackCollider = eastHitCollider;
+                    break;
+                case Globals.Direction.North:
+                    killList = northHitCollider.getKillList();
+                    attackCollider = northHitCollider;
+                    break;
+                case Globals.Direction.West:
+                    killList = westHitCollider.getKillList();
+                    attackCollider = westHitCollider;
+                    break;
+            }
+
+
+            // clears references to the killed object in the PlayerEdgeTrigger
+            // that collided with the killed object
+            for (int i = 0; i < killList.Count; i++) {
+                if (!hitList.Contains(killList[i])) {
+                    hitList.Add(killList[i]);
+                    if (killList[i].TakeDamage(damage)) {
+                        if (attackCollider != null)
+                            attackCollider.removeFromList(killList[i]);
+                        attackCollider.isTriggered = false;
+                    }
+                }
+            }
+            attackFrame++;
+            if (attackFrame >= numAttackFrames) {
+                isAttacking = false;
+                attackFrame = 0;
+                hitList.Clear();
+            }
+        }
 	}
 
 	// returns true if the attack kill the object
@@ -49,12 +108,11 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Die() {
         //Debug.Log("death");
-		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building")
-        {
+		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
+            Debug.Log("Player has died");
             Application.LoadLevel(Application.loadedLevel);
         }
-
-        Destroy(this.gameObject);
+        isDying = true;
     }
 
     protected virtual void OnValidate()
@@ -64,39 +122,7 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
-		EdgeTrigger attackCollider = null;
-		
-    	switch (direction)
-    	{
-    		case Globals.Direction.South:
-    			killList = southHitCollider.getKillList();
-                attackCollider = southHitCollider;
-    			break;
-			case Globals.Direction.East:
-    			killList = eastHitCollider.getKillList();
-                attackCollider = eastHitCollider;
-    			break;
-			case Globals.Direction.North:
-    			killList = northHitCollider.getKillList();
-                attackCollider = northHitCollider;
-    			break;
-			case Globals.Direction.West:
-    			killList = westHitCollider.getKillList();
-                attackCollider = westHitCollider;
-    			break;
-    	}
-
-
-		// clears references to the killed object in the PlayerEdgeTrigger
-		// that collided with the killed object
-    	for (int i = 0; i < killList.Count; i++)
-    	{
-			if (killList [i].TakeDamage (damage)) {
-				if (attackCollider != null)
-					attackCollider.removeFromList (killList[i]);
-				attackCollider.isTriggered = false;
-			}
-    	}
+        isAttacking = true;
     }
 
 }
