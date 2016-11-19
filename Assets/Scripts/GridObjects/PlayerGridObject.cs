@@ -163,10 +163,10 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
-        if (this.gameObject.tag == "Player")
+        /*if (this.gameObject.tag == "Player")
         {
             hpBarText.text = "HP: " + health;
-        }
+        }*/
 
         return base.TakeDamage(damage);
     }
