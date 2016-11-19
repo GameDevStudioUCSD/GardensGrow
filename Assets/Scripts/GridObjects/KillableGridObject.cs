@@ -26,6 +26,8 @@ public class KillableGridObject : RotateableGridObject {
     private const int numAttackFrames = 26;
     private const int numDyingFrames = 11;
 
+    public AudioSource audio;
+
 	// Use this for initialization
 	protected virtual void Start () {
 		killList = new List<KillableGridObject>();
@@ -94,10 +96,10 @@ public class KillableGridObject : RotateableGridObject {
        
         health -= damage;
 
-        /*if (this.gameObject.tag == "Player")
+        if (this.gameObject.tag == "Player")
         {
             hpBarPlayerText.text = "HP: " + health;
-        }*/
+        }
 		if (health <= 0) {
 			Die ();
 			return true;
@@ -122,6 +124,7 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
+		audio.Play();
         isAttacking = true;
     }
 
