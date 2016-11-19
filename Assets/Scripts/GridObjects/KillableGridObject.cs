@@ -92,7 +92,7 @@ public class KillableGridObject : RotateableGridObject {
 
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
-       
+        
         health -= damage;
 
 		if (health <= 0) {
