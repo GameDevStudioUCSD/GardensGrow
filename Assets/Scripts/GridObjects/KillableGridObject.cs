@@ -14,7 +14,7 @@ public class KillableGridObject : RotateableGridObject {
 	public EdgeTrigger eastHitCollider;
     public Globals.Faction faction = Globals.Faction.Ally;
     
-    public Text hpBarPlayerText;
+    public Text hpBarText;
     private KillableGridObject toKill;
 
     private List<KillableGridObject> killList;
@@ -95,10 +95,6 @@ public class KillableGridObject : RotateableGridObject {
        
         health -= damage;
 
-        /*if (this.gameObject.tag == "Player")
-        {
-            hpBarPlayerText.text = "HP: " + health;
-        }*/
 		if (health <= 0) {
 			Die ();
 			return true;
