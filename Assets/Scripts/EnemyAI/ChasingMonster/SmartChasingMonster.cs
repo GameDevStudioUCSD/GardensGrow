@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Vision))]
-public class SmartChasingMonster : SmartChasingMonsterAbstractFSM
-{
+public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     [Header("DelayParameters")]
     public float idleDelay = 2.0f;
-    public float wanderingDelay = 3.0f;
+    public float attackDelay = 1.0f;
     public float pathingDelay = 1.0f;
     [Range(0, 5)]
     public int speed = 2;
@@ -33,19 +32,30 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM
 
     // Does the path need to be re-evaluated
     private bool needsReevaluation;
+    // Is my attack on cooldown.
+    private bool attackOnCooldown;
 
-    // Use this for initialization
-    protected override void Start()
+     // Use this for initialization
+    void Start ()
     {
         isDisabled = false;
+        attackOnCooldown = false;
         needsReevaluation = false;
         path = new List<Globals.Direction>();
         astarAlgorithm = new AStar(tileMap);
         visionModule = GetComponent<Vision>();
         base.Start();
-    }
+	}
+	
 
     public override void Reset() { }
+
+    protected override bool CanAttack()
+    {
+        // Check if there is something killable in collider facing direction
+        EdgeTrigger edgeTrigger = getHitColliderFromDirection(direction);
+        return edgeTrigger.getKillList().Count > 0;
+    }
 
     protected override bool CanSeePlayer()
     {
@@ -57,11 +67,21 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM
         return isDisabled;
     }
 
+    protected override IEnumerator ExecuteActionAttack()
+    {
+        if(!attackOnCooldown)
+        {
+            attackOnCooldown = true;
+            Attack();
+        }
+        yield return null;
+    }
+
     protected override IEnumerator ExecuteActionChasePlayer()
     {
         for(int i = 0; i < speed; i++)
         {
-            MoveEnemy(direction);
+            Move(direction);
         }
         yield return null;
     }
@@ -128,12 +148,6 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionRandomizeDirection()
-    {
-        direction = (Globals.Direction)UnityEngine.Random.Range(0, 4);
-        yield return null;
-    }
-
     /// <summary>
     /// The monster takes a step on the path to the player.
     /// </summary>
@@ -141,15 +155,22 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM
     {
         for(int i = 0; i < speed; i++)
         {
-            MoveEnemy(path[currentPathIndex]);
+            Move(path[currentPathIndex]);
         }
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionWander()
+    protected override bool FinishedAttack()
     {
-        MoveEnemy(direction);
-        yield return null;
+        if (TimeInState() > attackDelay)
+        {
+            attackOnCooldown = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /// <summary>
@@ -171,11 +192,6 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM
     protected override bool FinishedStep()
     {
         return TimeInState() > pathingDelay;
-    }
-
-    protected override bool FinishedWandering()
-    {
-        return TimeInState() > wanderingDelay;
     }
 
 }

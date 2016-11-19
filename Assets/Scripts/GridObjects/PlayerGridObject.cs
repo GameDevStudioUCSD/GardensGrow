@@ -3,14 +3,65 @@
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
 
+    private float horizontalAxis;
+    private float verticalAxis;
+        
+    private Animator animator;
+
     // Use this for initialization
     protected virtual void Start () {
         base.Start();
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	protected virtual void Update () {
 		base.Update();
+
+        // TODO: pull up animator code for player up to here so monster can have their own
+        // Get Left or Right
+        horizontalAxis = Input.GetAxisRaw("Horizontal");
+        // Get Up or Down
+        verticalAxis = Input.GetAxisRaw("Vertical");
+
+        // Up
+        if (verticalAxis > 0)
+        {
+            Move(Globals.Direction.North);
+            // Double movespeed
+            if (horizontalAxis == 0.0f) Move(Globals.Direction.North);
+        }
+        // Down
+        else if(verticalAxis < 0)
+        {
+            Move(Globals.Direction.South);
+            if (horizontalAxis == 0.0f) Move(Globals.Direction.South);
+        }
+
+        // Left
+        if(horizontalAxis < 0)
+        {
+            Move(Globals.Direction.West);
+            if (verticalAxis == 0.0f) Move(Globals.Direction.West);
+        }
+        // Right
+        else if(horizontalAxis > 0)
+        {
+            Move(Globals.Direction.East);
+            if (verticalAxis == 0.0f) Move(Globals.Direction.East);
+        }
+
+        if (horizontalAxis != 0.0f || verticalAxis != 0.0f)
+        {
+            animator.SetBool("IsWalking", true);
+            animator.SetInteger("Direction", (int)direction);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+
+        /*
 		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
 			Move (Globals.Direction.South);
 			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
@@ -43,7 +94,9 @@ public class PlayerGridObject : MoveableGridObject {
 			Move (Globals.Direction.East);
 			Move (Globals.Direction.East);
 		}
-		else if (Input.GetKey (KeyCode.Space)) {
+        */
+
+        if (Input.GetKey (KeyCode.Space)) {
 			Attack();
 		}
 		else {
@@ -51,10 +104,12 @@ public class PlayerGridObject : MoveableGridObject {
 				if (Input.GetKeyDown ("" + i))
 					Plant(i);
 			}
-
-			if (!(Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.RightArrow)))
-				Stop ();
 		}
+
+        /*
+        if (animator.GetInteger("Direction") != (int)direction)
+            animator.SetInteger("Direction", (int)direction);
+            */
 	}
 		
 	protected virtual void Plant(int plantNumber) {

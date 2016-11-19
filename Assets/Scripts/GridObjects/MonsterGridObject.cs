@@ -1,12 +1,25 @@
-﻿public class MonsterGridObject : MoveableGridObject {
+﻿using UnityEngine;
+
+public class MonsterGridObject : MoveableGridObject {
+
+    private Animator animator;
 
 	// Use this for initialization
-	void Start () {
-	
+	protected override void Start () {
+        base.Start();
+        animator = GetComponent<Animator>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public override void Move(Globals.Direction direction)
+    {
+        base.Move(direction);
+
+        animator.SetInteger("Direction", (int)direction);
+    }
+
+    protected override void Attack()
+    {
+        animator.SetTrigger("Attack");
+        base.Attack();
+    }
 }

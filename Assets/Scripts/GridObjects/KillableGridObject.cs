@@ -8,10 +8,10 @@ public class KillableGridObject : RotateableGridObject {
 
     public int health = 20;
     public int damage = 5;
-	public PlayerEdgeTrigger southHitCollider;
-	public PlayerEdgeTrigger westHitCollider;
-	public PlayerEdgeTrigger northHitCollider;
-	public PlayerEdgeTrigger eastHitCollider;
+	public EdgeTrigger southHitCollider;
+	public EdgeTrigger westHitCollider;
+	public EdgeTrigger northHitCollider;
+	public EdgeTrigger eastHitCollider;
     
     public Text hpBarPlayerText;
     private KillableGridObject toKill;
@@ -33,8 +33,7 @@ public class KillableGridObject : RotateableGridObject {
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
        
-        if(health >= damage)
-            health -= damage;
+        health -= damage;
 
         /*if (this.gameObject.tag == "Player")
         {
@@ -65,26 +64,26 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
-		PlayerEdgeTrigger attackCollider = null;
+		EdgeTrigger attackCollider = null;
 		
     	switch (direction)
     	{
-			case Globals.Direction.South:
-				killList = southHitCollider.getList ();
-				attackCollider = southHitCollider;
-	    		break;
+    		case Globals.Direction.South:
+    			killList = southHitCollider.getKillList();
+                attackCollider = southHitCollider;
+    			break;
 			case Globals.Direction.East:
-				killList = eastHitCollider.getList ();
-				attackCollider = eastHitCollider;
-	    		break;
+    			killList = eastHitCollider.getKillList();
+                attackCollider = eastHitCollider;
+    			break;
 			case Globals.Direction.North:
-				killList = northHitCollider.getList ();
-				attackCollider = northHitCollider;
-	    		break;
+    			killList = northHitCollider.getKillList();
+                attackCollider = northHitCollider;
+    			break;
 			case Globals.Direction.West:
-				killList = westHitCollider.getList ();
-				attackCollider = westHitCollider;
-	    		break;
+    			killList = westHitCollider.getKillList();
+                attackCollider = westHitCollider;
+    			break;
     	}
 
 
@@ -92,9 +91,10 @@ public class KillableGridObject : RotateableGridObject {
 		// that collided with the killed object
     	for (int i = 0; i < killList.Count; i++)
     	{
-			if (killList [i].TakeDamage (5)) {
+			if (killList [i].TakeDamage (damage)) {
 				if (attackCollider != null)
 					attackCollider.removeFromList (killList[i]);
+				attackCollider.isTriggered = false;
 			}
     	}
     }

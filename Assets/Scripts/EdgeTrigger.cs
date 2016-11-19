@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerEdgeTrigger : MonoBehaviour
+public class EdgeTrigger : MonoBehaviour
 {
 	public bool isTriggered;
 	Collider2D other;   	// the other collider
@@ -10,7 +10,6 @@ public class PlayerEdgeTrigger : MonoBehaviour
 	void Update ()
 	{
 		if (isTriggered && !other) {
-			Debug.Log ("other doesn't exist, trigger = false");
 			isTriggered = false;
 		}
 	}
@@ -49,7 +48,7 @@ public class PlayerEdgeTrigger : MonoBehaviour
 		this.other = other;
 	}
 
-	public List<KillableGridObject> getList ()
+	public List<KillableGridObject> getKillList ()
 	{
 		return killList;
 	}

@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WatermellonPlantObject : PlantGridObject
+public class WaterMelonPlantObject : PlantGridObject
 {
 
-    public float speed;
-    private float moveNum;
-    private MoveableGridObject enemy;
+    public float speed; //not used yet
+    public int damage = 5;  //not used yet 
+    private float moveNum;  //not used yet 
+    private MoveableGridObject enemy;   //not used yet
 
     public Collider2D southCollider;
     public Collider2D northCollider;
@@ -16,7 +17,6 @@ public class WatermellonPlantObject : PlantGridObject
     private Collider2D directionalCollider;
 
     private Animator animator;
-    int directionInt; // 0 North, 1 South, 2 East, 3 West
 
     public MoveableGridObject seed;
 
@@ -25,20 +25,18 @@ public class WatermellonPlantObject : PlantGridObject
     {
         // setting direction for corresponding animation
         animator = GetComponent<Animator>();
-        //setDirection();
-        Shooter();
+        setDirection();
+        while (true)
+        {
+            Shooter();
+        }
     }
     void Shooter()
     {
+        
         if (direction == Globals.Direction.North)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
-            Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(seed, spawnPosition, spawnRotation);
-        }
-        else if (direction == Globals.Direction.East)
-        {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
@@ -55,12 +53,13 @@ public class WatermellonPlantObject : PlantGridObject
             Instantiate(seed, spawnPosition, spawnRotation);
         }
 
-        for(int i=0; i<100; i++)
+        for(int i=0; i<100; i++)    //move for some set distance
+            seed.Move(direction);
+
+        if(seed.gameObject != null)
         {
-
+            Destroy(seed);
         }
-           // seed.Move(direction);
-
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -68,7 +67,7 @@ public class WatermellonPlantObject : PlantGridObject
 
         base.Update();
     }
-    
+
     void setDirection()
     {
         switch (this.direction)
@@ -79,7 +78,6 @@ public class WatermellonPlantObject : PlantGridObject
                 northCollider.enabled = true;
                 westCollider.enabled = false;
                 directionalCollider = northCollider;
-                directionInt = 0;
                 break;
             case Globals.Direction.South:
                 southCollider.enabled = true;
@@ -87,7 +85,6 @@ public class WatermellonPlantObject : PlantGridObject
                 northCollider.enabled = false;
                 westCollider.enabled = false;
                 directionalCollider = southCollider;
-                directionInt = 1;
                 break;
             case Globals.Direction.East:
                 southCollider.enabled = false;
@@ -95,7 +92,6 @@ public class WatermellonPlantObject : PlantGridObject
                 northCollider.enabled = false;
                 westCollider.enabled = false;
                 directionalCollider = eastCollider;
-                directionInt = 2;
                 break;
             case Globals.Direction.West:
                 southCollider.enabled = false;
@@ -103,9 +99,8 @@ public class WatermellonPlantObject : PlantGridObject
                 northCollider.enabled = false;
                 westCollider.enabled = true;
                 directionalCollider = westCollider;
-                directionInt = 3;
                 break;
         }
-        animator.SetInteger("Direction", directionInt); //this line animates?
+        animator.SetInteger("Direction", (int)direction);
     }
 }
