@@ -20,6 +20,8 @@ public abstract class SmartChasingMonsterAbstractFSM : MonsterGridObject, IState
     public State state = State.Idle;
 
     protected override void Start() {
+        if (!Application.isPlaying)
+            return;
         base.Start();
         RunFSM();
     }

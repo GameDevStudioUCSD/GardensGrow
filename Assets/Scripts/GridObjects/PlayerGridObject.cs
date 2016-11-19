@@ -161,6 +161,16 @@ public class PlayerGridObject : MoveableGridObject {
 		}
 	}
 
+    public override bool TakeDamage(int damage)
+    {
+        /*if (this.gameObject.tag == "Player")
+        {
+            hpBarText.text = "HP: " + health;
+        }*/
+
+        return base.TakeDamage(damage);
+    }
+
     protected virtual void LateUpdate() {
         float pixelSize = Globals.pixelSize;
         Vector3 current = this.transform.position;
