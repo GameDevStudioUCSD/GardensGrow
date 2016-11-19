@@ -13,7 +13,7 @@ public class KillableGridObject : RotateableGridObject {
 	public EdgeTrigger northHitCollider;
 	public EdgeTrigger eastHitCollider;
     
-    public Text hpBarPlayerText;
+    public Text hpBarText;
     private KillableGridObject toKill;
 
     private List<KillableGridObject> killList;
@@ -35,10 +35,6 @@ public class KillableGridObject : RotateableGridObject {
        
         health -= damage;
 
-        if (this.gameObject.tag == "Player")
-        {
-            hpBarPlayerText.text = "HP: " + health;
-        }
 		if (health <= 0) {
 			Die ();
 			return true;
@@ -87,10 +83,11 @@ public class KillableGridObject : RotateableGridObject {
     	}
 
 
-		// clears references to the killed object in the PlayerEdgeTrigger
+		// clears references to the killed object in the EdgeTrigger
 		// that collided with the killed object
     	for (int i = 0; i < killList.Count; i++)
     	{
+            // Check if object we want to damage still exists
 			if (killList [i].TakeDamage (damage)) {
 				if (attackCollider != null)
 					attackCollider.removeFromList (killList[i]);
