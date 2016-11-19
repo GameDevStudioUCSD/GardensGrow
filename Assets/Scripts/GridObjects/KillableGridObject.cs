@@ -12,8 +12,9 @@ public class KillableGridObject : RotateableGridObject {
 	public EdgeTrigger westHitCollider;
 	public EdgeTrigger northHitCollider;
 	public EdgeTrigger eastHitCollider;
+    public Globals.Faction faction = Globals.Faction.Ally;
     
-    public Text hpBarPlayerText;
+    public Text hpBarText;
     private KillableGridObject toKill;
 
     private List<KillableGridObject> killList;
@@ -73,7 +74,7 @@ public class KillableGridObject : RotateableGridObject {
             // clears references to the killed object in the PlayerEdgeTrigger
             // that collided with the killed object
             for (int i = 0; i < killList.Count; i++) {
-                if (!hitList.Contains(killList[i])) {
+                if (!hitList.Contains(killList[i]) && killList[i].faction != this.faction) {
                     hitList.Add(killList[i]);
                     if (killList[i].TakeDamage(damage)) {
                         if (attackCollider != null)
@@ -93,13 +94,13 @@ public class KillableGridObject : RotateableGridObject {
 
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
-       
+        
         health -= damage;
 
-        if (this.gameObject.tag == "Player")
+        /*if (this.gameObject.tag == "Player")
         {
             hpBarPlayerText.text = "HP: " + health;
-        }
+        }*/
 		if (health <= 0) {
 			Die ();
 			return true;
