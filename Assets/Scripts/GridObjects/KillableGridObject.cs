@@ -13,7 +13,7 @@ public class KillableGridObject : RotateableGridObject {
 	public EdgeTrigger northHitCollider;
 	public EdgeTrigger eastHitCollider;
     
-    public Text hpBarPlayerText;
+    public Text hpBarText;
     private KillableGridObject toKill;
 
     private List<KillableGridObject> killList;
@@ -94,10 +94,6 @@ public class KillableGridObject : RotateableGridObject {
        
         health -= damage;
 
-        /*if (this.gameObject.tag == "Player")
-        {
-            hpBarPlayerText.text = "HP: " + health;
-        }*/
 		if (health <= 0) {
 			Die ();
 			return true;
