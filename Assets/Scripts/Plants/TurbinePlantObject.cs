@@ -5,7 +5,6 @@ public class TurbinePlantObject : PlantGridObject
 {
 
     public float speed;
-    public int damage = 5;
     private float moveNum;
     private MoveableGridObject enemy;
 
