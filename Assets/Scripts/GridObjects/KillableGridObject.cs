@@ -111,11 +111,6 @@ public class KillableGridObject : RotateableGridObject {
         isDying = true;
     }
 
-    protected virtual void OnValidate()
-    {
-        TakeDamage(0);
-    }
-
     protected virtual void Attack()
     {
         isAttacking = true;

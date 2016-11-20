@@ -15,13 +15,14 @@ public abstract class SmartChasingMonsterAbstractFSM : MonsterGridObject, IState
         PathFind = 4,
         Disabled = 5,
         EvaluatePath = 6
-    }  
+    }
 
-    public State state = State.Idle;
+    public State state;
 
     protected override void Start() {
         if (!Application.isPlaying)
             return;
+        state = State.Idle;
         base.Start();
         RunFSM();
     }
