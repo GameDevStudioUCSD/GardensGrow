@@ -98,6 +98,11 @@ public class KillableGridObject : RotateableGridObject {
     public virtual bool TakeDamage (int damage) {
         
         health -= damage;
+        if (audio != null)
+        {
+        	audio.clip = hurtSound;
+        	audio.Play();
+        }
 
 		if (health <= 0) {
 			Die ();
@@ -118,7 +123,11 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
-		if (audio != null) audio.Play();
+		if (audio != null)
+		{
+			audio.clip = attackSound;
+			audio.Play();
+		}
         isAttacking = true;
     }
 
