@@ -71,12 +71,10 @@ public class TurbinePlantObject : PlantGridObject
         MoveableGridObject otherGridObject = other.GetComponent<MoveableGridObject>();
         if (otherGridObject)
         {
-            Debug.Log("mov");
            	otherGridObject.Move(direction);
            	EnemyGridObject enemyGridObject = other.gameObject.GetComponent<EnemyGridObject>();
             if (enemyGridObject)
             {
-                Debug.Log("In");
             	enemyGridObject.TakeDamage(damage);
             }
         }

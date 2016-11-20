@@ -18,7 +18,7 @@ public class WatermelonPlantObject : PlantGridObject
 
     private Animator animator;
 
-    public MoveableGridObject seed;
+    public MoveableGridObject seed; //wtf this isn't showing?
 
     // Use this for initialization
     void Start()
@@ -33,26 +33,32 @@ public class WatermelonPlantObject : PlantGridObject
     }
     void Shooter()
     {
-        
-        if (direction == Globals.Direction.North)
+         
+        if (northCollider.enabled)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
-        else if (direction == Globals.Direction.West)
+        else if (westCollider.enabled)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
-        else
+        else if(eastCollider.enabled)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
-
+        else
+        {
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x-1, this.gameObject.transform.position.y, 0.0f);
+            Quaternion spawnRotation = Quaternion.identity;
+            Instantiate(seed, spawnPosition, spawnRotation);
+        }
+        /**
         for(int i=0; i<100; i++)    //move for some set distance
             seed.Move(direction);
 
@@ -60,6 +66,7 @@ public class WatermelonPlantObject : PlantGridObject
         {
             Destroy(seed);
         }
+    **/
     }
     // Update is called once per frame
     protected virtual void Update()
