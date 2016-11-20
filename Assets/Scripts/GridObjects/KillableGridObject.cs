@@ -120,10 +120,6 @@ public class KillableGridObject : RotateableGridObject {
         isDying = true;
     }
 
-    protected virtual void OnValidate()
-    {
-    }
-
     protected virtual void Attack()
     {
 		if (audio != null) audio.Play();
