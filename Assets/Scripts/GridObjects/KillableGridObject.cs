@@ -99,10 +99,6 @@ public class KillableGridObject : RotateableGridObject {
         
         health -= damage;
 
-        /*if (this.gameObject.tag == "Player")
-        {
-            hpBarPlayerText.text = "HP: " + health;
-        }*/
 		if (health <= 0) {
 			Die ();
 			return true;
