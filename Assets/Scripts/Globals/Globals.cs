@@ -4,6 +4,7 @@ public class Globals {
     public const float pixelSize = 0.03125f;
 
     public enum Direction { North=0, South=1, East=2, West=3 };
+    public enum Faction { Ally=0, Enemy=1}
 
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";
