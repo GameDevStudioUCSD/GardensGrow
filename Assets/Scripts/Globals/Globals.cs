@@ -22,7 +22,7 @@ public class Globals {
                 dirr = Vector2.right;
                 break;
             case Globals.Direction.West:
-                dirr = -Vector2.right;
+                dirr = Vector2.left;
                 break;
             case Globals.Direction.South:
                 dirr = Vector2.down;
