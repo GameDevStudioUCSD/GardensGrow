@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class EnemySpawnerScript : KillableGridObject
@@ -7,6 +8,7 @@ public class EnemySpawnerScript : KillableGridObject
     public GameObject enemy;
     public TileMap tileMap;
     public GameObject playerObj;
+    public UnityEvent deathEvent;
 
     System.Random randGen = new System.Random();
     private int randInt;
@@ -71,5 +73,9 @@ public class EnemySpawnerScript : KillableGridObject
         enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
         enemyObj.GetComponent<SmartChasingMonster>().targetObject = playerObj;
 
+    }
+    protected override void Die() {
+        base.Die();
+        deathEvent.Invoke();
     }
 }
