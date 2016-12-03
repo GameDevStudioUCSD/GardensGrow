@@ -7,15 +7,16 @@ public class StaticGridObject : GridObject {
 
 	// Use this for initialization
 	protected virtual void Start () {
-		barrier.enabled = false;
-
-		if (!isBarrier)
-		{
-			barrier.enabled = false;
-		}
-		else 
-		{
-			barrier.enabled = true;
-		}
+        if (barrier != null)
+        {
+            if (!isBarrier)
+            {
+                barrier.enabled = false;
+            }
+            else
+            {
+                barrier.enabled = true;
+            }
+        }
 	}
 }
