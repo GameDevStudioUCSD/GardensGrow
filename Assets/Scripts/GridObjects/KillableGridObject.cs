@@ -98,7 +98,7 @@ public class KillableGridObject : RotateableGridObject {
     public virtual bool TakeDamage (int damage) {
 
         health -= damage;
-        Debug.Log("hp: " + health);
+
         if (audio != null)
         {
         	audio.clip = hurtSound;
