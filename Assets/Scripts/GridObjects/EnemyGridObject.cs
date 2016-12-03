@@ -19,7 +19,6 @@ public class EnemyGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
-        Debug.Log("Take dmg");
         return base.TakeDamage(damage);
     }
 
