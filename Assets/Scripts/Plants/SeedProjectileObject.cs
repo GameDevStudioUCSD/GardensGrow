@@ -3,10 +3,11 @@ using System.Collections;
 
 public class SeedProjectileObject : MonoBehaviour {
 
-    public int shotSpeed;
+    public float shotSpeed;
     public int shotRange;
     private int shotRangeCounter;
     public int damage;
+    public Globals.Direction dir;
 
     EnemyGridObject enemy;
 
@@ -21,7 +22,7 @@ public class SeedProjectileObject : MonoBehaviour {
     {
         if (shotRangeCounter < shotRange)
         {
-            Mover(shotSpeed);
+            Mover(shotSpeed,dir);
             shotRangeCounter++;
         }
         else if(this.gameObject != null)
@@ -29,37 +30,34 @@ public class SeedProjectileObject : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-    public void Mover(int shotSpeed)
+    public void Mover(float shotSpeed, Globals.Direction dir)
     {
-        Vector3 position = this.transform.position;
-        position.y += Globals.pixelSize * shotSpeed;
-        this.transform.position = position;
-        /**if (direction == Globals.Direction.South)
+        if (dir == Globals.Direction.South)
         {
             Vector3 position = this.transform.position;
             position.y -= Globals.pixelSize;
             this.transform.position = position;
         }
-        else if (direction == Globals.Direction.West)
+        else if (dir == Globals.Direction.West)
         {
             Vector3 position = this.transform.position;
             position.x -= Globals.pixelSize;
             this.transform.position = position;
         }
-        else if (direction == Globals.Direction.North)
+        else if (dir == Globals.Direction.North)
         {
             Vector3 position = this.transform.position;
             position.y += Globals.pixelSize;
             this.transform.position = position;
         }
-        else if (direction == Globals.Direction.East)
+        else if (dir == Globals.Direction.East)
         {
             Vector3 position = this.transform.position;
             position.x += Globals.pixelSize;
             this.transform.position = position;
-        }**/
+        }
     }
-    void OnTriggerEnter(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
@@ -67,9 +65,9 @@ public class SeedProjectileObject : MonoBehaviour {
             enemy = other.gameObject.GetComponent<EnemyGridObject>();
             enemy.TakeDamage(damage);
         }
-        else
+        else if(other.gameObject.tag == "Player")
         {
-            Destroy(other.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
