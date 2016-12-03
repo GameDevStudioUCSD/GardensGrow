@@ -1,29 +1,72 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SeedProjectileObject : MoveableGridObject {
+public class SeedProjectileObject : MonoBehaviour {
 
-    // Use this for initialization
+    public float shotSpeed;
+    public int shotRange;
+    private int shotRangeCounter;
+    public int damage;
+    public Globals.Direction dir;
+
     EnemyGridObject enemy;
 
-	void Start () {
-        base.Start();
-        //animator = GetComponent<Animator>();
-    }
-	
-	// Update is called once per frame
-	void Update () {
-
-        base.Update();
-        //enemyGridObject.TakeDamage(10);
-    }
-    void onTriggerEnter2D(Collider2D other)
+    // Use this for initialization
+    void Start()
     {
-        if(other.gameObject.tag == "Enemy")
+        shotRangeCounter = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (shotRangeCounter < shotRange)
         {
-            enemy = other.GetComponent<EnemyGridObject>();
-            Destroy(other.gameObject); //testing code
-            //enemy.TakeDamage(10); //real code
+            Mover(shotSpeed,dir);
+            shotRangeCounter++;
+        }
+        else if(this.gameObject != null)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    public void Mover(float shotSpeed, Globals.Direction dir)
+    {
+        if (dir == Globals.Direction.South)
+        {
+            Vector3 position = this.transform.position;
+            position.y -= Globals.pixelSize;
+            this.transform.position = position;
+        }
+        else if (dir == Globals.Direction.West)
+        {
+            Vector3 position = this.transform.position;
+            position.x -= Globals.pixelSize;
+            this.transform.position = position;
+        }
+        else if (dir == Globals.Direction.North)
+        {
+            Vector3 position = this.transform.position;
+            position.y += Globals.pixelSize;
+            this.transform.position = position;
+        }
+        else if (dir == Globals.Direction.East)
+        {
+            Vector3 position = this.transform.position;
+            position.x += Globals.pixelSize;
+            this.transform.position = position;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+            enemy = other.gameObject.GetComponent<EnemyGridObject>();
+            enemy.TakeDamage(damage);
+        }
+        else if(other.gameObject.tag == "Player")
+        {
             Destroy(this.gameObject);
         }
     }

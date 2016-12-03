@@ -4,49 +4,54 @@ using System.Collections;
 public class WatermelonPlantObject : PlantGridObject
 {
 
-    public float speed; //not used yet
-    public int damage = 5;  //not used yet 
-    private float moveNum;  //not used yet 
-    private MoveableGridObject enemy;   //not used yet
+    public SeedProjectileObject seed;
+    private int counter;
+    public int shotDelay;
 
     public Collider2D southCollider;
     public Collider2D northCollider;
     public Collider2D eastCollider;
     public Collider2D westCollider;
-
-    private Collider2D directionalCollider;
-
     private Animator animator;
 
-    public MoveableGridObject seed; //wtf this isn't showing?
+    private Collider2D directionalCollider;
 
     // Use this for initialization
     void Start()
     {
-        // setting direction for corresponding animation
-        animator = GetComponent<Animator>();
-        setDirection();
-        while (true)
+        counter = 0;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (counter > shotDelay)
         {
             Shooter();
+            counter = 0;
         }
+        counter++;
+
+        base.Update();
     }
-    void Shooter()
+    private void Shooter()
     {
-         
-        if (northCollider.enabled)
+        if (direction == Globals.Direction.North)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
+            
         }
-        else if (westCollider.enabled)
+        else if (direction == Globals.Direction.West)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
-        else if(eastCollider.enabled)
+        else if (direction == Globals.Direction.South)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
@@ -54,27 +59,13 @@ public class WatermelonPlantObject : PlantGridObject
         }
         else
         {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x-1, this.gameObject.transform.position.y, 0.0f);
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
-        /**
-        for(int i=0; i<100; i++)    //move for some set distance
-            seed.Move(direction);
 
-        if(seed.gameObject != null)
-        {
-            Destroy(seed);
-        }
-    **/
+        seed.dir = direction;
     }
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-
-        base.Update();
-    }
-
     void setDirection()
     {
         switch (this.direction)
