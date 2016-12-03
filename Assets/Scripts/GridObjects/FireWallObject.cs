@@ -3,7 +3,8 @@ using System.Collections;
 
 public class FireWallObject : StaticGridObject {
 
-	public virtual void Disable() {
-        gameObject.SetActive(false);
+	public virtual void Toggle() {
+        if (gameObject.activeSelf) gameObject.SetActive(false);
+        else gameObject.SetActive(true);
     }
 }
