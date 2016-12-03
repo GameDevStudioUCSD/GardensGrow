@@ -1,36 +1,42 @@
 ﻿using UnityEngine;
 
-[ExecuteInEditMode]
 public class TerrainObject : StaticGridObject
 {
     public Sprite[] sprites;
+
+    /// <summary>
+    /// Allows chosenSprite field to be right-clicked in 
+    /// </summary>
+    [ContextMenuItem("Randomize Sprite", "Randomize")]
     public Sprite chosenSprite;
-    public bool randomize;
+
     private SpriteRenderer spriteRenderer;
     // Use this for initialization
     void Start ()
     {
     	base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
-    void Update () {
-	    if (!Application.isPlaying)
-	    {
-	        if (sprites.Length > 0)
-	        {
-	            if (!chosenSprite || randomize)
-	            {
-	                randomize = false;
-	                chosenSprite = sprites[(int) Random.Range(0, sprites.Length - 0.0001f)];
-	                spriteRenderer.sprite = chosenSprite;
-	            }
-	            else if (spriteRenderer.sprite != chosenSprite)
-	            {
-	                spriteRenderer.sprite = chosenSprite;
-	            }
-	        }
-	    }
-	}
+    void Update () {}
+
+    private void Randomize()
+    {
+        if(!spriteRenderer)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        if (sprites.Length > 0)
+        {
+            chosenSprite = sprites[Random.Range(0, sprites.Length)];
+            spriteRenderer.sprite = chosenSprite;
+                /*
+            else if (spriteRenderer.sprite != chosenSprite)
+            {
+                spriteRenderer.sprite = chosenSprite;
+            }
+            */
+        }
+    }
 }
