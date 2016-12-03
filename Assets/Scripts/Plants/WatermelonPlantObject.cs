@@ -20,6 +20,8 @@ public class WatermelonPlantObject : PlantGridObject
     void Start()
     {
         counter = 0;
+        animator = animator = GetComponent<Animator>();
+        setDirection();
 
     }
 
@@ -58,14 +60,15 @@ public class WatermelonPlantObject : PlantGridObject
         }
         else if (direction == Globals.Direction.South)
         {
-            animator.SetInteger("Directions", 1);
+            animator.SetInteger("Directions", 3);
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
         else
         {
-            animator.SetInteger("Directions", 3);
+
+            animator.SetInteger("Directions", 1);
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
