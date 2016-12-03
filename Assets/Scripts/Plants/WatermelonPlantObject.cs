@@ -33,22 +33,25 @@ public class WatermelonPlantObject : PlantGridObject
             counter = 0;
         }
         counter++;
+
+        base.Update();
     }
     private void Shooter()
     {
-        if (northCollider.enabled)
+        if (direction == Globals.Direction.North)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
+            
         }
-        else if (westCollider.enabled)
+        else if (direction == Globals.Direction.West)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
-        else if (eastCollider.enabled)
+        else if (direction == Globals.Direction.South)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
@@ -56,10 +59,12 @@ public class WatermelonPlantObject : PlantGridObject
         }
         else
         {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
+
+        seed.dir = direction;
     }
     void setDirection()
     {
