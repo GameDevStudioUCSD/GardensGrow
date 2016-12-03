@@ -36,9 +36,10 @@ public class WatermelonPlantObject : PlantGridObject
 
         base.Update();
     }
+
     private void Shooter()
     {
-        seed.dir = direction;
+		seed.dir = direction;
 
         if (direction == Globals.Direction.North)
         {
@@ -69,9 +70,8 @@ public class WatermelonPlantObject : PlantGridObject
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
         }
-
-       
     }
+
     void setDirection()
     {
         switch (this.direction)
