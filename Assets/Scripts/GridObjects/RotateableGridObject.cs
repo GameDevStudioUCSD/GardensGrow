@@ -10,7 +10,7 @@ public class RotateableGridObject : GridObject {
 		direction = 0;
 	}
 
-	protected virtual void Update() {
+	protected override void Update() {
 		base.Update();
 	}
 

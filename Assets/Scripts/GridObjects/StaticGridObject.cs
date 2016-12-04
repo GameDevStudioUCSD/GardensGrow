@@ -2,21 +2,8 @@
 
 public class StaticGridObject : GridObject {
 
-	public bool isBarrier;
-	public BoxCollider2D barrier;
+    public bool isBarrier = false;
 
 	// Use this for initialization
-	protected virtual void Start () {
-        if (barrier != null)
-        {
-            if (!isBarrier)
-            {
-                barrier.enabled = false;
-            }
-            else
-            {
-                barrier.enabled = true;
-            }
-        }
-	}
+	protected virtual void Start () {}
 }
