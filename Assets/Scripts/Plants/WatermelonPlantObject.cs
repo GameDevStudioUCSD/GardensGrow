@@ -14,20 +14,28 @@ public class WatermelonPlantObject : PlantGridObject
     public Collider2D westCollider;
     private Animator animator;
 
-    private Collider2D directionalCollider;
+    //private Collider2D directionalCollider;
 
     // Use this for initialization
     void Start()
     {
         counter = 0;
         animator = animator = GetComponent<Animator>();
-        setDirection();
+        
+        //testing, doesn't know if this works yet
+
+        southCollider.enabled = true;
+        eastCollider.enabled = true;
+        northCollider.enabled = true;
+        westCollider.enabled = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        
 
         if (counter > shotDelay)
         {
@@ -43,71 +51,50 @@ public class WatermelonPlantObject : PlantGridObject
     {
 		seed.dir = direction;
 
+        Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
+        Quaternion spawnRotation = Quaternion.identity;
+        Instantiate(seed, spawnPosition, spawnRotation);
+
         if (direction == Globals.Direction.North)
         {
-            animator.SetInteger("Directions", 2);
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
-            Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(seed, spawnPosition, spawnRotation);
-            
+            animator.SetInteger("Directions", 2);  
         }
         else if (direction == Globals.Direction.West)
         {
             animator.SetInteger("Directions", 0);
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
-            Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(seed, spawnPosition, spawnRotation);
         }
         else if (direction == Globals.Direction.South)
         {
             animator.SetInteger("Directions", 3);
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
-            Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(seed, spawnPosition, spawnRotation);
         }
         else
         {
-
             animator.SetInteger("Directions", 1);
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
-            Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(seed, spawnPosition, spawnRotation);
         }
     }
 
-    void setDirection()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        switch (this.direction)
+        /**
+        if(other.gameObject.tag == "Enemy")
         {
-            case Globals.Direction.North:
-                southCollider.enabled = false;
-                eastCollider.enabled = false;
-                northCollider.enabled = true;
-                westCollider.enabled = false;
-                directionalCollider = northCollider;
-                break;
-            case Globals.Direction.South:
-                southCollider.enabled = true;
-                eastCollider.enabled = false;
-                northCollider.enabled = false;
-                westCollider.enabled = false;
-                directionalCollider = southCollider;
-                break;
-            case Globals.Direction.East:
-                southCollider.enabled = false;
-                eastCollider.enabled = true;
-                northCollider.enabled = false;
-                westCollider.enabled = false;
-                directionalCollider = eastCollider;
-                break;
-            case Globals.Direction.West:
-                southCollider.enabled = false;
-                eastCollider.enabled = false;
-                northCollider.enabled = false;
-                westCollider.enabled = true;
-                directionalCollider = westCollider;
-                break;
-        }
-        animator.SetInteger("Direction", (int)direction);
+            
+            if (southCollider.isTrigger)
+            {
+                direction = Globals.Direction.South;
+            }
+            else if (northCollider.isTrigger)
+            {
+                direction = Globals.Direction.North;
+            }
+            else if (eastCollider.isTrigger)
+            {
+                direction = Globals.Direction.East;
+            }
+            else
+            {
+                direction = Globals.Direction.West;
+            }
+        }**/
     }
 }
