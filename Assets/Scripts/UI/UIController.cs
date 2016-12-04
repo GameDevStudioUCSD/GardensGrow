@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class UIController : MonoBehaviour {
 
-	public Sprite[] plants;
+	public UnityEngine.UI.Image[] uiPlants;
 	public Sprite[] seedPackets;
 
 	// Use this for initialization
 	void Start () {
-	
+		UpdateUI();
 	}
 	
 	// Update is called once per frame
@@ -21,6 +22,7 @@ public class UIController : MonoBehaviour {
 		{
 			if (Globals.unlockedSeeds[i] == true)
 			{
+				uiPlants[i].sprite = seedPackets[i];
 			}
 		}
 	}
