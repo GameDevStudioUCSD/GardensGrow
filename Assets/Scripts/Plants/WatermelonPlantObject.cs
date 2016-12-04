@@ -8,7 +8,7 @@ public class WatermelonPlantObject : PlantGridObject
     private int counter;
     public int shotDelay;
 
-    public ColliderTrigger southCollider;
+    public Collider2D southCollider;
     public Collider2D northCollider;
     public Collider2D eastCollider;
     public Collider2D westCollider;
@@ -75,27 +75,26 @@ public class WatermelonPlantObject : PlantGridObject
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        /**
+        
         if(other.gameObject.tag == "Enemy")
         {
 
             if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
             {
-                Debug.Log("hhi");
-                direction = Globals.Direction.North;
+                direction = Globals.Direction.South;
             }
-            else if (northCollider.isTrigger)
+            else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
             {
                 direction = Globals.Direction.North;
             }
-            else if (eastCollider.isTrigger)
+            else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
             {
                 direction = Globals.Direction.East;
             }
-            else
+            else if(other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
             {
                 direction = Globals.Direction.West;
             }
-        }**/
+        }
     }
 }
