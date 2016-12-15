@@ -119,6 +119,10 @@ public class KillableGridObject : RotateableGridObject {
             Debug.Log("Player has died");
             Application.LoadLevel(Application.loadedLevel);
         }
+
+        if (this.gameObject.tag == "Enemy") {
+        	spawnItem();
+        }
         isDying = true;
     }
 
@@ -132,4 +136,22 @@ public class KillableGridObject : RotateableGridObject {
         isAttacking = true;
     }
 
+    void spawnItem() {
+    	int willSpawn = (int)Random.Range(0,2);
+
+    	if (willSpawn > 0) {
+    		int numAvailableSeeds = 0;
+    		int seedToSpawn = -1;
+    		for (int i = 0; i < 8; i++) {
+    			if (Globals.unlockedSeeds[i] == true) {
+					int probability = (int)Random.Range(0, numAvailableSeeds + 1);
+    				if (probability == 0) {
+    					seedToSpawn = i;
+    				}
+					numAvailableSeeds++;
+				}
+    		}
+    		Debug.Log("Seed Index: " + seedToSpawn);
+    	}
+    }
 }

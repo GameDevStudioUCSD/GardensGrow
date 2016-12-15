@@ -13,6 +13,8 @@ public class Globals {
 
     public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
 
+    public static int chanceOfDrop = 2;
+
     public static Vector2 DirectionToVector(Direction direction)
     {
         Vector2 dirr = Vector2.up;
