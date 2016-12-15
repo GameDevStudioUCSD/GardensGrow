@@ -17,11 +17,13 @@ public class UIController : MonoBehaviour {
 	
 	}
 
-	void UpdateUI () {
+	public void UpdateUI () {
 		for (int i = 0; i < 8; i++)
 		{
-			if (Globals.unlockedSeeds[i] == true)
+			Debug.Log(i + " :  " + Globals.inventory[i]);
+			if (Globals.unlockedSeeds[i] == true || Globals.inventory[i] > 0)
 			{
+				Globals.unlockedSeeds[i] = true;
 				uiPlants[i].sprite = seedPackets[i];
 			}
 		}
