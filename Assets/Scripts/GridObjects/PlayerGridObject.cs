@@ -2,6 +2,7 @@
 
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
+	public UIController canvas;
 
     private float horizontalAxis;
     private float verticalAxis;
@@ -105,7 +106,7 @@ public class PlayerGridObject : MoveableGridObject {
 		else {
 			for (int i = 0; i < 10; ++i) {
 				if (Input.GetKeyDown ("" + i))
-					Plant(i);
+					Plant(i - 1);
 			}
 		}
 
