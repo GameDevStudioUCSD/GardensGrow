@@ -19,12 +19,7 @@ public class EdgeTrigger : MonoBehaviour
 		if (!other.isTrigger)
 			isTriggered = true;
 
-		KillableGridObject killable = other.GetComponent<KillableGridObject> ();
-		if (killable != null && this.GetComponentInParent<KillableGridObject>().faction != killable.faction) {
-			killList.Add (killable);
-		}
-
-		this.other = other;
+        this.other = other;
 	}
 
 	void OnTriggerStay2D (Collider2D other)
@@ -32,7 +27,7 @@ public class EdgeTrigger : MonoBehaviour
 		if (!other.isTrigger)
 			isTriggered = true;
 
-		this.other = other;
+        this.other = other;
 	}
 
 	void OnTriggerExit2D (Collider2D other)
@@ -40,12 +35,7 @@ public class EdgeTrigger : MonoBehaviour
 		if (!other.isTrigger)
 			isTriggered = false;
 
-		KillableGridObject killable = other.GetComponent<KillableGridObject> ();
-		if (killable != null) {
-			killList.Remove (killable);
-		}
-
-		this.other = other;
+        this.other = other;
 	}
 
 	public List<KillableGridObject> getKillList ()
@@ -53,10 +43,4 @@ public class EdgeTrigger : MonoBehaviour
 		return killList;
 	}
 
-	// removes a killable grid object from the list
-	public void removeFromList (KillableGridObject killable)
-	{
-		if (killable != null)
-			killList.Remove (killable);
-	}
 }

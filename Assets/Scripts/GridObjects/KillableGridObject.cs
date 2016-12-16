@@ -15,27 +15,25 @@ public class KillableGridObject : RotateableGridObject {
     public Globals.Faction faction = Globals.Faction.Ally;
     
     public Text hpBarText;
-    private KillableGridObject toKill;
 
-    private List<KillableGridObject> killList;
-    private List<KillableGridObject> hitList = new List<KillableGridObject>();
+    public AudioSource audio;
+    public AudioClip attackSound;
+    public AudioClip hurtSound;
+
     protected bool isAttacking = false;
     protected bool isDying = false;
+
+    private List<KillableGridObject> killList;
+
     private int attackFrame = 0;
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
     private const int numAttackFrames = 26;
     private const int numDyingFrames = 11;
 
-    public AudioSource audio;
-    public AudioClip attackSound;
-    public AudioClip hurtSound;
-
 	// Use this for initialization
 	protected virtual void Start () {
-		killList = new List<KillableGridObject>();
         base.Start();
-        toKill = null;
 	}
 	
 	// Update is called once per frame
@@ -50,49 +48,23 @@ public class KillableGridObject : RotateableGridObject {
             }
         }
 
-        else if (isAttacking) {
-            EdgeTrigger attackCollider = null;
-
-            switch (direction) {
-                case Globals.Direction.South:
-                    killList = southHitCollider.getKillList();
-                    attackCollider = southHitCollider;
-                    break;
-                case Globals.Direction.East:
-                    killList = eastHitCollider.getKillList();
-                    attackCollider = eastHitCollider;
-                    break;
-                case Globals.Direction.North:
-                    killList = northHitCollider.getKillList();
-                    attackCollider = northHitCollider;
-                    break;
-                case Globals.Direction.West:
-                    killList = westHitCollider.getKillList();
-                    attackCollider = westHitCollider;
-                    break;
-            }
-
-
-            // clears references to the killed object in the PlayerEdgeTrigger
-            // that collided with the killed object
-            for (int i = 0; i < killList.Count; i++) {
-                if (!hitList.Contains(killList[i]) && killList[i].faction != this.faction) {
-                    hitList.Add(killList[i]);
-                    if (killList[i].TakeDamage(damage)) {
-                        if (attackCollider != null)
-                            attackCollider.removeFromList(killList[i]);
-                        attackCollider.isTriggered = false;
-                    }
-                }
-            }
-            attackFrame++;
-            if (attackFrame >= numAttackFrames) {
-                isAttacking = false;
-                attackFrame = 0;
-                hitList.Clear();
-            }
+        attackFrame++;
+        if (attackFrame >= numAttackFrames)
+        {
+            isAttacking = false;
+            attackFrame = 0;
         }
 	}
+
+    /// <summary>
+    /// The object has finished attacking.
+    /// This should be called as an animation event.
+    /// Look in the attack animations.
+    /// </summary>
+    public void FinishedAttack()
+    {
+        isAttacking = false;
+    }
 
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
@@ -124,12 +96,70 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Attack()
     {
+        // Don't attack if we are currently attacking
+        if (isAttacking)
+            return;
+
+        isAttacking = true;
+
 		if (audio != null)
 		{
 			audio.clip = attackSound;
 			audio.Play();
 		}
-        isAttacking = true;
+
+        switch (direction)
+        {
+            case Globals.Direction.South:
+                killList = southHitCollider.getKillList();
+                break;
+            case Globals.Direction.East:
+                killList = eastHitCollider.getKillList();
+                break;
+            case Globals.Direction.North:
+                killList = northHitCollider.getKillList();
+                break;
+            case Globals.Direction.West:
+                killList = westHitCollider.getKillList();
+                break;
+        }
+
+        /*
+         * Clear all dead targets in killList.
+         * This uses lambda syntax: if a KillableGridObject in
+         * the list is null, then remove it.
+         */
+        killList.RemoveAll((KillableGridObject target) => target == null);
+
+        // Deal damage to all targets of the enemy faction
+        foreach(KillableGridObject target in killList)
+        {
+            if(target.faction != this.faction)
+            {
+                target.TakeDamage(damage);
+            }
+        }
+
+
+        // clears references to the killed object in the PlayerEdgeTrigger
+        // that collided with the killed object
+        /* TODO: this is no longer used but keep it for now so we can roll back if needed
+        for (int i = 0; i < killList.Count; i++)
+        {
+            if (!hitList.Contains(killList[i]) && killList[i].faction != this.faction)
+            {
+                hitList.Add(killList[i]);
+                if (killList[i].TakeDamage(damage))
+                {
+                    if (attackCollider != null)
+                        attackCollider.removeFromList(killList[i]);
+                    attackCollider.isTriggered = false;
+                }
+            }
+        }
+        */
+
+        
     }
 
 }

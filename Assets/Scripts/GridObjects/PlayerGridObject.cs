@@ -61,41 +61,6 @@ public class PlayerGridObject : MoveableGridObject {
             animator.SetBool("IsWalking", false);
         }
 
-        /*
-		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
-			Move (Globals.Direction.South);
-			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-				Move (Globals.Direction.West);
-			}
-			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-				Move (Globals.Direction.East);
-			}
-			else {
-				Move (Globals.Direction.South);
-			}
-		}
-		else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
-			Move (Globals.Direction.North);
-			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-				Move (Globals.Direction.West);
-			}
-			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-				Move (Globals.Direction.East);
-			}
-			else {
-				Move (Globals.Direction.North);
-			}
-		}
-		else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-			Move (Globals.Direction.West);
-			Move (Globals.Direction.West);
-		}
-		else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-			Move (Globals.Direction.East);
-			Move (Globals.Direction.East);
-		}
-        */
-
         if (Input.GetKeyDown (KeyCode.Space)) {
             if (!isAttacking) {
                 animator.SetTrigger("Attack");
