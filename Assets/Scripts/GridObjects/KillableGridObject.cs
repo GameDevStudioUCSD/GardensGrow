@@ -149,11 +149,11 @@ public class KillableGridObject : RotateableGridObject {
     		int seedToSpawn = -1;
     		for (int i = 0; i < 8; i++) {
     			if (Globals.unlockedSeeds[i] == true) {
-					int probability = (int)Random.Range(0, numAvailableSeeds + 1);
+					numAvailableSeeds++;
+					int probability = (int)Random.Range(0, numAvailableSeeds);
     				if (probability == 0) {
     					seedToSpawn = i;
     				}
-					numAvailableSeeds++;
 				}
     		}
     		if (seedToSpawn != -1) {
