@@ -8,10 +8,12 @@ public class PlayerGridObject : MoveableGridObject {
     private float verticalAxis;
         
     private Animator animator;
+    public bool canMove;
 
     // Use this for initialization
     protected virtual void Start () {
         base.Start();
+        canMove = true;
         animator = GetComponent<Animator>();
 	}
 	
@@ -26,94 +28,101 @@ public class PlayerGridObject : MoveableGridObject {
         verticalAxis = Input.GetAxisRaw("Vertical");
 
         // Up
-        if (!isAttacking && verticalAxis > 0)
+        if (canMove)
         {
-            Move(Globals.Direction.North);
-            // Double movespeed
-            if (horizontalAxis == 0.0f) Move(Globals.Direction.North);
-        }
-        // Down
-        else if(!isAttacking && verticalAxis < 0)
-        {
-            Move(Globals.Direction.South);
-            if (horizontalAxis == 0.0f) Move(Globals.Direction.South);
-        }
-
-        // Left
-        if(!isAttacking && horizontalAxis < 0)
-        {
-            Move(Globals.Direction.West);
-            if (verticalAxis == 0.0f) Move(Globals.Direction.West);
-        }
-        // Right
-        else if(!isAttacking && horizontalAxis > 0)
-        {
-            Move(Globals.Direction.East);
-            if (verticalAxis == 0.0f) Move(Globals.Direction.East);
-        }
-
-        if (!isAttacking && (horizontalAxis != 0.0f || verticalAxis != 0.0f))
-        {
-            animator.SetBool("IsWalking", true);
-            animator.SetInteger("Direction", (int)direction);
-        }
-        else
-        {
-            animator.SetBool("IsWalking", false);
-        }
-
-        /*
-		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
-			Move (Globals.Direction.South);
-			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-				Move (Globals.Direction.West);
-			}
-			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-				Move (Globals.Direction.East);
-			}
-			else {
-				Move (Globals.Direction.South);
-			}
-		}
-		else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
-			Move (Globals.Direction.North);
-			if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-				Move (Globals.Direction.West);
-			}
-			else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-				Move (Globals.Direction.East);
-			}
-			else {
-				Move (Globals.Direction.North);
-			}
-		}
-		else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-			Move (Globals.Direction.West);
-			Move (Globals.Direction.West);
-		}
-		else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-			Move (Globals.Direction.East);
-			Move (Globals.Direction.East);
-		}
-        */
-
-        if (Input.GetKeyDown (KeyCode.Space)) {
-            if (!isAttacking) {
-                animator.SetTrigger("Attack");
-                Attack();
+            if (!isAttacking && verticalAxis > 0)
+            {
+                Move(Globals.Direction.North);
+                // Double movespeed
+                if (horizontalAxis == 0.0f) Move(Globals.Direction.North);
             }
-		}
-		else {
-			for (int i = 0; i < 10; ++i) {
-				if (Input.GetKeyDown ("" + i))
-					Plant(i - 1);
-			}
-		}
+            // Down
+            else if (!isAttacking && verticalAxis < 0)
+            {
+                Move(Globals.Direction.South);
+                if (horizontalAxis == 0.0f) Move(Globals.Direction.South);
+            }
 
-        /*
-        if (animator.GetInteger("Direction") != (int)direction)
-            animator.SetInteger("Direction", (int)direction);
+            // Left
+            if (!isAttacking && horizontalAxis < 0)
+            {
+                Move(Globals.Direction.West);
+                if (verticalAxis == 0.0f) Move(Globals.Direction.West);
+            }
+            // Right
+            else if (!isAttacking && horizontalAxis > 0)
+            {
+                Move(Globals.Direction.East);
+                if (verticalAxis == 0.0f) Move(Globals.Direction.East);
+            }
+
+            if (!isAttacking && (horizontalAxis != 0.0f || verticalAxis != 0.0f))
+            {
+                animator.SetBool("IsWalking", true);
+                animator.SetInteger("Direction", (int)direction);
+            }
+            else
+            {
+                animator.SetBool("IsWalking", false);
+            }
+
+            /*
+            if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
+                Move (Globals.Direction.South);
+                if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+                    Move (Globals.Direction.West);
+                }
+                else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+                    Move (Globals.Direction.East);
+                }
+                else {
+                    Move (Globals.Direction.South);
+                }
+            }
+            else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
+                Move (Globals.Direction.North);
+                if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+                    Move (Globals.Direction.West);
+                }
+                else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+                    Move (Globals.Direction.East);
+                }
+                else {
+                    Move (Globals.Direction.North);
+                }
+            }
+            else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+                Move (Globals.Direction.West);
+                Move (Globals.Direction.West);
+            }
+            else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+                Move (Globals.Direction.East);
+                Move (Globals.Direction.East);
+            }
             */
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!isAttacking)
+                {
+                    animator.SetTrigger("Attack");
+                    Attack();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; ++i)
+                {
+                    if (Input.GetKeyDown("" + i))
+                        Plant(i - 1);
+                }
+            }
+
+            /*
+            if (animator.GetInteger("Direction") != (int)direction)
+                animator.SetInteger("Direction", (int)direction);
+                */
+        }
 	}
 		
 	protected virtual void Plant(int plantNumber) {
