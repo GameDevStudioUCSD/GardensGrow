@@ -43,13 +43,15 @@ public class UIController : MonoBehaviour {
 	public void UpdateHealth (int health) {
 		for (int i = 0; i < 6; i++) {
 			if ((i + 1) * 2 <= health) {
+				healthIcons[i].enabled = true;
 				healthIcons[i].sprite = fullHeart;
 			}
 			else if ((i + 1) * 2 == health + 1) {
+				healthIcons[i].enabled = true;
 				healthIcons[i].sprite = brokenHeart;
 			}
 			else {
-				healthIcons[i].sprite = null;
+				healthIcons[i].enabled = false;
 			}
 		}
 	}
