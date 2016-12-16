@@ -21,7 +21,9 @@ public class ItemDrop : StaticGridObject {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			UIController controller = player.canvas;
-			Globals.inventory[plantId]++;
+			if (Globals.inventory[plantId] < 9) {
+				Globals.inventory[plantId]++;
+			}
 			//Debug.Log("Id: " + plantId + ", Amount: " + Globals.inventory[plantId]);
 			controller.UpdateUI();
 			AudioSource.PlayClipAtPoint(clip, player.gameObject.transform.position);

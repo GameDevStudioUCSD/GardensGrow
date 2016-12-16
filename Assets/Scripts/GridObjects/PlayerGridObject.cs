@@ -170,6 +170,7 @@ public class PlayerGridObject : MoveableGridObject {
 					break;
 			}
 			Globals.inventory[plantNumber]--;
+			canvas.UpdateUI();
 		}
 	}
 

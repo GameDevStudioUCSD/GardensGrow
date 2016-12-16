@@ -28,6 +28,9 @@ public class KillableGridObject : RotateableGridObject {
     private const int numAttackFrames = 26;
     private const int numDyingFrames = 11;
 
+    // Prevents "Die" function from being called more than once if something is taking continuous damage
+    private bool hasDied = false;
+
     public AudioSource audio;
     public AudioClip attackSound;
     public AudioClip hurtSound;
@@ -106,7 +109,7 @@ public class KillableGridObject : RotateableGridObject {
         	audio.Play();
         }
 
-		if (health <= 0) {
+		if (health <= 0 && hasDied == false) {
 			Die ();
 			return true;
 		}
@@ -116,6 +119,7 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Die() {
         //Debug.Log("death");
+        hasDied = true;
 		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
             Debug.Log("Player has died");
             Application.LoadLevel(Application.loadedLevel);
@@ -152,7 +156,6 @@ public class KillableGridObject : RotateableGridObject {
 					numAvailableSeeds++;
 				}
     		}
-    		Debug.Log("Seed Index: " + seedToSpawn);
     		Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
     	}
     }
