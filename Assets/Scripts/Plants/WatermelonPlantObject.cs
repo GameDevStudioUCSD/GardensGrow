@@ -4,7 +4,7 @@ using System.Collections;
 public class WatermelonPlantObject : PlantGridObject
 {
 
-    public SeedProjectileObject seed;
+    public GameObject seed;
     private int counter;
     public int shotDelay;
 
@@ -39,7 +39,8 @@ public class WatermelonPlantObject : PlantGridObject
 
     private void Shooter()
     {
-		seed.dir = direction;
+        seed.GetComponent<SeedProjectileObject>().dir = direction;
+		//seed.dir = direction;
 
         if (direction == Globals.Direction.North)
         {
@@ -47,13 +48,14 @@ public class WatermelonPlantObject : PlantGridObject
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 270f);
             Instantiate(seed, spawnPosition, spawnRotation);
 
-            animator.SetInteger("Directions", 2);  
+            animator.SetInteger("Directions", 2);
         }
         else if (direction == Globals.Direction.West)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(seed, spawnPosition, spawnRotation);
+
             animator.SetInteger("Directions", 0);
         }
         else if (direction == Globals.Direction.South)
@@ -61,6 +63,7 @@ public class WatermelonPlantObject : PlantGridObject
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 90f);
             Instantiate(seed, spawnPosition, spawnRotation);
+
             animator.SetInteger("Directions", 3);
         }
         else if(direction == Globals.Direction.East)
@@ -68,11 +71,13 @@ public class WatermelonPlantObject : PlantGridObject
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 180f);
             Instantiate(seed, spawnPosition, spawnRotation);
+
             animator.SetInteger("Directions", 1);
         }
 
         //animator.Stop();
     }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
