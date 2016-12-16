@@ -153,6 +153,9 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     /// </summary>
     protected override IEnumerator ExecuteActionTakeStep()
     {
+        if (path.Count == 0)
+            yield return null;
+
         for(int i = 0; i < speed; i++)
         {
             Move(path[currentPathIndex]);

@@ -17,12 +17,9 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
         EvaluatePath = 6
     }
 
-    public State state;
+    public State state = State.Idle;
 
     protected override void Start() {
-        if (!Application.isPlaying)
-            return;
-        state = State.Idle;
         base.Start();
         RunFSM();
     }
