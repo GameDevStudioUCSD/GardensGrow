@@ -156,7 +156,9 @@ public class KillableGridObject : RotateableGridObject {
 					numAvailableSeeds++;
 				}
     		}
-    		Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
+    		if (seedToSpawn != -1) {
+    			Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
+    		}
     	}
     }
 }
