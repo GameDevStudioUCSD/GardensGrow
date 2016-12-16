@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class KillableGridObject : RotateableGridObject {
+	public ItemDrop[] itemDrops;
 
     public int health = 20;
     public int damage = 5;
@@ -152,6 +153,7 @@ public class KillableGridObject : RotateableGridObject {
 				}
     		}
     		Debug.Log("Seed Index: " + seedToSpawn);
+    		Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
     	}
     }
 }
