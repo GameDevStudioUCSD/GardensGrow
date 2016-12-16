@@ -19,6 +19,7 @@ public class EnemyGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
+        gameObject.GetComponent<Animation>().Play("Damaged");
         return base.TakeDamage(damage);
     }
 

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class KillableGridObject : RotateableGridObject {
+	public ItemDrop[] itemDrops;
 
     public int health = 20;
     public int damage = 5;
@@ -30,6 +31,9 @@ public class KillableGridObject : RotateableGridObject {
     //do not change these without adjusting the animation timings
     private const int numAttackFrames = 26;
     private const int numDyingFrames = 11;
+
+    // Prevents "Die" function from being called more than once if something is taking continuous damage
+    private bool hasDied = false;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -77,7 +81,7 @@ public class KillableGridObject : RotateableGridObject {
         	audio.Play();
         }
 
-		if (health <= 0) {
+		if (health <= 0 && hasDied == false) {
 			Die ();
 			return true;
 		}
@@ -87,9 +91,14 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Die() {
         //Debug.Log("death");
+        hasDied = true;
 		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
             Debug.Log("Player has died");
             Application.LoadLevel(Application.loadedLevel);
+        }
+
+        if (this.gameObject.tag == "Enemy") {
+        	spawnItem();
         }
         isDying = true;
     }
@@ -162,4 +171,24 @@ public class KillableGridObject : RotateableGridObject {
         
     }
 
+    void spawnItem() {
+    	int willSpawn = (int)Random.Range(0,Globals.chanceOfDrop);
+
+    	if (willSpawn > 0) {
+    		int numAvailableSeeds = 0;
+    		int seedToSpawn = -1;
+    		for (int i = 0; i < 8; i++) {
+    			if (Globals.unlockedSeeds[i] == true) {
+					numAvailableSeeds++;
+					int probability = (int)Random.Range(0, numAvailableSeeds);
+    				if (probability == 0) {
+    					seedToSpawn = i;
+    				}
+				}
+    		}
+    		if (seedToSpawn != -1) {
+    			Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
+    		}
+    	}
+    }
 }
