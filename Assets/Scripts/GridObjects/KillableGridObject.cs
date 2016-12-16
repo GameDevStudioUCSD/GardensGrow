@@ -138,7 +138,7 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     void spawnItem() {
-    	int willSpawn = (int)Random.Range(0,2);
+    	int willSpawn = (int)Random.Range(0,Globals.chanceOfDrop);
 
     	if (willSpawn > 0) {
     		int numAvailableSeeds = 0;

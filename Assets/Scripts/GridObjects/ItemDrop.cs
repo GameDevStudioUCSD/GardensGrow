@@ -22,7 +22,7 @@ public class ItemDrop : StaticGridObject {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			UIController controller = player.canvas;
 			Globals.inventory[plantId]++;
-			Debug.Log("Id: " + plantId + ", Amount: " + Globals.inventory[plantId]);
+			//Debug.Log("Id: " + plantId + ", Amount: " + Globals.inventory[plantId]);
 			controller.UpdateUI();
 			AudioSource.PlayClipAtPoint(clip, player.gameObject.transform.position);
 			Destroy(this.gameObject);
