@@ -181,7 +181,8 @@ public class PlayerGridObject : MoveableGridObject {
             hpBarText.text = "HP: " + health;
         }*/
         gameObject.GetComponent<Animation>().Play("Damaged");
-
+        Debug.Log("Health = " + health);
+        canvas.UpdateHealth(health);
         return base.TakeDamage(damage);
     }
 
