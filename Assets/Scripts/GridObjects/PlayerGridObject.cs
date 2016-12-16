@@ -142,7 +142,7 @@ public class PlayerGridObject : MoveableGridObject {
             hpBarText.text = "HP: " + health;
         }*/
         gameObject.GetComponent<Animation>().Play("Damaged");
-
+        canvas.UpdateHealth(health - damage);
         return base.TakeDamage(damage);
     }
 
