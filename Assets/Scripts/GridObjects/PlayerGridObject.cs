@@ -8,11 +8,13 @@ public class PlayerGridObject : MoveableGridObject {
     private float verticalAxis;
         
     private Animator animator;
+    private Animation animation;
     public bool canMove;
 
     // Use this for initialization
     protected virtual void Start () {
         base.Start();
+        animation = gameObject.GetComponent<Animation>();
         canMove = true;
         animator = GetComponent<Animator>();
 	}
@@ -178,6 +180,7 @@ public class PlayerGridObject : MoveableGridObject {
         {
             hpBarText.text = "HP: " + health;
         }*/
+        gameObject.GetComponent<Animation>().Play("Damaged");
 
         return base.TakeDamage(damage);
     }
