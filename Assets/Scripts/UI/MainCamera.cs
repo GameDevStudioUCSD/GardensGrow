@@ -4,51 +4,48 @@ using System.Collections;
 public class MainCamera : MonoBehaviour {
 
     public GameObject PauseUI;
+    public GameObject MainMenuUI;
+    public GameObject LoadMenuUI;
+
     public PlayerGridObject player;
 
     private bool paused = false;
 
     void Start()
     {
-        PauseUI.SetActive(false);
+        if (PauseUI != null)
+        {
+            PauseUI.SetActive(false);
+        }
     }
     void Update()
     {
-        if (paused)
+        if (PauseUI != null)
         {
-            PauseUI.SetActive(true);
-            player.canMove = false;
-            Time.timeScale = 0;
+            if (paused)
+            {
+                PauseUI.SetActive(true);
+                player.canMove = false;
+                Time.timeScale = 0;
+            }
+            else if (!paused)
+            {
+                PauseUI.SetActive(false);
+                player.canMove = true;
+                Time.timeScale = 1;
+            }
         }
-        else if (!paused)
-        {
-            PauseUI.SetActive(false);
-            player.canMove = true;
-            Time.timeScale = 1;
-        }
-
-        float playerXDist = player.transform.position.x - this.transform.position.x;
-        float playerYDist = player.transform.position.y - this.transform.position.y;
-
-		Vector3 position = this.gameObject.transform.position;
-        if (playerXDist > 7) {
-        	position.x += 14;
-        	this.transform.position = position;
-       	}
-		if (playerXDist < -7) {
-        	position.x -= 14;
-        	this.transform.position = position;
-       	}
-		if (playerYDist > 5) {
-        	position.y += 10;
-        	this.transform.position = position;
-       	}
-		if (playerYDist < -5) {
-        	position.y -= 10;
-        	this.transform.position = position;
-       	}
     }
-
+    public void LoadButton()
+    {
+        MainMenuUI.SetActive(false);
+        LoadMenuUI.SetActive(true);
+    }
+    public void LoadBack()
+    {
+        MainMenuUI.SetActive(true);
+        LoadMenuUI.SetActive(false);
+    }
     public void Pause()
     {
         paused = !paused;
@@ -66,11 +63,38 @@ public class MainCamera : MonoBehaviour {
 
     public void MainMenu()
     {
-        Application.LoadLevel(1);
+        Application.LoadLevel(0);
     }
 
     public void Quit()
     {
         Application.Quit();
     }
+    public void NewGame()
+    {
+        MainMenuUI.SetActive(false);
+        Game newGame = new Game();
+        
+    }
+    public void Save()
+    {
+        SaveLoad.Save();
+    }
+    public void LoadSlot1()
+    {
+        SaveLoad.Load(0);
+    }
+    public void LoadSlot2()
+    {
+        SaveLoad.Load(1);
+    }
+    public void LoadSlot3()
+    {
+        SaveLoad.Load(2);
+    }
+    public void LoadSlot4()
+    {
+        SaveLoad.Load(3);
+    }
+
 }

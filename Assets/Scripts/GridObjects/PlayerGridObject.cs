@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
 	public UIController canvas;
