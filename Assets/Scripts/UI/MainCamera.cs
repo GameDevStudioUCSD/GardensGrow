@@ -27,22 +27,27 @@ public class MainCamera : MonoBehaviour {
             Time.timeScale = 1;
         }
     }
+
     public void Pause()
     {
         paused = !paused;
     }
+
     public void Resume()
     {
         paused = false;
     }
+
     public void Restart()
     {
         Application.LoadLevel(Application.loadedLevel);
     }
+
     public void MainMenu()
     {
         Application.LoadLevel(1);
     }
+
     public void Quit()
     {
         Application.Quit();
