@@ -26,6 +26,27 @@ public class MainCamera : MonoBehaviour {
             player.canMove = true;
             Time.timeScale = 1;
         }
+
+        float playerXDist = player.transform.position.x - this.transform.position.x;
+        float playerYDist = player.transform.position.y - this.transform.position.y;
+
+		Vector3 position = this.gameObject.transform.position;
+        if (playerXDist > 7) {
+        	position.x += 14;
+        	this.transform.position = position;
+       	}
+		if (playerXDist < -7) {
+        	position.x -= 14;
+        	this.transform.position = position;
+       	}
+		if (playerYDist > 5) {
+        	position.y += 10;
+        	this.transform.position = position;
+       	}
+		if (playerYDist < -5) {
+        	position.y -= 10;
+        	this.transform.position = position;
+       	}
     }
 
     public void Pause()
