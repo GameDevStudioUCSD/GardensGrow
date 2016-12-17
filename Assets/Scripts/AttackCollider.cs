@@ -21,6 +21,11 @@ public class AttackCollider : MonoBehaviour {
 	
 	}
 
+    public List<KillableGridObject> GetKillList()
+    {
+        return killList;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(!other.isTrigger)

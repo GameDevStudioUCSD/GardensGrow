@@ -104,25 +104,25 @@ public class PlayerGridObject : MoveableGridObject {
         if (Globals.inventory[plantNumber] > 0){
 			switch (direction) {
 				case Globals.Direction.East:
-					if (!eastHitCollider.isTriggered) {
+					if (!eastCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
 					break;
 				case Globals.Direction.West:
-					if (!westHitCollider.isTriggered) {
+					if (!westCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
 					break;
 				case Globals.Direction.South:
-					if (!southHitCollider.isTriggered) {
+					if (!southCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
 					break;
 				case Globals.Direction.North:
-					if (!northHitCollider.isTriggered) {
+					if (!northCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
