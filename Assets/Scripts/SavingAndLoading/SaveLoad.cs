@@ -11,12 +11,19 @@ public static class SaveLoad
 
     public static void Save()
     {
-        savedGames.Add(Game.Current);
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(counter + "/savedGames.gd");
-        bf.Serialize(file, SaveLoad.savedGames);
-        counter++;
-        file.Close();
+        if (counter<=4) //or </ number of max saves
+        {
+            savedGames.Add(Game.Current);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(counter + "/savedGames.gd");
+            bf.Serialize(file, SaveLoad.savedGames);
+            counter++;
+            file.Close();
+        }
+        else
+        {
+            //throw error message   
+        }
     }
 
     public static void Load(int loadnumber)
@@ -24,8 +31,9 @@ public static class SaveLoad
         if(File.Exists(loadnumber + "/savedGames.gd"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(counter + "/savedGames.gd", FileMode.Open);
+            FileStream file = File.Open(loadnumber + "/savedGames.gd", FileMode.Open);
             SaveLoad.savedGames = (List<Game>)bf.Deserialize(file);
+            //here need to parse file, load level, and set all read file info
             file.Close();
         }
         else
