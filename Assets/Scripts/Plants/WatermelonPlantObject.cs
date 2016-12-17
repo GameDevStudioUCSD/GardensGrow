@@ -4,7 +4,7 @@ using System.Collections;
 public class WatermelonPlantObject : PlantGridObject
 {
 
-    public GameObject seed;
+    public GameObject bullet;
     private int counter;
     public int shotDelay;
 
@@ -39,14 +39,14 @@ public class WatermelonPlantObject : PlantGridObject
 
     private void Shooter()
     {
-        seed.GetComponent<SeedProjectileObject>().dir = direction;
+        bullet.GetComponent<PlantProjectileObject>().dir = direction;
 		//seed.dir = direction;
 
         if (direction == Globals.Direction.North)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 270f);
-            Instantiate(seed, spawnPosition, spawnRotation);
+            Instantiate(bullet, spawnPosition, spawnRotation);
 
             animator.SetInteger("Directions", 2);
         }
@@ -54,7 +54,7 @@ public class WatermelonPlantObject : PlantGridObject
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(seed, spawnPosition, spawnRotation);
+            Instantiate(bullet, spawnPosition, spawnRotation);
 
             animator.SetInteger("Directions", 0);
         }
@@ -62,7 +62,7 @@ public class WatermelonPlantObject : PlantGridObject
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 90f);
-            Instantiate(seed, spawnPosition, spawnRotation);
+            Instantiate(bullet, spawnPosition, spawnRotation);
 
             animator.SetInteger("Directions", 3);
         }
@@ -70,7 +70,7 @@ public class WatermelonPlantObject : PlantGridObject
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 180f);
-            Instantiate(seed, spawnPosition, spawnRotation);
+            Instantiate(bullet, spawnPosition, spawnRotation);
 
             animator.SetInteger("Directions", 1);
         }

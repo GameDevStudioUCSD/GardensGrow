@@ -9,10 +9,10 @@ public class KillableGridObject : RotateableGridObject {
 
     public int health = 20;
     public int damage = 5;
-	public EdgeTrigger southHitCollider;
-	public EdgeTrigger westHitCollider;
-	public EdgeTrigger northHitCollider;
-	public EdgeTrigger eastHitCollider;
+	public AttackCollider southHitCollider;
+	public AttackCollider westHitCollider;
+	public AttackCollider northHitCollider;
+	public AttackCollider eastHitCollider;
     public Globals.Faction faction = Globals.Faction.Ally;
     
     public Text hpBarText;
@@ -120,16 +120,16 @@ public class KillableGridObject : RotateableGridObject {
         switch (direction)
         {
             case Globals.Direction.South:
-                killList = southHitCollider.getKillList();
+                killList = southHitCollider.GetKillList();
                 break;
             case Globals.Direction.East:
-                killList = eastHitCollider.getKillList();
+                killList = eastHitCollider.GetKillList();
                 break;
             case Globals.Direction.North:
-                killList = northHitCollider.getKillList();
+                killList = northHitCollider.GetKillList();
                 break;
             case Globals.Direction.West:
-                killList = westHitCollider.getKillList();
+                killList = westHitCollider.GetKillList();
                 break;
         }
 

@@ -53,8 +53,8 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     protected override bool CanAttack()
     {
         // Check if there is something killable in collider facing direction
-        EdgeTrigger edgeTrigger = getHitColliderFromDirection(direction);
-        return edgeTrigger.getKillList().Count > 0;
+        AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
+        return edgeTrigger.GetKillList().Count > 0;
     }
 
     protected override bool CanSeePlayer()

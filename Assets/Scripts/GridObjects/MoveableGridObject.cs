@@ -45,7 +45,7 @@ public class MoveableGridObject : KillableGridObject {
         }
 	}
 
-    protected EdgeTrigger getHitColliderFromDirection(Globals.Direction dir)
+    protected AttackCollider getHitColliderFromDirection(Globals.Direction dir)
     {
         switch(dir)
         {
