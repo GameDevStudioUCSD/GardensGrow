@@ -67,64 +67,25 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 animator.SetBool("IsWalking", false);
             }
-
-            /*
-            if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
-                Move (Globals.Direction.South);
-                if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-                    Move (Globals.Direction.West);
-                }
-                else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-                    Move (Globals.Direction.East);
-                }
-                else {
-                    Move (Globals.Direction.South);
-                }
-            }
-            else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
-                Move (Globals.Direction.North);
-                if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-                    Move (Globals.Direction.West);
-                }
-                else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-                    Move (Globals.Direction.East);
-                }
-                else {
-                    Move (Globals.Direction.North);
-                }
-            }
-            else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-                Move (Globals.Direction.West);
-                Move (Globals.Direction.West);
-            }
-            else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-                Move (Globals.Direction.East);
-                Move (Globals.Direction.East);
-            }
-            */
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (!isAttacking)
-                {
-                    animator.SetTrigger("Attack");
-                    Attack();
-                }
-            }
-            else
-            {
-                for (int i = 0; i < 10; ++i)
-                {
-                    if (Input.GetKeyDown("" + i))
-                        Plant(i - 1);
-                }
-            }
-
-            /*
-            if (animator.GetInteger("Direction") != (int)direction)
-                animator.SetInteger("Direction", (int)direction);
-                */
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!isAttacking)
+            {
+                animator.SetTrigger("Attack");
+                Attack();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 10; ++i)
+            {
+                if (Input.GetKeyDown("" + i))
+                    Plant(i - 1);
+            }
+        }
+
 	}
 		
 	protected virtual void Plant(int plantNumber) {
@@ -143,25 +104,25 @@ public class PlayerGridObject : MoveableGridObject {
         if (Globals.inventory[plantNumber] > 0){
 			switch (direction) {
 				case Globals.Direction.East:
-					if (!eastHitCollider.isTriggered) {
+					if (!eastCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
 					break;
 				case Globals.Direction.West:
-					if (!westHitCollider.isTriggered) {
+					if (!westCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
 					break;
 				case Globals.Direction.South:
-					if (!southHitCollider.isTriggered) {
+					if (!southCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
 					break;
 				case Globals.Direction.North:
-					if (!northHitCollider.isTriggered) {
+					if (!northCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 					}
@@ -181,7 +142,7 @@ public class PlayerGridObject : MoveableGridObject {
             hpBarText.text = "HP: " + health;
         }*/
         gameObject.GetComponent<Animation>().Play("Damaged");
-
+        canvas.UpdateHealth(health - damage);
         return base.TakeDamage(damage);
     }
 

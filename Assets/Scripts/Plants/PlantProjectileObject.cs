@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SeedProjectileObject : MonoBehaviour {
+public class PlantProjectileObject : MonoBehaviour {
 
     public float shotSpeed;
     public int shotRange;
