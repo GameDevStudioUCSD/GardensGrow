@@ -35,6 +35,31 @@ public class MainCamera : MonoBehaviour {
                 Time.timeScale = 1;
             }
         }
+
+        float xDist = player.transform.position.x - this.gameObject.transform.position.x;
+		float yDist = player.transform.position.y - this.gameObject.transform.position.y;
+		Debug.Log(xDist);
+		Debug.Log(yDist);
+
+		Vector3 currentPos = this.gameObject.transform.position;
+		if (xDist > 7)
+		{
+			currentPos.x += 14;
+		}
+		if (xDist < -7)
+		{
+			currentPos.x -= 14;
+		}
+		if (yDist > 5)
+		{
+			currentPos.y += 10;
+		}
+		if (yDist < -5)
+		{
+			currentPos.y -= 10;
+		}
+
+		this.transform.position = currentPos;
     }
     public void LoadButton()
     {
