@@ -12,6 +12,8 @@ public class EnemySpawnerScript : KillableGridObject
     public UnityEvent deathEvent;
     public float spawnRate;
 
+    private PlayerGridObject player;
+
     System.Random randGen = new System.Random();
     private int randInt;
     public float spawnDelay;
@@ -20,6 +22,8 @@ public class EnemySpawnerScript : KillableGridObject
     // Use this for initialization
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
+ 
         elapsedTime = 0;
         StartCoroutine(spawnRandomDir());
         
@@ -28,18 +32,20 @@ public class EnemySpawnerScript : KillableGridObject
     // Update is called once per frame
     void Update()
     {
-        //if (elapsedTime++ > spawnDelay)
-        //
-        //{
+        if (health <= 0)
+        {
 
-            if (health <= 0)
-            {
-                Destroy(this.gameObject);
-            }
-//            spawnRandomDir();
+            //this.gameObject.SetActive(false);
+            /**var children = new List<GameObject>();
+                foreach (Transform child in transform) children.Add(child.gameObject);
+                children.ForEach(child => Destroy(child));**/
 
-  //          elapsedTime = 0;
-    //    }
+            Destroy(this.gameObject);
+
+            this.Die();
+        }
+
+    
 
     }
 
@@ -84,6 +90,18 @@ public class EnemySpawnerScript : KillableGridObject
             yield return new WaitForSeconds(spawnRate);
         }
 
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player") && player.isAttacking)
+        {
+            TakeDamage(player.damage);
+        }
+    }
+    public override bool TakeDamage(int dmg)
+    {
+        gameObject.GetComponent<Animation>().Play("Damaged");
+        return base.TakeDamage(dmg);
     }
     protected override void Die() {
         base.Die();

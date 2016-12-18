@@ -21,7 +21,7 @@ public class KillableGridObject : RotateableGridObject {
     public AudioClip attackSound;
     public AudioClip hurtSound;
 
-    protected bool isAttacking = false;
+    public bool isAttacking = false;
     protected bool isDying = false;
 
     private List<KillableGridObject> killList;
