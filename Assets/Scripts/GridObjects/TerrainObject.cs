@@ -14,6 +14,7 @@ public class TerrainObject : StaticGridObject
     // Use this for initialization
     void Start ()
     {
+    	Randomize();
     	base.Start();
     }
 
