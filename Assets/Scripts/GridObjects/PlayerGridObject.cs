@@ -9,19 +9,19 @@ public class PlayerGridObject : MoveableGridObject {
     private float verticalAxis;
         
     private Animator animator;
-    private Animation animation;
+    private Animation anim;
     public bool canMove;
 
     // Use this for initialization
-    protected virtual void Start () {
+    protected override void Start () {
         base.Start();
-        animation = gameObject.GetComponent<Animation>();
+        anim = gameObject.GetComponent<Animation>();
         canMove = true;
         animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
-	protected virtual void Update () {
+	protected override void Update () {
 		base.Update();
 
         // TODO: pull up animator code for player up to here so monster can have their own

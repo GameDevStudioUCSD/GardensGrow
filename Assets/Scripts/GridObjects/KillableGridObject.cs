@@ -26,22 +26,20 @@ public class KillableGridObject : RotateableGridObject {
 
     private List<KillableGridObject> killList;
 
-    private int attackFrame = 0;
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
-    private const int numAttackFrames = 26;
     private const int numDyingFrames = 11;
 
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     private bool hasDied = false;
 
 	// Use this for initialization
-	protected virtual void Start () {
+	protected override void Start () {
         base.Start();
 	}
 	
 	// Update is called once per frame
-	protected virtual void Update () {
+	protected override void Update () {
         base.Update();
         if (isDying)
         {
@@ -52,12 +50,6 @@ public class KillableGridObject : RotateableGridObject {
             }
         }
 
-        attackFrame++;
-        if (attackFrame >= numAttackFrames)
-        {
-            isAttacking = false;
-            attackFrame = 0;
-        }
 	}
 
     /// <summary>
@@ -144,8 +136,7 @@ public class KillableGridObject : RotateableGridObject {
         {
             if(target.faction != this.faction)
             {
-                TakeDamage(damage);
-
+                target.TakeDamage(damage);
             }
         }
 
