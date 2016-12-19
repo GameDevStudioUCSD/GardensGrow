@@ -30,7 +30,7 @@ public class KillableGridObject : RotateableGridObject {
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
     private const int numAttackFrames = 26;
-    private const int numDyingFrames = 11;
+    private const int numDyingFrames = 20;//11;
 
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     private bool hasDied = false;
@@ -90,7 +90,6 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     protected virtual void Die() {
-        //Debug.Log("death");
         hasDied = true;
 		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
             Debug.Log("Player has died");
@@ -103,11 +102,11 @@ public class KillableGridObject : RotateableGridObject {
         isDying = true;
     }
 
-    protected virtual void Attack()
+    protected virtual bool Attack()
     {
         // Don't attack if we are currently attacking
         if (isAttacking)
-            return;
+            return false;
 
         isAttacking = true;
 
@@ -140,15 +139,19 @@ public class KillableGridObject : RotateableGridObject {
          */
         killList.RemoveAll((KillableGridObject target) => target == null);
 
+        bool returnVal = false;
         // Deal damage to all targets of the enemy faction
         foreach(KillableGridObject target in killList)
         {
             if(target.faction != this.faction)
             {
-                target.TakeDamage(damage);
+                if (target.TakeDamage(damage)) {
+                	returnVal = true;
+                }
             }
         }
 
+        return returnVal;
 
         // clears references to the killed object in the PlayerEdgeTrigger
         // that collided with the killed object
