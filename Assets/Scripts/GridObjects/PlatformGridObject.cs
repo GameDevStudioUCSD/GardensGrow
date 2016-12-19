@@ -2,50 +2,112 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlatformGridObject : MoveableGridObject {
+public class PlatformGridObject : MonoBehaviour
+{
+    private bool hasTurbine = false;
+    private bool hasPlayer = false;
+    private bool move = false;
+    private bool goingRight;    //there's 2 bools for this incase we wanna go up and down 2
+    private bool goingLeft;
+    //Important var for controlling speed of movement
+    private int counter=0;
+    private int timeKeeper = 0;
+    public int delay;
+    public int distance;
 
-    public int moveDistance;
-    public int moveSpeed;
     private List<GameObject> moveList = new List<GameObject>();
 
-	// Use this for initialization
-	void Start () {
-
+    // Use this for initialization
+    void Start()
+    {
         moveList.Add(this.gameObject);
-        Debug.Log("added platform to moveList");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Turbine"))
-        {
-            StartCoroutine(Move());
-            Debug.Log("starting coroutine");
-                
-        }
-        else if (!col.gameObject.CompareTag("Platform") || !col.gameObject.CompareTag("Ground")){
-            moveList.Add(col.gameObject);
-            Debug.Log("added to moveList:" + col.gameObject);
-        }
     }
-    IEnumerator Move()
+    void Update()
     {
-        //must detect direction left or right
-        for (int i = 0; i < moveDistance; i++)
+        if (move)
         {
-            foreach (GameObject thing in moveList)
+            timeKeeper++;
+            counter++;
+            if (counter > delay)
             {
-                Vector3 position = this.transform.position;
-                position.y -= .03125f;
-                this.transform.position = position;
+                foreach (GameObject obj in moveList)
+                {
+                    if (goingRight)
+                    {
+                        if (obj.gameObject.CompareTag("Turbine"))
+                        {
+                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
+                            position.x +=.03125f;
+                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
+                        }
+                        else
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.x +=.03125f;
+                            obj.transform.position = position;
+                        }
+                    }
+                    else if(goingLeft)
+                    {
+                        if (obj.gameObject.CompareTag("Turbine"))
+                        {
+                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
+                            position.x -=.03125f;
+                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
+                        }
+                        else
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.x -= .03125f;
+                            obj.transform.position = position;
+                        }
+                    }
+                }
+                counter = 0;
+            }
+            if(timeKeeper > distance)
+            {
+                move = false;
             }
         }
-
-        //moves the platform and everything by changing transform.position.y
-        yield return new WaitForSeconds(1/moveSpeed);
+    }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (!hasPlayer)
+        {
+            if (col.gameObject.CompareTag("Player"))
+            {
+                moveList.Add(col.gameObject);
+                hasPlayer = true;
+            }
+        }
+        if (!hasTurbine)
+        {
+            if (col.gameObject.CompareTag("Turbine"))
+            {
+                if (col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.West)
+                {
+                    goingRight = true;
+                }
+                else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.East)
+                {
+                    goingLeft = true;
+                }
+                moveList.Add(col.gameObject);
+                hasTurbine = true;
+                move = true;
+            }
+        }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            hasPlayer = false;
+        }
+        if (col.gameObject.CompareTag("Turbine"))
+        {
+            hasTurbine = false;
+        }
     }
 }
