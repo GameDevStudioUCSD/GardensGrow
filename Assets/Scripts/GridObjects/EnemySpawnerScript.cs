@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
-
+using System.Collections.Generic;
 
 public class EnemySpawnerScript : KillableGridObject
 {
@@ -35,12 +35,16 @@ public class EnemySpawnerScript : KillableGridObject
         if (health <= 0)
         {
 
-            //this.gameObject.SetActive(false);
-            /**var children = new List<GameObject>();
-                foreach (Transform child in transform) children.Add(child.gameObject);
-                children.ForEach(child => Destroy(child));**/
+            var children = new List<GameObject>();
 
-            Destroy(this.gameObject);
+            /**foreach (Transform child in transform)
+            {
+                children.Add(child.gameObject);
+            }
+            children.ForEach(child => Destroy(child));**/
+
+            this.gameObject.SetActive(false);
+            //Destroy(this.gameObject);
 
             this.Die();
         }

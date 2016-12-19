@@ -138,12 +138,11 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
-        /*if (this.gameObject.tag == "Player")
+        if (damage >= 1)
         {
-            hpBarText.text = "HP: " + health;
-        }*/
-        gameObject.GetComponent<Animation>().Play("Damaged");
-        canvas.UpdateHealth(health - damage);
+            gameObject.GetComponent<Animation>().Play("Damaged");
+            canvas.UpdateHealth(health - damage);
+        }
         return base.TakeDamage(damage);
     }
 
