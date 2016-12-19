@@ -57,31 +57,4 @@ public class MoveableGridObject : KillableGridObject {
         }
     }
 
-    protected virtual bool Attack () {
-    	if (base.Attack()) {
-    	Debug.Log("has killed");
-    		switch(this.direction)
-    		{
-				case Globals.Direction.North: 
-					northCollider.isTriggered = false;
-					Debug.Log("North false");
-					break;
-	            case Globals.Direction.East: 
-	            	eastCollider.isTriggered = false;
-	            	Debug.Log("East false");
-	            	break;
-	            case Globals.Direction.South: 
-	            	southCollider.isTriggered = false;
-	            	Debug.Log("South false");
-	            	break;
-	            case Globals.Direction.West: 
-	            	westCollider.isTriggered = false;
-	            	Debug.Log("West false");
-	            	break;
-	        }
-	        return true;
-    	}
-    	return false;
-    }
-
 }
