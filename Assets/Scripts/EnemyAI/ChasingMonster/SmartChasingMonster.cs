@@ -50,11 +50,26 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
     public override void Reset() { }
 
+    // TODO: change this so instead of checking every step it reacts to colliders instead
     protected override bool CanAttack()
     {
         // Check if there is something killable in collider facing direction
         AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
-        return edgeTrigger.GetKillList().Count > 0;
+
+        List<KillableGridObject> killList = edgeTrigger.GetKillList();
+
+        // Check if there is anything to kill
+        if (killList.Count > 0)
+        {
+            // Check if any of the killables are an enemy
+            foreach(KillableGridObject target in killList)
+            {
+                if (target.faction != this.faction)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     protected override bool CanSeePlayer()
