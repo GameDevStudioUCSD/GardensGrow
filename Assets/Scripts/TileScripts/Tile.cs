@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour {
     public Collider2D tileCollider;
 
     [ContextMenuItem("Set Patheable", "SetPatheable")]
-    public bool isPatheable = true;
+    public bool isPatheable;
 
     // Path cost 
     // How costly it is to go through this tile
@@ -36,6 +36,7 @@ public class Tile : MonoBehaviour {
         }
     }
 
+    /*
     void OnTriggerEnter2D(Collider2D other) {
 
         // Check if there is a terrain object that is blocking the path on this tile
@@ -47,6 +48,7 @@ public class Tile : MonoBehaviour {
         }
 
     }
+    */
 
     /// <summary>
     /// Automatically finds the Collider2D attached to this object and
@@ -70,7 +72,7 @@ public class Tile : MonoBehaviour {
         RaycastHit2D[] results = new RaycastHit2D[1];
 
         // Create raycast to see if there are any barriers on this tile
-        int numRayCollisions = tileCollider.Raycast(Vector2.up, results, 0.5f);
+        int numRayCollisions = tileCollider.Raycast(Vector2.right, results, 0.5f);
 
         // If there were any collision, then check if colliding object is a terrain barrier
         if(numRayCollisions > 0)

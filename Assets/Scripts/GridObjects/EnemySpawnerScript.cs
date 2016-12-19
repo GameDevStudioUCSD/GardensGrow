@@ -8,7 +8,7 @@ public class EnemySpawnerScript : KillableGridObject
 {
     public GameObject enemy;
     public TileMap tileMap;
-    public GameObject playerObj;
+    public GameObject targetObj;
     public UnityEvent deathEvent;
     public float spawnRate;
 
@@ -89,7 +89,7 @@ public class EnemySpawnerScript : KillableGridObject
             // TODO: change this later to fit other AI
             // Give AI info about the tile map and the target object
             enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<SmartChasingMonster>().targetObject = playerObj;
+            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
 
             yield return new WaitForSeconds(spawnRate);
         }

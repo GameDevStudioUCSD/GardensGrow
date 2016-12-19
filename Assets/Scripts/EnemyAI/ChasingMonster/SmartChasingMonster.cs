@@ -183,6 +183,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         if (TimeInState() > attackDelay)
         {
             attackOnCooldown = false;
+            isAttacking = false;
             return true;
         }
         else

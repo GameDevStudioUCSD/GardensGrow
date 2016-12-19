@@ -33,24 +33,24 @@ public class Node {
         }
     }
 
-    public Node(Tile tile, Node parent=null)
+    public Node(Tile tile, TileMap tileMap, Node parent=null)
     {
         this.parent = parent;
 
         isPatheable = tile.isPatheable;
         worldPosition = tile.transform.position;
-        gridPosition = tile.transform.localPosition;
+        gridPosition = tile.transform.position - tileMap.transform.position;
         gCost = tile.gCost;
     }
 
-    public Node(Tile tile, Node parent, Globals.Direction directionTaken)
+    public Node(Tile tile, TileMap tileMap, Node parent, Globals.Direction directionTaken)
     {
         this.parent = parent;
         this.directionTaken = directionTaken;
 
         isPatheable = tile.isPatheable;
         worldPosition = tile.transform.position;
-        gridPosition = tile.transform.localPosition;
+        gridPosition = tile.transform.position - tileMap.transform.position;
         gCost = tile.gCost;
     }
 
