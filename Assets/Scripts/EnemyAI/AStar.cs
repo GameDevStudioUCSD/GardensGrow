@@ -22,7 +22,7 @@ public class AStar {
 
     public List<Globals.Direction> FindPath(Tile startTile, Tile targetTile)
     {
-        return FindPath(new Node(startTile), new Node(targetTile));
+        return FindPath(new Node(startTile, tileMap), new Node(targetTile, tileMap));
     }
 
     public List<Globals.Direction> FindPath(Node startNode, Node targetNode)

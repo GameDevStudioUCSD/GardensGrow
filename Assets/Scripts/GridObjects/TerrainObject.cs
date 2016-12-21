@@ -31,7 +31,10 @@ public class TerrainObject : StaticGridObject
         if (sprites.Length > 0)
         {
             chosenSprite = sprites[Random.Range(0, sprites.Length)];
-            spriteRenderer.sprite = chosenSprite;
+            if (spriteRenderer)
+            {
+            	spriteRenderer.sprite = chosenSprite;
+            }
                 /*
             else if (spriteRenderer.sprite != chosenSprite)
             {
