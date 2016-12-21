@@ -10,8 +10,16 @@ public class EnemySpawnerScript : KillableGridObject
     public TileMap tileMap;
     public GameObject targetObj;
     public UnityEvent deathEvent;
-    public float spawnDelay;
+    private Vector3 spawnPosition;
 
+    //Keep track of spawns
+
+    public float spawnDelay;
+    public int maxSpawns;
+    private int currSpawns = 0;
+    private List<GameObject> list = new List<GameObject>();
+
+    private Quaternion spawnRotation = Quaternion.identity;
     private PlayerGridObject player;
 
     System.Random randGen = new System.Random();
@@ -34,6 +42,14 @@ public class EnemySpawnerScript : KillableGridObject
             this.Die();
         }
 
+        foreach(GameObject obj in list)
+        {
+            if (obj == null)
+            {
+                currSpawns--;
+                list.Remove(obj);
+            }
+        }
     
 
     }
@@ -42,43 +58,56 @@ public class EnemySpawnerScript : KillableGridObject
     {
         while (health > 0)
         {
-            randInt = randGen.Next(0, 4);
-
-            GameObject enemyObj;
-
-            if (randInt == 1)
+            if (currSpawns < maxSpawns)
             {
-                Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
-                Quaternion spawnRotation = Quaternion.identity;
-                enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            }
-            else if (randInt == 2)
-            {
-                Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
-                Quaternion spawnRotation = Quaternion.identity;
-                enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            }
-            else if (randInt == 3)
-            {
-                Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
-                Quaternion spawnRotation = Quaternion.identity;
-                enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            }
-            else
-            {
-                Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
-                Quaternion spawnRotation = Quaternion.identity;
-                enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            }
+                randInt = randGen.Next(0, 4);
 
-            // TODO: change this later to fit other AI
-            // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+                if (randInt == 1)
+                {
+                    spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
+                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+                    list.Add(enemyObj);
+                    //I needed a reference to every specific enemyObj to keep track of them, so I couldn't use 1 GameObject enemyObj for all spawns.
+                    // TODO: change this later to fit other AI
+                    // Give AI info about the tile map and the target object
+                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+                }
+                else if (randInt == 2)
+                {
+                    spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
+                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+                    list.Add(enemyObj);
+                    // TODO: change this later to fit other AI
+                    // Give AI info about the tile map and the target object
+                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+                }
+                else if (randInt == 3)
+                {
+                    spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
+                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+                    list.Add(enemyObj);
+                    // TODO: change this later to fit other AI
+                    // Give AI info about the tile map and the target object
+                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+                }
+                else
+                {
+                    spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
+                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+                    list.Add(enemyObj);
+                    // TODO: change this later to fit other AI
+                    // Give AI info about the tile map and the target object
+                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+                }
 
+                currSpawns++;
+            }
             yield return new WaitForSeconds(spawnDelay);
         }
-
     }
     void OnTriggerEnter2D(Collider2D col)
     {
