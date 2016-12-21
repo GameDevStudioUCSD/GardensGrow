@@ -71,7 +71,7 @@ public class MainCamera : MonoBehaviour {
     }
     public void Pause()
     {
-        paused = !paused;
+        paused = true;
     }
 
     public void Resume()
