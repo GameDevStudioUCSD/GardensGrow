@@ -10,21 +10,17 @@ public class EnemySpawnerScript : KillableGridObject
     public TileMap tileMap;
     public GameObject playerObj;
     public UnityEvent deathEvent;
-    public float spawnRate;
+    public float spawnDelay;
 
     private PlayerGridObject player;
 
     System.Random randGen = new System.Random();
     private int randInt;
-    public float spawnDelay;
-    private float elapsedTime;
 
     // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
- 
-        elapsedTime = 0;
         StartCoroutine(spawnRandomDir());
         
     }
@@ -34,18 +30,7 @@ public class EnemySpawnerScript : KillableGridObject
     {
         if (health <= 0)
         {
-
-            var children = new List<GameObject>();
-
-            /**foreach (Transform child in transform)
-            {
-                children.Add(child.gameObject);
-            }
-            children.ForEach(child => Destroy(child));**/
-
             this.gameObject.SetActive(false);
-            //Destroy(this.gameObject);
-
             this.Die();
         }
 
@@ -91,7 +76,7 @@ public class EnemySpawnerScript : KillableGridObject
             enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
             enemyObj.GetComponent<SmartChasingMonster>().targetObject = playerObj;
 
-            yield return new WaitForSeconds(spawnRate);
+            yield return new WaitForSeconds(spawnDelay);
         }
 
     }
