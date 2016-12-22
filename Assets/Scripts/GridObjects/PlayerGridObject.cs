@@ -11,6 +11,7 @@ public class PlayerGridObject : MoveableGridObject {
     private Animator animator;
     private Animation anim;
     public bool canMove;
+    public bool onPlatform;
 
     // Use this for initialization
     protected override void Start () {

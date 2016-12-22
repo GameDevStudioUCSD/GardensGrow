@@ -7,8 +7,10 @@ public class PlatformGridObject : MonoBehaviour
     private bool hasTurbine = false;
     private bool hasPlayer = false;
     private bool move = false;
-    private bool goingRight;    //there's 2 bools for this incase we wanna go up and down 2
-    private bool goingLeft;
+    private bool goingEast;    //there's 2 bools for this incase we wanna go up and down 2
+    private bool goingWest;
+    private bool goingNorth;
+    private bool goingSouth;
     //Important var for controlling speed of movement
     private int counter=0;
     private int timeKeeper = 0;
@@ -32,7 +34,7 @@ public class PlatformGridObject : MonoBehaviour
             {
                 foreach (GameObject obj in moveList)
                 {
-                    if (goingRight)
+                    if (goingEast)
                     {
                         if (obj.gameObject.CompareTag("Turbine"))
                         {
@@ -47,7 +49,7 @@ public class PlatformGridObject : MonoBehaviour
                             obj.transform.position = position;
                         }
                     }
-                    else if(goingLeft)
+                    else if(goingWest)
                     {
                         if (obj.gameObject.CompareTag("Turbine"))
                         {
@@ -59,6 +61,36 @@ public class PlatformGridObject : MonoBehaviour
                         {
                             Vector3 position = obj.transform.position;
                             position.x -= .03125f;
+                            obj.transform.position = position;
+                        }
+                    }
+					else if(goingNorth)
+                    {
+                        if (obj.gameObject.CompareTag("Turbine"))
+                        {
+                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
+                            position.y +=.03125f;
+                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
+                        }
+                        else
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.y += .03125f;
+                            obj.transform.position = position;
+                        }
+                    }
+					else if(goingSouth)
+                    {
+                        if (obj.gameObject.CompareTag("Turbine"))
+                        {
+                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
+                            position.y -=.03125f;
+                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
+                        }
+                        else
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.y -= .03125f;
                             obj.transform.position = position;
                         }
                     }
@@ -78,6 +110,8 @@ public class PlatformGridObject : MonoBehaviour
             if (col.gameObject.CompareTag("Player"))
             {
                 moveList.Add(col.gameObject);
+				PlayerGridObject player = col.GetComponent<PlayerGridObject>();
+				player.onPlatform = true;
                 hasPlayer = true;
             }
         }
@@ -87,11 +121,19 @@ public class PlatformGridObject : MonoBehaviour
             {
                 if (col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.West)
                 {
-                    goingRight = true;
+                    goingEast = true;
                 }
                 else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.East)
                 {
-                    goingLeft = true;
+                    goingWest = true;
+                }
+				else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.North)
+                {
+                    goingSouth = true;
+                }
+				else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.South)
+                {
+                    goingNorth = true;
                 }
                 moveList.Add(col.gameObject);
                 hasTurbine = true;
@@ -104,6 +146,8 @@ public class PlatformGridObject : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             hasPlayer = false;
+			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
+			player.onPlatform = false;
         }
         if (col.gameObject.CompareTag("Turbine"))
         {
