@@ -9,6 +9,11 @@ public class KillableGridObject : RotateableGridObject {
 
     public int health = 20;
     public int damage = 5;
+    public bool guaranteeDrop;
+    public ItemDrop drop;
+
+    public int chanceOfDrop;
+    public int[] itemDropPercentages;
 	public AttackCollider southHitCollider;
 	public AttackCollider westHitCollider;
 	public AttackCollider northHitCollider;
@@ -163,23 +168,31 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     void spawnItem() {
-    	int willSpawn = (int)Random.Range(0,Globals.chanceOfDrop);
 
-    	if (willSpawn > 0) {
-    		int numAvailableSeeds = 0;
-    		int seedToSpawn = -1;
-    		for (int i = 0; i < 8; i++) {
-    			if (Globals.unlockedSeeds[i] == true) {
-					numAvailableSeeds++;
-					int probability = (int)Random.Range(0, numAvailableSeeds);
-    				if (probability == 0) {
-    					seedToSpawn = i;
-    				}
-				}
-    		}
-    		if (seedToSpawn != -1) {
-    			Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
-    		}
+    	if (guaranteeDrop) {
+    		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
+    	}
+    	else {
+	    	int willSpawn = (int)Random.Range(0,3);
+
+	    	if (willSpawn > 0) {
+	    		int numAvailableSeeds = 0;
+	    		int seedToSpawn = -1;
+	    		for (int i = 0; i < 8; i++) {
+	    			if (Globals.unlockedSeeds[i] == true) {
+						//numAvailableSeeds++;
+						numAvailableSeeds += itemDropPercentages[i];
+						int probability = (int)Random.Range(0, numAvailableSeeds);
+	    				//if (probability == 0) {
+	    				if (probability <= itemDropPercentages[i]) {
+	    					seedToSpawn = i;
+	    				}
+					}
+	    		}
+	    		if (seedToSpawn != -1) {
+	    			Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
+	    		}
+	    	}
     	}
     }
 }
