@@ -9,7 +9,7 @@ public class PlantProjectileObject : MonoBehaviour {
     public int damage;
     public Globals.Direction dir;
 
-    EnemyGridObject enemy;
+    KillableGridObject enemy;
 
     // Use this for initialization
     void Start()
@@ -59,10 +59,10 @@ public class PlantProjectileObject : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemySpawner")
         {
             Destroy(this.gameObject);
-            enemy = other.gameObject.GetComponent<EnemyGridObject>();
+            enemy = other.gameObject.GetComponent<KillableGridObject>();
             enemy.TakeDamage(damage);
         }
         else if(other.gameObject.tag == "Player")
