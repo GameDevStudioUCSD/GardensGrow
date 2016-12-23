@@ -11,6 +11,8 @@ public class PlayerGridObject : MoveableGridObject {
     private Animator animator;
     private Animation anim;
     public bool canMove;
+
+    //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
 
     // Use this for initialization
