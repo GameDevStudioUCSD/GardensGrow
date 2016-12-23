@@ -118,8 +118,8 @@ public class EnemySpawnerScript : KillableGridObject
         gameObject.GetComponent<Animation>().Play("Damaged");
         return base.TakeDamage(dmg);
     }
-    /*protected override void Die() {
+    protected override void Die() {
         base.Die();
         deathEvent.Invoke();
-    }*/
+    }
 }
