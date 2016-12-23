@@ -69,7 +69,6 @@ public class KillableGridObject : RotateableGridObject {
 
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
-
         health -= damage;
 
         if (audio != null)
@@ -89,11 +88,10 @@ public class KillableGridObject : RotateableGridObject {
     protected virtual void Die() {
         hasDied = true;
 		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
-            Debug.Log("Player has died");
             Application.LoadLevel(Application.loadedLevel);
         }
 
-        if (this.gameObject.tag == "Enemy") {
+        if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner") {
         	spawnItem();
         }
         isDying = true;
@@ -168,7 +166,6 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     void spawnItem() {
-
     	if (guaranteeDrop) {
     		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
     	}
