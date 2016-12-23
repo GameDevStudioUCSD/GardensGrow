@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HostileTerrainObject : TerrainObject {
 	public int damage;
-	private int framesPerHit = 30;
+	private int framesPerHit = 10;
 	private int currentFrame = 0;
 
 	// Use this for initialization
