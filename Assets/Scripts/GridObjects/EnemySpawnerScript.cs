@@ -34,22 +34,19 @@ public class EnemySpawnerScript : KillableGridObject
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (health <= 0)
-        {
             this.gameObject.SetActive(false);
-            this.Die();
-        }
-
-        foreach(GameObject obj in list)
+        
+        //TODO: Causes error - Cannot modify a list in a foreach loop over that list
+        /*foreach(GameObject obj in list)
         {
             if (obj == null)
             {
                 currSpawns--;
                 list.Remove(obj);
             }
-        }
+        }*/
     
 
     }
