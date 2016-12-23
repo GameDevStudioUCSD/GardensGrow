@@ -157,6 +157,8 @@ public class TileMap : MonoBehaviour {
         int x = (int)Mathf.Round(relativePosition.x);
         int y = (int)Mathf.Round(relativePosition.y);
 
+        if (grid[x, y] == null) Debug.Log("ERROR: Finding nearest tile outside of TileMap");
+
         // Check if in bound
         if (x < 0 || x > mapDimensionX || y < 0 || y > mapDimensionY)
         {

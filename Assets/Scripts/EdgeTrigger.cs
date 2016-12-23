@@ -9,7 +9,7 @@ public class EdgeTrigger : MonoBehaviour
 
 	void Update ()
 	{
-        if (isTriggered && !other) {
+        if (isTriggered && (!other || !(other.isActiveAndEnabled))) {
             isTriggered = false;
         }
     }

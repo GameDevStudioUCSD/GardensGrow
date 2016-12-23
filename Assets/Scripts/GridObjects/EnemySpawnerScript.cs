@@ -38,15 +38,15 @@ public class EnemySpawnerScript : KillableGridObject
         if (health <= 0)
             this.gameObject.SetActive(false);
         
-        //TODO: Causes error - Cannot modify a list in a foreach loop over that list
-        /*foreach(GameObject obj in list)
+        foreach(GameObject obj in list)
         {
             if (obj == null)
             {
                 currSpawns--;
                 list.Remove(obj);
+                break; //prevents error from modifying list during foreach loop
             }
-        }*/
+        }
     
 
     }
