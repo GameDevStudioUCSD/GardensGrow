@@ -16,6 +16,7 @@ public class PlatformGridObject : MonoBehaviour
     private int timeKeeper = 0;
     public int delay;
     public int distance;
+    public int damage;
 
     private List<GameObject> moveList = new List<GameObject>();
 
@@ -141,6 +142,7 @@ public class PlatformGridObject : MonoBehaviour
             }
         }
     }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -148,10 +150,20 @@ public class PlatformGridObject : MonoBehaviour
             hasPlayer = false;
 			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
 			player.onPlatform = false;
+			moveList.Remove(col.gameObject);
         }
         if (col.gameObject.CompareTag("Turbine"))
         {
             hasTurbine = false;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+		if (col.gameObject.CompareTag("Enemy"))
+		{
+			KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
+			enemy.TakeDamage(damage);
+		}
+	}
 }
