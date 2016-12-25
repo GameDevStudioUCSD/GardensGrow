@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemySpawnerScript : KillableGridObject
+public class EnemySpawner : KillableGridObject
 {
     public GameObject enemy;
     public TileMap tileMap;
