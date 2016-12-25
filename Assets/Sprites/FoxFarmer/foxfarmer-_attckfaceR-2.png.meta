@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Sprites/FoxFarmer/foxfarmer-_attckfaceR-2.png.meta
 guid: 112319cef53aa43bf9481ebc366fa5ce
 timeCreated: 1478992092
+=======
+<<<<<<< Updated upstream
+guid: e11e432ebaf06440498eda7e0fc23511
+timeCreated: 1478579782
+=======
+guid: 7af4e585779b540068c67dcd7f0993e6
+timeCreated: 1478386918
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes:Assets/Sprites/FoxFarmer/foxfarmer-planting-move-back3.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -29,8 +39,17 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+<<<<<<< Updated upstream
     filterMode: 0
     aniso: 16
+=======
+    filterMode: -1
+<<<<<<< Updated upstream
+    aniso: -1
+=======
+    aniso: 16
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0

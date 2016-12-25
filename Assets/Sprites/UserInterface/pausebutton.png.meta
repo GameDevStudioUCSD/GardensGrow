@@ -1,5 +1,26 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 31d70abcc023843cf9d53ef53e6d77f7
+=======
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+guid: 967cccabf34c11f4e89c3bb48c48d483
+timeCreated: 1480811590
+=======
+guid: 31d70abcc023843cf9d53ef53e6d77f7
+timeCreated: 1480811429
+>>>>>>> a8b51488c9da9ea2423c18a2088869d2a06baab2
+=======
+<<<<<<< Updated upstream
+guid: 31d70abcc023843cf9d53ef53e6d77f7
+timeCreated: 1480811429
+=======
+guid: 5b252b76815c3477180b264c3329656d
+timeCreated: 1480811356
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+licenseType: Free
+>>>>>>> Stashed changes
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -27,8 +48,26 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+>>>>>>> Stashed changes
     filterMode: -1
     aniso: 16
+<<<<<<< Updated upstream
+=======
+>>>>>>> a8b51488c9da9ea2423c18a2088869d2a06baab2
+=======
+<<<<<<< Updated upstream
+    filterMode: 0
+    aniso: 16
+=======
+    filterMode: -1
+    aniso: -1
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -42,7 +81,23 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+<<<<<<< Updated upstream
   spritePixelsToUnits: 32
+=======
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+  spritePixelsToUnits: 100
+=======
+  spritePixelsToUnits: 32
+>>>>>>> a8b51488c9da9ea2423c18a2088869d2a06baab2
+=======
+<<<<<<< Updated upstream
+  spritePixelsToUnits: 32
+=======
+  spritePixelsToUnits: 100
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
