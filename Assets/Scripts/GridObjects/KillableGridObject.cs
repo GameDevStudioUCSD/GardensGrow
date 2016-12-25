@@ -27,7 +27,7 @@ public class KillableGridObject : RotateableGridObject {
     public AudioClip hurtSound;
 
     public bool isAttacking = false;
-    protected bool isDying = false;
+    public bool isDying = false;
 
     private List<KillableGridObject> killList;
 
@@ -176,7 +176,7 @@ public class KillableGridObject : RotateableGridObject {
 	    		int numAvailableSeeds = 0;
 	    		int seedToSpawn = -1;
 	    		for (int i = 0; i < 8; i++) {
-	    			if (Globals.unlockedSeeds[i] == true) {
+	    			if (Globals.unlockedSeeds[i] == true && i < itemDropPercentages.Length) {
 						//numAvailableSeeds++;
 						numAvailableSeeds += itemDropPercentages[i];
 						int probability = (int)Random.Range(0, numAvailableSeeds);
