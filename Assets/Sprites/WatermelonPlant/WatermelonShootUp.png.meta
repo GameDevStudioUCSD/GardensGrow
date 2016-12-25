@@ -1,36 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
 guid: ad4953a872570634d9a4eef72a47e1a1
-=======
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-guid: 28bcefbfc0590a847b78802a80a420a8
-timeCreated: 1479442478
-=======
-guid: ad4953a872570634d9a4eef72a47e1a1
-timeCreated: 1479435817
->>>>>>> e383758fe24088cf75c3ccc73b635595b747a282
-=======
-<<<<<<< Updated upstream:Assets/Sprites/WatermelonPlant/WatermelonShootUp.png.meta
-guid: ad4953a872570634d9a4eef72a47e1a1
-timeCreated: 1479435817
-=======
-<<<<<<< Updated upstream:Assets/Sprites/FoxFarmer/foxfarmer-_attckfaceL-2 .png.meta
-guid: 8ab55704fb49d4025a5174c22edf7241
-timeCreated: 1478993223
-=======
-<<<<<<< Updated upstream
-guid: 63017244fae3e439798b7a9a1a03d90f
-timeCreated: 1478579781
-=======
-guid: 0e98f9e625a13404bb0aa03ca7309d95
-timeCreated: 1478386917
->>>>>>> Stashed changes
->>>>>>> Stashed changes:Assets/Sprites/FoxFarmer/foxfarmer-planting-move-back2.png.meta
->>>>>>> Stashed changes:Assets/Sprites/FoxFarmer/foxfarmer-_attckfaceL-2 .png.meta
->>>>>>> Stashed changes
-licenseType: Free
->>>>>>> Stashed changes
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -58,34 +27,8 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-<<<<<<< Updated upstream
     filterMode: 0
     aniso: 16
-=======
-<<<<<<< Updated upstream:Assets/Sprites/WatermelonPlant/WatermelonShootUp.png.meta
-    filterMode: -1
-<<<<<<< HEAD
-    aniso: 16
-=======
-    aniso: -1
-<<<<<<< Updated upstream
->>>>>>> e383758fe24088cf75c3ccc73b635595b747a282
-=======
-=======
-<<<<<<< Updated upstream
-    filterMode: 0
-    aniso: 16
-=======
-    filterMode: -1
-<<<<<<< Updated upstream
-    aniso: -1
-=======
-    aniso: 16
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes:Assets/Sprites/FoxFarmer/foxfarmer-_attckfaceL-2 .png.meta
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0

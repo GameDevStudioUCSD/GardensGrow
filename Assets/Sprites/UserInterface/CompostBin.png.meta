@@ -1,16 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:Assets/Sprites/UserInterface/CompostBin.png.meta
 guid: 7e150a306dece4189bb4d36d23186ea4
 timeCreated: 1480739997
-=======
-<<<<<<< Updated upstream
-guid: 671e2f061e041524a8a54060114dd9c2
-timeCreated: 1480373596
-=======
-guid: 11d818f6d396045258d4fb10ee9dd49d
-timeCreated: 1479803232
->>>>>>> Stashed changes
->>>>>>> Stashed changes:Assets/Sprites/CompostBin.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
