@@ -12,11 +12,17 @@ public class PlatformGridObject : MonoBehaviour
     private bool goingNorth;
     private bool goingSouth;
     //Important var for controlling speed of movement
-    private int counter=0;
+    private int counter = 0;
     private int timeKeeper = 0;
+    public int touchingObjects = 0;
     public int delay;
     public int distance;
     public int damage;
+
+    public PlatformTrigger southCollider;
+    public PlatformTrigger westCollider;
+    public PlatformTrigger northCollider;
+    public PlatformTrigger eastCollider;
 
     private List<GameObject> moveList = new List<GameObject>();
 
@@ -27,10 +33,16 @@ public class PlatformGridObject : MonoBehaviour
     }
     void Update()
     {
+        if (touchingObjects == 0) Destroy(gameObject);
         if (move)
         {
             timeKeeper++;
             counter++;
+            if (CheckStop())
+            {
+                move = false;
+                return;
+            }
             if (counter > delay)
             {
                 foreach (GameObject obj in moveList)
@@ -98,10 +110,6 @@ public class PlatformGridObject : MonoBehaviour
                 }
                 counter = 0;
             }
-            if(timeKeeper > distance)
-            {
-                move = false;
-            }
         }
     }
     void OnTriggerStay2D(Collider2D col)
@@ -156,6 +164,8 @@ public class PlatformGridObject : MonoBehaviour
         {
             hasTurbine = false;
         }
+        if (!col.gameObject.CompareTag("Player") && !col.gameObject.CompareTag("Turbine") && !col.gameObject.CompareTag("Untagged"))
+            touchingObjects--;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -164,6 +174,18 @@ public class PlatformGridObject : MonoBehaviour
 		{
 			KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
 			enemy.TakeDamage(damage);
-		}
-	}
+        }
+        if (!col.gameObject.CompareTag("Player") && !col.gameObject.CompareTag("Turbine") && !col.gameObject.CompareTag("Untagged"))
+            touchingObjects++;
+    }
+    
+    bool CheckStop()
+    {
+        if (timeKeeper > distance) return true;
+        if (goingNorth && northCollider.isTriggered) return true;
+        if (goingSouth && southCollider.isTriggered) return true;
+        if (goingEast  && eastCollider.isTriggered)  return true;
+        if (goingWest  && westCollider.isTriggered)  return true;
+        else return false;
+    }
 }
