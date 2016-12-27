@@ -111,7 +111,8 @@ public class PlatformGridObject : MonoBehaviour
         }
         else if (CheckStart()) move = true;
     }
-    void OnTriggerStay2D(Collider2D col)
+
+    /*void OnTriggerStay2D(Collider2D col)
     {
         if (!hasPlayer)
         {
@@ -148,7 +149,7 @@ public class PlatformGridObject : MonoBehaviour
                 move = true;
             }
         }
-    }
+    }*/
 
     void OnTriggerExit2D(Collider2D col)
     {
@@ -167,6 +168,35 @@ public class PlatformGridObject : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+		if (col.gameObject.CompareTag("Turbine"))
+        {
+            if (col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.West)
+            {
+                goingEast = true;
+            }
+            else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.East)
+            {
+                goingWest = true;
+            }
+			else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.North)
+            {
+                goingSouth = true;
+            }
+			else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.South)
+            {
+                goingNorth = true;
+            }
+            moveList.Add(col.gameObject);
+            hasTurbine = true;
+            move = true;
+        }
+		if (col.gameObject.CompareTag("Player"))
+        {
+            moveList.Add(col.gameObject);
+			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
+			player.onPlatform = true;
+            hasPlayer = true;
+        }
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner"))
         {
             KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
@@ -192,5 +222,19 @@ public class PlatformGridObject : MonoBehaviour
         if (goingEast && eastCollider.isTriggered) return false;
         if (goingWest && westCollider.isTriggered) return false;
         else return true;
+    }
+
+    // Destroys this boat as well as the plant on it
+    public void destructor() {
+		foreach(GameObject obj in moveList)
+        {
+			if (obj.CompareTag("Turbine"))
+			{
+				PlantGridObject thisPlant = obj.GetComponent<PlantGridObject>();
+				moveList.Remove(obj);
+				Destroy(thisPlant);
+			}
+        }
+		Destroy(this.gameObject);
     }
 }

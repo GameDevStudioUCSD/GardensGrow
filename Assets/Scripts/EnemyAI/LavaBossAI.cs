@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LavaBossAI : KillableGridObject {
 	public GameObject[] spawners;
 	public Vector3[] boatLocations;
 	public GameObject boat;
+
+	private List<GameObject> instantiatedBoats = new List<GameObject>();
 
 	private int currentSpawnerIndex;
 
@@ -37,7 +40,7 @@ public class LavaBossAI : KillableGridObject {
 			int evenOrOdd = (int)Random.Range(0,2);
 			for (int i = 0; i < 4; i++) {
 				if (i % 2 == evenOrOdd) {
-					Instantiate(boat, boatLocations[i], Quaternion.identity);
+					instantiatedBoats.Add((GameObject)Instantiate(boat, boatLocations[i], Quaternion.identity));
 				}
 			}
 			state = BossState.Emerged;
@@ -46,6 +49,16 @@ public class LavaBossAI : KillableGridObject {
 
 	// Makes the boss "take over" a spawner and move to the new location"
 	void Move () {
+		// Destroy Boats
+		foreach(GameObject obj in instantiatedBoats)
+        {
+            PlatformGridObject thisBoat = obj.GetComponent<PlatformGridObject>();
+			instantiatedBoats.Remove(obj);
+            thisBoat.destructor();
+            break;
+        }
+
+
 		// Chooses a spawner index 0-3
 		int spawnerToJumpTo = (int)Random.Range(0,4);
 
@@ -68,7 +81,9 @@ public class LavaBossAI : KillableGridObject {
     	if (state == BossState.Emerged)
     	{
         	//gameObject.GetComponent<Animation>().Play("Damaged");
-        	state = BossState.Dormant;
+        	//state = BossState.Dormant;
+			state = BossState.Emerging;
+
         	Move();
         	return base.TakeDamage(dmg);
         }
