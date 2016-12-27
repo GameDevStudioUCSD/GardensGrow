@@ -12,10 +12,16 @@ public class PlatformGridObject : MonoBehaviour
     private bool goingNorth;
     private bool goingSouth;
     //Important var for controlling speed of movement
-    private int counter=0;
+    private int counter = 0;
     private int timeKeeper = 0;
     public int delay;
     public int distance;
+    public int damage;
+
+    public PlatformTrigger southCollider;
+    public PlatformTrigger westCollider;
+    public PlatformTrigger northCollider;
+    public PlatformTrigger eastCollider;
 
     private List<GameObject> moveList = new List<GameObject>();
 
@@ -30,6 +36,11 @@ public class PlatformGridObject : MonoBehaviour
         {
             timeKeeper++;
             counter++;
+            if (CheckStop())
+            {
+                move = false;
+                return;
+            }
             if (counter > delay)
             {
                 foreach (GameObject obj in moveList)
@@ -39,22 +50,22 @@ public class PlatformGridObject : MonoBehaviour
                         if (obj.gameObject.CompareTag("Turbine"))
                         {
                             Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.x +=.03125f;
+                            position.x += .03125f;
                             obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
                         }
                         else
                         {
                             Vector3 position = obj.transform.position;
-                            position.x +=.03125f;
+                            position.x += .03125f;
                             obj.transform.position = position;
                         }
                     }
-                    else if(goingWest)
+                    else if (goingWest)
                     {
                         if (obj.gameObject.CompareTag("Turbine"))
                         {
                             Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.x -=.03125f;
+                            position.x -= .03125f;
                             obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
                         }
                         else
@@ -64,12 +75,12 @@ public class PlatformGridObject : MonoBehaviour
                             obj.transform.position = position;
                         }
                     }
-					else if(goingNorth)
+                    else if (goingNorth)
                     {
                         if (obj.gameObject.CompareTag("Turbine"))
                         {
                             Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.y +=.03125f;
+                            position.y += .03125f;
                             obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
                         }
                         else
@@ -79,12 +90,12 @@ public class PlatformGridObject : MonoBehaviour
                             obj.transform.position = position;
                         }
                     }
-					else if(goingSouth)
+                    else if (goingSouth)
                     {
                         if (obj.gameObject.CompareTag("Turbine"))
                         {
                             Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.y -=.03125f;
+                            position.y -= .03125f;
                             obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
                         }
                         else
@@ -97,11 +108,8 @@ public class PlatformGridObject : MonoBehaviour
                 }
                 counter = 0;
             }
-            if(timeKeeper > distance)
-            {
-                move = false;
-            }
         }
+        else if (CheckStart()) move = true;
     }
     void OnTriggerStay2D(Collider2D col)
     {
@@ -141,6 +149,7 @@ public class PlatformGridObject : MonoBehaviour
             }
         }
     }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -148,10 +157,40 @@ public class PlatformGridObject : MonoBehaviour
             hasPlayer = false;
 			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
 			player.onPlatform = false;
+			moveList.Remove(col.gameObject);
         }
         if (col.gameObject.CompareTag("Turbine"))
         {
             hasTurbine = false;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner"))
+        {
+            KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
+            enemy.TakeDamage(damage);
+        }
+    }
+    
+    bool CheckStop()
+    {
+        if (timeKeeper > distance) return true;
+        if (goingNorth && northCollider.isTriggered) return true;
+        if (goingSouth && southCollider.isTriggered) return true;
+        if (goingEast  && eastCollider.isTriggered)  return true;
+        if (goingWest  && westCollider.isTriggered)  return true;
+        else return false;
+    }
+
+    bool CheckStart()
+    {
+        if (timeKeeper > distance) return false;
+        if (goingNorth && northCollider.isTriggered) return false;
+        if (goingSouth && southCollider.isTriggered) return false;
+        if (goingEast && eastCollider.isTriggered) return false;
+        if (goingWest && westCollider.isTriggered) return false;
+        else return true;
     }
 }

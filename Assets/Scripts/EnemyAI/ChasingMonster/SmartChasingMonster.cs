@@ -173,6 +173,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
         for(int i = 0; i < speed; i++)
         {
+            if (currentPathIndex < path.Count)
             Move(path[currentPathIndex]);
         }
         yield return null;

@@ -80,7 +80,7 @@ public class WatermelonPlantObject : PlantGridObject
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
         {
             if (counter > shotDelay)
             {
@@ -93,7 +93,7 @@ public class WatermelonPlantObject : PlantGridObject
     void OnTriggerEnter2D(Collider2D other)
     {
         
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" || other.CompareTag("EnemySpawner"))
         {
 
             if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
