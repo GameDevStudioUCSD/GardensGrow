@@ -18,8 +18,9 @@ public class LavaBossAI : KillableGridObject {
 	void Start () {
 		base.Start();
 		currentSpawnerIndex = 0;
-        StartCoroutine(waitForSpawns());
+        //StartCoroutine(waitForSpawns());
 	}
+
 	IEnumerator waitForSpawns()
     {
         yield return new WaitForSeconds(1);
@@ -40,6 +41,7 @@ public class LavaBossAI : KillableGridObject {
 					numSpawns += current.numSpawns();
 				}
 			}
+			StartCoroutine(waitForSpawns());
 			if (numSpawns == 0) {
 				state = BossState.Emerging;
 			}
@@ -64,15 +66,29 @@ public class LavaBossAI : KillableGridObject {
             StartCoroutine(spawners[i].GetComponent<EnemySpawner>().spawnsAtOnce());
             StartCoroutine(waitForSpawns());
         }
-		foreach(GameObject obj in instantiatedBoats)
+
+		//foreach(GameObject obj in instantiatedBoats)
+		int j = 0;
+		while (j < instantiatedBoats.Count)
         {
-            PlatformGridObject thisBoat = obj.GetComponent<PlatformGridObject>();
-			instantiatedBoats.Remove(obj);
-            thisBoat.destructor();
-            if (obj == null)
-            {
-                break;
-            }
+        	GameObject curBoat = instantiatedBoats[j];
+
+        	if (curBoat) {
+				PlatformGridObject thisBoat = curBoat.GetComponent<PlatformGridObject>();
+				instantiatedBoats.RemoveAt(j);
+				thisBoat.Destructor();
+        	} else {
+        		j++;
+        	}
+            /*
+			//instantiatedBoats.Remove(obj);
+			if (thisBoat 
+            thisBoat.Destructor();
+            //if (obj == null)
+            //{
+            //    break;
+            //}
+            */
         }
 
 

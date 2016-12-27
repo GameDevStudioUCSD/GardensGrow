@@ -47,63 +47,27 @@ public class PlatformGridObject : MonoBehaviour
                 {
                     if (goingEast)
                     {
-                        if (obj.gameObject.CompareTag("Turbine"))
-                        {
-                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.x += .03125f;
-                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
-                        }
-                        else
-                        {
-                            Vector3 position = obj.transform.position;
-                            position.x += .03125f;
-                            obj.transform.position = position;
-                        }
+                        Vector3 position = obj.transform.position;
+                        position.x += .03125f;
+                        obj.transform.position = position;
                     }
                     else if (goingWest)
                     {
-                        if (obj.gameObject.CompareTag("Turbine"))
-                        {
-                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.x -= .03125f;
-                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
-                        }
-                        else
-                        {
-                            Vector3 position = obj.transform.position;
-                            position.x -= .03125f;
-                            obj.transform.position = position;
-                        }
+                        Vector3 position = obj.transform.position;
+                        position.x -= .03125f;
+                        obj.transform.position = position;
                     }
                     else if (goingNorth)
                     {
-                        if (obj.gameObject.CompareTag("Turbine"))
-                        {
-                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.y += .03125f;
-                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
-                        }
-                        else
-                        {
-                            Vector3 position = obj.transform.position;
-                            position.y += .03125f;
-                            obj.transform.position = position;
-                        }
+                        Vector3 position = obj.transform.position;
+                        position.y += .03125f;
+                        obj.transform.position = position;
                     }
                     else if (goingSouth)
                     {
-                        if (obj.gameObject.CompareTag("Turbine"))
-                        {
-                            Vector3 position = obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position;
-                            position.y -= .03125f;
-                            obj.gameObject.GetComponentInParent<TurbinePlantObject>().transform.position = position;
-                        }
-                        else
-                        {
-                            Vector3 position = obj.transform.position;
-                            position.y -= .03125f;
-                            obj.transform.position = position;
-                        }
+                        Vector3 position = obj.transform.position;
+                        position.y -= .03125f;
+                        obj.transform.position = position;
                     }
                 }
                 counter = 0;
@@ -186,7 +150,7 @@ public class PlatformGridObject : MonoBehaviour
             {
                 goingNorth = true;
             }
-            moveList.Add(col.gameObject);
+            moveList.Add(col.gameObject.transform.parent.gameObject);
             hasTurbine = true;
             move = true;
         }
@@ -225,15 +189,21 @@ public class PlatformGridObject : MonoBehaviour
     }
 
     // Destroys this boat as well as the plant on it
-    public void destructor() {
-		foreach(GameObject obj in moveList)
+    public void Destructor() {
+		/*foreach(GameObject obj in moveList)
         {
 			if (obj.CompareTag("Turbine"))
 			{
 				//PlantGridObject thisPlant = obj.GetComponent<PlantGridObject>();
-				moveList.Remove(obj);
+				//moveList.Remove(obj);
 				Destroy(obj);
 			}
+        }*/
+        for (int i = 0; i < moveList.Count; i++) {
+        	if (moveList[i].CompareTag("Turbine")) {
+        		GameObject plant = moveList[i];
+        		Destroy(plant);
+        	}
         }
 		Destroy(this.gameObject);
     }
