@@ -230,9 +230,9 @@ public class PlatformGridObject : MonoBehaviour
         {
 			if (obj.CompareTag("Turbine"))
 			{
-				PlantGridObject thisPlant = obj.GetComponent<PlantGridObject>();
+				//PlantGridObject thisPlant = obj.GetComponent<PlantGridObject>();
 				moveList.Remove(obj);
-				Destroy(thisPlant);
+				Destroy(obj);
 			}
         }
 		Destroy(this.gameObject);

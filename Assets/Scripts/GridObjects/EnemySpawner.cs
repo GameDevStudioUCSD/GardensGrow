@@ -63,7 +63,7 @@ public class EnemySpawner : KillableGridObject
     
 
     }
-    IEnumerator spawnsAtOnce()
+    public IEnumerator spawnsAtOnce()
     {
         for (int i = 0; i < maxSpawns + 1; i++)
         {

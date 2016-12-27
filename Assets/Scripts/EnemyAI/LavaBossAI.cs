@@ -18,8 +18,16 @@ public class LavaBossAI : KillableGridObject {
 	void Start () {
 		base.Start();
 		currentSpawnerIndex = 0;
+        StartCoroutine(waitForSpawns());
 	}
-	
+	IEnumerator waitForSpawns()
+    {
+        yield return new WaitForSeconds(1);
+        for(int i=0; i<spawners.Length; i++)
+        {
+            spawners[i].SetActive(false);
+        }
+    }
 	// Update is called once per frame
 	void Update () {
 		base.Update();
@@ -50,12 +58,21 @@ public class LavaBossAI : KillableGridObject {
 	// Makes the boss "take over" a spawner and move to the new location"
 	void Move () {
 		// Destroy Boats
+        for(int i=0; i<spawners.Length; i++)
+        {
+            spawners[i].SetActive(true);
+            StartCoroutine(spawners[i].GetComponent<EnemySpawner>().spawnsAtOnce());
+            StartCoroutine(waitForSpawns());
+        }
 		foreach(GameObject obj in instantiatedBoats)
         {
             PlatformGridObject thisBoat = obj.GetComponent<PlatformGridObject>();
 			instantiatedBoats.Remove(obj);
             thisBoat.destructor();
-            break;
+            if (obj == null)
+            {
+                break;
+            }
         }
 
 
