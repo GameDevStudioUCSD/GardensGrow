@@ -19,7 +19,7 @@ public class EnemySpawner : KillableGridObject
     public bool spawnsOnce = false;
     private int currSpawns = 0;
     private List<GameObject> list = new List<GameObject>();
-
+    private Animator animator;
     private Quaternion spawnRotation = Quaternion.identity;
     private PlayerGridObject player;
 
@@ -30,7 +30,7 @@ public class EnemySpawner : KillableGridObject
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
-
+        animator = GetComponent<Animator>();
         if (!spawnsOnce)
         {
             StartCoroutine(spawnRandomDir());
@@ -44,8 +44,12 @@ public class EnemySpawner : KillableGridObject
 
     // Update is called once per frame
     void Update() {
+
+
         if (health <= 0)
-            this.gameObject.SetActive(false);
+        {
+            StartCoroutine(waitForDeathAnim());
+        }
         
         foreach(GameObject obj in list)
         {
@@ -181,7 +185,12 @@ public class EnemySpawner : KillableGridObject
         base.Die();
         deathEvent.Invoke();
     }
-
+    IEnumerator waitForDeathAnim()
+    {
+        animator.SetBool("dead", true);
+        yield return new WaitForSeconds(1.2f);
+        this.gameObject.SetActive(false);
+    }
     public int numSpawns() {
     	return currSpawns;
     }
