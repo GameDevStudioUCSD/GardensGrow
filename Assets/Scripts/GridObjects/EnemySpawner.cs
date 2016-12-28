@@ -31,21 +31,14 @@ public class EnemySpawner : KillableGridObject
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
         animator = GetComponent<Animator>();
-        if (!spawnsOnce)
+        if (!spawnsOnce) // Continuous spawn
         {
             StartCoroutine(spawnRandomDir());
         }
-        else
-        {
-            StartCoroutine(spawnsAtOnce());
-        }
-        
     }
 
     // Update is called once per frame
     void Update() {
-
-
         if (health <= 0)
         {
             StartCoroutine(waitForDeathAnim());
@@ -63,107 +56,71 @@ public class EnemySpawner : KillableGridObject
     
 
     }
-    public IEnumerator spawnsAtOnce()
-    {
-        for (int i = 0; i < maxSpawns + 1; i++)
-        {
-            randInt = randGen.Next(0, 4);
 
-            if (randInt == 1)
-            {
-                spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
-                GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                list.Add(enemyObj);
-                //I needed a reference to every specific enemyObj to keep track of them, so I couldn't use 1 GameObject enemyObj for all spawns.
-                // TODO: change this later to fit other AI
-                // Give AI info about the tile map and the target object
-                enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-            }
-            else if (randInt == 2)
-            {
-                spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
-                GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                list.Add(enemyObj);
-                // TODO: change this later to fit other AI
-                // Give AI info about the tile map and the target object
-                enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-            }
-            else if (randInt == 3)
-            {
-                spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
-                GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                list.Add(enemyObj);
-                // TODO: change this later to fit other AI
-                // Give AI info about the tile map and the target object
-                enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-            }
-            else
-            {
-                spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
-                GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                list.Add(enemyObj);
-                // TODO: change this later to fit other AI
-                // Give AI info about the tile map and the target object
-                enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-            }
+    void SpawnEnemy()
+    {
+		randInt = randGen.Next(0, 4);
+
+        if (randInt == 1)
+        {
+            spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
+            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+            list.Add(enemyObj);
+            //I needed a reference to every specific enemyObj to keep track of them, so I couldn't use 1 GameObject enemyObj for all spawns.
+            // TODO: change this later to fit other AI
+            // Give AI info about the tile map and the target object
+            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
         }
-        yield return 0;
+        else if (randInt == 2)
+        {
+            spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
+            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+            list.Add(enemyObj);
+            // TODO: change this later to fit other AI
+            // Give AI info about the tile map and the target object
+            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+        }
+        else if (randInt == 3)
+        {
+            spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
+            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+            list.Add(enemyObj);
+            // TODO: change this later to fit other AI
+            // Give AI info about the tile map and the target object
+            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+        }
+        else
+        {
+            spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
+            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+            list.Add(enemyObj);
+            // TODO: change this later to fit other AI
+            // Give AI info about the tile map and the target object
+            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+        }
+
+        currSpawns++;
     }
+
+    public void SpawnAtOnce()
+    {
+        for (int i = 0; i <= maxSpawns; i++)
+        {
+        	SpawnEnemy();
+        }
+    }
+
     IEnumerator spawnRandomDir()
     {
         while (health > 0)
         {
             if (currSpawns < maxSpawns)
             {
-                randInt = randGen.Next(0, 4);
-
-                if (randInt == 1)
-                {
-                    spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
-                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                    list.Add(enemyObj);
-                    //I needed a reference to every specific enemyObj to keep track of them, so I couldn't use 1 GameObject enemyObj for all spawns.
-                    // TODO: change this later to fit other AI
-                    // Give AI info about the tile map and the target object
-                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-                }
-                else if (randInt == 2)
-                {
-                    spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
-                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                    list.Add(enemyObj);
-                    // TODO: change this later to fit other AI
-                    // Give AI info about the tile map and the target object
-                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-                }
-                else if (randInt == 3)
-                {
-                    spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
-                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                    list.Add(enemyObj);
-                    // TODO: change this later to fit other AI
-                    // Give AI info about the tile map and the target object
-                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-                }
-                else
-                {
-                    spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
-                    GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-                    list.Add(enemyObj);
-                    // TODO: change this later to fit other AI
-                    // Give AI info about the tile map and the target object
-                    enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-                    enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
-                }
-
-                currSpawns++;
+                SpawnEnemy();
             }
             yield return new WaitForSeconds(spawnDelay);
         }
@@ -175,16 +132,21 @@ public class EnemySpawner : KillableGridObject
             TakeDamage(player.damage);
         }
     }
+
+
+    /* deleting this function as the killablegridobject function does the same thing
     public override bool TakeDamage(int dmg)
     {
         gameObject.GetComponent<Animation>().Play("Damaged");
         return base.TakeDamage(dmg);
     }
+    */
 
     protected override void Die() {
         base.Die();
         deathEvent.Invoke();
     }
+
     IEnumerator waitForDeathAnim()
     {
         animator.SetBool("dead", true);

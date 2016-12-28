@@ -28,6 +28,7 @@ public class KillableGridObject : RotateableGridObject {
 
     public bool isAttacking = false;
     public bool isDying = false;
+    public bool isInvulnerable = false;
 
     private List<KillableGridObject> killList;
 
@@ -69,6 +70,13 @@ public class KillableGridObject : RotateableGridObject {
 
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
+		if (isInvulnerable)
+		{
+			return false;
+		}
+
+		gameObject.GetComponent<Animation>().Play("Damaged");
+
         health -= damage;
 
         if (audio != null)

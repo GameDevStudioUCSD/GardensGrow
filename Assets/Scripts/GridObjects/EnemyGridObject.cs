@@ -17,11 +17,13 @@ public class EnemyGridObject : MoveableGridObject {
 
 	}
 
+	/* deleting this function as the killablegridobject function does the same thing
     public override bool TakeDamage(int damage)
     {
         gameObject.GetComponent<Animation>().Play("Damaged");
         return base.TakeDamage(damage);
     }
+    */
 
     public override void Move(Globals.Direction direction)
     {

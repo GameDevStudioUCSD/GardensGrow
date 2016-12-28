@@ -143,7 +143,7 @@ public class PlayerGridObject : MoveableGridObject {
     {
         if (damage >= 1)
         {
-            gameObject.GetComponent<Animation>().Play("Damaged");
+            //gameObject.GetComponent<Animation>().Play("Damaged"); deleting as parent class does animation
             canvas.UpdateHealth(health - damage);
         }
         return base.TakeDamage(damage);
