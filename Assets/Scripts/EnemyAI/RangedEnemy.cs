@@ -4,7 +4,7 @@ using System.Collections;
 public class RangedEnemy : EnemyGridObject {
 
     public GameObject projectile;
-
+    public bool shootsIndefinately = false;
     private int counter=0;
     public int shotDelay;
 
@@ -20,6 +20,18 @@ public class RangedEnemy : EnemyGridObject {
         eastCollider.enabled = true;
         northCollider.enabled = true;
         westCollider.enabled = true;
+    }
+    void Update()
+    {
+        if (shootsIndefinately)
+        {
+            if (counter > shotDelay)
+            {
+                Shooter();
+                counter = 0;
+            }
+            counter++;
+        }
     }
     private void Shooter()
     {
@@ -60,39 +72,44 @@ public class RangedEnemy : EnemyGridObject {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!shootsIndefinately)
         {
-            //Shooter() is being called, check
-            if (counter > shotDelay)
+            if (other.CompareTag("Player"))
             {
-                Shooter();
-                counter = 0;
+                //Shooter() is being called, check
+                if (counter > shotDelay)
+                {
+                    Shooter();
+                    counter = 0;
+                }
+                counter++;
             }
-            counter++;
         }
     }
-
+    //code for if wants to shoot in Player direction;
     void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.gameObject.tag == "Player")
+        if (!shootsIndefinately)
         {
+            if (other.gameObject.tag == "Player")
+            {
 
-            if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.South;
-            }
-            else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.North;
-            }
-            else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.East;
-            }
-            else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.West;
+                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.South;
+                }
+                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.North;
+                }
+                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.East;
+                }
+                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.West;
+                }
             }
         }
     }
