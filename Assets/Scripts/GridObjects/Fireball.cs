@@ -44,6 +44,8 @@ public class Fireball : StaticGridObject
 		if (col.gameObject.CompareTag("Player")) {
 			PlayerGridObject player = col.GetComponentInParent<PlayerGridObject>();
 			player.TakeDamage(5);
+
+			Destroy(gameObject);
 		}
 	}
 }
