@@ -204,7 +204,12 @@ public class PlatformGridObject : MonoBehaviour
         		GameObject plant = moveList[i];
         		Destroy(plant);
         	}
+        	if (moveList[i].CompareTag("Player")) {
+        		PlayerGridObject player = moveList[i].GetComponent<PlayerGridObject>();
+        		player.onPlatform = false;
+        	}
         }
+
 		Destroy(this.gameObject);
     }
 }

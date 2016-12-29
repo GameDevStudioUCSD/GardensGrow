@@ -108,7 +108,7 @@ public class EnemySpawner : KillableGridObject
 
     public void SpawnAtOnce()
     {
-        for (int i = 0; i <= maxSpawns; i++)
+        for (int i = 0; i < maxSpawns; i++)
         {
         	SpawnEnemy();
         }
@@ -155,5 +155,23 @@ public class EnemySpawner : KillableGridObject
     }
     public int numSpawns() {
     	return currSpawns;
+    }
+
+    public void KillSpawns() {
+    	int i = 0;
+
+    	while (i < list.Count) {
+    		GameObject obj = list[i];
+
+    		if (obj == null) {
+    			list.RemoveAt(i);
+    		} else {
+				KillableGridObject spawn = obj.GetComponent<KillableGridObject>();
+    			spawn.TakeDamage(10000);
+				list.RemoveAt(i);
+    		}
+    	}
+
+    	currSpawns = 0;
     }
 }

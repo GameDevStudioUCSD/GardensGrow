@@ -70,12 +70,12 @@ public class KillableGridObject : RotateableGridObject {
 
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
-		if (isInvulnerable)
+  		if (isInvulnerable)
 		{
 			return false;
 		}
 
-		gameObject.GetComponent<Animation>().Play("Damaged");
+   		gameObject.GetComponent<Animation>().Play("Damaged");
 
         health -= damage;
 

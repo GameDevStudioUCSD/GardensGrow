@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LavaBossAI : KillableGridObject {
+	public List<Sprite> EmergeFrames;
+	public List<Sprite> IdleFrames;
+	private const float ANIMATION_SPEED = 0.3f;
+
 	public GameObject[] spawners;
 	public Vector3[] boatLocations;
 	public GameObject boat;
+	private List<Fireball> fireballs = new List<Fireball>(); 
+	public Fireball fireball; 
 	//public BoxCollider2D collider;
 	//public SpriteRenderer sprite;
 
@@ -13,47 +19,75 @@ public class LavaBossAI : KillableGridObject {
 
 	private int currentSpawnerIndex;
 
-	public enum BossState { Dormant, Emerging, Emerged, Enraged };
-	public BossState state;
+	public enum BossState { Dormant, StartEmerge, Emerging, Emerged, Enraged, StartHide, Hiding };
+	private BossState state;
+
+	private const int MIN_DAMAGE = 50;
+	private const int ENRAGE_HEALTH = 100;
+	private const int FIREBALL_MIN_INTERVAL = 10;
+	private const int FIREBALL_MAX_INTERVAL = 300;
+	private const float BOSS_TIMER_DURATION = 7f;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		base.Start();
 		currentSpawnerIndex = -1; // so boss randomly spawns in any corner
-		state = BossState.Emerging;
+		state = BossState.StartEmerge;
+		//state = BossState.Dormant;
+		//SpawnEnemies();
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		base.Update();
 		int numSpawns = 0;
 		EnemySpawner current;
+		if (state == BossState.Hiding) {
+			SpawnEnemies();
+			state = BossState.Dormant;
+		}
+
 		if (state == BossState.Dormant) {
 			for (int i = 0; i < 4; i++) {
-				if (i != currentSpawnerIndex) {
-					current = spawners[i].GetComponent<EnemySpawner>();
-					numSpawns += current.numSpawns();
-				}
+				current = spawners[i].GetComponent<EnemySpawner>();
+				numSpawns += current.numSpawns();
 			}
 
-			if (numSpawns < 4) {
-				state = BossState.Emerging;
+
+			/* Test behavior */
+			/*if (numSpawns < 4) {
+				// kill all spawns
+				for (int i = 0; i < 4; i++) {
+					current = spawners[i].GetComponent<EnemySpawner>();
+					current.KillSpawns();
+				}
+
+				state = BossState.StartEmerge;
+			}*/
+
+
+			// Prod behavior 
+			if (numSpawns == 0) {
+				state = BossState.StartEmerge;
 			}
+
 		}
-		if (state == BossState.Emerging) {
+
+		// Need StartEmerge so we don't keep calling emerging while waiting for animation to finish
+		if (state == BossState.StartEmerge) {
 			int evenOrOdd = (int)Random.Range(0,2);
 			for (int i = 0; i < 4; i++) {
 				if (i % 2 == evenOrOdd) {
 					instantiatedBoats.Add((GameObject)Instantiate(boat, boatLocations[i], Quaternion.identity));
 				}
 			}
+
 			Emerge();
-			state = BossState.Emerged;
-			isInvulnerable = false;
+			state = BossState.Emerging;
 		}
 	}
 
-	void SpawnEnemies () {
+	void SpawnEnemies() {
 		// Spawn enemies
         for(int i=0; i<spawners.Length; i++)
         {
@@ -61,36 +95,65 @@ public class LavaBossAI : KillableGridObject {
         }
 	}
 
-	void Hide () {
-		// Hide boss
-		isInvulnerable = true;
-		state = BossState.Dormant;
-		SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-		sprite.enabled = false;
-		BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-		boxCollider.enabled = false;
-
-		// 'Enables' the spawner that the boss was formerly at
-		spawners[currentSpawnerIndex].SetActive(true);
-
-		// Destroy Boats
+	void Hide() {
+		// Destroy boats
 		int i = 0;
 		while (i < instantiatedBoats.Count)
         {
         	GameObject curBoat = instantiatedBoats[i];
+			instantiatedBoats.RemoveAt(i);
 
         	if (curBoat) {
 				PlatformGridObject thisBoat = curBoat.GetComponent<PlatformGridObject>();
-				instantiatedBoats.RemoveAt(i);
 				thisBoat.Destructor();
-        	} else {
-        		i++;
         	}
         }
+
+        // Destroy fireballs
+        i = 0;
+        while (i < fireballs.Count)
+        {
+        	Fireball fireball = fireballs[i];
+			fireballs.RemoveAt(i);
+
+        	if (fireball) {
+        		Destroy(fireball.gameObject);
+        	}
+        }
+
+		// Hide boss
+		isInvulnerable = true;
+		state = BossState.StartHide; // to stop idle animation
+
+		StartCoroutine(HideAnimation());
 	}
 
+	IEnumerator HideAnimation() {
+		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+		for (int i = EmergeFrames.Count - 1; i  >= 0; i--) {
+			spriteRenderer.sprite = EmergeFrames[i];
+
+			yield return new WaitForSeconds(ANIMATION_SPEED);
+		}
+
+		FinishHide();
+	}
+
+	void FinishHide() {
+		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer.enabled = false;
+		BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+		boxCollider.enabled = false;
+		state = BossState.Hiding;
+
+		// 'Enables' the spawner that the boss was formerly at
+		spawners[currentSpawnerIndex].SetActive(true);
+	}
+
+
 	// Makes the boss "take over" a spawner and move to the new location"
-	void Emerge () {
+	void Emerge() {
 		// Chooses a spawner index 0-3
 		int newSpawnerIndex = currentSpawnerIndex;
 
@@ -99,9 +162,6 @@ public class LavaBossAI : KillableGridObject {
 		{
 			newSpawnerIndex = (int)Random.Range(0,4);
 		}
-
-		// temp hack TOOD: remove later
-		newSpawnerIndex = 0;
 
 		// 'Disables' the spawner so that the boss can take over it
 		spawners[newSpawnerIndex].SetActive(false);
@@ -114,26 +174,82 @@ public class LavaBossAI : KillableGridObject {
 
 		this.transform.position = newPosition;
 
-		SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-		sprite.enabled = true;
-		BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-		boxCollider.enabled = true;
+		StartCoroutine(EmergeAnimation());
 	}
 
-	public override bool TakeDamage(int dmg)
-    {
+	IEnumerator EmergeAnimation() {
+		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer.enabled = true;
+		BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+		boxCollider.enabled = true;
+
+		for (int i = 0; i  < EmergeFrames.Count; i++) {
+			spriteRenderer.sprite = EmergeFrames[i];
+
+			yield return new WaitForSeconds(ANIMATION_SPEED);
+		}
+
+		FinishEmerge();
+	}
+
+	void FinishEmerge() {
+		isInvulnerable = false;
+		state = health > ENRAGE_HEALTH ? BossState.Emerged : BossState.Enraged;
+
+		StartCoroutine(IdleAnimation());
+		StartCoroutine(BossTimer());
+
+		StartCoroutine(SummonFireballs());
+	}
+
+	IEnumerator SummonFireballs() {
+		int numToSummon = health > ENRAGE_HEALTH ? 3 : 6;
+		for (int i = 0; i < numToSummon; i++) {
+			yield return new WaitForSeconds(Random.Range(FIREBALL_MIN_INTERVAL, FIREBALL_MAX_INTERVAL)/1000.0f);
+
+			// Create fireballs
+			// temp fireball location
+
+			Vector3 dropPosition = new Vector3(Random.Range(-6, 6), Random.Range(-3, 3), 0.0f);
+			Fireball fireballObj = (Fireball)Instantiate(fireball, dropPosition, Quaternion.identity);
+			fireballs.Add(fireballObj);
+			//spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
+    		//GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+		} 
+	}
+
+
+	IEnumerator IdleAnimation() {
+		int i = 1;
+		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+		while (state == BossState.Emerged || state == BossState.Enraged) {
+			spriteRenderer.sprite = IdleFrames[i % IdleFrames.Count];
+			i++;
+
+			yield return new WaitForSeconds(ANIMATION_SPEED);
+    	}
+	}
+
+	public override bool TakeDamage(int dmg) {
+    	if (dmg < MIN_DAMAGE) return false; // Ensures damage from boat only
+
     	if (state == BossState.Emerged ||
     		state == BossState.Enraged)
     	{
-        	//gameObject.GetComponent<Animation>().Play("Damaged");
-        	//state = BossState.Dormant;
-			
-
+        	bool ret = base.TakeDamage(dmg);
 			Hide();
-			SpawnEnemies();
-        	return base.TakeDamage(dmg);
+			return ret;
         }
 
         return false;
     }
+
+	IEnumerator BossTimer() {
+		yield return new WaitForSeconds(BOSS_TIMER_DURATION);
+
+		if (health > 0 && (state == BossState.Emerged || state == BossState.Enraged))
+        {
+            Hide();
+        }
+	}
 }

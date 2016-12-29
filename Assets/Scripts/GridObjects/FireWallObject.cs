@@ -7,4 +7,16 @@ public class FireWallObject : StaticGridObject {
         if (gameObject.activeSelf) gameObject.SetActive(false);
         else gameObject.SetActive(true);
     }
+    /*
+	void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
+        animator = GetComponent<Animator>();
+        if (!spawnsOnce) // Continuous spawn
+        {
+            StartCoroutine(spawnRandomDir());
+        }
+    }*/
+
+
 }
