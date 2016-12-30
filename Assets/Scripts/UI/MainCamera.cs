@@ -46,7 +46,7 @@ public class MainCamera : MonoBehaviour {
 			{
 				currentPos.x += 14;
 			}
-			if (xDist <= -7)
+			if (xDist < -7)
 			{
 				currentPos.x -= 14;
 			}
@@ -54,7 +54,7 @@ public class MainCamera : MonoBehaviour {
 			{
 				currentPos.y += 10;
 			}
-			if (yDist <= -5)
+			if (yDist < -5)
 			{
 				currentPos.y -= 10;
 			}

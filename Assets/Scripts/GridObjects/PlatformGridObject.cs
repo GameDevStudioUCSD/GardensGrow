@@ -76,44 +76,6 @@ public class PlatformGridObject : MonoBehaviour
         else if (CheckStart()) move = true;
     }
 
-    /*void OnTriggerStay2D(Collider2D col)
-    {
-        if (!hasPlayer)
-        {
-            if (col.gameObject.CompareTag("Player"))
-            {
-                moveList.Add(col.gameObject);
-				PlayerGridObject player = col.GetComponent<PlayerGridObject>();
-				player.onPlatform = true;
-                hasPlayer = true;
-            }
-        }
-        if (!hasTurbine)
-        {
-            if (col.gameObject.CompareTag("Turbine"))
-            {
-                if (col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.West)
-                {
-                    goingEast = true;
-                }
-                else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.East)
-                {
-                    goingWest = true;
-                }
-				else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.North)
-                {
-                    goingSouth = true;
-                }
-				else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.South)
-                {
-                    goingNorth = true;
-                }
-                moveList.Add(col.gameObject);
-                hasTurbine = true;
-                move = true;
-            }
-        }
-    }*/
 
     void OnTriggerExit2D(Collider2D col)
     {
@@ -186,6 +148,16 @@ public class PlatformGridObject : MonoBehaviour
         if (goingEast && eastCollider.isTriggered) return false;
         if (goingWest && westCollider.isTriggered) return false;
         else return true;
+    }
+
+    public void changeDirection(Globals.Direction directionToMoveTo) {
+		for (int i = 0; i < moveList.Count; i++) {
+        	if (moveList[i].CompareTag("Turbine")) {
+        		TurbinePlantObject plant = moveList[i].GetComponent<TurbinePlantObject>();
+        		plant.direction = directionToMoveTo;
+        		plant.setDirection();
+        	}
+        }
     }
 
     // Destroys this boat as well as the plant on it
