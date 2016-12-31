@@ -30,7 +30,7 @@ public class KillableGridObject : RotateableGridObject {
     public bool isDying = false;
     public bool isInvulnerable = false;
 
-    private List<KillableGridObject> killList;
+    protected List<KillableGridObject> killList;
 
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
