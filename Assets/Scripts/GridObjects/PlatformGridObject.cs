@@ -35,7 +35,6 @@ public class PlatformGridObject : MonoBehaviour
             counter++;
             if (CheckStop())
             {
-            Debug.Log("TEST");
                 move = false;
                 return;
             }
@@ -158,7 +157,6 @@ public class PlatformGridObject : MonoBehaviour
         		moveList.Remove(plant.gameObject);
         	}
         }
-        Debug.Log(moveList.Count);
     }
 
     // Destroys this boat as well as the plant on it
