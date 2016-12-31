@@ -15,8 +15,7 @@ public class PlatformSwitcher : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log(other.transform.position);
-		if (other.CompareTag("Platform")) {
+		if (other.gameObject.CompareTag("Platform")) {
 			Debug.Log("isplatform");
 			PlatformGridObject platform = other.GetComponent<PlatformGridObject>();
 			platform.changeDirection(directionToSwitchTo);

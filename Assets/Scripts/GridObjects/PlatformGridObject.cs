@@ -7,10 +7,7 @@ public class PlatformGridObject : MonoBehaviour
     private bool hasTurbine = false;
     private bool hasPlayer = false;
     private bool move = false;
-    private bool goingEast;    //there's 2 bools for this incase we wanna go up and down 2
-    private bool goingWest;
-    private bool goingNorth;
-    private bool goingSouth;
+	private Globals.Direction direction;
     //Important var for controlling speed of movement
     private int counter = 0;
     private int timeKeeper = 0;
@@ -38,6 +35,7 @@ public class PlatformGridObject : MonoBehaviour
             counter++;
             if (CheckStop())
             {
+            Debug.Log("TEST");
                 move = false;
                 return;
             }
@@ -45,25 +43,25 @@ public class PlatformGridObject : MonoBehaviour
             {
                 foreach (GameObject obj in moveList)
                 {
-                    if (goingEast)
+                    if (direction == Globals.Direction.East)
                     {
                         Vector3 position = obj.transform.position;
                         position.x += .03125f;
                         obj.transform.position = position;
                     }
-                    else if (goingWest)
+					else if (direction == Globals.Direction.West)
                     {
                         Vector3 position = obj.transform.position;
                         position.x -= .03125f;
                         obj.transform.position = position;
                     }
-                    else if (goingNorth)
+					else if (direction == Globals.Direction.North)
                     {
                         Vector3 position = obj.transform.position;
                         position.y += .03125f;
                         obj.transform.position = position;
                     }
-                    else if (goingSouth)
+					else if (direction == Globals.Direction.South)
                     {
                         Vector3 position = obj.transform.position;
                         position.y -= .03125f;
@@ -89,6 +87,7 @@ public class PlatformGridObject : MonoBehaviour
         if (col.gameObject.CompareTag("Turbine"))
         {
             hasTurbine = false;
+            moveList.Remove(col.gameObject);
         }
     }
 
@@ -98,19 +97,19 @@ public class PlatformGridObject : MonoBehaviour
         {
             if (col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.West)
             {
-                goingEast = true;
+                direction = Globals.Direction.East;
             }
             else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.East)
             {
-                goingWest = true;
+				direction = Globals.Direction.West;
             }
 			else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.North)
             {
-                goingSouth = true;
+				direction = Globals.Direction.South;
             }
 			else if(col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.South)
             {
-                goingNorth = true;
+				direction = Globals.Direction.North;
             }
             moveList.Add(col.gameObject.transform.parent.gameObject);
             hasTurbine = true;
@@ -133,20 +132,20 @@ public class PlatformGridObject : MonoBehaviour
     bool CheckStop()
     {
         if (timeKeeper > distance) return true;
-        if (goingNorth && northCollider.isTriggered) return true;
-        if (goingSouth && southCollider.isTriggered) return true;
-        if (goingEast  && eastCollider.isTriggered)  return true;
-        if (goingWest  && westCollider.isTriggered)  return true;
+        if (direction == Globals.Direction.North && northCollider.isTriggered) return true;
+		if (direction == Globals.Direction.South && southCollider.isTriggered) return true;
+		if (direction == Globals.Direction.East  && eastCollider.isTriggered)  return true;
+		if (direction == Globals.Direction.West  && westCollider.isTriggered)  return true;
         else return false;
     }
 
     bool CheckStart()
     {
         if (timeKeeper > distance) return false;
-        if (goingNorth && northCollider.isTriggered) return false;
-        if (goingSouth && southCollider.isTriggered) return false;
-        if (goingEast && eastCollider.isTriggered) return false;
-        if (goingWest && westCollider.isTriggered) return false;
+		if (direction == Globals.Direction.North && northCollider.isTriggered) return false;
+		if (direction == Globals.Direction.South && southCollider.isTriggered) return false;
+		if (direction == Globals.Direction.East  && eastCollider.isTriggered)  return false;
+		if (direction == Globals.Direction.West  && westCollider.isTriggered)  return false;
         else return true;
     }
 
@@ -156,8 +155,10 @@ public class PlatformGridObject : MonoBehaviour
         		TurbinePlantObject plant = moveList[i].GetComponent<TurbinePlantObject>();
         		plant.direction = directionToMoveTo;
         		plant.setDirection();
+        		moveList.Remove(plant.gameObject);
         	}
         }
+        Debug.Log(moveList.Count);
     }
 
     // Destroys this boat as well as the plant on it
