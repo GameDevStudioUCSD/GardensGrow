@@ -7,6 +7,7 @@ public class RangedEnemy : EnemyGridObject {
     public bool shootsIndefinately = false;
     private int counter=0;
     public int shotDelay;
+    private Animator anim;
 
     /**public Collider2D southCollider;
     public Collider2D northCollider;
@@ -16,6 +17,7 @@ public class RangedEnemy : EnemyGridObject {
 
     void Start()
     {
+        anim = this.gameObject.GetComponent<Animator>();
         southCollider.enabled = true;
         eastCollider.enabled = true;
         northCollider.enabled = true;
@@ -43,28 +45,28 @@ public class RangedEnemy : EnemyGridObject {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 270f);
             Instantiate(projectile, spawnPosition, spawnRotation);
-            //animator.SetInteger("Directions", 2);
+            anim.SetInteger("Direction", 3);
         }
         else if (direction == Globals.Direction.West)
         {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x-.22f, this.gameObject.transform.position.y-.1f, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(projectile, spawnPosition, spawnRotation);
-            //animator.SetInteger("Directions", 0);
+            anim.SetInteger("Direction", 1);
         }
         else if (direction == Globals.Direction.South)
         {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y-.1f, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 90f);
             Instantiate(projectile, spawnPosition, spawnRotation);
-            //animator.SetInteger("Directions", 3);
+            anim.SetInteger("Direction", 0);
         }
         else if (direction == Globals.Direction.East)
         {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x+.23f, this.gameObject.transform.position.y-.11f, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 180f);
             Instantiate(projectile, spawnPosition, spawnRotation);
-            //animator.SetInteger("Directions", 1);
+            anim.SetInteger("Direction", 2);
         }
 
         //animator.Stop();

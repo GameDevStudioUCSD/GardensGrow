@@ -31,7 +31,7 @@ public class TurbinePlantObject : PlantGridObject
 		base.Update();
 	}
 
-	void setDirection ()
+	public void setDirection ()
 	{
 		switch (this.direction) {
 			case Globals.Direction.North:
