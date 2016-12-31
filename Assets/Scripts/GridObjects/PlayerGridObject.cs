@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
@@ -14,6 +15,8 @@ public class PlayerGridObject : MoveableGridObject {
 
     //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
+
+	public GameObject dialogue;
 
     // Use this for initialization
     protected override void Start () {
@@ -90,6 +93,23 @@ public class PlayerGridObject : MoveableGridObject {
             }
         }
 
+		/**
+		 * THIS IS A QUICK HACK SEGMENT TO GET A TEST FOR DIALOGUE GOING!
+		 * 
+		 * POSSIBLE FEATURE: TAB CAN BE USED TO HELP GUIDE PLAYERS TOWARD
+		 * OBJECTIVES. LOOKUP OTENKO FROM BOKTAI.
+		 * 
+		 * I MESSED WITH SOME PREFABS AND MOVED THE SEED UI UP TO THE TOP
+		 * FOR CONVENIENCE.
+		 * 
+		 **/
+		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
+			dialogue.SetActive (true);
+
+			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
+			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
+		}
+		
 	}
 		
 	protected virtual void Plant(int plantNumber) {
