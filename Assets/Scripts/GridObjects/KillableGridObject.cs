@@ -151,6 +151,19 @@ public class KillableGridObject : RotateableGridObject {
             }
         }
 
+        //knockBack logic for player
+        if (this.gameObject.GetComponent<PlayerGridObject>())
+        {
+            //Debug.Log("trying to do knockback");
+            foreach (MoveableGridObject target in killList)
+            {
+                for(int i=0; i<this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
+                {
+                    target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                }
+            }
+        }
+
 
         // clears references to the killed object in the PlayerEdgeTrigger
         // that collided with the killed object

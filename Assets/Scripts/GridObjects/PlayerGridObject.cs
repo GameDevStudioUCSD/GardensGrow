@@ -8,7 +8,8 @@ public class PlayerGridObject : MoveableGridObject {
 
     private float horizontalAxis;
     private float verticalAxis;
-        
+    public int knockBackPower;
+
     private Animator animator;
     private Animation anim;
     public bool canMove;
