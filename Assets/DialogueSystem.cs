@@ -7,53 +7,59 @@ public class DialogueSystem : MonoBehaviour {
 	public string[] textLines;
 	public TextAsset textFile;
 	public Text displayedLine;
-	int lineCounter = 0;
+	public int lineCounter = 0;
 	bool writing = false;
 
-	
+	//Class initialization.
 	public void LoadText()
 	{
+		textLines = null;
+		lineCounter = 0;
+		//GetComponentInChildren<Text> ().text = "";
 		if (textFile == null) {
 			Debug.LogError ("Text file was not loaded correctly.");
 		}
 
 		textLines = textFile.text.Split ('\n');
-		StartCoroutine (AnimateText (textLines [lineCounter]));
+		if (!writing) {
+			writing = true;
+			StartCoroutine (AnimateText (textLines [lineCounter]));
+		}
 		lineCounter++;
 
 	}
 
+	//You only need concern yourself with WaitForSeconds.
 	IEnumerator AnimateText(string strComplete){
-		int i = 0;
+		Debug.Log (strComplete);
 		displayedLine.text = "";
-		while( i < strComplete.Length ){
+		for(int i = 0; i < strComplete.Length; i++){
 			if (Input.GetKeyDown (KeyCode.Tab) && i > 5) {
 				displayedLine.text += strComplete.Substring (i);
-				i = strComplete.Length;
+				break;
+			} else {
+				displayedLine.text += strComplete [i];
+				yield return new WaitForSeconds (0.01F);
 			}
-			else
-				displayedLine.text += strComplete[i++];
-			yield return new WaitForSeconds(0.01F);
 		}
+
 		writing = false;
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Tab))
+		if (Input.GetKeyDown(KeyCode.Tab) && !writing)
 		{
-			//play text sound
+			//insert text sound
 			if (lineCounter < textLines.Length) {
-				if (!writing) {
-					writing = true;
-					StartCoroutine (AnimateText (textLines [lineCounter]));
-				}
+				
+				writing = true;
+				StartCoroutine (AnimateText (textLines [lineCounter]));
+			
 				lineCounter++;
 			}
 			 else {
-				textLines = null;
-				textFile = null;
-				lineCounter = 0;
+				//Reset for next dialogue input.
 				this.transform.parent.gameObject.SetActive (false);
 			}
 		}

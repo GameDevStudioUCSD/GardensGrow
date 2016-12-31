@@ -1,9 +1,4 @@
-blah blah
-blah
-blah blah blah
-blah blah
-blah
-blah blah blah
-blah blah
-blah
+Each dialogue segment is separated by newlines. Test word wrap... wheeeeeeeeeeeeeeeeeeeeeeeeeeeeee!
+2
+3
 blah blah blah,,,
