@@ -30,7 +30,7 @@ public class KillableGridObject : RotateableGridObject {
     public bool isDying = false;
     public bool isInvulnerable = false;
 
-    private List<KillableGridObject> killList;
+    protected List<KillableGridObject> killList;
 
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
@@ -148,19 +148,6 @@ public class KillableGridObject : RotateableGridObject {
             if(target.faction != this.faction)
             {
                 target.TakeDamage(damage);
-            }
-        }
-
-        //knockBack logic for player
-        if (this.gameObject.GetComponent<PlayerGridObject>())
-        {
-            //Debug.Log("trying to do knockback");
-            foreach (MoveableGridObject target in killList)
-            {
-                for(int i=0; i<this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
-                {
-                    target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
-                }
             }
         }
 

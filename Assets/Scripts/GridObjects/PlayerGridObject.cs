@@ -83,6 +83,15 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 animator.SetTrigger("Attack");
                 Attack();
+
+                //knockBack logic
+                foreach (MoveableGridObject target in killList)
+                {
+                    for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
+                    {
+                        target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    }
+                }
             }
         }
         else
