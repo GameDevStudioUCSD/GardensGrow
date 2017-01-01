@@ -5,10 +5,12 @@ public class RangedEnemy : EnemyGridObject {
 
     public GameObject projectile;
     public bool shootsIndefinately = false;
+
     private int counter=0;
     public int shotDelay;
     private Animator anim;
 
+    private int shotRangeCounter = 0;
     /**public Collider2D southCollider;
     public Collider2D northCollider;
     public Collider2D eastCollider;
@@ -71,7 +73,6 @@ public class RangedEnemy : EnemyGridObject {
 
         //animator.Stop();
     }
-
     void OnTriggerStay2D(Collider2D other)
     {
         if (!shootsIndefinately)
