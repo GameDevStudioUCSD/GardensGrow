@@ -15,6 +15,12 @@ public class PlatformGridObject : MonoBehaviour
     public int distance;
     public int damage;
 
+    //miniBoss stuff
+    public bool miniBossLvl = false;
+    public int moveDistance; //change to private
+    private bool goingLeft = false;
+    PlayerGridObject player;
+
     public PlatformTrigger southCollider;
     public PlatformTrigger westCollider;
     public PlatformTrigger northCollider;
@@ -25,11 +31,49 @@ public class PlatformGridObject : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player = FindObjectOfType<PlayerGridObject>();
         moveList.Add(this.gameObject);
     }
     void Update()
     {
-        if (move)
+        if (miniBossLvl)
+        {
+            counter++;
+            if (counter > moveDistance)
+            {
+                goingLeft = !goingLeft;
+                counter = 0;
+            }
+            if (!goingLeft)
+            {
+
+                Vector3 position = this.transform.position;
+                position.x += .03125f;
+                this.transform.position = position;
+
+                if (hasPlayer)
+                {
+                    Vector3 position2 = player.transform.position;
+                    position2.x += .03125f;
+                    player.transform.position = position2;
+                }
+            }
+            else
+            {
+                Vector3 position = this.transform.position;
+                position.x -= .03125f;
+                this.transform.position = position;
+
+                if (hasPlayer)
+                {
+                    Vector3 position2 = player.transform.position;
+                    position2.x -= .03125f;
+                    player.transform.position = position2;
+                }
+            }
+
+        }
+        if (move && miniBossLvl==false)
         {
             timeKeeper++;
             counter++;
@@ -72,8 +116,6 @@ public class PlatformGridObject : MonoBehaviour
         }
         else if (CheckStart()) move = true;
     }
-
-
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
