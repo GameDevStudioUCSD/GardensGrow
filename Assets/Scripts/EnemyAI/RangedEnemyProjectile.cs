@@ -4,11 +4,12 @@ using System.Collections;
 public class RangedEnemyProjectile : MonoBehaviour {
 
     public float shotSpeed;
-    public int shotRange;
     public int Damage;
 
+    public int shotRange;
     private int shotRangeCounter=0;
     public Globals.Direction dir;
+
 
     void Update()
     {
@@ -55,6 +56,14 @@ public class RangedEnemyProjectile : MonoBehaviour {
         {
             col.gameObject.GetComponent<PlayerGridObject>().TakeDamage(Damage);
             Destroy(this.gameObject);
+        }
+        
+        if (col.gameObject.GetComponent<TerrainObject>())
+        {
+            if (col.gameObject.GetComponent<TerrainObject>().isBarrier)
+            {
+                Destroy(this.gameObject);
+            }
         }
         /**
         else if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner"))
