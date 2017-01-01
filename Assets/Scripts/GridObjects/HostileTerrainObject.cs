@@ -6,9 +6,16 @@ public class HostileTerrainObject : TerrainObject {
 	private int framesPerHit = 10;
 	private int currentFrame = 0;
 
+	public bool activeCollider;
+
 	// Use this for initialization
 	void Start () {
 		base.Start();
+
+		if (!activeCollider) {
+			BoxCollider2D thisCollider = this.gameObject.GetComponent<BoxCollider2D>();
+			thisCollider.enabled = false;
+		}
 	}
 	
 	// Update is called once per frame
