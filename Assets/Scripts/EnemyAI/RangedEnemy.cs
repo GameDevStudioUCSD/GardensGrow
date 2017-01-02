@@ -8,7 +8,7 @@ public class RangedEnemy : EnemyGridObject {
 
     private int counter=0;
     public int shotDelay;
-
+    private UIController uic;
     private int shotRangeCounter = 0;
     /**public Collider2D southCollider;
     public Collider2D northCollider;
@@ -17,7 +17,9 @@ public class RangedEnemy : EnemyGridObject {
 
 
     void Start()
-    { 
+    {
+        uic = FindObjectOfType<UIController>();
+
         animator = this.gameObject.GetComponent<Animator>();
         southCollider.enabled = true;
         eastCollider.enabled = true;
@@ -26,18 +28,21 @@ public class RangedEnemy : EnemyGridObject {
     }
     void LateUpdate()
     {
-        if (shootsIndefinately)
+        if (!uic.paused)
         {
-            if (counter > shotDelay)
+            if (shootsIndefinately)
             {
-                Shooter();
-                counter = 0;
+                if (counter > shotDelay)
+                {
+                    Shooter();
+                    counter = 0;
+                }
+                counter++;
             }
-            counter++;
-        }
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
     private void Shooter()

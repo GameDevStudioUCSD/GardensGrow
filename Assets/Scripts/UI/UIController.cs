@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour {
 	public Sprite fullHeart;
 	public Sprite brokenHeart;
 
-	private bool paused;
+	public bool paused;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +30,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	void Update() {
+       
 		if (pauseUI != null)
         {
             if (paused)

@@ -14,7 +14,7 @@ public class PlatformGridObject : MonoBehaviour
     public int delay;
     public int distance;
     public int damage;
-
+    private UIController uic;
     //miniBoss stuff
     public bool miniBossLvl = false;
     public int moveDistance; //change to private
@@ -31,91 +31,94 @@ public class PlatformGridObject : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        uic = FindObjectOfType<UIController>();
         player = FindObjectOfType<PlayerGridObject>();
         moveList.Add(this.gameObject);
     }
     void Update()
     {
-        
-        if (miniBossLvl)
+        if (!uic.paused)
         {
-            counter++;
-            if (counter > moveDistance)
+            if (miniBossLvl)
             {
-                goingLeft = !goingLeft;
-                counter = 0;
-            }
-            if (!goingLeft)
-            {
-
-                Vector3 position = this.transform.position;
-                position.x += .03125f;
-                this.transform.position = position;
-
-                if (hasPlayer)
+                counter++;
+                if (counter > moveDistance)
                 {
-                    Vector3 position2 = player.transform.position;
-                    position2.x += .03125f;
-                    player.transform.position = position2;
+                    goingLeft = !goingLeft;
+                    counter = 0;
+                }
+                if (!goingLeft)
+                {
+
+                    Vector3 position = this.transform.position;
+                    position.x += .03125f;
+                    this.transform.position = position;
+
+                    if (hasPlayer)
+                    {
+                        Vector3 position2 = player.transform.position;
+                        position2.x += .03125f;
+                        player.transform.position = position2;
+                    }
+                }
+                else
+                {
+                    Vector3 position = this.transform.position;
+                    position.x -= .03125f;
+                    this.transform.position = position;
+
+                    if (hasPlayer)
+                    {
+                        Vector3 position2 = player.transform.position;
+                        position2.x -= .03125f;
+                        player.transform.position = position2;
+                    }
+                }
+
+            }
+            if (move && miniBossLvl == false)
+            {
+                timeKeeper++;
+                counter++;
+                if (CheckStop())
+                {
+                    move = false;
+                    return;
+                }
+                if (counter > delay)
+                {
+                    foreach (GameObject obj in moveList)
+                    {
+                        if (direction == Globals.Direction.East)
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.x += .03125f;
+                            obj.transform.position = position;
+                        }
+                        else if (direction == Globals.Direction.West)
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.x -= .03125f;
+                            obj.transform.position = position;
+                        }
+                        else if (direction == Globals.Direction.North)
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.y += .03125f;
+                            obj.transform.position = position;
+                        }
+                        else if (direction == Globals.Direction.South)
+                        {
+                            Vector3 position = obj.transform.position;
+                            position.y -= .03125f;
+                            obj.transform.position = position;
+                        }
+                    }
+                    counter = 0;
                 }
             }
-            else
-            {
-                Vector3 position = this.transform.position;
-                position.x -= .03125f;
-                this.transform.position = position;
-
-                if (hasPlayer)
-                {
-                    Vector3 position2 = player.transform.position;
-                    position2.x -= .03125f;
-                    player.transform.position = position2;
-                }
-            }
-
+            else if (CheckStart()) move = true;
         }
-        if (move && miniBossLvl==false)
-        {
-            timeKeeper++;
-            counter++;
-            if (CheckStop())
-            {
-                move = false;
-                return;
-            }
-            if (counter > delay)
-            {
-                foreach (GameObject obj in moveList)
-                {
-                    if (direction == Globals.Direction.East)
-                    {
-                        Vector3 position = obj.transform.position;
-                        position.x += .03125f;
-                        obj.transform.position = position;
-                    }
-					else if (direction == Globals.Direction.West)
-                    {
-                        Vector3 position = obj.transform.position;
-                        position.x -= .03125f;
-                        obj.transform.position = position;
-                    }
-					else if (direction == Globals.Direction.North)
-                    {
-                        Vector3 position = obj.transform.position;
-                        position.y += .03125f;
-                        obj.transform.position = position;
-                    }
-					else if (direction == Globals.Direction.South)
-                    {
-                        Vector3 position = obj.transform.position;
-                        position.y -= .03125f;
-                        obj.transform.position = position;
-                    }
-                }
-                counter = 0;
-            }
-        }
-        else if (CheckStart()) move = true;
     }
     void OnTriggerExit2D(Collider2D col)
     {
