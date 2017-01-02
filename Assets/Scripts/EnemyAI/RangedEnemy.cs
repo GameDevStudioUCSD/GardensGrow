@@ -24,7 +24,7 @@ public class RangedEnemy : EnemyGridObject {
         northCollider.enabled = true;
         westCollider.enabled = true;
     }
-    void Update()
+    void LateUpdate()
     {
         if (shootsIndefinately)
         {

@@ -36,6 +36,7 @@ public class PlatformGridObject : MonoBehaviour
     }
     void Update()
     {
+        
         if (miniBossLvl)
         {
             counter++;

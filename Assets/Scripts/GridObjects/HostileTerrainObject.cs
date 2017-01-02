@@ -17,12 +17,6 @@ public class HostileTerrainObject : TerrainObject {
 			thisCollider.enabled = false;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
