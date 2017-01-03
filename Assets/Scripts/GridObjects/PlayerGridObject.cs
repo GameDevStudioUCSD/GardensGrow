@@ -117,12 +117,12 @@ public class PlayerGridObject : MoveableGridObject {
 		 * FOR CONVENIENCE.
 		 * 
 		 **/
-		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
-			dialogue.SetActive (true);
-
-			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
-			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
-		}
+//		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
+//			dialogue.SetActive (true);
+//
+//			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
+//			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
+//		}
 		
 	}
 		
