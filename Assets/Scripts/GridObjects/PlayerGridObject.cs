@@ -17,14 +17,18 @@ public class PlayerGridObject : MoveableGridObject {
     //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
 
-	public GameObject dialogue;
+	private GameObject dialogue;
 
     // Use this for initialization
     protected override void Start () {
         base.Start();
+
+        this.gameObject.transform.position = Globals.spawnLocation;
+
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
         animator = GetComponent<Animator>();
+        dialogue = canvas.dialogUI;
 	}
 	
 	// Update is called once per frame
