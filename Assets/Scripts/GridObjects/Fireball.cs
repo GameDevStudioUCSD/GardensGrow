@@ -29,7 +29,6 @@ public class Fireball : StaticGridObject
 
 	// Update is called once per frame
 	void Update() {
-		base.Update();
 		if (state == FireballState.PreFalling) {
 			if (fallFrames >= preFallTime) {
 				state = FireballState.Falling;

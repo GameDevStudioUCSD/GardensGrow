@@ -46,7 +46,7 @@ public class KillableGridObject : RotateableGridObject {
 	
 	// Update is called once per frame
 	protected override void Update () {
-        base.Update();
+        //base.Update();
         if (isDying)
         {
             dyingFrame++;
