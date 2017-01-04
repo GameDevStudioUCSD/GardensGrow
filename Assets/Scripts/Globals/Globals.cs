@@ -13,6 +13,8 @@ public class Globals {
 
     public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
 
+    public static Vector3 spawnLocation = new Vector3(0.0f, -2.0f, 0.0f);
+
     public static Vector2 DirectionToVector(Direction direction)
     {
         Vector2 dirr = Vector2.up;

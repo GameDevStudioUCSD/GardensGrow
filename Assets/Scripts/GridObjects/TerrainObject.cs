@@ -18,9 +18,6 @@ public class TerrainObject : StaticGridObject
     	base.Start();
     }
 
-    // Update is called once per frame
-    void Update () {}
-
     private void Randomize()
     {
         if(!spriteRenderer)

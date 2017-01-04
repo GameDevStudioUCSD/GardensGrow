@@ -8,18 +8,44 @@ public class UIController : MonoBehaviour {
 	public UnityEngine.UI.Image[] healthIcons;
 	public UnityEngine.UI.Text[] uiPlantCounters;
 
+	public GameObject pauseUI;
+    public GameObject mainMenuUI;
+    public GameObject loadMenuUI;
+	public GameObject dialogUI;
+	public PlayerGridObject player;
+
 	public Sprite[] seedPackets;
 	public Sprite fullHeart;
 	public Sprite brokenHeart;
 
+	public bool paused;
+
 	// Use this for initialization
 	void Start () {
 		UpdateUI();
+		if (pauseUI != null)
+        {
+            pauseUI.SetActive(false);
+        }
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
+	void Update() {
+       
+		if (pauseUI != null)
+        {
+            if (paused)
+            {
+                pauseUI.SetActive(true);
+                player.canMove = false;
+                Time.timeScale = 0;
+            }
+            else if (!paused)
+            {
+                pauseUI.SetActive(false);
+                player.canMove = true;
+                Time.timeScale = 1;
+            }
+        }
 	}
 
 	public void UpdateUI () {
@@ -55,4 +81,86 @@ public class UIController : MonoBehaviour {
 			}
 		}
 	}
+
+	// Hides the plant UI when dialog is being said
+	public void ShowDialog() {
+		dialogUI.SetActive(true);
+
+		for (int i = 0; i < 8; i++) {
+			uiPlants[i].enabled = false;
+			uiPlantCounters[i].enabled = false;
+		}
+	}
+
+	// Hides the dialog box and enables the plant UI again
+	public void EndDialog() {
+		dialogUI.SetActive(false);
+
+		for (int i = 0; i < 8; i++) {
+			uiPlants[i].enabled = true;
+			uiPlantCounters[i].enabled = true;
+		}
+	}
+
+	public void LoadButton()
+    {
+        mainMenuUI.SetActive(false);
+        loadMenuUI.SetActive(true);
+    }
+    public void LoadBack()
+    {
+        mainMenuUI.SetActive(true);
+        loadMenuUI.SetActive(false);
+    }
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Resume()
+    {
+        paused = false;
+    }
+
+    public void Restart()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void MainMenu()
+    {
+        Application.LoadLevel(0);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void NewGame()
+    {
+        mainMenuUI.SetActive(false);
+        Game newGame = new Game();
+        
+    }
+    public void Save()
+    {
+        SaveLoad.Save();
+    }
+    public void LoadSlot1()
+    {
+        SaveLoad.Load(0);
+    }
+    public void LoadSlot2()
+    {
+        SaveLoad.Load(1);
+    }
+    public void LoadSlot3()
+    {
+        SaveLoad.Load(2);
+    }
+    public void LoadSlot4()
+    {
+        SaveLoad.Load(3);
+    }
+
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
@@ -7,7 +8,8 @@ public class PlayerGridObject : MoveableGridObject {
 
     private float horizontalAxis;
     private float verticalAxis;
-        
+    public int knockBackPower;
+
     private Animator animator;
     private Animation anim;
     public bool canMove;
@@ -15,12 +17,18 @@ public class PlayerGridObject : MoveableGridObject {
     //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
 
+	private GameObject dialogue;
+
     // Use this for initialization
     protected override void Start () {
         base.Start();
+
+        this.gameObject.transform.position = Globals.spawnLocation;
+
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
         animator = GetComponent<Animator>();
+        dialogue = canvas.dialogUI;
 	}
 	
 	// Update is called once per frame
@@ -79,6 +87,15 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 animator.SetTrigger("Attack");
                 Attack();
+
+                //knockBack logic
+                foreach (MoveableGridObject target in killList)
+                {
+                    for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
+                    {
+                        target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    }
+                }
             }
         }
         else
@@ -90,6 +107,23 @@ public class PlayerGridObject : MoveableGridObject {
             }
         }
 
+		/**
+		 * THIS IS A QUICK HACK SEGMENT TO GET A TEST FOR DIALOGUE GOING!
+		 * 
+		 * POSSIBLE FEATURE: TAB CAN BE USED TO HELP GUIDE PLAYERS TOWARD
+		 * OBJECTIVES. LOOKUP OTENKO FROM BOKTAI.
+		 * 
+		 * I MESSED WITH SOME PREFABS AND MOVED THE SEED UI UP TO THE TOP
+		 * FOR CONVENIENCE.
+		 * 
+		 **/
+//		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
+//			dialogue.SetActive (true);
+//
+//			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
+//			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
+//		}
+		
 	}
 		
 	protected virtual void Plant(int plantNumber) {

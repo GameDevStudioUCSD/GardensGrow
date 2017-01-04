@@ -53,19 +53,6 @@ public class LavaBossAI : KillableGridObject {
 				numSpawns += current.numSpawns();
 			}
 
-
-			/* Test behavior */
-			/*if (numSpawns < 4) {
-				// kill all spawns
-				for (int i = 0; i < 4; i++) {
-					current = spawners[i].GetComponent<EnemySpawner>();
-					current.KillSpawns();
-				}
-
-				state = BossState.StartEmerge;
-			}*/
-
-
 			// Prod behavior 
 			if (numSpawns == 0) {
 				state = BossState.StartEmerge;
@@ -210,7 +197,7 @@ public class LavaBossAI : KillableGridObject {
 			// Create fireballs
 			// temp fireball location
 
-			Vector3 dropPosition = new Vector3(Random.Range(-6, 6), Random.Range(-3, 3), 0.0f);
+			Vector3 dropPosition = new Vector3(Random.Range(-4, 4), Random.Range(-2, 2), 0.0f);
 			Fireball fireballObj = (Fireball)Instantiate(fireball, dropPosition, Quaternion.identity);
 			fireballs.Add(fireballObj);
 			//spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
