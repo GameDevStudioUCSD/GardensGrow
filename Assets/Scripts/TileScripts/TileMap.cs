@@ -37,7 +37,6 @@ public class TileMap : MonoBehaviour {
     	rooms = new GameObject[transform.GetChild(0).childCount];
        	for (int i = 0; i < transform.GetChild(0).childCount; i++) {
 			rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
-			Debug.Log(rooms[i].transform.position);
     	}
     }
 
