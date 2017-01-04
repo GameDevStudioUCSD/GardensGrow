@@ -1,4 +1,0 @@
-Intro: Welcome to the world of Gardenia! Monsters have been growing stronger and overrunning the various lands and now the time has come to push them back! As the local farmer, it is up to you and your plants to stem the tide of evil and bring harmony back to the world. Let’s grow!
-Tip 1: To move use the W, A, S, D keys to move and SPACE to attack! Destroy the spawn to move past the fire wall but watch out for the fire slimes!
-Tip 2: Killing monsters sometimes drops seeds that can be used to grow plants that will support you in your fight! Plant the Watermelon using the 1 key. Other plants will have corresponding numbers. Try it out!
-Description: The world of Gardenia was once a peaceful land but recently monsters have been begun to attack! As the local farmer, it is up to you and your plants to stem the tide of evil and bring harmony back to the world. Let’s grow!

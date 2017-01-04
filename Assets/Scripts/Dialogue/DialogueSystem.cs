@@ -31,7 +31,7 @@ public class DialogueSystem : MonoBehaviour {
 
 	//You only need concern yourself with WaitForSeconds.
 	IEnumerator AnimateText(string strComplete){
-		Debug.Log (strComplete);
+		//Debug.Log (strComplete);
 		displayedLine.text = "";
 		for(int i = 0; i < strComplete.Length; i++){
 			if (Input.GetKeyDown (KeyCode.Tab) && i > 5) {
@@ -39,7 +39,7 @@ public class DialogueSystem : MonoBehaviour {
 				break;
 			} else {
 				displayedLine.text += strComplete [i];
-				yield return new WaitForSeconds (0.01F);
+				yield return new WaitForSeconds (0.075F);
 			}
 		}
 
@@ -48,7 +48,7 @@ public class DialogueSystem : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Tab) && !writing)
+		if ((Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return)) && !writing)
 		{
 			//insert text sound
 			if (lineCounter < textLines.Length) {
@@ -60,7 +60,7 @@ public class DialogueSystem : MonoBehaviour {
 			}
 			 else {
 				//Reset for next dialogue input.
-				this.transform.parent.gameObject.SetActive (false);
+				this.transform.parent.parent.GetComponent<UIController>().EndDialog();
 			}
 		}
 	}

@@ -35,14 +35,10 @@ public class UIController : MonoBehaviour {
         {
             if (paused)
             {
-                pauseUI.SetActive(true);
-                player.canMove = false;
                 Time.timeScale = 0;
             }
             else if (!paused)
             {
-                pauseUI.SetActive(false);
-                player.canMove = true;
                 Time.timeScale = 1;
             }
         }
@@ -90,6 +86,8 @@ public class UIController : MonoBehaviour {
 			uiPlants[i].enabled = false;
 			uiPlantCounters[i].enabled = false;
 		}
+
+		player.canMove = false;
 	}
 
 	// Hides the dialog box and enables the plant UI again
@@ -100,6 +98,8 @@ public class UIController : MonoBehaviour {
 			uiPlants[i].enabled = true;
 			uiPlantCounters[i].enabled = true;
 		}
+
+		player.canMove = true;
 	}
 
 	public void LoadButton()
@@ -114,11 +114,15 @@ public class UIController : MonoBehaviour {
     }
     public void Pause()
     {
+		pauseUI.SetActive(true);
+        player.canMove = false;
         paused = true;
     }
 
     public void Resume()
     {
+		pauseUI.SetActive(false);
+        player.canMove = true;
         paused = false;
     }
 
