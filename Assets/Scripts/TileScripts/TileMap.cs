@@ -5,9 +5,12 @@ public class TileMap : MonoBehaviour {
 
     // The TileMap grid will be mapDimension by mapDimension in size
     public int mapDimensionX, mapDimensionY;
+    public PlayerGridObject player;
 
     // a grid to hold references to every Tile in the TileMap
     public Tile[,] grid;
+
+    private GameObject[] rooms;
 
     // Awake happens before Start and is preferred for generating references between objects
     void Awake()
@@ -30,13 +33,42 @@ public class TileMap : MonoBehaviour {
 	}
 
     // Use this for initialization
-    void Start() {}
+    void Start() {
+    	rooms = new GameObject[transform.GetChild(0).childCount];
+       	for (int i = 0; i < transform.GetChild(0).childCount; i++) {
+			rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
+			Debug.Log(rooms[i].transform.position);
+    	}
+    }
 
     
 	
 	// Update is called once per frame
 	void Update () {
-
+		for (int i = 0; i < rooms.Length; i++) {
+			float xDist = player.transform.position.x - rooms[i].transform.position.x;
+			float yDist = player.transform.position.y - rooms[i].transform.position.y;
+			if (xDist >= 21)
+			{
+				rooms[i].SetActive(false);
+			}
+			else if (xDist < -21)
+			{
+				rooms[i].SetActive(false);
+			}
+			else if (yDist >= 15)
+			{
+				rooms[i].SetActive(false);
+			}
+			else if (yDist < -15)
+			{
+				rooms[i].SetActive(false);
+			}
+			else
+			{
+				rooms[i].SetActive(true);
+			}
+		}
     }
 
 
