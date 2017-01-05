@@ -165,7 +165,6 @@ public class PlatformGridObject : MonoBehaviour
         {
             hasPlayer = false;
 			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
-			Debug.Log("player exit");
 			player.onPlatform = false;
 			moveList.Remove(col.gameObject);
         }
@@ -206,7 +205,6 @@ public class PlatformGridObject : MonoBehaviour
 			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
 			player.onPlatform = true;
             hasPlayer = true;
-            Debug.Log("player enter");
         }
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner"))
         {
