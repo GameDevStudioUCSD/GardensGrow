@@ -11,7 +11,7 @@ public class PlatformGridObject : MonoBehaviour
     public int delay; //units = frames
     private int delayCounter = 0;
     private UIController uic;
-    //pingPong / miniBoss stuff
+    //pingPong 
     public bool pingPong = false;
     public float pingPongDistance; //units = distance
     public int pingPongPause; //units = frames
@@ -27,6 +27,11 @@ public class PlatformGridObject : MonoBehaviour
     private bool hasPlayer = false;
     private bool turbineMove = false;
     private List<GameObject> moveList = new List<GameObject>();
+    //miniBoss stuff
+    public bool miniBoss = false;
+    private bool isMovingLeft = false;
+    public int miniBossDistance;
+    private int counter = 0;
 
     // Use this for initialization
     void Start()
@@ -39,6 +44,27 @@ public class PlatformGridObject : MonoBehaviour
     {
         if (!uic.paused)
         {
+            if (miniBoss)
+            {
+                counter++;
+                if (counter > miniBossDistance)
+                {
+                    counter = 0;
+                    isMovingLeft = !isMovingLeft;
+                }
+                if (!isMovingLeft)
+                {
+                    Vector3 position = this.transform.position;
+                    position.x += Globals.pixelSize;
+                    this.transform.position = position;
+                }
+                else
+                {
+                    Vector3 position = this.transform.position;
+                    position.x -= Globals.pixelSize;
+                    this.transform.position = position;
+                }
+            }
             if (pingPong) //includes miniBoss behavior
             {
                 delayCounter++;
