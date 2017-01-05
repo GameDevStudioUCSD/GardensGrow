@@ -3,15 +3,16 @@ using System.Collections;
 
 public class RangedEnemy : EnemyGridObject {
 
-    //public GameObject projectile;
+    public GameObject projectile;
     //public bool shootsIndefinately = false;
 
     /*NOTE: commented out stuff can be reused later for some projectile shooter
      * that can shoot indefinately or shoot when only detecting the player
      */
 
-    //private int counter=0;
-    //public int shotDelay;
+    public bool isShooter = false;
+    private int counter=0;
+    public int shotDelay;
     private UIController uic;
     //private int shotRangeCounter = 0;
     public GameObject laser;
@@ -31,18 +32,7 @@ public class RangedEnemy : EnemyGridObject {
     {
         if (!uic.paused)
         {
-            if (health <= 0)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
-    /*
-    void LateUpdate()
-    {
-        if (!uic.paused)
-        {
-            if (shootsIndefinately)
+            if (isShooter)
             {
                 if (counter > shotDelay)
                 {
@@ -50,6 +40,11 @@ public class RangedEnemy : EnemyGridObject {
                     counter = 0;
                 }
                 counter++;
+
+                if (health <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
             }
             if (health <= 0)
             {
@@ -92,6 +87,7 @@ public class RangedEnemy : EnemyGridObject {
 
         //animatorator.Stop();
     }
+    /*
     void OnTriggerStay2D(Collider2D other)
     {
         if (!shootsIndefinately)
@@ -112,24 +108,27 @@ public class RangedEnemy : EnemyGridObject {
     void OnTriggerStay2D(Collider2D other)
     {
         if (!uic.paused) {
-            if (other.gameObject.tag == "Player")
+            if (!isShooter)
             {
+                if (other.gameObject.tag == "Player")
+                {
 
-                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.South)
-                {
-                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
-                }
-                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.North)
-                {
-                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
-                }
-                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.East)
-                {
-                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
-                }
-                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.West)
-                {
-                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.South)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
+                    else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.North)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
+                    else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.East)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
+                    else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.West)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
                 }
             }
         }

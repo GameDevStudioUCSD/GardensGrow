@@ -27,6 +27,11 @@ public class PlatformGridObject : MonoBehaviour
     private bool hasPlayer = false;
     private bool turbineMove = false;
     private List<GameObject> moveList = new List<GameObject>();
+    //miniBoss stuff
+    public bool miniBoss = false;
+    public int distance;
+    private bool isGoingLeft = false;
+    private int counter = 0;
 
     // Use this for initialization
     void Start()
@@ -39,7 +44,28 @@ public class PlatformGridObject : MonoBehaviour
     {
         if (!uic.paused)
         {
-            if (pingPong)
+            if (miniBoss)
+            {
+                counter++;
+                if (counter > distance)
+                {
+                    counter = 0;
+                    isGoingLeft = !isGoingLeft;
+                }
+                if (isGoingLeft)
+                {
+                    Vector3 position = this.transform.position;
+                    position.x -= Globals.pixelSize;
+                    this.transform.position = position;
+                }
+                else
+                {
+                    Vector3 position = this.transform.position;
+                    position.x += Globals.pixelSize;
+                    this.transform.position = position;
+                }
+            }
+            else if (pingPong)
             {
                 delayCounter++;
                 pingPongPauseCounter--;
