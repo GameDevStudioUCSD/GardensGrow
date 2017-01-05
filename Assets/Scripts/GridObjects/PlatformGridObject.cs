@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class PlatformGridObject : MonoBehaviour
 {
-<<<<<<< Updated upstream
     private const float moveStep = 0.03125f;
 
 	public Globals.Direction direction;
@@ -19,23 +18,6 @@ public class PlatformGridObject : MonoBehaviour
     private float pingPongDistanceCounter = 0;
     private float pingPongPauseCounter = 0;
     //turbine stuff
-=======
-    private bool hasTurbine = false;
-    private bool hasPlayer = false;
-    private bool move = false;
-	private Globals.Direction direction;
-    //Important var for controlling speed of movement
-    private int counter = 0;
-    private int timeKeeper = 0;
-    public int delay;
-    public int distance;
-    public int damage;
-    private UIController uic;
-    //miniBoss stuff
-    public bool miniBossLvl = false;
-    public int moveDistance; //change to private
-    private bool goingLeft = false;
->>>>>>> Stashed changes
     PlayerGridObject player;
     public PlatformTrigger southTrigger;
     public PlatformTrigger westTrigger;
@@ -57,7 +39,6 @@ public class PlatformGridObject : MonoBehaviour
     {
         if (!uic.paused)
         {
-<<<<<<< Updated upstream
             if (pingPong)
             {
                 delayCounter++;
@@ -115,92 +96,29 @@ public class PlatformGridObject : MonoBehaviour
                 }
                 if (delayCounter > delay)
                 {
-=======
-            if (miniBossLvl)
-            {
-                counter++;
-                if (counter > moveDistance)
-                {
-                    goingLeft = !goingLeft;
-                    counter = 0;
-                }
-                if (!goingLeft)
-                {
-
-                    Vector3 position = this.transform.position;
-                    position.x += .03125f;
-                    this.transform.position = position;
-
-                    if (hasPlayer)
-                    {
-                        Vector3 position2 = player.transform.position;
-                        position2.x += .03125f;
-                        player.transform.position = position2;
-                    }
-                }
-                else
-                {
-                    Vector3 position = this.transform.position;
-                    position.x -= .03125f;
-                    this.transform.position = position;
-
-                    if (hasPlayer)
-                    {
-                        Vector3 position2 = player.transform.position;
-                        position2.x -= .03125f;
-                        player.transform.position = position2;
-                    }
-                }
-
-            }
-            if (move && miniBossLvl == false)
-            {
-                timeKeeper++;
-                counter++;
-                if (CheckStop())
-                {
-                    move = false;
-                    return;
-                }
-                if (counter > delay)
-                {
->>>>>>> Stashed changes
                     foreach (GameObject obj in moveList)
                     {
                         if (direction == Globals.Direction.East)
                         {
                             Vector3 position = obj.transform.position;
-<<<<<<< Updated upstream
                             position.x += moveStep;
-=======
-                            position.x += .03125f;
->>>>>>> Stashed changes
                             obj.transform.position = position;
                         }
                         else if (direction == Globals.Direction.West)
                         {
                             Vector3 position = obj.transform.position;
-<<<<<<< Updated upstream
                             position.x -= moveStep;
-=======
-                            position.x -= .03125f;
->>>>>>> Stashed changes
                             obj.transform.position = position;
                         }
                         else if (direction == Globals.Direction.North)
                         {
                             Vector3 position = obj.transform.position;
-<<<<<<< Updated upstream
                             position.y += moveStep;
-=======
-                            position.y += .03125f;
->>>>>>> Stashed changes
                             obj.transform.position = position;
                         }
                         else if (direction == Globals.Direction.South)
                         {
                             Vector3 position = obj.transform.position;
-<<<<<<< Updated upstream
                             position.y -= moveStep;
                             obj.transform.position = position;
                         }
@@ -209,16 +127,6 @@ public class PlatformGridObject : MonoBehaviour
                 }
             }
             else if (CheckStart()) turbineMove = true;
-=======
-                            position.y -= .03125f;
-                            obj.transform.position = position;
-                        }
-                    }
-                    counter = 0;
-                }
-            }
-            else if (CheckStart()) move = true;
->>>>>>> Stashed changes
         }
     }
     void OnTriggerExit2D(Collider2D col)
