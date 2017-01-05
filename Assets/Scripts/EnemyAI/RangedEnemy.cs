@@ -3,17 +3,18 @@ using System.Collections;
 
 public class RangedEnemy : EnemyGridObject {
 
-    public GameObject projectile;
-    public bool shootsIndefinately = false;
+    //public GameObject projectile;
+    //public bool shootsIndefinately = false;
 
-    private int counter=0;
-    public int shotDelay;
+    /*NOTE: commented out stuff can be reused later for some projectile shooter
+     * that can shoot indefinately or shoot when only detecting the player
+     */
+
+    //private int counter=0;
+    //public int shotDelay;
     private UIController uic;
-    private int shotRangeCounter = 0;
-    /**public Collider2D southCollider;
-    public Collider2D northCollider;
-    public Collider2D eastCollider;
-    public Collider2D westCollider;*/
+    //private int shotRangeCounter = 0;
+    public GameObject laser;
 
 
     void Start()
@@ -28,7 +29,17 @@ public class RangedEnemy : EnemyGridObject {
     }
     void LateUpdate()
     {
-        
+        if (!uic.paused)
+        {
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+    /*
+    void LateUpdate()
+    {
         if (!uic.paused)
         {
             if (shootsIndefinately)
@@ -49,7 +60,6 @@ public class RangedEnemy : EnemyGridObject {
     private void Shooter()
     {
         projectile.GetComponent<RangedEnemyProjectile>().dir = direction;
-        //seed.dir = direction;
 
         if (direction == Globals.Direction.North)
         {
@@ -97,10 +107,34 @@ public class RangedEnemy : EnemyGridObject {
                 counter++;
             }
         }
-    }
+    }*/
     //code for if wants to shoot in Player direction;
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
+        if (!uic.paused) {
+            if (other.gameObject.tag == "Player")
+            {
+
+                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.South)
+                {
+                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                }
+                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.North)
+                {
+                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                }
+                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.East)
+                {
+                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                }
+                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.West)
+                {
+                    other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                }
+            }
+        }
+
+        /**
         if (!shootsIndefinately)
         {
             if (other.gameObject.tag == "Player")
@@ -123,6 +157,6 @@ public class RangedEnemy : EnemyGridObject {
                     direction = Globals.Direction.West;
                 }
             }
-        }
+        }*/
     }
 }
