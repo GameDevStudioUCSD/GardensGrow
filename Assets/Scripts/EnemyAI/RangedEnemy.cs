@@ -28,6 +28,7 @@ public class RangedEnemy : EnemyGridObject {
     }
     void LateUpdate()
     {
+        
         if (!uic.paused)
         {
             if (shootsIndefinately)

@@ -14,7 +14,9 @@ public class RangedEnemyProjectile : MonoBehaviour {
     void Start()
     {
         uic = FindObjectOfType<UIController>();
+     
     }
+
     void Update()
     {
         if (!uic.paused)
