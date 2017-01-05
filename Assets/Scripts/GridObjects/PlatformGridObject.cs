@@ -44,7 +44,7 @@ public class PlatformGridObject : MonoBehaviour
     {
         if (!uic.paused)
         {
-            if (miniBoss)
+            if (miniBoss == true)
             {
                 counter++;
                 if (counter > distance)
@@ -65,7 +65,7 @@ public class PlatformGridObject : MonoBehaviour
                     this.transform.position = position;
                 }
             }
-            else if (pingPong)
+            else if (pingPong == true)
             {
                 delayCounter++;
                 pingPongPauseCounter--;
@@ -112,7 +112,7 @@ public class PlatformGridObject : MonoBehaviour
                     delayCounter = 0;
                 }
             }
-            else if (turbineMove)
+            else if (turbineMove == true)
             {
                 delayCounter++;
                 if (CheckStop())
@@ -152,7 +152,11 @@ public class PlatformGridObject : MonoBehaviour
                     delayCounter = 0;
                 }
             }
-            else if (CheckStart()) turbineMove = true;
+            else if (CheckStart())
+            {
+            	//Debug.Log("check start");
+            	//turbineMove = true;
+            }
         }
     }
     void OnTriggerExit2D(Collider2D col)
@@ -161,6 +165,7 @@ public class PlatformGridObject : MonoBehaviour
         {
             hasPlayer = false;
 			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
+			Debug.Log("player exit");
 			player.onPlatform = false;
 			moveList.Remove(col.gameObject);
         }
@@ -201,6 +206,7 @@ public class PlatformGridObject : MonoBehaviour
 			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
 			player.onPlatform = true;
             hasPlayer = true;
+            Debug.Log("player enter");
         }
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner"))
         {
