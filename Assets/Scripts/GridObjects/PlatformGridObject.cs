@@ -11,7 +11,7 @@ public class PlatformGridObject : MonoBehaviour
     public int delay; //units = frames
     private int delayCounter = 0;
     private UIController uic;
-    //pingPong stuff
+    //pingPong / miniBoss stuff
     public bool pingPong = false;
     public float pingPongDistance; //units = distance
     public int pingPongPause; //units = frames
@@ -27,11 +27,6 @@ public class PlatformGridObject : MonoBehaviour
     private bool hasPlayer = false;
     private bool turbineMove = false;
     private List<GameObject> moveList = new List<GameObject>();
-    //miniBoss stuff
-    public bool miniBoss = false;
-    public int distance;
-    private bool isGoingLeft = false;
-    private int counter = 0;
 
     // Use this for initialization
     void Start()
@@ -44,28 +39,7 @@ public class PlatformGridObject : MonoBehaviour
     {
         if (!uic.paused)
         {
-            if (miniBoss == true)
-            {
-                counter++;
-                if (counter > distance)
-                {
-                    counter = 0;
-                    isGoingLeft = !isGoingLeft;
-                }
-                if (isGoingLeft)
-                {
-                    Vector3 position = this.transform.position;
-                    position.x -= Globals.pixelSize;
-                    this.transform.position = position;
-                }
-                else
-                {
-                    Vector3 position = this.transform.position;
-                    position.x += Globals.pixelSize;
-                    this.transform.position = position;
-                }
-            }
-            else if (pingPong == true)
+            if (pingPong) //includes miniBoss behavior
             {
                 delayCounter++;
                 pingPongPauseCounter--;
@@ -112,7 +86,7 @@ public class PlatformGridObject : MonoBehaviour
                     delayCounter = 0;
                 }
             }
-            else if (turbineMove == true)
+            else if (turbineMove)
             {
                 delayCounter++;
                 if (CheckStop())
@@ -152,10 +126,9 @@ public class PlatformGridObject : MonoBehaviour
                     delayCounter = 0;
                 }
             }
-            else if (CheckStart())
+            else if (hasTurbine && CheckStart())
             {
-            	//Debug.Log("check start");
-            	//turbineMove = true;
+            	turbineMove = true;
             }
         }
     }
