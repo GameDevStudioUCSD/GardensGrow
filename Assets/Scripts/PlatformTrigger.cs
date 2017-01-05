@@ -39,7 +39,7 @@ public class PlatformTrigger : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if ((!other.isTrigger || other.CompareTag("Ground")) && !other.CompareTag("Lava") && !other.CompareTag("Player") && !other.isActiveAndEnabled)
+        if ((!other.isTrigger || other.CompareTag("Ground")) && !other.CompareTag("Lava") && !other.CompareTag("Player") && other.isActiveAndEnabled)
         {
             nonLavaObjects--;
             KillableGridObject killable = other.GetComponent<KillableGridObject>();
