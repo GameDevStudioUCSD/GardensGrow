@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class EnemySpawner : KillableGridObject
 {
+
     public GameObject enemy;
     public TileMap tileMap;
     public GameObject targetObj;
