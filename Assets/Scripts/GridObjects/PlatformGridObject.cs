@@ -57,12 +57,24 @@ public class PlatformGridObject : MonoBehaviour
                     Vector3 position = this.transform.position;
                     position.x += Globals.pixelSize;
                     this.transform.position = position;
+                    if (hasPlayer)
+                    {
+                        Vector3 position2 = player.transform.position;
+                        position2.x += Globals.pixelSize;
+                        player.transform.position = position2;
+                    }
                 }
                 else
                 {
                     Vector3 position = this.transform.position;
                     position.x -= Globals.pixelSize;
                     this.transform.position = position;
+                    if (hasPlayer)
+                    {
+                        Vector3 position2 = player.transform.position;
+                        position2.x -= Globals.pixelSize;
+                        player.transform.position = position2;
+                    }
                 }
             }
             if (pingPong) //includes miniBoss behavior
