@@ -150,26 +150,6 @@ public class KillableGridObject : RotateableGridObject {
                 target.TakeDamage(damage);
             }
         }
-
-
-        // clears references to the killed object in the PlayerEdgeTrigger
-        // that collided with the killed object
-        /* TODO: this is no longer used but keep it for now so we can roll back if needed
-        for (int i = 0; i < killList.Count; i++)
-        {
-            if (!hitList.Contains(killList[i]) && killList[i].faction != this.faction)
-            {
-                hitList.Add(killList[i]);
-                if (killList[i].TakeDamage(damage))
-                {
-                    if (attackCollider != null)
-                        attackCollider.removeFromList(killList[i]);
-                    attackCollider.isTriggered = false;
-                }
-            }
-        }
-        */
-
         
     }
 
@@ -178,18 +158,18 @@ public class KillableGridObject : RotateableGridObject {
     		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
     	}
     	else {
-	    	int willSpawn = (int)Random.Range(0,3);
+	    	int willSpawn = (int)Random.Range(0,chanceOfDrop);
 
 	    	if (willSpawn > 0) {
 	    		int numAvailableSeeds = 0;
 	    		int seedToSpawn = -1;
-	    		for (int i = 0; i < 8; i++) {
+	    		for (int i = 0; i < 9; i++) {
 	    			if (Globals.unlockedSeeds[i] == true && i < itemDropPercentages.Length) {
 						//numAvailableSeeds++;
 						numAvailableSeeds += itemDropPercentages[i];
 						int probability = (int)Random.Range(0, numAvailableSeeds);
 	    				//if (probability == 0) {
-	    				if (probability <= itemDropPercentages[i]) {
+	    				if (probability < itemDropPercentages[i]) {
 	    					seedToSpawn = i;
 	    				}
 					}

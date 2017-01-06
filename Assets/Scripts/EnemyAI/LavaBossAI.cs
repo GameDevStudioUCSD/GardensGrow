@@ -231,6 +231,11 @@ public class LavaBossAI : KillableGridObject {
         return false;
     }
 
+    protected override void Die() {
+    	base.Die();
+		Application.LoadLevel(0);
+    }
+
 	IEnumerator BossTimer() {
 		yield return new WaitForSeconds(BOSS_TIMER_DURATION);
 
