@@ -10,8 +10,7 @@ public class RotateableGridObject : GridObject {
 		direction = 0;
 	}
 
-	protected override void Update() {
-		base.Update();
+	protected virtual void Update() {
 	}
 
 	// Changes direction and direction sprite

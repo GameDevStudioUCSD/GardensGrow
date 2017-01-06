@@ -4,46 +4,57 @@ using System.Collections;
 public class RangedEnemy : EnemyGridObject {
 
     public GameObject projectile;
-    public bool shootsIndefinately = false;
+    //public bool shootsIndefinately = false;
 
+    /*NOTE: commented out stuff can be reused later for some projectile shooter
+     * that can shoot indefinately or shoot when only detecting the player
+     */
+
+    public bool isShooter = false;
     private int counter=0;
     public int shotDelay;
-
-    private int shotRangeCounter = 0;
-    /**public Collider2D southCollider;
-    public Collider2D northCollider;
-    public Collider2D eastCollider;
-    public Collider2D westCollider;*/
+    private UIController uic;
+    //private int shotRangeCounter = 0;
+    public GameObject laser;
 
 
     void Start()
-    { 
+    {
+        uic = FindObjectOfType<UIController>();
+
         animator = this.gameObject.GetComponent<Animator>();
         southCollider.enabled = true;
         eastCollider.enabled = true;
         northCollider.enabled = true;
         westCollider.enabled = true;
     }
-    void Update()
+    void LateUpdate()
     {
-        if (shootsIndefinately)
+        if (!uic.paused)
         {
-            if (counter > shotDelay)
+            if (isShooter)
             {
-                Shooter();
-                counter = 0;
+                if (counter > shotDelay)
+                {
+                    Shooter();
+                    counter = 0;
+                }
+                counter++;
+
+                if (health <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
             }
-            counter++;
-        }
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
     private void Shooter()
     {
         projectile.GetComponent<RangedEnemyProjectile>().dir = direction;
-        //seed.dir = direction;
 
         if (direction == Globals.Direction.North)
         {
@@ -76,6 +87,7 @@ public class RangedEnemy : EnemyGridObject {
 
         //animatorator.Stop();
     }
+    /*
     void OnTriggerStay2D(Collider2D other)
     {
         if (!shootsIndefinately)
@@ -91,10 +103,37 @@ public class RangedEnemy : EnemyGridObject {
                 counter++;
             }
         }
-    }
+    }*/
     //code for if wants to shoot in Player direction;
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
+        if (!uic.paused) {
+            if (!isShooter)
+            {
+                if (other.gameObject.tag == "Player")
+                {
+
+                    if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.South)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
+                    else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.North)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
+                    else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.East)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
+                    else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.West)
+                    {
+                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+                    }
+                }
+            }
+        }
+
+        /**
         if (!shootsIndefinately)
         {
             if (other.gameObject.tag == "Player")
@@ -117,6 +156,6 @@ public class RangedEnemy : EnemyGridObject {
                     direction = Globals.Direction.West;
                 }
             }
-        }
+        }*/
     }
 }

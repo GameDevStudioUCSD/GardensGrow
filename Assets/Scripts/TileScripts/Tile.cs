@@ -19,13 +19,14 @@ public class Tile : MonoBehaviour {
     public int gCost = 1;
 
 	// Use this for initialization
-	void Start () {
-	}
+	/*void Start () {
+	}*/
 	
 	// Update is called once per frame
-	void Update () {
+	// Commented out for performance improvement
+	/*void Update () {
 	
-	}
+	}*/
 
     void OnDrawGizmos()
     {

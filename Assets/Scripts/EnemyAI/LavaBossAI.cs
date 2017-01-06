@@ -53,19 +53,6 @@ public class LavaBossAI : KillableGridObject {
 				numSpawns += current.numSpawns();
 			}
 
-
-			/* Test behavior */
-			/*if (numSpawns < 4) {
-				// kill all spawns
-				for (int i = 0; i < 4; i++) {
-					current = spawners[i].GetComponent<EnemySpawner>();
-					current.KillSpawns();
-				}
-
-				state = BossState.StartEmerge;
-			}*/
-
-
 			// Prod behavior 
 			if (numSpawns == 0) {
 				state = BossState.StartEmerge;
@@ -242,6 +229,11 @@ public class LavaBossAI : KillableGridObject {
         }
 
         return false;
+    }
+
+    protected override void Die() {
+    	base.Die();
+		Application.LoadLevel(0);
     }
 
 	IEnumerator BossTimer() {

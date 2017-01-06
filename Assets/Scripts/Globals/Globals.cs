@@ -4,7 +4,7 @@ public class Globals {
     public const float pixelSize = 0.03125f;
     public enum Direction { North=0, South=1, East=2, West=3 };
     public enum Faction { Ally=0, Enemy=1}
-    public static bool[] unlockedSeeds = {true, true, false, false, false, false, false, false, true};
+    public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
 
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";
@@ -12,6 +12,8 @@ public class Globals {
     public static string ground_layer = "Ground";
 
     public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
+
+    public static Vector3 spawnLocation = new Vector3(0.0f, -2.0f, 0.0f);
 
     public static Vector2 DirectionToVector(Direction direction)
     {

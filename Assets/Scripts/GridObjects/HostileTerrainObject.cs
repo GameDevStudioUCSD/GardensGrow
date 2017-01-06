@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class HostileTerrainObject : TerrainObject {
-	public int damage;
+	public int damage = 12;
 	private int framesPerHit = 10;
 	private int currentFrame = 0;
 
@@ -17,19 +17,11 @@ public class HostileTerrainObject : TerrainObject {
 			thisCollider.enabled = false;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	void OnTriggerStay2D(Collider2D other) {
+	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			if (player.onPlatform == false) {
-				currentFrame = (currentFrame + 1) % framesPerHit;
-				if (currentFrame == 0)
-					player.TakeDamage(damage);
+				player.TakeDamage(damage);
 			}
 		}
 	}

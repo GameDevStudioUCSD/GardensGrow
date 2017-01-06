@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PortalObject : StaticGridObject {
+public class PortalObject : RespawnLocation {
 	// 0 = Main Menu
 	// 1 = Overworld
 	// 2 = Lava Dungeon
@@ -9,19 +9,11 @@ public class PortalObject : StaticGridObject {
 
 	public int levelToLoad;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	void OnTriggerEnter2D (Collider2D other) {
+
 		if (other.gameObject.CompareTag("Player"))
         {
+        	base.updateSpawnLocation();
         	Application.LoadLevel(levelToLoad);
         }
 	}
