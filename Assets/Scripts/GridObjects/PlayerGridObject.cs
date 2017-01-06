@@ -145,30 +145,33 @@ public class PlayerGridObject : MoveableGridObject {
 					if (!eastCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				case Globals.Direction.West:
 					if (!westCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				case Globals.Direction.South:
 					if (!southCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				case Globals.Direction.North:
 					if (!northCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				default:
 					break;
 			}
-			Globals.inventory[plantNumber]--;
 			canvas.UpdateUI();
 		}
 	}
