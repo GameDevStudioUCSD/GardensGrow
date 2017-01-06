@@ -6,10 +6,12 @@ public class Fireball : StaticGridObject
 	public int preFallTime = 100;
 
 	private float fallingSpeed;
-	private const int FALLING_SPEED_MAX = 30;
-	private const int FALLING_SPEED_MIN = 10;
-	private const float FALLING_SPEED_INCR = 200f;
-	private const float eps = FALLING_SPEED_MAX / FALLING_SPEED_INCR;
+
+	public float FALLING_SPEED_MAX = 30f;
+	public float FALLING_SPEED_MIN = 10f;
+
+	private float FALLING_SPEED_INCR = 200f;
+	private float eps;
 
 	private enum FireballState { PreFalling, Falling, Fallen }
 	private FireballState state;
@@ -23,6 +25,7 @@ public class Fireball : StaticGridObject
 		fallingSpeed = Random.Range(FALLING_SPEED_MIN, FALLING_SPEED_MAX) / FALLING_SPEED_INCR;
 		state = FireballState.PreFalling;
 		fallFrames = 0;
+		eps = FALLING_SPEED_MAX / FALLING_SPEED_INCR;
 
 		base.Start();
 	}
