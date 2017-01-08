@@ -8,6 +8,8 @@ public class WatermelonPlantObject : PlantGridObject
     private int counter;
     public int shotDelay;
 
+    public int changeDirectionWaitTime;
+    private bool canChangeDir = true;
     public Collider2D southCollider;
     public Collider2D northCollider;
     public Collider2D eastCollider;
@@ -36,7 +38,11 @@ public class WatermelonPlantObject : PlantGridObject
     {
         base.Update();
     }
-
+    IEnumerator changeDirectionWait()
+    {
+        yield return new WaitForSeconds(changeDirectionWaitTime);
+        canChangeDir = true;
+    }
     private void Shooter()
     {
         bullet.GetComponent<PlantProjectileObject>().dir = direction;
@@ -82,21 +88,32 @@ public class WatermelonPlantObject : PlantGridObject
     {
         if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
         {
-            if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
+            if (canChangeDir)
             {
-                direction = Globals.Direction.South;
-            }
-            else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.North;
-            }
-            else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.East;
-            }
-            else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.West;
+                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.South;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
+                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.North;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
+                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.East;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
+                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.West;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
             }
 
             if (counter > shotDelay)
