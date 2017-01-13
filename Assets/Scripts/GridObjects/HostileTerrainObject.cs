@@ -15,7 +15,7 @@ public class HostileTerrainObject : TerrainObject {
 		if (!activeCollider) {
 			BoxCollider2D thisCollider = this.gameObject.GetComponent<BoxCollider2D>();
 			thisCollider.enabled = false;
-            Destroy(gameObject.GetComponent<Rigidbody2D>());
+			Destroy(transform.GetComponent<Rigidbody>());
 		}
 	}
 	void OnTriggerEnter2D(Collider2D other) {
