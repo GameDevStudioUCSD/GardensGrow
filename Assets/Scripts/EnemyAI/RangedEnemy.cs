@@ -113,19 +113,19 @@ public class RangedEnemy : EnemyGridObject {
                 if (other.gameObject.tag == "Player")
                 {
 
-                    if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.South)
+                    if (direction == Globals.Direction.South && other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
                         other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
                     }
-                    else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.North)
+                    else if (direction == Globals.Direction.North && other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
                         other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
                     }
-                    else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.East)
+                    else if (direction == Globals.Direction.East && other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
                         other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
                     }
-                    else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()) && direction == Globals.Direction.West)
+                    else if (direction == Globals.Direction.West && other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
                         other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
                     }
