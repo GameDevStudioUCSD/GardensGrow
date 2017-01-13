@@ -9,6 +9,11 @@ public class KillableGridObject : RotateableGridObject {
 
     public int health = 20;
     public int damage = 5;
+    public bool guaranteeDrop;
+    public ItemDrop drop;
+
+    public int chanceOfDrop;
+    public int[] itemDropPercentages;
 	public AttackCollider southHitCollider;
 	public AttackCollider westHitCollider;
 	public AttackCollider northHitCollider;
@@ -21,28 +26,27 @@ public class KillableGridObject : RotateableGridObject {
     public AudioClip attackSound;
     public AudioClip hurtSound;
 
-    protected bool isAttacking = false;
-    protected bool isDying = false;
+    public bool isAttacking = false;
+    public bool isDying = false;
+    public bool isInvulnerable = false;
 
-    private List<KillableGridObject> killList;
+    protected List<KillableGridObject> killList;
 
-    private int attackFrame = 0;
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
-    private const int numAttackFrames = 26;
     private const int numDyingFrames = 11;
 
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     private bool hasDied = false;
 
 	// Use this for initialization
-	protected virtual void Start () {
+	protected override void Start () {
         base.Start();
 	}
 	
 	// Update is called once per frame
-	protected virtual void Update () {
-        base.Update();
+	protected override void Update () {
+        //base.Update();
         if (isDying)
         {
             dyingFrame++;
@@ -52,12 +56,6 @@ public class KillableGridObject : RotateableGridObject {
             }
         }
 
-        attackFrame++;
-        if (attackFrame >= numAttackFrames)
-        {
-            isAttacking = false;
-            attackFrame = 0;
-        }
 	}
 
     /// <summary>
@@ -72,6 +70,12 @@ public class KillableGridObject : RotateableGridObject {
 
 	// returns true if the attack kill the object
     public virtual bool TakeDamage (int damage) {
+  		if (isInvulnerable)
+		{
+			return false;
+		}
+
+   		gameObject.GetComponent<Animation>().Play("Damaged");
 
         health -= damage;
 
@@ -90,14 +94,12 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     protected virtual void Die() {
-        //Debug.Log("death");
         hasDied = true;
 		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
-            Debug.Log("Player has died");
             Application.LoadLevel(Application.loadedLevel);
         }
 
-        if (this.gameObject.tag == "Enemy") {
+        if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner") {
         	spawnItem();
         }
         isDying = true;
@@ -148,47 +150,34 @@ public class KillableGridObject : RotateableGridObject {
                 target.TakeDamage(damage);
             }
         }
-
-
-        // clears references to the killed object in the PlayerEdgeTrigger
-        // that collided with the killed object
-        /* TODO: this is no longer used but keep it for now so we can roll back if needed
-        for (int i = 0; i < killList.Count; i++)
-        {
-            if (!hitList.Contains(killList[i]) && killList[i].faction != this.faction)
-            {
-                hitList.Add(killList[i]);
-                if (killList[i].TakeDamage(damage))
-                {
-                    if (attackCollider != null)
-                        attackCollider.removeFromList(killList[i]);
-                    attackCollider.isTriggered = false;
-                }
-            }
-        }
-        */
-
         
     }
 
     void spawnItem() {
-    	int willSpawn = (int)Random.Range(0,Globals.chanceOfDrop);
+    	if (guaranteeDrop) {
+    		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
+    	}
+    	else {
+	    	int willSpawn = (int)Random.Range(0,chanceOfDrop);
 
-    	if (willSpawn > 0) {
-    		int numAvailableSeeds = 0;
-    		int seedToSpawn = -1;
-    		for (int i = 0; i < 8; i++) {
-    			if (Globals.unlockedSeeds[i] == true) {
-					numAvailableSeeds++;
-					int probability = (int)Random.Range(0, numAvailableSeeds);
-    				if (probability == 0) {
-    					seedToSpawn = i;
-    				}
-				}
-    		}
-    		if (seedToSpawn != -1) {
-    			Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
-    		}
+	    	if (willSpawn > 0) {
+	    		int numAvailableSeeds = 0;
+	    		int seedToSpawn = -1;
+	    		for (int i = 0; i < 9; i++) {
+	    			if (Globals.unlockedSeeds[i] == true && i < itemDropPercentages.Length) {
+						//numAvailableSeeds++;
+						numAvailableSeeds += itemDropPercentages[i];
+						int probability = (int)Random.Range(0, numAvailableSeeds);
+	    				//if (probability == 0) {
+	    				if (probability < itemDropPercentages[i]) {
+	    					seedToSpawn = i;
+	    				}
+					}
+	    		}
+	    		if (seedToSpawn != -1) {
+	    			Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
+	    		}
+	    	}
     	}
     }
 }

@@ -1,0 +1,3 @@
+Tip 1:
+To move use the W, A, S, D keys to move and SPACE to attack!
+Destroy the spawn to move past the fire wall but watch out for the fire slimes!

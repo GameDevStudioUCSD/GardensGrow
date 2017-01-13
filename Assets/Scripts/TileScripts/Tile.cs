@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour {
     public Collider2D tileCollider;
 
     [ContextMenuItem("Set Patheable", "SetPatheable")]
-    public bool isPatheable = true;
+    public bool isPatheable;
 
     // Path cost 
     // How costly it is to go through this tile
@@ -19,13 +19,14 @@ public class Tile : MonoBehaviour {
     public int gCost = 1;
 
 	// Use this for initialization
-	void Start () {
-	}
+	/*void Start () {
+	}*/
 	
 	// Update is called once per frame
-	void Update () {
+	// Commented out for performance improvement
+	/*void Update () {
 	
-	}
+	}*/
 
     void OnDrawGizmos()
     {
@@ -36,6 +37,7 @@ public class Tile : MonoBehaviour {
         }
     }
 
+    /*
     void OnTriggerEnter2D(Collider2D other) {
 
         // Check if there is a terrain object that is blocking the path on this tile
@@ -47,6 +49,7 @@ public class Tile : MonoBehaviour {
         }
 
     }
+    */
 
     /// <summary>
     /// Automatically finds the Collider2D attached to this object and
@@ -67,18 +70,27 @@ public class Tile : MonoBehaviour {
     /// </summary>
     private void SetPatheable()
     {
-        RaycastHit2D[] results = new RaycastHit2D[1];
+        RaycastHit2D[] results = new RaycastHit2D[5];
 
         // Create raycast to see if there are any barriers on this tile
-        int numRayCollisions = tileCollider.Raycast(Vector2.up, results, 0.5f);
+        int numRayCollisions = tileCollider.Raycast(Vector2.right, results, 0.5f);
+
+        isPatheable = true;
 
         // If there were any collision, then check if colliding object is a terrain barrier
         if(numRayCollisions > 0)
         {
-            TerrainObject terrainObj = results[0].collider.GetComponent<TerrainObject>();
-            if(terrainObj)
+            for(int i = 0; i < numRayCollisions; i++)
             {
-                isPatheable = !terrainObj.isBarrier;
+                TerrainObject terrainObj = results[i].collider.GetComponent<TerrainObject>();
+                if(terrainObj)
+                {
+                    if(terrainObj.isBarrier)
+                    {
+                        isPatheable = false;
+                        break;
+                    }
+                }
             }
         }
 

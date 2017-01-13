@@ -1,26 +1,38 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
+[System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
 	public UIController canvas;
 
     private float horizontalAxis;
     private float verticalAxis;
-        
+    public int knockBackPower;
+
     private Animator animator;
-    private Animation animation;
+    private Animation anim;
     public bool canMove;
 
+    //Used to determine if player should or shouldn't take damage when on a platform with lava
+    public bool onPlatform;
+
+	private GameObject dialogue;
+
     // Use this for initialization
-    protected virtual void Start () {
+    protected override void Start () {
         base.Start();
-        animation = gameObject.GetComponent<Animation>();
+
+        this.gameObject.transform.position = Globals.spawnLocation;
+
+        anim = gameObject.GetComponent<Animation>();
         canMove = true;
         animator = GetComponent<Animator>();
+        dialogue = canvas.dialogUI;
 	}
 	
 	// Update is called once per frame
-	protected virtual void Update () {
+	protected override void Update () {
 		base.Update();
 
         // TODO: pull up animator code for player up to here so monster can have their own
@@ -75,6 +87,15 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 animator.SetTrigger("Attack");
                 Attack();
+
+                //knockBack logic
+                foreach (MoveableGridObject target in killList)
+                {
+                    for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
+                    {
+                        target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    }
+                }
             }
         }
         else
@@ -86,6 +107,23 @@ public class PlayerGridObject : MoveableGridObject {
             }
         }
 
+		/**
+		 * THIS IS A QUICK HACK SEGMENT TO GET A TEST FOR DIALOGUE GOING!
+		 * 
+		 * POSSIBLE FEATURE: TAB CAN BE USED TO HELP GUIDE PLAYERS TOWARD
+		 * OBJECTIVES. LOOKUP OTENKO FROM BOKTAI.
+		 * 
+		 * I MESSED WITH SOME PREFABS AND MOVED THE SEED UI UP TO THE TOP
+		 * FOR CONVENIENCE.
+		 * 
+		 **/
+//		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
+//			dialogue.SetActive (true);
+//
+//			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
+//			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
+//		}
+		
 	}
 		
 	protected virtual void Plant(int plantNumber) {
@@ -107,42 +145,44 @@ public class PlayerGridObject : MoveableGridObject {
 					if (!eastCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				case Globals.Direction.West:
 					if (!westCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				case Globals.Direction.South:
 					if (!southCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				case Globals.Direction.North:
 					if (!northCollider.isTriggered) {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
+						Globals.inventory[plantNumber]--;
 					}
 					break;
 				default:
 					break;
 			}
-			Globals.inventory[plantNumber]--;
 			canvas.UpdateUI();
 		}
 	}
 
     public override bool TakeDamage(int damage)
     {
-        /*if (this.gameObject.tag == "Player")
+        if (damage >= 1)
         {
-            hpBarText.text = "HP: " + health;
-        }*/
-        gameObject.GetComponent<Animation>().Play("Damaged");
-        canvas.UpdateHealth(health - damage);
+            //gameObject.GetComponent<Animation>().Play("Damaged"); deleting as parent class does animation
+            canvas.UpdateHealth(health - damage);
+        }
         return base.TakeDamage(damage);
     }
 

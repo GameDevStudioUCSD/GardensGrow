@@ -14,11 +14,9 @@ public class TerrainObject : StaticGridObject
     // Use this for initialization
     void Start ()
     {
+    	Randomize();
     	base.Start();
     }
-
-    // Update is called once per frame
-    void Update () {}
 
     private void Randomize()
     {
@@ -30,7 +28,10 @@ public class TerrainObject : StaticGridObject
         if (sprites.Length > 0)
         {
             chosenSprite = sprites[Random.Range(0, sprites.Length)];
-            spriteRenderer.sprite = chosenSprite;
+            if (spriteRenderer)
+            {
+            	spriteRenderer.sprite = chosenSprite;
+            }
                 /*
             else if (spriteRenderer.sprite != chosenSprite)
             {

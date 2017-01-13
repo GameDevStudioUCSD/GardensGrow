@@ -2,13 +2,13 @@
 
 public class EnemyGridObject : MoveableGridObject {
 
-    private Animator animator;
+    protected Animator animator;
 
     // Use this for initialization
     protected override void Start()
     {
         base.Start();
-        animator = GetComponent<Animator>();
+        animator = this.gameObject.GetComponent<Animator>();
     }
 
 	// Update is called once per frame
@@ -17,11 +17,13 @@ public class EnemyGridObject : MoveableGridObject {
 
 	}
 
+	/* deleting this function as the killablegridobject function does the same thing
     public override bool TakeDamage(int damage)
     {
         gameObject.GetComponent<Animation>().Play("Damaged");
         return base.TakeDamage(damage);
     }
+    */
 
     public override void Move(Globals.Direction direction)
     {
@@ -30,7 +32,7 @@ public class EnemyGridObject : MoveableGridObject {
         animator.SetInteger("Direction", (int)direction);
     }
 
-    protected override void Attack()
+    protected void Attack()
     {
         animator.SetTrigger("Attack");
         base.Attack();

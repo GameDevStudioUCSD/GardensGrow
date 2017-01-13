@@ -4,15 +4,18 @@ using System.Collections.Generic;
 public class TileMap : MonoBehaviour {
 
     // The TileMap grid will be mapDimension by mapDimension in size
-    public int mapDimension;
+    public int mapDimensionX, mapDimensionY;
+    public PlayerGridObject player;
 
     // a grid to hold references to every Tile in the TileMap
     public Tile[,] grid;
 
+    private GameObject[] rooms;
+
     // Awake happens before Start and is preferred for generating references between objects
     void Awake()
     {
-        grid = new Tile[mapDimension, mapDimension];
+        grid = new Tile[mapDimensionX, mapDimensionY];
 
         // Get all Tiles that are children of this TileMap object
         Tile[] myTiles = GetComponentsInChildren<Tile>();
@@ -21,7 +24,8 @@ public class TileMap : MonoBehaviour {
         // and use it as index into the grid array
         foreach (Tile tile in myTiles)
         {
-            Vector3 tilePosition = tile.transform.localPosition;
+            Vector3 tilePosition = tile.transform.position;
+            tilePosition -= this.transform.position;
 
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
         }
@@ -29,13 +33,41 @@ public class TileMap : MonoBehaviour {
 	}
 
     // Use this for initialization
-    void Start() {}
+    void Start() {
+    	rooms = new GameObject[transform.GetChild(0).childCount];
+       	for (int i = 0; i < transform.GetChild(0).childCount; i++) {
+			rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
+    	}
+    }
 
     
 	
 	// Update is called once per frame
 	void Update () {
-
+		for (int i = 0; i < rooms.Length; i++) {
+			float xDist = player.transform.position.x - rooms[i].transform.position.x;
+			float yDist = player.transform.position.y - rooms[i].transform.position.y;
+			if (xDist >= 21)
+			{
+				rooms[i].SetActive(false);
+			}
+			else if (xDist < -21)
+			{
+				rooms[i].SetActive(false);
+			}
+			else if (yDist >= 15)
+			{
+				rooms[i].SetActive(false);
+			}
+			else if (yDist < -15)
+			{
+				rooms[i].SetActive(false);
+			}
+			else
+			{
+				rooms[i].SetActive(true);
+			}
+		}
     }
 
 
@@ -44,7 +76,7 @@ public class TileMap : MonoBehaviour {
         int x = (int)position.x;
         int y = (int)position.y;
 
-        if (x < 0 || x > mapDimension || y < 0 || y > mapDimension)
+        if (x < 0 || x > mapDimensionX || y < 0 || y > mapDimensionY)
         {
             return null;
         }
@@ -52,7 +84,7 @@ public class TileMap : MonoBehaviour {
         // TODO: we don't catch out of array index exceptions
         Tile tile = grid[x, y];
 
-        return new Node(tile);
+        return new Node(tile, this);
     }
 
     /// <summary>
@@ -86,7 +118,7 @@ public class TileMap : MonoBehaviour {
         {
             Tile nextTile = grid[(int)nextPosition.x, (int)nextPosition.y];
             // Convert tile into Node
-            Node nextNode = new Node(nextTile, currentNode, direction);
+            Node nextNode = new Node(nextTile, this, currentNode, direction);
             return nextNode;
         }
         else
@@ -134,7 +166,7 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
-        if (x < 0 || x > mapDimension || y < 0 || y > mapDimension)
+        if (x < 0 || x > mapDimensionX || y < 0 || y > mapDimensionY)
         {
             return false;
         }
@@ -149,22 +181,23 @@ public class TileMap : MonoBehaviour {
     /// <returns></returns>
     public Tile GetNearestTile(Vector2 worldPosition)
     {
-        float roundedX = Mathf.Round(worldPosition.x);
-        float roundedY = Mathf.Round(worldPosition.y);
 
         // Find the position relative to the tile map (Tiles are indexed by their positions relative to TileMap)
-        Vector3 localPosition = this.transform.InverseTransformPoint(roundedX, roundedY, 0.0f);
+        Vector2 relativePosition = worldPosition - (Vector2)this.transform.position;
 
-        int x = (int)localPosition.x;
-        int y = (int)localPosition.y;
+        int x = (int)Mathf.Round(relativePosition.x);
+        int y = (int)Mathf.Round(relativePosition.y);
+
+        if (grid[x, y] == null) Debug.Log("ERROR: Finding nearest tile outside of TileMap");
 
         // Check if in bound
-        if (x < 0 || x > mapDimension || y < 0 || y > mapDimension)
+        if (x < 0 || x > mapDimensionX || y < 0 || y > mapDimensionY)
         {
             return null;
         }
 
         return grid[x, y];
     }
+
 
 }

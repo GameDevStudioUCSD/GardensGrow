@@ -3,48 +3,40 @@ using System.Collections;
 
 public class MainCamera : MonoBehaviour {
 
-    public GameObject PauseUI;
+    /*public GameObject PauseUI;
+    public GameObject MainMenuUI;
+    public GameObject LoadMenuUI;*/
+    public bool lockCamera;
+
     public PlayerGridObject player;
 
-    private bool paused = false;
-
-    void Start()
-    {
-        PauseUI.SetActive(false);
-    }
+    //private bool paused = false;
     void Update()
     {
-        if (paused)
-        {
-            PauseUI.SetActive(true);
-            player.canMove = false;
-            Time.timeScale = 0;
-        }
-        else if (!paused)
-        {
-            PauseUI.SetActive(false);
-            player.canMove = true;
-            Time.timeScale = 1;
-        }
+        if (!lockCamera) {
+	        float xDist = player.transform.position.x - this.gameObject.transform.position.x;
+			float yDist = player.transform.position.y - this.gameObject.transform.position.y;
+
+			Vector3 currentPos = this.gameObject.transform.position;
+			if (xDist >= 7)
+			{
+				currentPos.x += 14;
+			}
+			if (xDist < -7)
+			{
+				currentPos.x -= 14;
+			}
+			if (yDist >= 5)
+			{
+				currentPos.y += 10;
+			}
+			if (yDist < -5)
+			{
+				currentPos.y -= 10;
+			}
+
+			this.transform.position = currentPos;
+		}
     }
-    public void Pause()
-    {
-        paused = !paused;
-    }
-    public void Resume()
-    {
-        paused = false;
-    }
-    public void Restart()
-    {
-        Application.LoadLevel(Application.loadedLevel);
-    }
-    public void MainMenu()
-    {
-        Application.LoadLevel(1);
-    }
-    public void Quit()
-    {
-        Application.Quit();
-    }
+
 }

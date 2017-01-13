@@ -9,33 +9,33 @@ public class EdgeTrigger : MonoBehaviour
 
 	void Update ()
 	{
-		if (isTriggered && !other) {
-			isTriggered = false;
-		}
-	}
+        if (isTriggered && (!other || !(other.isActiveAndEnabled))) {
+            isTriggered = false;
+        }
+    }
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (!other.isTrigger)
-			isTriggered = true;
-
-        this.other = other;
+        if (!other.isTrigger) {
+            isTriggered = true;
+            this.other = other;
+        }
 	}
 
-	void OnTriggerStay2D (Collider2D other)
-	{ 
-		if (!other.isTrigger)
-			isTriggered = true;
-
-        this.other = other;
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (!other.isTrigger) {
+            isTriggered = true;
+            this.other = other;
+        }
 	}
 
 	void OnTriggerExit2D (Collider2D other)
 	{
-		if (!other.isTrigger)
+		if (!other.isTrigger) {
 			isTriggered = false;
-
-        this.other = other;
+            this.other = other;
+        }
 	}
 
 	public List<KillableGridObject> getKillList ()

@@ -8,6 +8,8 @@ public class WatermelonPlantObject : PlantGridObject
     private int counter;
     public int shotDelay;
 
+    public int changeDirectionWaitTime;
+    private bool canChangeDir = true;
     public Collider2D southCollider;
     public Collider2D northCollider;
     public Collider2D eastCollider;
@@ -36,7 +38,11 @@ public class WatermelonPlantObject : PlantGridObject
     {
         base.Update();
     }
-
+    IEnumerator changeDirectionWait()
+    {
+        yield return new WaitForSeconds(changeDirectionWaitTime);
+        canChangeDir = true;
+    }
     private void Shooter()
     {
         bullet.GetComponent<PlantProjectileObject>().dir = direction;
@@ -80,8 +86,36 @@ public class WatermelonPlantObject : PlantGridObject
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
         {
+            if (canChangeDir)
+            {
+                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.South;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
+                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.North;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
+                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.East;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
+                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
+                {
+                    direction = Globals.Direction.West;
+                    canChangeDir = false;
+                    StartCoroutine(changeDirectionWait());
+                }
+            }
+
             if (counter > shotDelay)
             {
                 Shooter();
@@ -90,10 +124,11 @@ public class WatermelonPlantObject : PlantGridObject
             counter++;
         }
     }
+    /*
     void OnTriggerEnter2D(Collider2D other)
     {
         
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" || other.CompareTag("EnemySpawner"))
         {
 
             if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
@@ -113,5 +148,5 @@ public class WatermelonPlantObject : PlantGridObject
                 direction = Globals.Direction.West;
             }
         }
-    }
+    }*/
 }
