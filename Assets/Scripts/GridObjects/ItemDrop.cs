@@ -8,15 +8,22 @@ public class ItemDrop : StaticGridObject {
 	public int itemId;
 	// The sound bite for when the player picks up the item
 	public AudioClip clip;
+	public bool permanent;
+	public int lifeSpan;
+
+	private int life;
 
 	// Use this for initialization
 	void Start () {
-	
+		life = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		life++;
+		/*if (permanent == false && life > lifeSpan) {
+			Destroy(this.gameObject);
+		}*/
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
