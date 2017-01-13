@@ -80,7 +80,8 @@ public class UIController : MonoBehaviour {
 
 	// Hides the plant UI when dialog is being said
 	public void ShowDialog() {
-        player.GetComponent<Animator>().StartPlayback(); //don't know why start does this, but it does
+        player.GetComponent<Animator>().StartPlayback(); //don't know why start stops animations, but it does
+        paused = true;
 		dialogUI.SetActive(true);
 
 		for (int i = 0; i < 8; i++) {
@@ -93,7 +94,8 @@ public class UIController : MonoBehaviour {
 
 	// Hides the dialog box and enables the plant UI again
 	public void EndDialog() {
-        player.GetComponent<Animator>().StopPlayback(); //don't know why stop does this, but it does
+        player.GetComponent<Animator>().StopPlayback(); //don't know why stop starts animations, but it does
+        paused = false;
         dialogUI.SetActive(false);
 
 		for (int i = 0; i < 8; i++) {

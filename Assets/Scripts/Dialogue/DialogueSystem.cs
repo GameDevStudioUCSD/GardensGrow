@@ -39,7 +39,7 @@ public class DialogueSystem : MonoBehaviour {
 				break;
 			} else {
 				displayedLine.text += strComplete [i];
-				yield return new WaitForSeconds (0.01F);
+				yield return new WaitForSecondsRealtime (0.01F);
 			}
 		}
 
