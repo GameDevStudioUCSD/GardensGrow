@@ -19,6 +19,9 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     [Header("Status")]
     public bool isDisabled;
 
+    [Header("Debug")]
+    public bool debug = false;
+
     AStar astarAlgorithm;
 
     // Path found by astar
@@ -35,6 +38,8 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     // Is my attack on cooldown.
     private bool attackOnCooldown;
 
+    private Vector2 startPosition;
+
      // Use this for initialization
     void Start ()
     {
@@ -46,6 +51,21 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         visionModule = GetComponent<Vision>();
         base.Start();
 	}
+
+    public void OnDrawGizmos()
+    {
+        if (!debug) return;
+
+        Vector2 acc = startPosition;
+        foreach (var v in path)
+        {
+            var v_real = Globals.DirectionToVector(v);
+            Gizmos.DrawRay(acc,v_real);
+            acc += v_real;
+        }
+    }
+
+
 	
 
     public override void Reset() { }
@@ -155,6 +175,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
             // Find a path
             path = astarAlgorithm.FindPath(monsterTile, targetTile);
+            startPosition = monsterTile.transform.position;
 
             // We are on the first step of the path
             currentPathIndex = 0;
@@ -171,7 +192,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         if (path.Count == 0)
             yield return null;
 
-        for(int i = 0; i < speed; i++)
+        for(float i = 0; i < 2.5; i+= speed/10f)
         {
             if (currentPathIndex < path.Count)
             Move(path[currentPathIndex]);

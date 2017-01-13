@@ -10,6 +10,7 @@ public class TileMap : MonoBehaviour {
     // a grid to hold references to every Tile in the TileMap
     public Tile[,] grid;
 
+    public bool debug = false;
     private GameObject[] rooms;
 
     // Awake happens before Start and is preferred for generating references between objects
@@ -49,19 +50,19 @@ public class TileMap : MonoBehaviour {
 			float yDist = player.transform.position.y - rooms[i].transform.position.y;
 			if (xDist >= 21)
 			{
-				rooms[i].SetActive(false);
+				rooms[i].SetActive(debug);
 			}
 			else if (xDist < -21)
 			{
-				rooms[i].SetActive(false);
+				rooms[i].SetActive(debug);
 			}
 			else if (yDist >= 15)
 			{
-				rooms[i].SetActive(false);
+				rooms[i].SetActive(debug);
 			}
 			else if (yDist < -15)
 			{
-				rooms[i].SetActive(false);
+				rooms[i].SetActive(debug);
 			}
 			else
 			{
