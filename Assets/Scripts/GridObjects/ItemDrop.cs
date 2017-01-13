@@ -21,9 +21,9 @@ public class ItemDrop : StaticGridObject {
 	// Update is called once per frame
 	void Update () {
 		life++;
-		if (permanent == false && life > lifeSpan) {
+		/*if (permanent == false && life > lifeSpan) {
 			Destroy(this.gameObject);
-		}
+		}*/
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
