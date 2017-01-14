@@ -16,7 +16,7 @@ public abstract class PathFindingMonsterAbstractFSM : EnemyGridObject, IStateMac
         PathFind = 5,
         Disabled = 6
     }  
-    protected virtual void OnEnable() { 
+    protected virtual void Start() { 
         RunFSM();
     }
     public State state = State.Idle;
