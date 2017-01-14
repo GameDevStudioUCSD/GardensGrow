@@ -21,11 +21,13 @@ public class TileMap : MonoBehaviour {
         // Get all Tiles that are children of this TileMap object
         Tile[] myTiles = GetComponentsInChildren<Tile>();
 
-        // For each Tile: get the Tile's local position to TileMap
-        // and use it as index into the grid array
+        // For each tile: get the tile's position with respect
+        // to the tilemap's position.
         foreach (Tile tile in myTiles)
         {
             Vector3 tilePosition = tile.transform.position;
+
+            // Tile's position with respect to the tilemap's position
             tilePosition -= this.transform.position;
 
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
@@ -40,8 +42,6 @@ public class TileMap : MonoBehaviour {
 			rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
     	}
     }
-
-    
 	
 	// Update is called once per frame
 	void Update () {
@@ -167,18 +167,20 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
-        if (x < 0 || x > mapDimensionX || y < 0 || y > mapDimensionY)
+        if(grid[x, y] == null)
         {
-            return false;
+            throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
         }
-
-        return grid[x, y] != null ? grid[x, y].isPatheable : false;
+        else
+        {
+            return grid[x, y].isPatheable;
+        }
     }
 
     /// <summary>
     /// Finds the closest Tile to a world position.
     /// </summary>
-    /// <param name="worldPosition">Vector2 in world coordinates.</param>
+    /// <param name="worldPosition">World position from which we want to find the nearest tile.</param>
     /// <returns></returns>
     public Tile GetNearestTile(Vector2 worldPosition)
     {
@@ -189,15 +191,14 @@ public class TileMap : MonoBehaviour {
         int x = (int)Mathf.Round(relativePosition.x);
         int y = (int)Mathf.Round(relativePosition.y);
 
-        if (grid[x, y] == null) Debug.Log("ERROR: Finding nearest tile outside of TileMap");
-
-        // Check if in bound
-        if (x < 0 || x > mapDimensionX || y < 0 || y > mapDimensionY)
+        if (grid[x, y] == null)
         {
-            return null;
+            throw new System.Exception("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
         }
-
-        return grid[x, y];
+        else
+        {
+            return grid[x, y];
+        }
     }
 
 
