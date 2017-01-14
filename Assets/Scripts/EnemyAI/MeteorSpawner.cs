@@ -11,19 +11,25 @@ public class MeteorSpawner : MonoBehaviour {
 	private int indexToIgnore;
 	private int currentFrame;
 
+	private bool triggered;
+
 	// Use this for initialization
 	void Start () {
 		indexToIgnore = 0;
 		currentFrame = 0;
-		SummonFireballs();
+		triggered = false;
+		//SummonFireballs();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		currentFrame = (currentFrame + 1) % framesBetweenMeteors;
-		if (currentFrame == 0) {
-			SummonFireballs();
-			indexToIgnore = (indexToIgnore + 1) % spawnLocations.Length;
+		if (triggered == true)
+		{
+			currentFrame = (currentFrame + 1) % framesBetweenMeteors;
+			if (currentFrame == 0) {
+				SummonFireballs();
+				indexToIgnore = (indexToIgnore + 1) % spawnLocations.Length;
+			}
 		}
 	}
 
@@ -33,5 +39,17 @@ public class MeteorSpawner : MonoBehaviour {
 				Instantiate(fireball, spawnLocations[i], Quaternion.identity);
 			}
 		} 
+	}
+
+	void OnTriggerEnter2D (Collider2D other) {
+		if (other.CompareTag("Player")) {
+			triggered = true;
+		}
+	}
+
+	void OnTriggerExit2D (Collider2D other) {
+		if (other.CompareTag("Player")) {
+			triggered = false;
+		}
 	}
 }
