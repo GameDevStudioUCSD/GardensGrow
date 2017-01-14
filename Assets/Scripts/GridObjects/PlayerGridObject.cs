@@ -47,6 +47,9 @@ public class PlayerGridObject : MoveableGridObject {
             if (!isAttacking && verticalAxis > 0)
             {
                 Move(Globals.Direction.North);
+				Move(Globals.Direction.North);
+				Move(Globals.Direction.North);
+                
                 // Double movespeed
                 if (horizontalAxis == 0.0f) Move(Globals.Direction.North);
             }
@@ -54,6 +57,9 @@ public class PlayerGridObject : MoveableGridObject {
             else if (!isAttacking && verticalAxis < 0)
             {
                 Move(Globals.Direction.South);
+				Move(Globals.Direction.South);
+				Move(Globals.Direction.South);
+
                 if (horizontalAxis == 0.0f) Move(Globals.Direction.South);
             }
 
@@ -61,12 +67,18 @@ public class PlayerGridObject : MoveableGridObject {
             if (!isAttacking && horizontalAxis < 0)
             {
                 Move(Globals.Direction.West);
+				Move(Globals.Direction.West);
+				Move(Globals.Direction.West);
+
                 if (verticalAxis == 0.0f) Move(Globals.Direction.West);
             }
             // Right
             else if (!isAttacking && horizontalAxis > 0)
             {
                 Move(Globals.Direction.East);
+				Move(Globals.Direction.East);
+				Move(Globals.Direction.East);
+
                 if (verticalAxis == 0.0f) Move(Globals.Direction.East);
             }
 
@@ -146,6 +158,8 @@ public class PlayerGridObject : MoveableGridObject {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 						Globals.inventory[plantNumber]--;
+						Globals.plantedListTypes.Add(plantNumber);
+						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
 					}
 					break;
 				case Globals.Direction.West:
@@ -153,6 +167,8 @@ public class PlayerGridObject : MoveableGridObject {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 						Globals.inventory[plantNumber]--;
+						Globals.plantedListTypes.Add(plantNumber);
+						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
 					}
 					break;
 				case Globals.Direction.South:
@@ -160,6 +176,8 @@ public class PlayerGridObject : MoveableGridObject {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 						Globals.inventory[plantNumber]--;
+						Globals.plantedListTypes.Add(plantNumber);
+						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
 					}
 					break;
 				case Globals.Direction.North:
@@ -167,6 +185,8 @@ public class PlayerGridObject : MoveableGridObject {
 						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
 						Globals.inventory[plantNumber]--;
+						Globals.plantedListTypes.Add(plantNumber);
+						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
 					}
 					break;
 				default:

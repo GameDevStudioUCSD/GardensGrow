@@ -16,6 +16,15 @@ public class TileMap : MonoBehaviour {
     // Awake happens before Start and is preferred for generating references between objects
     void Awake()
     {
+    	int plantType;
+    	Vector3 plantVector;
+    	for (int i = 0; i < Globals.plantedListTypes.Count; i++)
+    	{
+    		plantType = Globals.plantedListTypes[i];
+    		plantVector = Globals.plantedListVectors[i];
+    		Instantiate(player.plants[plantType], plantVector, Quaternion.identity);	
+    	}
+
         grid = new Tile[mapDimensionX, mapDimensionY];
 
         // Get all Tiles that are children of this TileMap object
