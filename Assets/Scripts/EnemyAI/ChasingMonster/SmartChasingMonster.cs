@@ -8,7 +8,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     public float idleDelay = 2.0f;
     public float attackDelay = 1.0f;
     public float pathingDelay = 1.0f;
-    [Range(0, 5)]
+    [Range(0, 10)]
     public int speed = 2;
     Vision visionModule;
 
@@ -41,7 +41,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     private Vector2 startPosition;
 
      // Use this for initialization
-    void Start ()
+    protected override void Start ()
     {
         isDisabled = false;
         attackOnCooldown = false;
@@ -192,10 +192,10 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         if (path.Count == 0)
             yield return null;
 
-        for(float i = 0; i < 2.5; i+= speed/10f)
+        for(int i = 0; i < speed; i+= 1)
         {
             if (currentPathIndex < path.Count)
-            Move(path[currentPathIndex]);
+                Move(path[currentPathIndex]);
         }
         yield return null;
     }
