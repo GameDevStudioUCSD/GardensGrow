@@ -8,7 +8,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     public float idleDelay = 2.0f;
     public float attackDelay = 1.0f;
     public float pathingDelay = 1.0f;
-    [Range(0, 5)]
+    [Range(0, 10)]
     public int speed = 2;
     Vision visionModule;
 
@@ -18,6 +18,9 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
     [Header("Status")]
     public bool isDisabled;
+
+    [Header("Debug")]
+    public bool debug = false;
 
     AStar astarAlgorithm;
 
@@ -35,8 +38,10 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     // Is my attack on cooldown.
     private bool attackOnCooldown;
 
+    private Vector2 startPosition;
+
      // Use this for initialization
-    void Start ()
+    protected override void Start ()
     {
         isDisabled = false;
         attackOnCooldown = false;
@@ -46,6 +51,21 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         visionModule = GetComponent<Vision>();
         base.Start();
 	}
+
+    public void OnDrawGizmos()
+    {
+        if (!debug) return;
+
+        Vector2 acc = startPosition;
+        foreach (var v in path)
+        {
+            var v_real = Globals.DirectionToVector(v);
+            Gizmos.DrawRay(acc,v_real);
+            acc += v_real;
+        }
+    }
+
+
 	
 
     public override void Reset() { }
@@ -155,6 +175,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
 
             // Find a path
             path = astarAlgorithm.FindPath(monsterTile, targetTile);
+            startPosition = monsterTile.transform.position;
 
             // We are on the first step of the path
             currentPathIndex = 0;
@@ -171,10 +192,10 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         if (path.Count == 0)
             yield return null;
 
-        for(int i = 0; i < speed; i++)
+        for(int i = 0; i < speed; i+= 1)
         {
             if (currentPathIndex < path.Count)
-            Move(path[currentPathIndex]);
+                Move(path[currentPathIndex]);
         }
         yield return null;
     }
