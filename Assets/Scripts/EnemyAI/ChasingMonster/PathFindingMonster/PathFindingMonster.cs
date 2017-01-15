@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Vision))]
 public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     [Header("Required Components")]
@@ -12,6 +13,14 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     [Tooltip("Number of move calls per step.")]
     [Range(0, 32)]
     public int moveAmount = 2;
+    [Tooltip("Delay between each step.")]
+    public float stepDelay = 1.0f;
+    [Tooltip("Delay between attacks.")]
+    public float attackDelay = 1.0f;
+    [Tooltip("The allowed distance error from the center of a tile when moving from tile to tile")]
+    public float allowedOffset = 0.80f;
+
+    protected Vision visionModule;
 
     protected AStar astarAlgorithm;
 
@@ -24,15 +33,24 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     private Tile nextTile;
     private Tile targetTile;
 
+    // Transition conditions
+    private bool pathNeedsReevaluation = false;
+    private bool attackOnCooldown = false;
+
     protected override void Start()
     {
         path = new List<Globals.Direction>();
         astarAlgorithm = new AStar(tileMap);
+        visionModule = GetComponent<Vision>();
 
         currentTile = tileMap.GetNearestTile(transform.position);
 
         base.Start();
     }
+
+    // ============================================================
+    // | States
+    // ============================================================
 
     /// <summary>
     /// Take a step on the path to target.
@@ -43,10 +61,11 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
         if (path.Count == 0)
             yield return null;
 
+        nextTile = tileMap.NextTile(currentTile, path[currentPathIndex]);
+
         for (int i = 0; i < moveAmount; i += 1)
         {
-            if (currentPathIndex < path.Count)
-                Move(path[currentPathIndex]);
+            Move(path[currentPathIndex]);
         }
 
         yield return null;
@@ -54,17 +73,47 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionAttack()
     {
-        throw new System.NotImplementedException();
+        if(!attackOnCooldown)
+        {
+            attackOnCooldown = true;
+            Attack();
+        }
+
+        yield return null;
     }
 
     protected override IEnumerator ExecuteActionChaseTarget()
     {
-        throw new System.NotImplementedException();
+        for(int i = 0; i < moveAmount; i++)
+        {
+            Move(direction);
+        }
+
+        yield return null;
     }
 
     protected override IEnumerator ExecuteActionEvaluateStep()
     {
-        throw new System.NotImplementedException();
+        // Check if we got close to the next tile
+        float offsetMagnitude = Vector2.Distance(transform.position, nextTile.transform.position);
+
+        if(offsetMagnitude < allowedOffset)
+        {
+            // Move the monster to the center of the tile
+            transform.position = nextTile.transform.position;
+        }
+        else
+        {
+            // TODO: if too far from the next tile do something
+        }
+
+        // Manipulate the index, current tile, etc. for next step
+        currentPathIndex++;
+        currentTile = nextTile;
+
+        pathNeedsReevaluation = false;
+
+        yield return null;
     }
 
     /// <summary>
@@ -93,31 +142,55 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionDisabled()
     {
-        throw new System.NotImplementedException();
+        // Do nothing, the monster is disabled
+        yield return null;
     }
+
+    // ============================================================
+    // | Transitions
+    // ============================================================
 
     protected override bool ReevaluatePath()
     {
-        throw new System.NotImplementedException();
+        return pathNeedsReevaluation;
     }
 
     protected override bool CanAttack()
     {
-        throw new System.NotImplementedException();
+        // Check cooldown
+        if(TimeInState() > attackDelay)
+        {
+            attackOnCooldown = false;
+
+            AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
+
+            List<KillableGridObject> killList = edgeTrigger.GetKillList();
+
+            // Check if there is anything to kill
+            if (killList.Count > 0)
+            {
+                // Check if any of the killables are an enemy
+                foreach (KillableGridObject target in killList)
+                {
+                    if (target.faction != this.faction)
+                        return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     protected override bool CanSenseTarget()
     {
-        throw new System.NotImplementedException();
+        return visionModule.CanSeePlayer(direction);
     }
 
     protected override bool Continue()
     {
-        throw new System.NotImplementedException();
+        return !pathNeedsReevaluation && TimeInState() > stepDelay;
     }
 
-    public override void Reset()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void Reset() { }
+
 }

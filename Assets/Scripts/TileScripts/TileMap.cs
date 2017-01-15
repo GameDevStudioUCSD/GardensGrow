@@ -30,6 +30,8 @@ public class TileMap : MonoBehaviour {
             // Tile's position with respect to the tilemap's position
             tilePosition -= this.transform.position;
 
+            Debug.Log(tilePosition);
+
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
         }
 
@@ -110,7 +112,7 @@ public class TileMap : MonoBehaviour {
         return successors;
     }
 
-    Node NextNode(Node currentNode, Globals.Direction direction)
+    public Node NextNode(Node currentNode, Globals.Direction direction)
     {
         Vector2 nextPosition = NextPosition(currentNode.gridPosition, direction);
 
@@ -134,7 +136,7 @@ public class TileMap : MonoBehaviour {
     /// <param name="currentPosition">Position before taking direction.</param>
     /// <param name="direction">Direction to take from current position.</param>
     /// <returns>The position after taking direction from current position.</returns>
-    Vector2 NextPosition(Vector2 currentPosition, Globals.Direction direction)
+    public Vector2 NextPosition(Vector2 currentPosition, Globals.Direction direction)
     {
         int x = (int)currentPosition.x;
         int y = (int)currentPosition.y;
@@ -158,18 +160,30 @@ public class TileMap : MonoBehaviour {
     }
 
     /// <summary>
+    /// Get the tile that is in the given direction starting from the current tile.
+    /// </summary>
+    /// <param name="currentTile">Tile to start looking from.</param>
+    /// <param name="direction">The direction to take to find the next tile.</param>
+    public Tile NextTile(Tile currentTile, Globals.Direction direction)
+    {
+        return GetNearestTile(NextPosition(currentTile.transform.position, direction));
+    }
+
+    /// <summary>
     /// Check if a position in the TileMap is patheable or not.
     /// </summary>
     /// <param name="targetPosition">The position of the Tile to check.</param>
     /// <returns>True if the Tile is patheable, false if Tile is not patheable or it does not exist.</returns>
-    bool IsPatheable(Vector2 targetPosition)
+    public bool IsPatheable(Vector2 targetPosition)
     {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
         if(grid[x, y] == null)
         {
-            throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
+            // throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
+            Debug.LogError("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
+            return false;
         }
         else
         {
@@ -193,7 +207,9 @@ public class TileMap : MonoBehaviour {
 
         if (grid[x, y] == null)
         {
-            throw new System.Exception("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
+            //throw new System.Exception("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
+            Debug.LogError("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
+            return null;
         }
         else
         {

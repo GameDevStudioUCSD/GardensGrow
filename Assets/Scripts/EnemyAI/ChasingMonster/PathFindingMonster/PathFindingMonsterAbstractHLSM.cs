@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
-public abstract class PathFindingMonsterAbstractFSM : EnemyGridObject, IStateMachine {
+public abstract class PathFindingMonsterAbstractFSM : EnemyGridObject, IStateMachine{
     protected float transitionedAt;
     public int exceptionCount;
     public int shutDownFSMAfterNExceptions = 10;
@@ -16,7 +16,7 @@ public abstract class PathFindingMonsterAbstractFSM : EnemyGridObject, IStateMac
         PathFind = 5,
         Disabled = 6
     }  
-    protected virtual void Start() { 
+    protected virtual void OnEnable() { 
         RunFSM();
     }
     public State state = State.Idle;
