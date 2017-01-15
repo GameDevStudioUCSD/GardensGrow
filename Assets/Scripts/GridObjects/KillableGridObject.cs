@@ -45,7 +45,8 @@ public class KillableGridObject : RotateableGridObject {
 	}
 	
 	// Update is called once per frame
-	protected override void Update () {
+	protected override void Update ()
+    {
         //base.Update();
         if (isDying)
         {
@@ -147,6 +148,10 @@ public class KillableGridObject : RotateableGridObject {
         {
             if(target.faction != this.faction)
             {
+                if(this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>())
+                {
+                    Debug.Log("SMACKING THE WATERMELOON");
+                }
                 target.TakeDamage(damage);
             }
         }

@@ -26,9 +26,13 @@ public class TurbinePlantObject : PlantGridObject
     }
 
     // Update is called once per frame
-	protected virtual void Update() {
-
-		base.Update();
+	protected virtual void Update()
+    {
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+        base.Update();
 	}
 
 	public void setDirection ()
