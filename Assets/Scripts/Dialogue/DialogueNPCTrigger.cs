@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DialogueTrigger : MonoBehaviour {
+public class DialogueNPCTrigger : MonoBehaviour {
 	private UIController canvas;
 	public string textFileName;
 	public Collider2D activeRegionPreTrigger;

@@ -48,7 +48,6 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 Move(Globals.Direction.North);
 				Move(Globals.Direction.North);
-				Move(Globals.Direction.North);
                 
                 // Double movespeed
                 if (horizontalAxis == 0.0f) Move(Globals.Direction.North);
@@ -57,7 +56,6 @@ public class PlayerGridObject : MoveableGridObject {
             else if (!isAttacking && verticalAxis < 0)
             {
                 Move(Globals.Direction.South);
-				Move(Globals.Direction.South);
 				Move(Globals.Direction.South);
 
                 if (horizontalAxis == 0.0f) Move(Globals.Direction.South);
@@ -68,7 +66,6 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 Move(Globals.Direction.West);
 				Move(Globals.Direction.West);
-				Move(Globals.Direction.West);
 
                 if (verticalAxis == 0.0f) Move(Globals.Direction.West);
             }
@@ -76,7 +73,6 @@ public class PlayerGridObject : MoveableGridObject {
             else if (!isAttacking && horizontalAxis > 0)
             {
                 Move(Globals.Direction.East);
-				Move(Globals.Direction.East);
 				Move(Globals.Direction.East);
 
                 if (verticalAxis == 0.0f) Move(Globals.Direction.East);
