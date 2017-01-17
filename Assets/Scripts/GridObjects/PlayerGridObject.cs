@@ -156,6 +156,7 @@ public class PlayerGridObject : MoveableGridObject {
 						Globals.inventory[plantNumber]--;
 						Globals.plantedListTypes.Add(plantNumber);
 						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
+						Globals.plantedListScenes.Add(Application.loadedLevelName);
 					}
 					break;
 				case Globals.Direction.West:
@@ -165,6 +166,7 @@ public class PlayerGridObject : MoveableGridObject {
 						Globals.inventory[plantNumber]--;
 						Globals.plantedListTypes.Add(plantNumber);
 						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
+						Globals.plantedListScenes.Add(Application.loadedLevelName);
 					}
 					break;
 				case Globals.Direction.South:
@@ -174,6 +176,7 @@ public class PlayerGridObject : MoveableGridObject {
 						Globals.inventory[plantNumber]--;
 						Globals.plantedListTypes.Add(plantNumber);
 						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
+						Globals.plantedListScenes.Add(Application.loadedLevelName);
 					}
 					break;
 				case Globals.Direction.North:
@@ -183,6 +186,7 @@ public class PlayerGridObject : MoveableGridObject {
 						Globals.inventory[plantNumber]--;
 						Globals.plantedListTypes.Add(plantNumber);
 						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
+						Globals.plantedListScenes.Add(Application.loadedLevelName);
 					}
 					break;
 				default:
