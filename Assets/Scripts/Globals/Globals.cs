@@ -11,6 +11,7 @@ public class Globals {
 
 	public static List<int> plantedListTypes = new List<int>(); 
     public static List<Vector3> plantedListVectors = new List<Vector3>();
+    public static List<string> plantedListScenes = new List<string>();
 
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";

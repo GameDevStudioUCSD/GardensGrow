@@ -20,9 +20,12 @@ public class TileMap : MonoBehaviour {
     	Vector3 plantVector;
     	for (int i = 0; i < Globals.plantedListTypes.Count; i++)
     	{
-    		plantType = Globals.plantedListTypes[i];
-    		plantVector = Globals.plantedListVectors[i];
-    		Instantiate(player.plants[plantType], plantVector, Quaternion.identity);	
+    		if (Globals.plantedListScenes[i] == Application.loadedLevelName)
+    		{
+	    		plantType = Globals.plantedListTypes[i];
+	    		plantVector = Globals.plantedListVectors[i];
+	    		Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
+    		}
     	}
 
         grid = new Tile[mapDimensionX, mapDimensionY];
