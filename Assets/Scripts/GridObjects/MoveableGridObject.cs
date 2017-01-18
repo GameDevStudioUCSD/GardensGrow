@@ -9,7 +9,6 @@ public class MoveableGridObject : KillableGridObject {
 
 	private const float pixelSize = Globals.pixelSize;
 
-
     protected override void Start() {
         base.Start();
     }
