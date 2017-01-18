@@ -182,7 +182,7 @@ public class TileMap : MonoBehaviour {
         if(grid[x, y] == null)
         {
             // throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
-            Debug.LogError("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
+            // Debug.LogError("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
             return false;
         }
         else

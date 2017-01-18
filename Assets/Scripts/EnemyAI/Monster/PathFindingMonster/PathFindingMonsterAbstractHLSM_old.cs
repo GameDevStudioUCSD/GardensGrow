@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
-public abstract class PathFindingMonsterAbstractFSM : EnemyGridObject, IStateMachine{
+public abstract class PathFindingMonsterAbstractFSM_old : EnemyGridObject, IStateMachine{
     protected float transitionedAt;
     public int exceptionCount;
     public int shutDownFSMAfterNExceptions = 10;
