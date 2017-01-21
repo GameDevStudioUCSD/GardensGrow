@@ -70,8 +70,8 @@ public class EnemySpawner : KillableGridObject
             //I needed a reference to every specific enemyObj to keep track of them, so I couldn't use 1 GameObject enemyObj for all spawns.
             // TODO: change this later to fit other AI
             // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
         else if (randInt == 2)
         {
@@ -80,8 +80,8 @@ public class EnemySpawner : KillableGridObject
             list.Add(enemyObj);
             // TODO: change this later to fit other AI
             // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
         else if (randInt == 3)
         {
@@ -90,8 +90,8 @@ public class EnemySpawner : KillableGridObject
             list.Add(enemyObj);
             // TODO: change this later to fit other AI
             // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
         else
         {
@@ -100,8 +100,8 @@ public class EnemySpawner : KillableGridObject
             list.Add(enemyObj);
             // TODO: change this later to fit other AI
             // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<SmartChasingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<SmartChasingMonster>().targetObject = targetObj;
+            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
+            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
 
         currSpawns++;

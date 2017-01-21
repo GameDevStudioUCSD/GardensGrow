@@ -101,7 +101,7 @@ public class KillableGridObject : RotateableGridObject {
         }
 
         if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner") {
-        	spawnItem();
+        	SpawnItem();
         }
         isDying = true;
     }
@@ -158,7 +158,7 @@ public class KillableGridObject : RotateableGridObject {
         
     }
 
-    void spawnItem() {
+    void SpawnItem() {
     	if (guaranteeDrop) {
     		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
     	}
