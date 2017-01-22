@@ -11,10 +11,14 @@ public class BombPlantObject : PlantGridObject {
 	private int frames;
 
 	// Use this for initialization
-	protected override void Start () {
-		frames = 0;
-		noBomb = true;
-	}
+	protected override void Start ()
+    {
+        noBomb = false;
+        frames = 0;
+        GameObject newBomb = (GameObject)Instantiate(bombObject, this.gameObject.transform.position, Quaternion.identity);
+        bomb = newBomb.GetComponent<BombObject>();
+        bomb.setBombPlantObject(this);
+    }
 	
 	// Update is called once per frame
 	protected override void Update () {
@@ -25,7 +29,6 @@ public class BombPlantObject : PlantGridObject {
 				frames = 0;
                 GameObject newBomb = (GameObject)Instantiate(bombObject, this.gameObject.transform.position, Quaternion.identity);
                 bomb = newBomb.GetComponent<BombObject>();
-				Debug.Log(frames);
 				bomb.setBombPlantObject(this);
 			}
 		}

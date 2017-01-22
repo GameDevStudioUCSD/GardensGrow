@@ -29,6 +29,7 @@ public class PlayerGridObject : MoveableGridObject {
         canMove = true;
         animator = GetComponent<Animator>();
         dialogue = canvas.dialogUI;
+        Globals.player = this;
 	}
 	
 	// Update is called once per frame
@@ -99,9 +100,11 @@ public class PlayerGridObject : MoveableGridObject {
                 //knockBack logic
                 foreach (MoveableGridObject target in killList)
                 {
-                    for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
-                    {
-                        target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    if (!(target.gameObject.GetComponent<BombObject>())) {
+                        for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
+                        {
+                            target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                        }
                     }
                 }
             }
