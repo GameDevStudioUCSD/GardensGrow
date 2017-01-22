@@ -9,6 +9,7 @@ public class KillableGridObject : RotateableGridObject {
 
     public int health = 20;
     public int damage = 5;
+    public bool bombable = false;
     public bool guaranteeDrop;
     public ItemDrop drop;
 
@@ -22,7 +23,7 @@ public class KillableGridObject : RotateableGridObject {
     
     public Text hpBarText;
 
-    public AudioSource audio;
+    public new AudioSource audio;
     public AudioClip attackSound;
     public AudioClip hurtSound;
 
@@ -69,7 +70,7 @@ public class KillableGridObject : RotateableGridObject {
         isAttacking = false;
     }
 
-	// returns true if the attack kill the object
+	// returns true if the attack kills the object
     public virtual bool TakeDamage (int damage) {
   		if (isInvulnerable)
 		{
@@ -78,20 +79,48 @@ public class KillableGridObject : RotateableGridObject {
 
    		gameObject.GetComponent<Animation>().Play("Damaged");
 
+        if (!bombable) {
+            health -= damage;
+
+            if (audio != null)
+            {
+                audio.clip = hurtSound;
+                audio.Play();
+            }
+
+            if (health <= 0 && hasDied == false) {
+                Die();
+                return true;
+            }
+        }
+
+		return false;
+    }
+
+    public virtual bool TakeBombDamage(int damage)
+    {
+        if (isInvulnerable)
+        {
+            return false;
+        }
+
+        gameObject.GetComponent<Animation>().Play("Damaged");
+        
         health -= damage;
 
         if (audio != null)
         {
-        	audio.clip = hurtSound;
-        	audio.Play();
+            audio.clip = hurtSound;
+            audio.Play();
         }
 
-		if (health <= 0 && hasDied == false) {
-			Die ();
-			return true;
-		}
+        if (health <= 0 && hasDied == false)
+        {
+            Die();
+            return true;
+        }
 
-		return false;
+        return false;
     }
 
     protected virtual void Die() {
@@ -153,6 +182,12 @@ public class KillableGridObject : RotateableGridObject {
                     Debug.Log("SMACKING THE WATERMELOON");
                 }
                 target.TakeDamage(damage);
+            }
+            if (this.GetComponent<PlayerGridObject>()) {
+                BombObject bomb = target.GetComponent<BombObject>();
+                if (bomb) {
+                    bomb.Roll(direction);
+                }
             }
         }
         
