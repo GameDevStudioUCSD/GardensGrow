@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class EdgeTrigger : MonoBehaviour
 {
 	public bool isTriggered;
-	Collider2D other;   	// the other collider
+	public Collider2D other;   	// the other collider
 	private List<KillableGridObject> killList = new List<KillableGridObject> ();
 
 	void Update ()
@@ -19,6 +19,8 @@ public class EdgeTrigger : MonoBehaviour
         if (!other.isTrigger) {
             isTriggered = true;
             this.other = other;
+            if (this.gameObject.GetComponent<BombObject>())
+                Debug.Log("Triggered");
         }
 	}
 

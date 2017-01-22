@@ -4,26 +4,27 @@ using System.Collections;
 public class BombPlantObject : PlantGridObject {
 
 	public GameObject bombObject;
-	public int cooldownToRegrowPlant;
+	public int regrowFrames;
 
 	private bool noBomb;
 	private BombObject bomb;
 	private int frames;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		frames = 0;
 		noBomb = true;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
 		if (noBomb) {
 			frames++;
-			if (frames >= cooldownToRegrowPlant) {
+			if (frames >= regrowFrames) {
 				noBomb = false;
 				frames = 0;
-				bomb = (BombObject)Instantiate(bombObject, this.gameObject.transform.position, Quaternion.identity);
+                GameObject newBomb = (GameObject)Instantiate(bombObject, this.gameObject.transform.position, Quaternion.identity);
+                bomb = newBomb.GetComponent<BombObject>();
 				Debug.Log(frames);
 				bomb.setBombPlantObject(this);
 			}
