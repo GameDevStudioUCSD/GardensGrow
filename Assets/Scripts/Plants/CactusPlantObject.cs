@@ -35,14 +35,7 @@ public class CactusPlantObject : PlantGridObject {
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            StartCoroutine(punchAnimationWaiting()); //changeable
-            other.gameObject.GetComponent<EnemyGridObject>().TakeDamage(damage);
-            for (int i = 0; i < knockBackPower; i++)
-            {
-                other.gameObject.GetComponent<MoveableGridObject>().Move(dir);
-            }
-            StartCoroutine(punchCD());  //changeable
-            isAttacking = false;
+            StartCoroutine(punchAnimationWaiting(other,dir)); //changeable
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -56,40 +49,48 @@ public class CactusPlantObject : PlantGridObject {
                     direction = Globals.Direction.South;
                     isAttacking = true;
                     Punch(other, Globals.Direction.South);
-                    //anim.SetInteger("Direction", 1);
+                    anim.SetInteger("Direction", 2);
                 }
                 else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
                 {
                     direction = Globals.Direction.North;
                     isAttacking = true;
                     Punch(other, Globals.Direction.North);
-                    //anim.SetInteger("Direction", 0);
+                    anim.SetInteger("Direction", 0);
                 }
                 else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
                 {
                     direction = Globals.Direction.East;
                     isAttacking = true;
                     Punch(other, Globals.Direction.East);
-                    //anim.SetInteger("Direction", 2);
+                    anim.SetInteger("Direction", 1);
                 }
                 else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
                 {
                     direction = Globals.Direction.West;
                     isAttacking = true;
                     Punch(other, Globals.Direction.West);
-                    //anim.SetInteger("Direction", 3);
+                    anim.SetInteger("Direction", 3);
                 }
             }
         }
     }
 
-    IEnumerator punchAnimationWaiting()
+    IEnumerator punchAnimationWaiting(Collider2D other, Globals.Direction dir)
     {
         yield return new WaitForSeconds(punchAnimationWait);
+        other.gameObject.GetComponent<EnemyGridObject>().TakeDamage(damage);
+        for (int i = 0; i < knockBackPower; i++)
+        {
+            other.gameObject.GetComponent<MoveableGridObject>().Move(dir);
+        }
+        StartCoroutine(punchCD());  //changeable
     }
 
     IEnumerator punchCD()
     {
+        anim.SetInteger("Direction", 5);
         yield return new WaitForSeconds(punchCoolDown);
+        isAttacking = false;
     }
 }
