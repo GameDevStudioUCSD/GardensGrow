@@ -10,8 +10,8 @@ public class PlayerGridObject : MoveableGridObject {
     private float verticalAxis;
     public int knockBackPower;
 
-    private Animator animator;
-    private Animation anim;
+    public Animator animator;
+    public Animation anim;
     public bool canMove;
 
     //Used to determine if player should or shouldn't take damage when on a platform with lava

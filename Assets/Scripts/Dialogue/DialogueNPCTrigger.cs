@@ -40,6 +40,8 @@ public class DialogueNPCTrigger : MoveableGridObject {
             }
             if (moving)
             {
+                player.canMove = false;
+                player.animator.SetBool("IsWalking", false);
                 Mover(Globals.Direction.South);
                 counter++;
                 if(counter > moveDist)
