@@ -73,7 +73,11 @@ public class TurbinePlantObject : PlantGridObject
     void OnTriggerStay2D(Collider2D other)
     {
         MoveableGridObject otherGridObject = other.GetComponent<MoveableGridObject>();
-        if (otherGridObject)
+        BombObject bombObject = other.GetComponent<BombObject>();
+        if (bombObject) {
+            bombObject.Roll(direction);
+        }
+        else if (otherGridObject)
         {
            	otherGridObject.Move(direction);
            	EnemyGridObject enemyGridObject = other.gameObject.GetComponent<EnemyGridObject>();

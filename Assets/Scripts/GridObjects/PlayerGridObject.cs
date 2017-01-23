@@ -10,8 +10,8 @@ public class PlayerGridObject : MoveableGridObject {
     private float verticalAxis;
     public int knockBackPower;
 
-    private Animator animator;
-    private Animation anim;
+    public Animator animator;
+    public Animation anim;
     public bool canMove;
 
     //Used to determine if player should or shouldn't take damage when on a platform with lava
@@ -23,12 +23,13 @@ public class PlayerGridObject : MoveableGridObject {
     protected override void Start () {
         base.Start();
 
-        //this.gameObject.transform.position = Globals.spawnLocation;
+       this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
         animator = GetComponent<Animator>();
         dialogue = canvas.dialogUI;
+        Globals.player = this;
 	}
 	
 	// Update is called once per frame
@@ -99,9 +100,11 @@ public class PlayerGridObject : MoveableGridObject {
                 //knockBack logic
                 foreach (MoveableGridObject target in killList)
                 {
-                    for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
-                    {
-                        target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    if (!(target.gameObject.GetComponent<BombObject>())) {
+                        for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
+                        {
+                            target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                        }
                     }
                 }
             }

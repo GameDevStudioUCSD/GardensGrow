@@ -42,7 +42,7 @@ public class TileMap : MonoBehaviour {
             // Tile's position with respect to the tilemap's position
             tilePosition -= this.transform.position;
 
-            Debug.Log(tilePosition);
+            //Debug.Log(tilePosition);
 
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
         }

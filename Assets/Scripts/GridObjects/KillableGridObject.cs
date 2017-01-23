@@ -6,15 +6,11 @@ using System.Collections.Generic;
 
 public class KillableGridObject : RotateableGridObject {
     public LootTable lootTable;
-	//public ItemDrop[] itemDrops;
 
     public int health = 20;
     public int damage = 5;
-    //public bool guaranteeDrop;
-    //public ItemDrop drop;
+    public bool bombable = false;
 
-    //public int chanceOfDrop;
-    //public int[] itemDropPercentages;
 	public AttackCollider southHitCollider;
 	public AttackCollider westHitCollider;
 	public AttackCollider northHitCollider;
@@ -70,7 +66,7 @@ public class KillableGridObject : RotateableGridObject {
         isAttacking = false;
     }
 
-	// returns true if the attack kill the object
+	// returns true if the attack kills the object
     public virtual bool TakeDamage (int damage) {
   		if (isInvulnerable)
 		{
@@ -79,6 +75,33 @@ public class KillableGridObject : RotateableGridObject {
 
    		gameObject.GetComponent<Animation>().Play("Damaged");
 
+        if (!bombable) {
+            health -= damage;
+
+            if (audioSource != null)
+            {
+                audioSource.clip = hurtSound;
+                audioSource.Play();
+            }
+
+            if (health <= 0 && hasDied == false) {
+                Die();
+                return true;
+            }
+        }
+
+		return false;
+    }
+
+    public virtual bool TakeBombDamage(int damage)
+    {
+        if (isInvulnerable)
+        {
+            return false;
+        }
+
+        gameObject.GetComponent<Animation>().Play("Damaged");
+        
         health -= damage;
 
         if (audioSource != null)
@@ -87,12 +110,13 @@ public class KillableGridObject : RotateableGridObject {
         	audioSource.Play();
         }
 
-		if (health <= 0 && hasDied == false) {
-			Die ();
-			return true;
-		}
+        if (health <= 0 && hasDied == false)
+        {
+            Die();
+            return true;
+        }
 
-		return false;
+        return false;
     }
 
     protected virtual void Die() {
@@ -154,6 +178,12 @@ public class KillableGridObject : RotateableGridObject {
                     Debug.Log("SMACKING THE WATERMELOON");
                 }
                 target.TakeDamage(damage);
+            }
+            if (this.GetComponent<PlayerGridObject>()) {
+                BombObject bomb = target.GetComponent<BombObject>();
+                if (bomb) {
+                    bomb.Roll(direction);
+                }
             }
         }
         
