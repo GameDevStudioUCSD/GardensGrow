@@ -64,12 +64,12 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
             // The following switch statement handles the MDP's state transition logic
             switch(state) {                case State.TakeStep:
                 
-                    if( Disabled() ) {
+                    if( IsDisabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
                     }
-                    if( FinishedStep() ) {
+                    if( IsStepFinished() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.EvaluatePath;
@@ -87,12 +87,12 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     break;
                 case State.Attack:
                 
-                    if( Disabled() ) {
+                    if( IsDisabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
                     }
-                    if( FinishedAttack() ) {
+                    if( IsAttackFinished() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Idle;
@@ -100,7 +100,7 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     break;
                 case State.ChasePlayer:
                 
-                    if( Disabled() ) {
+                    if( IsDisabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
@@ -118,7 +118,7 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     break;
                 case State.Idle:
                 
-                    if( Disabled() ) {
+                    if( IsDisabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
@@ -142,7 +142,7 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     break;
                 case State.PathFind:
                 
-                    if( Disabled() ) {
+                    if( IsDisabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
@@ -166,7 +166,7 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     break;
                 case State.Disabled:
                 
-                    if( Disabled() ) {
+                    if( IsDisabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
@@ -180,17 +180,17 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
                     break;
                 case State.EvaluatePath:
                 
-                    if( Disabled() ) {
+                    if( IsDisabled() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.Disabled;
                     }
-                    if( !FinishedStep() ) {
+                    if( !IsStepFinished() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.TakeStep;
                     }
-                    if( FinishedPath() ) {
+                    if( IsPathFinished() ) {
                         // Probability of transition 100.0%
                         if( true )
                             state = State.PathFind;
@@ -231,12 +231,12 @@ public abstract class SmartChasingMonsterAbstractFSM : EnemyGridObject, IStateMa
     protected abstract IEnumerator ExecuteActionDisabled();
     protected abstract IEnumerator ExecuteActionEvaluatePath();
     // Transitional Logic Functions
-    protected abstract bool FinishedAttack();
-    protected abstract bool FinishedPath();
+    protected abstract bool IsAttackFinished();
+    protected abstract bool IsPathFinished();
     protected abstract bool CanSeePlayer();
-    protected abstract bool Disabled();
+    protected abstract bool IsDisabled();
     protected abstract bool CanAttack();
-    protected abstract bool FinishedStep();
+    protected abstract bool IsStepFinished();
     public void RunFSM()
     {
         RunFSM(Time.fixedDeltaTime);

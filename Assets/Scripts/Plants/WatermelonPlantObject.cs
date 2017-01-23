@@ -19,7 +19,7 @@ public class WatermelonPlantObject : PlantGridObject
     //private Collider2D directionalCollider;
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
         counter = 0;
         animator = animator = GetComponent<Animator>();
@@ -34,7 +34,7 @@ public class WatermelonPlantObject : PlantGridObject
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (health <= 0)
         {

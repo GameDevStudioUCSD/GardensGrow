@@ -97,7 +97,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         return visionModule.CanSeePlayer(direction);
     }
 
-    protected override bool Disabled()
+    protected override bool IsDisabled()
     {
         return isDisabled;
     }
@@ -200,7 +200,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
         yield return null;
     }
 
-    protected override bool FinishedAttack()
+    protected override bool IsAttackFinished()
     {
         if (TimeInState() > attackDelay)
         {
@@ -220,7 +220,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     /// needs to be re-evaluated due to player dying/moving.
     /// </summary>
     /// <returns>Are we done with the current path?</returns>
-    protected override bool FinishedPath()
+    protected override bool IsPathFinished()
     {
         return currentPathIndex >= path.Count || needsReevaluation;
     }
@@ -230,7 +230,7 @@ public class SmartChasingMonster : SmartChasingMonsterAbstractFSM {
     /// This check adds a slight delay before the next step is taken.
     /// </summary>
     /// <returns>Has enough time passed for the delay?</returns>
-    protected override bool FinishedStep()
+    protected override bool IsStepFinished()
     {
         return TimeInState() > pathingDelay;
     }

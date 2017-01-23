@@ -7,13 +7,13 @@ using System.Collections.Generic;
 public class AttackCollider : MonoBehaviour {
 
     // Collider this script is for
-    private Collider2D collider;
+    private Collider2D coll;
 
     private List<KillableGridObject> killList = new List<KillableGridObject>();
 
     void Start()
     {
-        collider = GetComponent<Collider2D>();
+        coll = GetComponent<Collider2D>();
     }
 
 	// Update is called once per frame

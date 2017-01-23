@@ -19,11 +19,11 @@ public class CactusPlantObject : PlantGridObject {
     private bool isPunching = false;
     private Animator anim;
      
-	void Start () {
+	protected override void Start () {
         anim = this.gameObject.GetComponent<Animator>();
 	}
 	
-	void Update ()
+	protected override void Update ()
     {
         if (health <= 0)
         {

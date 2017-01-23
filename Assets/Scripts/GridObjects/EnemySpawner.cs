@@ -28,7 +28,7 @@ public class EnemySpawner : KillableGridObject
     private int randInt;
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
         animator = GetComponent<Animator>();
@@ -39,7 +39,7 @@ public class EnemySpawner : KillableGridObject
     }
 
     // Update is called once per frame
-    void Update() {
+    protected override void Update() {
         if (health <= 0)
         {
             StartCoroutine(waitForDeathAnim());

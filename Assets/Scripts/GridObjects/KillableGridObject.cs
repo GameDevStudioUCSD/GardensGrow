@@ -5,15 +5,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class KillableGridObject : RotateableGridObject {
-	public ItemDrop[] itemDrops;
+    public LootTable lootTable;
+	//public ItemDrop[] itemDrops;
 
     public int health = 20;
     public int damage = 5;
-    public bool guaranteeDrop;
-    public ItemDrop drop;
+    //public bool guaranteeDrop;
+    //public ItemDrop drop;
 
-    public int chanceOfDrop;
-    public int[] itemDropPercentages;
+    //public int chanceOfDrop;
+    //public int[] itemDropPercentages;
 	public AttackCollider southHitCollider;
 	public AttackCollider westHitCollider;
 	public AttackCollider northHitCollider;
@@ -22,7 +23,7 @@ public class KillableGridObject : RotateableGridObject {
     
     public Text hpBarText;
 
-    public AudioSource audio;
+    public AudioSource audioSource;
     public AudioClip attackSound;
     public AudioClip hurtSound;
 
@@ -80,10 +81,10 @@ public class KillableGridObject : RotateableGridObject {
 
         health -= damage;
 
-        if (audio != null)
+        if (audioSource != null)
         {
-        	audio.clip = hurtSound;
-        	audio.Play();
+        	audioSource.clip = hurtSound;
+        	audioSource.Play();
         }
 
 		if (health <= 0 && hasDied == false) {
@@ -114,10 +115,10 @@ public class KillableGridObject : RotateableGridObject {
 
         isAttacking = true;
 
-		if (audio != null)
+		if (audioSource != null)
 		{
-			audio.clip = attackSound;
-			audio.Play();
+			audioSource.clip = attackSound;
+			audioSource.Play();
 		}
 
         switch (direction)
@@ -159,6 +160,7 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     void SpawnItem() {
+        /*
     	if (guaranteeDrop) {
     		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
     	}
@@ -184,5 +186,11 @@ public class KillableGridObject : RotateableGridObject {
 	    		}
 	    	}
     	}
+        */
+        GameObject droppedItem = lootTable.GetItem();
+
+        // If there was a dropped item, create it
+        if (droppedItem)
+            Instantiate(droppedItem, transform.position, Quaternion.identity);
     }
 }

@@ -18,7 +18,7 @@ public class RangedEnemy : EnemyGridObject {
     public GameObject laser;
 
 
-    void Start()
+    protected override void Start()
     {
         uic = FindObjectOfType<UIController>();
 

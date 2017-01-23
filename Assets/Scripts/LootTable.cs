@@ -15,11 +15,11 @@ public class LootTable : MonoBehaviour
     {
         foreach(LootTableEntry entry in entries)
         {
-            totalWeight += entry.weight;
+            totalWeight += entry.odds;
         }
     }
 
-    public ItemDrop GetItem()
+    public GameObject GetItem()
     {
         // If the loot table is empty, drop nothing
         if(entries.Count == 0)
@@ -36,9 +36,9 @@ public class LootTable : MonoBehaviour
         // Items that fall into the range are the items that are dropped.
         foreach(LootTableEntry entry in entries)
         {
-            currentSample += entry.weight;
+            currentSample += entry.odds;
 
-            if(randomNumber <= currentSample)
+            if (randomNumber <= currentSample)
                 return entry.item;
         }
 
@@ -46,11 +46,12 @@ public class LootTable : MonoBehaviour
         return null;
     }
 
-    //[System.Serializable]
+    [System.Serializable]
     public class LootTableEntry
     {
-        public ItemDrop item;
+        public GameObject item;
+        [Tooltip("The weight of getting this item to drop compared to other items.")]
         [Range(1, 1000)]
-        public int weight = 1;
+        public int odds = 1;
     }
 }

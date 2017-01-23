@@ -29,7 +29,7 @@ public class LavaBossAI : KillableGridObject {
 	private const float BOSS_TIMER_DURATION = 7f;
 
 	// Use this for initialization
-	void Start() {
+	protected override void Start() {
 		base.Start();
 		currentSpawnerIndex = -1; // so boss randomly spawns in any corner
 		state = BossState.StartEmerge;
@@ -38,7 +38,7 @@ public class LavaBossAI : KillableGridObject {
 	}
 
 	// Update is called once per frame
-	void Update() {
+	protected override void Update() {
 		base.Update();
 		int numSpawns = 0;
 		EnemySpawner current;

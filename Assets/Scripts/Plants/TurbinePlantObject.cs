@@ -18,7 +18,7 @@ public class TurbinePlantObject : PlantGridObject
 	private Animator animator;
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
@@ -26,7 +26,7 @@ public class TurbinePlantObject : PlantGridObject
     }
 
     // Update is called once per frame
-	protected virtual void Update()
+	protected override void Update()
     {
         if (health <= 0)
         {

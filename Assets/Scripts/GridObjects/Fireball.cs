@@ -21,7 +21,7 @@ public class Fireball : StaticGridObject
 	private PlayerGridObject player;
 	private int fallFrames;
 
-	void Start() {
+	protected override void Start() {
 		fallingSpeed = Random.Range(FALLING_SPEED_MIN, FALLING_SPEED_MAX) / FALLING_SPEED_INCR;
 		state = FireballState.PreFalling;
 		fallFrames = 0;

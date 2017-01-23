@@ -9,7 +9,7 @@ public class HostileTerrainObject : TerrainObject {
 	public bool activeCollider;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		base.Start();
 
 		if (!activeCollider) {

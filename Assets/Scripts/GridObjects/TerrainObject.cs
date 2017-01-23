@@ -12,7 +12,7 @@ public class TerrainObject : StaticGridObject
 
     private SpriteRenderer spriteRenderer;
     // Use this for initialization
-    void Start ()
+    protected override void Start ()
     {
     	Randomize();
     	base.Start();

@@ -10,16 +10,16 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     public TileMap tileMap;
     public GameObject targetObject;
 
-    [Header("Parameters")]
+    [Header("Pathfinding Parameters")]
     [Tooltip("Number of move calls per step.")]
-    [Range(0, 32)]
-    public int moveAmount = 2;
+    [Range(1, 64)]
+    public int moveAmount = 32;
     [Tooltip("Delay between each step.")]
     public float stepDelay = 1.0f;
     [Tooltip("Delay between attacks.")]
     public float attackDelay = 1.0f;
     [Tooltip("The allowed distance error from the center of a tile when moving from tile to tile")]
-    public float allowedOffset = 0.80f;
+    public float allowedOffset = 0.50f;
 
     public bool debug = false;
 
@@ -57,6 +57,9 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
         visionModule = GetComponent<Vision>();
 
         startTile = tileMap.GetNearestTile(transform.position);
+        // TODO: 
+        if (startTile == null)
+            Destroy(this);
         currentTile = startTile;
 
         stepToMoveDelay = stepDelay / (float)moveAmount;
@@ -108,10 +111,9 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     protected override IEnumerator ExecuteActionAttack()
     {
         if(!attackOnCooldown)
-        {
-            attackOnCooldown = true;
             Attack();
-        }
+
+        attackOnCooldown = true;
 
         yield return null;
     }
@@ -149,15 +151,10 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionChaseTarget()
     {
-        for(int i = 0; i < moveAmount; i++)
-        {
-            Move(direction);
-        }
+        Move(direction);
 
         yield return null;
     }
-
-
 
     /// <summary>
     /// Create the path from current location to the target object
@@ -185,7 +182,6 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionWander()
     {
-        Debug.Log("ADD WANDER");
         Globals.Direction dir = (Globals.Direction)UnityEngine.Random.Range(0, 4);
         path.Add(dir);
         yield return null;
@@ -211,7 +207,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
         // Check cooldown
         if(TimeInState() > attackDelay)
         {
-            attackOnCooldown = false;
+            FinishedAttack();
 
             AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
 
@@ -223,6 +219,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
                 // Check if any of the killables are an enemy
                 foreach (KillableGridObject target in killList)
                 {
+                    Rotate(direction);
                     if (target.faction != this.faction)
                         return true;
                 }

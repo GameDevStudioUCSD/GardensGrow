@@ -5,14 +5,14 @@ public class Building : KillableGridObject{
 
 	Animator animator;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		animator = GetComponent <Animator>();
 		if (animator)
 			animator.SetInteger ("health", health);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
 		if (animator)
 			animator.SetInteger ("health", health);
 	}

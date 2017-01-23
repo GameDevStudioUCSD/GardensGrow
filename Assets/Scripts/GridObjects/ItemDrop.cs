@@ -14,7 +14,7 @@ public class ItemDrop : StaticGridObject {
 	private int life;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		life = 0;
 	}
 	
