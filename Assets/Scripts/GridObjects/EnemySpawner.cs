@@ -159,8 +159,8 @@ public class EnemySpawner : KillableGridObject
     */
 
     protected override void Die() {
+		deathEvent.Invoke();
         base.Die();
-        deathEvent.Invoke();
     }
 
     IEnumerator waitForDeathAnim()
