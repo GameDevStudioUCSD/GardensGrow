@@ -23,7 +23,11 @@ public class PlayerGridObject : MoveableGridObject {
     protected override void Start () {
         base.Start();
 
+<<<<<<< HEAD
         this.gameObject.transform.position = Globals.spawnLocation;
+=======
+       this.gameObject.transform.position = Globals.spawnLocation;
+>>>>>>> 8f5586ddaba6c4fbac6eb61fc90c72876b77a633
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
