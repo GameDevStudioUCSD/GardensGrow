@@ -9,6 +9,7 @@ public class TileMap : MonoBehaviour {
 
     // a grid to hold references to every Tile in the TileMap
     public Tile[,] grid;
+    public Node[,] nodeGrid;
 
     public bool debug = false;
     private GameObject[] rooms;
@@ -45,6 +46,8 @@ public class TileMap : MonoBehaviour {
             //Debug.Log(tilePosition);
 
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
+
+            nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);
         }
 
 	}
