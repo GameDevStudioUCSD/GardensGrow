@@ -75,7 +75,7 @@ public class Tile : MonoBehaviour {
         // Create raycast to see if there are any barriers on this tile
         int numRayCollisions = tileCollider.Raycast(Vector2.right, results, 0.5f);
 
-        Debug.Log("Num col: " + numRayCollisions);
+        //Debug.Log("Num col: " + numRayCollisions);
 
         isPatheable = true;
 
@@ -85,12 +85,17 @@ public class Tile : MonoBehaviour {
             for(int i = 0; i < numRayCollisions; i++)
             {
                 TerrainObject terrainObj = results[i].collider.GetComponent<TerrainObject>();
-                Debug.Log(results[i].collider.gameObject.name);
+                //Debug.Log(results[i].collider.gameObject.name);
                 if(terrainObj)
                 {
                     if(terrainObj.isBarrier)
                     {
                         isPatheable = false;
+                        break;
+                    }
+                    else
+                    {
+                        isPatheable = true;
                         break;
                     }
                 }

@@ -47,7 +47,7 @@ public class TileMap : MonoBehaviour {
 
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
 
-            nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);
+            //nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);
         }
 
 	}
