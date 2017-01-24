@@ -15,14 +15,19 @@ public class EnemySpawner : KillableGridObject
 
     //Keep track of spawns
 
+    [Header("Spawning Options")]
     public float spawnDelay;
     public int maxSpawns;
     public bool spawnsOnce = false;
+    [Tooltip("Should the spawner start spawning from start?")]
+    public bool spawnOnStart = true;
+
     private int currSpawns = 0;
     private List<GameObject> list = new List<GameObject>();
     private Animator animator;
     private Quaternion spawnRotation = Quaternion.identity;
     private PlayerGridObject player;
+    private Coroutine spawningCoroutine = null;
 
     System.Random randGen = new System.Random();
     private int randInt;
@@ -32,9 +37,12 @@ public class EnemySpawner : KillableGridObject
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
         animator = GetComponent<Animator>();
-        if (!spawnsOnce) // Continuous spawn
+        if(spawnOnStart)
         {
-            StartCoroutine(spawnRandomDir());
+            if (spawnsOnce)
+                SpawnRandomDir();
+            else
+                spawningCoroutine = StartCoroutine(SpawnRandomDir());
         }
     }
 
@@ -115,7 +123,7 @@ public class EnemySpawner : KillableGridObject
         }
     }
 
-    IEnumerator spawnRandomDir()
+    IEnumerator SpawnRandomDir()
     {
         while (health > 0)
         {
@@ -126,6 +134,13 @@ public class EnemySpawner : KillableGridObject
             yield return new WaitForSeconds(spawnDelay);
         }
     }
+
+    public void BeginSpawning()
+    {
+        if (spawningCoroutine != null)
+            spawningCoroutine = StartCoroutine(SpawnRandomDir());
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player") && player.isAttacking)

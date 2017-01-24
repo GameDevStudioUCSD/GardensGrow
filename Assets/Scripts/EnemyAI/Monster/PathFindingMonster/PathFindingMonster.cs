@@ -16,8 +16,6 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     public int moveAmount = 32;
     [Tooltip("Delay between each step.")]
     public float stepDelay = 1.0f;
-    [Tooltip("Delay between attacks.")]
-    public float attackDelay = 1.0f;
     [Tooltip("The allowed distance error from the center of a tile when moving from tile to tile")]
     public float allowedOffset = 0.50f;
 
@@ -47,7 +45,6 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     // Transition conditions
     private bool pathNeedsReevaluation = false;
-    private bool attackOnCooldown = false;
     private bool pathIsComplete = false;
 
     protected override void Start()
@@ -110,10 +107,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     protected override IEnumerator ExecuteActionAttack()
     {
-        if(!attackOnCooldown)
-            Attack();
-
-        attackOnCooldown = true;
+        Attack();
 
         yield return null;
     }
@@ -205,23 +199,21 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     protected override bool CanAttack()
     {
         // Check cooldown
-        if(TimeInState() > attackDelay)
+        AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
+
+        List<KillableGridObject> killList = edgeTrigger.GetKillList();
+
+        // Check if there is anything to kill
+        if (killList.Count > 0)
         {
-            FinishedAttack();
-
-            AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
-
-            List<KillableGridObject> killList = edgeTrigger.GetKillList();
-
-            // Check if there is anything to kill
-            if (killList.Count > 0)
+            // Check if any of the killables are an enemy
+            foreach (KillableGridObject target in killList)
             {
-                // Check if any of the killables are an enemy
-                foreach (KillableGridObject target in killList)
+                if (target.faction != this.faction)
                 {
-                    Rotate(direction);
-                    if (target.faction != this.faction)
-                        return true;
+                    // Rotate in the direction of the target monster is attacking
+                    Rotate(Globals.VectorsToDirection(transform.position, target.transform.position));
+                    return true;
                 }
             }
         }
