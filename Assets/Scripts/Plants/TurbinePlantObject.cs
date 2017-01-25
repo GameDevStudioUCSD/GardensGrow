@@ -22,12 +22,13 @@ public class TurbinePlantObject : PlantGridObject
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
-        setDirection();
     }
 
     // Update is called once per frame
 	protected override void Update()
     {
+        setDirection();
+
         if (health <= 0)
         {
             Destroy(this.gameObject);
