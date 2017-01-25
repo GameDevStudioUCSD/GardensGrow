@@ -16,19 +16,24 @@ public class TurbinePlantObject : PlantGridObject
     private Collider2D directionalCollider;
 
 	private Animator animator;
-
+    private int counter = 0; 
     // Use this for initialization
     protected override void Start()
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
+        setDirection();
     }
 
     // Update is called once per frame
 	protected override void Update()
     {
-        setDirection();
-
+        //the following if fixed a bug, plz don't remove it
+        counter++;
+        if (counter == 50)
+        {
+            setDirection();
+        }
         if (health <= 0)
         {
             Destroy(this.gameObject);
