@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Globals {
 
@@ -9,16 +10,47 @@ public class Globals {
     public enum Faction { Ally=0, Enemy=1}
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
 
-    public struct PlantData {
-    	int PlantType;
-    	string PlantScene;
+    public struct PlantData : IComparable <PlantData>{
+    	public Vector3 PlantLocation;
+    	public string PlantScene;
+
+    	public PlantData(Vector3 location, string scene) {
+    		PlantLocation = location;
+    		PlantScene = scene;
+    	}
+
+    	public int CompareTo(PlantData other) {
+    		if (this.PlantLocation.x < other.PlantLocation.x) {
+    			return -1;
+    		}
+			else if (this.PlantLocation.x > other.PlantLocation.x) {
+    			return 1;
+    		}
+			else if (this.PlantLocation.y < other.PlantLocation.y) {
+    			return -1;
+    		}
+			else if (this.PlantLocation.y > other.PlantLocation.y) {
+    			return 1;
+    		}
+			else if (this.PlantLocation.z < other.PlantLocation.z) {
+    			return -1;
+    		}
+			else if (this.PlantLocation.z > other.PlantLocation.z) {
+    			return 1;
+    		}
+    		else if (String.Compare(this.PlantScene, other.PlantScene) < 0) {
+    			return -1;
+    		}
+			else if (String.Compare(this.PlantScene, other.PlantScene) > 0) {
+    			return -1;
+    		}
+    		else {
+    			return 0;
+    		}
+    	}
     }
 
-	public static List<int> plantedListTypes = new List<int>(); 
-    public static List<Vector3> plantedListVectors = new List<Vector3>();
-    public static List<string> plantedListScenes = new List<string>();
-
-    public static SortedList<Vector3, PlantData> plants = new SortedList<Vector3, PlantData>();
+    public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();
 
     public static PlayerGridObject player;
 
