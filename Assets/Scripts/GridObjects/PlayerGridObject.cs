@@ -151,50 +151,13 @@ public class PlayerGridObject : MoveableGridObject {
         // Vector3 dirr = Globals.DirectionToVector(direction);
         // PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], transform.position + dirr, Quaternion.identity);
         if (Globals.inventory[plantNumber] > 0){
-			switch (direction) {
-				case Globals.Direction.East:
-					if (!eastCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+			PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				case Globals.Direction.West:
-					if (!westCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				case Globals.Direction.South:
-					if (!southCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				case Globals.Direction.North:
-					if (!northCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				default:
-					break;
-			}
+			Globals.inventory[plantNumber]--;
+
+			Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName);
+			Globals.plants.Add(thisPlant, plantNumber);
+
 			canvas.UpdateUI();
 		}
 	}
