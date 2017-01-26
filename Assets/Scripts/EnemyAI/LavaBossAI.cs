@@ -120,7 +120,6 @@ public class LavaBossAI : KillableGridObject {
 
 	IEnumerator HideAnimation() {
 		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        player.gameObject.transform.position = Globals.spawnLocation;
         for (int i = EmergeFrames.Count - 1; i  >= 0; i--) {
 			spriteRenderer.sprite = EmergeFrames[i];
 

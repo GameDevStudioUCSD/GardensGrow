@@ -23,6 +23,7 @@ public class HostileTerrainObject : TerrainObject {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			if (player.onPlatform == false) {
 				player.TakeDamage(damage);
+				player.gameObject.transform.position = Globals.spawnLocation;
 			}
 		}
 	}

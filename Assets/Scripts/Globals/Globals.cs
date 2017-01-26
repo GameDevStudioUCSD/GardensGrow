@@ -9,9 +9,16 @@ public class Globals {
     public enum Faction { Ally=0, Enemy=1}
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
 
+    public struct PlantData {
+    	int PlantType;
+    	string PlantScene;
+    }
+
 	public static List<int> plantedListTypes = new List<int>(); 
     public static List<Vector3> plantedListVectors = new List<Vector3>();
     public static List<string> plantedListScenes = new List<string>();
+
+    public static SortedList<Vector3, PlantData> plants = new SortedList<Vector3, PlantData>();
 
     public static PlayerGridObject player;
 
