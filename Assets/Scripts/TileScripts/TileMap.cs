@@ -19,10 +19,8 @@ public class TileMap : MonoBehaviour {
     {
     	int plantType;
     	Vector3 plantVector;
-		Debug.Log("This scene: " + Application.loadedLevelName);
 		foreach (KeyValuePair<Globals.PlantData, int> kvp in Globals.plants)
 		{
-			Debug.Log("Plant scene: " + kvp.Key.PlantScene);
 			if (kvp.Key.PlantScene == Application.loadedLevelName) {
 				plantVector = kvp.Key.PlantLocation;
 				plantType = kvp.Value;
