@@ -117,23 +117,6 @@ public class PlayerGridObject : MoveableGridObject {
                     Plant(i - 1);
             }
         }
-
-		/**
-		 * THIS IS A QUICK HACK SEGMENT TO GET A TEST FOR DIALOGUE GOING!
-		 * 
-		 * POSSIBLE FEATURE: TAB CAN BE USED TO HELP GUIDE PLAYERS TOWARD
-		 * OBJECTIVES. LOOKUP OTENKO FROM BOKTAI.
-		 * 
-		 * I MESSED WITH SOME PREFABS AND MOVED THE SEED UI UP TO THE TOP
-		 * FOR CONVENIENCE.
-		 * 
-		 **/
-//		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
-//			dialogue.SetActive (true);
-//
-//			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
-//			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
-//		}
 		
 	}
 		
