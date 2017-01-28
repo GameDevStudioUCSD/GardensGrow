@@ -128,29 +128,4 @@ public class WatermelonPlantObject : PlantGridObject
             counter++;
         }
     }
-    /*
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        
-        if(other.gameObject.tag == "Enemy" || other.CompareTag("EnemySpawner"))
-        {
-
-            if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.South;
-            }
-            else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.North;
-            }
-            else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.East;
-            }
-            else if(other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
-            {
-                direction = Globals.Direction.West;
-            }
-        }
-    }*/
 }
