@@ -4,7 +4,7 @@ using System.Collections;
 public class ScorpionMonster : PathFindingMonster {
     public int tailDamage = 4; //damage done by tail attack
     public int numClawAttacks = 2; //consecutive times scorpion uses claw attack before using tail attack
-    public int stuckFrames = 180; //frames scorpion will be stuck after a missed tail attack
+    public int stuckFrames = 60; //frames scorpion will be stuck after a missed tail attack
     public int unstickFrames = 3; //length of unstick animation in frames
     public AudioClip tailAttackSound; //plays for tail attack
     protected int attackCount = 0; //number of attacks performed since last tail attack
@@ -23,6 +23,9 @@ public class ScorpionMonster : PathFindingMonster {
             base.Attack();
         }
         else {
+            //TODO: Create a pause between when the monster starts to attack and when it actually
+            //      hits / does damage to things. Monster should not be able to abort attack partway
+            //      through.
             attackCount = 0;
 
             animator.SetTrigger("Attack"); //TODO: change this to a different Tail animation
@@ -63,6 +66,7 @@ public class ScorpionMonster : PathFindingMonster {
                     hitSomething = true;
                 }
             }
+
             // Tail gets stuck if attack hits nothing
             if (!hitSomething) {
                 state = State.Disabled;
