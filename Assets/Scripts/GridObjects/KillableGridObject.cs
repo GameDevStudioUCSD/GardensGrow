@@ -34,7 +34,7 @@ public class KillableGridObject : RotateableGridObject {
     private const int numDyingFrames = 11;
 
     // Prevents "Die" function from being called more than once if something is taking continuous damage
-    private bool hasDied = false;
+    protected bool hasDied = false;
 
 	// Use this for initialization
 	protected override void Start () {
