@@ -1,7 +1,25 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 6ce8243967f5b7248ac0653b1b5bdc50
 folderAsset: yes
 timeCreated: 1485648144
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+guid: 674f9254bc6a5440d8973b3c5f0451f6
+folderAsset: yes
+timeCreated: 1485646685
+=======
+guid: 6ce8243967f5b7248ac0653b1b5bdc50
+folderAsset: yes
+timeCreated: 1485648144
+>>>>>>> 7e1731b088aebc21f698ef7109bd911176115eb8
+=======
+guid: 6ce8243967f5b7248ac0653b1b5bdc50
+folderAsset: yes
+timeCreated: 1485648144
+>>>>>>> 7e1731b088aebc21f698ef7109bd911176115eb8
+>>>>>>> Stashed changes
 licenseType: Free
 DefaultImporter:
   userData: 
