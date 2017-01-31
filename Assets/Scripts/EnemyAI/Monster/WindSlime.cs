@@ -8,6 +8,8 @@ public class WindSlime : PathFindingMonsterAbstractFSM
 {
     private PlayerGridObject player;
 
+    private int dir2;
+
     private int counter = 0;
     public int turnDelay;
     private int maxSpinCounter = 0;
@@ -99,10 +101,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM
                 // or player.gameObject.direction = Globals.Direction.NEWS;
                 counter = 0;
                 maxSpinCounter++;
-                if(maxSpinCounter > maxSpin / 2)
-                {
-                    player.Move(player.direction);
-                }
+
                 if (maxSpinCounter >= maxSpin)
                 {
                     player.TakeDamage(damage);
@@ -111,6 +110,11 @@ public class WindSlime : PathFindingMonsterAbstractFSM
                     player.canMove = true;
                     maxSpinCounter = 0;
                     //depending on player direction, push player in x direction
+                    dir2 = (int)player.direction*-1;
+                    for(int i=0; i<15; i++)
+                    {
+                        player.Move((Globals.Direction)dir2);
+                    }
                 }
             }
         }
