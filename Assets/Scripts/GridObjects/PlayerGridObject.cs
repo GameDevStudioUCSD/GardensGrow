@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
@@ -18,7 +19,7 @@ public class PlayerGridObject : MoveableGridObject {
     public bool onPlatform;
 
 	private GameObject dialogue;
-
+    private bool invincible;
     // Use this for initialization
     protected override void Start () {
         base.Start();
@@ -149,12 +150,21 @@ public class PlayerGridObject : MoveableGridObject {
     {
         if (damage >= 1)
         {
-            //gameObject.GetComponent<Animation>().Play("Damaged"); deleting as parent class does animation
             canvas.UpdateHealth(health - damage);
         }
-        return base.TakeDamage(damage);
+        if (!invincible)
+        {
+            invincible = true;
+            StartCoroutine(invicibilityWait());
+            return base.TakeDamage(damage);
+        }
+        return base.TakeDamage(0);
     }
-
+    IEnumerator invicibilityWait()
+    {
+        yield return new WaitForSeconds(2.0f);
+        invincible = false;
+    }
     protected virtual void LateUpdate() {
         float pixelSize = Globals.pixelSize;
         Vector3 current = this.transform.position;
