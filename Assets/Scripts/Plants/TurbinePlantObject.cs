@@ -90,7 +90,6 @@ public class TurbinePlantObject : PlantGridObject
         }
         else if (otherGridObject && !other.gameObject.CompareTag("WindSlime"))
         {
-            Debug.Log("" + other.gameObject.tag);
            	otherGridObject.Move(direction);
            	EnemyGridObject enemyGridObject = other.gameObject.GetComponent<EnemyGridObject>();
             if (enemyGridObject)
@@ -101,7 +100,6 @@ public class TurbinePlantObject : PlantGridObject
     }
     IEnumerator killWindSlimeCD(Collider2D other)
     {
-        Debug.Log("die?");
         canKillWindSlime = false;
         spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1, 0.0f);
         GameObject newLilSlime = (GameObject)Instantiate(littleSlime, spawnPosition, spawnRotation);
@@ -126,7 +124,7 @@ public class TurbinePlantObject : PlantGridObject
         other.gameObject.GetComponent<WindSlime>().list.Add(newLilSlime4);
         newLilSlime4.GetComponent<littleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
         newLilSlime4.GetComponent<littleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
-        Debug.Log("die!");
+     
         Destroy(other.gameObject);
 
         yield return new WaitForSeconds(1.0f);

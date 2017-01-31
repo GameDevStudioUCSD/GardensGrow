@@ -173,5 +173,19 @@ public class PlayerGridObject : MoveableGridObject {
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
     }
+    //below is code for de-planting your own plant
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (isAttacking)
+        {
+            if (other.gameObject.GetComponent<PlantGridObject>())
+            {
+                other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
+                Destroy(other.gameObject);
+
+                isAttacking = !isAttacking;
+            }
+        }
+    }
 
 }
