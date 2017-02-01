@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System;
 
 [RequireComponent(typeof(Vision))]
-public class PathFindingMonster : PathFindingMonsterAbstractFSM {
+public class littleWindSlime : PathFindingMonsterAbstractFSM
+{
 
     [Header("Required Components")]
     public TileMap tileMap;
@@ -52,6 +53,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
         path = new List<Globals.Direction>();
         astarAlgorithm = new AStar(tileMap);
         visionModule = GetComponent<Vision>();
+        animator = GetComponent<Animator>();
 
         startTile = tileMap.GetNearestTile(transform.position);
         // TODO: 
@@ -60,8 +62,25 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
         currentTile = startTile;
 
         stepToMoveDelay = stepDelay / (float)moveAmount;
-
         base.Start();
+
+        //StartCoroutine(wait());
+    }
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        path = new List<Globals.Direction>();
+        astarAlgorithm = new AStar(tileMap);
+        visionModule = GetComponent<Vision>();
+
+        startTile = tileMap.GetNearestTile(transform.position);
+        // TODO: 
+        if (startTile == null)
+            Destroy(this);
+        currentTile = startTile;
+
+        stepToMoveDelay = stepDelay / (float)moveAmount;
     }
 
     public void OnDrawGizmos()
@@ -71,7 +90,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
         if (!Application.isPlaying) return;
 
         Vector2 acc = startTile.transform.position;
-        foreach(var v in path)
+        foreach (var v in path)
         {
             var v_real = Globals.DirectionToVector(v);
             Gizmos.DrawRay(acc, v_real);
@@ -108,7 +127,6 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     protected override IEnumerator ExecuteActionAttack()
     {
         Attack();
-
         yield return null;
     }
 
@@ -240,5 +258,12 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
     public override void Reset() { }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+        }
+    }
 
 }

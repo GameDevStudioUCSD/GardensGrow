@@ -125,7 +125,7 @@ public class KillableGridObject : RotateableGridObject {
             Application.LoadLevel(Application.loadedLevel);
         }
 
-        if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner") {
+        if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner" || this.gameObject.GetComponent<PlantGridObject>()) {
         	SpawnItem();
         }
         isDying = true;
@@ -175,6 +175,7 @@ public class KillableGridObject : RotateableGridObject {
             {
                 if(this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>())
                 {
+                    //note enemy kill plant doesn't work
                     Debug.Log("SMACKING THE WATERMELOON");
                 }
                 target.TakeDamage(damage);
@@ -189,7 +190,7 @@ public class KillableGridObject : RotateableGridObject {
         
     }
 
-    void SpawnItem() {
+    public void SpawnItem() {
         /*
     	if (guaranteeDrop) {
     		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
