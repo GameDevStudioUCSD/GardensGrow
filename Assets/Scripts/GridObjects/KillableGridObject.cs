@@ -73,7 +73,8 @@ public class KillableGridObject : RotateableGridObject {
 			return false;
 		}
 
-   		gameObject.GetComponent<Animation>().Play("Damaged");
+        Animation animation = gameObject.GetComponent<Animation>();
+        if (animation) animation.Play("Damaged");
 
         if (!bombable) {
             health -= damage;
