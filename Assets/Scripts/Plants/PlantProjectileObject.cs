@@ -65,9 +65,5 @@ public class PlantProjectileObject : MonoBehaviour {
             enemy = other.gameObject.GetComponent<KillableGridObject>();
             enemy.TakeDamage(damage);
         }
-        else if(other.gameObject.tag == "Player")
-        {
-            Destroy(this.gameObject);
-        }
     }
 }
