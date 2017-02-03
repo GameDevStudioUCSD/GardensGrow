@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	private BossState state;
+	private List<RollingBoulder> rocks = new List<RollingBoulder>();
 
 	// Use this for initialization
 	protected override void Start () {
