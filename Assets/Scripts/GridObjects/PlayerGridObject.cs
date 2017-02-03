@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
 	public UIController canvas;
+
+    //check if can plant here
+
+    bool canPlant = true;
 
     private float horizontalAxis;
     private float verticalAxis;
@@ -135,14 +140,38 @@ public class PlayerGridObject : MoveableGridObject {
         // Vector3 dirr = Globals.DirectionToVector(direction);
         // PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], transform.position + dirr, Quaternion.identity);
         if (Globals.inventory[plantNumber] > 0){
-			PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-			Globals.inventory[plantNumber]--;
 
-			Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName);
-			Globals.plants.Add(thisPlant, plantNumber);
+            canPlant = true;
+            foreach (KeyValuePair<Globals.PlantData, int> plant in Globals.plants)
+            {
 
-			canvas.UpdateUI();
+                if (plant.Key.PlantScene == Application.loadedLevelName)
+                {
+                    if (Mathf.Abs(plant.Key.PlantLocation.x - this.gameObject.transform.position.x) < 0.5
+                     && Mathf.Abs(plant.Key.PlantLocation.y - this.gameObject.transform.position.y) < 0.5)
+                    {
+                        canPlant = false;
+                    }
+                }
+                
+            }
+            if (canPlant == true)
+            {
+                //planting code
+                PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                newPlant.Rotate(direction);
+                Globals.inventory[plantNumber]--;
+
+                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName);
+                Globals.plants.Add(thisPlant, plantNumber);
+
+                canvas.UpdateUI();          //recheck if player can plant
+            }
+            else
+            {
+                audioSource.clip = hurtSound;       //PLZ CHANGE SOUND EFFECT
+                audioSource.Play();
+            }
 		}
 	}
 
