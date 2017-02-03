@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
+	public RollingBoulder boulder;
+
 	private BossState state;
+	private int numRocks;
+	private List<RollingBoulder> rocks = new List<RollingBoulder>();
 
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
+		numRocks = 5;
 		state = BossState.SpawningRocks;
 	}
 	
@@ -22,6 +28,11 @@ public class WindBossAI : KillableGridObject {
 	}
 
 	void SpawnRocks() {
-		Debug.Log("spawn rocks");
+		for (int i = 0; i < numRocks; i++) {
+			Vector3 dropPosition = new Vector3(Random.Range(-4, 4), Random.Range(-3, 3), 0.0f);
+			RollingBoulder boulderObj = (RollingBoulder)Instantiate(boulder, dropPosition, Quaternion.identity);
+			rocks.Add(boulderObj);
+		}
+		numRocks+=2;
 	}
 }

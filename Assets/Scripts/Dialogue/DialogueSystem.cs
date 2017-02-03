@@ -34,7 +34,7 @@ public class DialogueSystem : MonoBehaviour {
 		//Debug.Log (strComplete);
 		displayedLine.text = "";
 		for(int i = 0; i < strComplete.Length; i++){
-			if (Input.GetKeyDown (KeyCode.Tab) && i > 5) {
+			if ((Input.GetKeyDown (KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return)) && i > 5) {
 				displayedLine.text += strComplete.Substring (i);
 				break;
 			} else {
