@@ -219,10 +219,12 @@ public class KillableGridObject : RotateableGridObject {
 	    	}
     	}
         */
-        GameObject droppedItem = lootTable.GetItem();
+        if (lootTable) {
+            GameObject droppedItem = lootTable.GetItem();
 
-        // If there was a dropped item, create it
-        if (droppedItem)
-            Instantiate(droppedItem, transform.position, Quaternion.identity);
+            // If there was a dropped item, create it
+            if (droppedItem)
+                Instantiate(droppedItem, transform.position, Quaternion.identity);
+        }
     }
 }
