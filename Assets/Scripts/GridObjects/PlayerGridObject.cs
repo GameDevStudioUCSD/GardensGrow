@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
@@ -18,12 +19,12 @@ public class PlayerGridObject : MoveableGridObject {
     public bool onPlatform;
 
 	private GameObject dialogue;
-
+    private bool invincible;
     // Use this for initialization
     protected override void Start () {
         base.Start();
 
-        this.gameObject.transform.position = Globals.spawnLocation;
+        //this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
@@ -117,23 +118,6 @@ public class PlayerGridObject : MoveableGridObject {
                     Plant(i - 1);
             }
         }
-
-		/**
-		 * THIS IS A QUICK HACK SEGMENT TO GET A TEST FOR DIALOGUE GOING!
-		 * 
-		 * POSSIBLE FEATURE: TAB CAN BE USED TO HELP GUIDE PLAYERS TOWARD
-		 * OBJECTIVES. LOOKUP OTENKO FROM BOKTAI.
-		 * 
-		 * I MESSED WITH SOME PREFABS AND MOVED THE SEED UI UP TO THE TOP
-		 * FOR CONVENIENCE.
-		 * 
-		 **/
-//		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
-//			dialogue.SetActive (true);
-//
-//			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
-//			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
-//		}
 		
 	}
 		
@@ -166,12 +150,21 @@ public class PlayerGridObject : MoveableGridObject {
     {
         if (damage >= 1)
         {
-            //gameObject.GetComponent<Animation>().Play("Damaged"); deleting as parent class does animation
             canvas.UpdateHealth(health - damage);
         }
-        return base.TakeDamage(damage);
+        if (!invincible)
+        {
+            invincible = true;
+            StartCoroutine(invicibilityWait());
+            return base.TakeDamage(damage);
+        }
+        return base.TakeDamage(0);
     }
-
+    IEnumerator invicibilityWait()
+    {
+        yield return new WaitForSeconds(2.0f);
+        invincible = false;
+    }
     protected virtual void LateUpdate() {
         float pixelSize = Globals.pixelSize;
         Vector3 current = this.transform.position;
@@ -179,6 +172,20 @@ public class PlayerGridObject : MoveableGridObject {
         current.y = Mathf.Floor(current.y / pixelSize + 0.5f) * pixelSize;
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
+    }
+    //below is code for de-planting your own plant
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (isAttacking)
+        {
+            if (other.gameObject.GetComponent<PlantGridObject>())
+            {
+                other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
+                Destroy(other.gameObject);
+
+                isAttacking = !isAttacking;
+            }
+        }
     }
 
 }
