@@ -1,7 +1,7 @@
 
 using UnityEngine;
 public abstract class PathFindingBehaviourAbstractFSM : MonoBehaviour  {
-     
+
     protected float transitionedAt;
     public enum State { 
         FindPath = 0,
@@ -72,5 +72,6 @@ public abstract class PathFindingBehaviourAbstractFSM : MonoBehaviour  {
 
     
     protected virtual void OnTransition() { }
+    protected virtual void SetTarget(GameObject target) { }
   
 }

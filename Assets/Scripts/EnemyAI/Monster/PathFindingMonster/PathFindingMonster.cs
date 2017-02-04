@@ -43,7 +43,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     [SerializeField]
     private Tile targetTile;
 
-    private int stepIndex = 0;
+    private int stepsTaken = 0;
     private int stepsUntilReevaluationCounter = 0;
     private float stepToMoveDelay;
 
@@ -93,7 +93,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     /// <returns></returns>
     protected override IEnumerator ExecuteActionTakeStep()
     {
-        stepIndex = 0;
+        stepsTaken = 0;
 
         nextTile = tileMap.NextTile(currentTile, path[currentPathIndex]);
 
@@ -104,7 +104,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     {
         Move(path[currentPathIndex]);
 
-        stepIndex++;
+        stepsTaken++;
 
         yield return null;
     }
@@ -252,7 +252,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     {
         // step is finished if we have gone moveAmount number of steps
         // and finished the step to move amount delay
-        return stepIndex >= moveAmount && TimeInState() > stepToMoveDelay;
+        return stepsTaken >= moveAmount && TimeInState() > stepToMoveDelay;
     }
 
     protected override bool PathComplete()
