@@ -1,16 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 890f3a4a6a736cb4c81b799a65df9c72
-timeCreated: 1484687660
-=======
-<<<<<<< Updated upstream
-guid: f37497ffedfc4442884d587a53509c7a
-timeCreated: 1484688179
-=======
 guid: 061d6ccf7b7274d168801e1d3b286d9c
 timeCreated: 1484475212
->>>>>>> Stashed changes
->>>>>>> 8cb6d3e7d763707461005939fa7766cb5e6d968c
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -63,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  spritePackingTag:
+  userData:
+  assetBundleName:
+  assetBundleVariant:

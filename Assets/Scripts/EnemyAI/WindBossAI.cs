@@ -9,6 +9,7 @@ public class WindBossAI : KillableGridObject {
 	private BossState state;
 	private int numRocks;
 	private List<RollingBoulder> rocks = new List<RollingBoulder>();
+	private int framesInState;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -22,8 +23,41 @@ public class WindBossAI : KillableGridObject {
 		base.Update();
 
 		if (state == BossState.SpawningRocks) {
+			Debug.Log("Spawning rocks");
 			SpawnRocks();	
 			state = BossState.SpawningMonsters;
+		}
+		if (state == BossState.SpawningMonsters) {
+			Debug.Log("Spawning monsters");
+			state = BossState.Idle;
+			framesInState = 0;
+		}
+		if (state == BossState.Idle) {
+			Debug.Log("Idle");
+			framesInState++;
+			if (framesInState > 50) {
+				state = BossState.Inhaling;
+				framesInState = 0;
+			}
+		}
+		if (state == BossState.Inhaling) {
+			Debug.Log("Inhaling");
+			framesInState++;
+			if (framesInState > 20) {
+				state = BossState.Blowing;
+				framesInState = 0;
+			}
+		}
+		if (state == BossState.Blowing) {
+			Debug.Log("Blowing");
+			framesInState++;
+			if (framesInState == 1) {
+
+			}
+			if (framesInState > 50) {
+				state = BossState.SpawningRocks;
+				framesInState = 0;
+			}
 		}
 	}
 
@@ -34,5 +68,9 @@ public class WindBossAI : KillableGridObject {
 			rocks.Add(boulderObj);
 		}
 		numRocks+=2;
+	}
+
+	void BlowRocks() {
+
 	}
 }
