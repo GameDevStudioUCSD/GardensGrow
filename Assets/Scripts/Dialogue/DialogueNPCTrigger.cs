@@ -18,6 +18,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
     private int counter = 0;
 	private GameObject dialogue;
 	private bool triggered;
+    private bool walkingBack = false;
     private Animator anim;
 
 	// Use this for initialization
@@ -69,12 +70,14 @@ public class DialogueNPCTrigger : MoveableGridObject {
                 //anim.SetBool("IsWalking", true);
                 anim.SetInteger("Direction", 2); //idle
                 calculatedDist = false;
+                movingBack = true;
             }
     
             Mover(Globals.Direction.North);
             counter++;
             if (counter > moveDist)
             {
+                movingBack = false;
                 //anim.SetInteger("Direction", 2);
                 anim.SetInteger("Direction", 0);
                 //anim.SetBool("IsWalking", false);
@@ -83,7 +86,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
             }
         }
         if (!dialogue.activeSelf && activeRegionPostTrigger.bounds.Contains(player.transform.position) && 
-			(Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return))) {
+			(Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return))&& !movingBack) {
             canvas.ShowDialog();
 
 			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
