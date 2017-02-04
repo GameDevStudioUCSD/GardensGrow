@@ -3,7 +3,8 @@
 public class RotateableGridObject : GridObject {
 
 	public Globals.Direction direction;
-	public BoxCollider2D face;
+
+	//public BoxCollider2D face;
 	
 	// Use this for initialization
 	protected virtual void Start () {
@@ -14,8 +15,8 @@ public class RotateableGridObject : GridObject {
 	}
 
 	// Changes direction and direction sprite
-	public void Rotate(Globals.Direction rotate)
+	public void Rotate(Globals.Direction facing)
 	{
-		direction = rotate;
+		direction = facing;
 	}
 }

@@ -18,6 +18,9 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     public float stepDelay = 1.0f;
     [Tooltip("The allowed distance error from the center of a tile when moving from tile to tile")]
     public float allowedOffset = 0.50f;
+    [Tooltip("The number of steps the AI will take before reevaluating its path.")]
+    [Range(1,100)]
+    public int stepsUntilReevaluation = 5;
 
     public bool debug = false;
 
@@ -41,6 +44,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     private Tile targetTile;
 
     private int stepIndex = 0;
+    private int stepsUntilReevaluationCounter = 0;
     private float stepToMoveDelay;
 
     // Transition conditions
@@ -70,7 +74,7 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
         if (!Application.isPlaying) return;
 
-        Vector2 acc = startTile.transform.position;
+        Vector2 acc = this.transform.position;
         foreach(var v in path)
         {
             var v_real = Globals.DirectionToVector(v);
@@ -130,15 +134,31 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
         // Manipulate the index, current tile, etc. for next step
         currentPathIndex++;
-
-        // Check if we finished our path
-        if (currentPathIndex >= path.Count)
-        {
-            pathIsComplete = true;
-        }
+        stepsUntilReevaluationCounter++;
 
         currentTile = nextTile;
-        pathNeedsReevaluation = false;
+
+        // AI has not exceeded number of steps before reevaluation
+        if(stepsUntilReevaluationCounter < stepsUntilReevaluation)
+        {
+            pathNeedsReevaluation = false;
+        }
+        // AI has exceeded the number of steps before reevaluation
+        else
+        {
+            // Check if target has moved since last time
+            // Get tile of current target location
+            Tile currentTileLocation = tileMap.GetNearestTile(targetObject.transform.position);
+            if (currentTileLocation == targetTile)
+            {
+                // The target has not moved since last time
+                pathNeedsReevaluation = false;
+            }
+            else
+            {
+                pathNeedsReevaluation = true;
+            }
+        }
 
         yield return null;
     }
@@ -164,6 +184,8 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
 
             // We are on the first step of the path
             currentPathIndex = 0;
+
+            stepsUntilReevaluationCounter = 0;
         }
         else
         {
