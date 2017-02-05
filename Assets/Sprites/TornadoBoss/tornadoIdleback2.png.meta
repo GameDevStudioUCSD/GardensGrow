@@ -1,6 +1,26 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: bd2d05e8b8361994c9e9c98813ccfb56
 timeCreated: 1486252823
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+guid: ac533167ce35d4d3fa094c5c30762a4e
+timeCreated: 1486252503
+=======
+guid: bd2d05e8b8361994c9e9c98813ccfb56
+timeCreated: 1486252823
+>>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
+=======
+guid: bd2d05e8b8361994c9e9c98813ccfb56
+timeCreated: 1486252823
+>>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
+=======
+guid: bd2d05e8b8361994c9e9c98813ccfb56
+timeCreated: 1486252823
+>>>>>>> 0a12b4749e48aaa1a65cdfd2551eccfd88d1378f
+>>>>>>> Stashed changes
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -29,8 +49,28 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+<<<<<<< Updated upstream
     filterMode: 0
     aniso: 16
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    filterMode: -1
+    aniso: -1
+=======
+    filterMode: 0
+    aniso: 16
+>>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
+=======
+    filterMode: 0
+    aniso: 16
+>>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
+=======
+    filterMode: 0
+    aniso: 16
+>>>>>>> 0a12b4749e48aaa1a65cdfd2551eccfd88d1378f
+>>>>>>> Stashed changes
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -44,7 +84,23 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+<<<<<<< Updated upstream
   spritePixelsToUnits: 32
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  spritePixelsToUnits: 100
+=======
+  spritePixelsToUnits: 32
+>>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
+=======
+  spritePixelsToUnits: 32
+>>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
+=======
+  spritePixelsToUnits: 32
+>>>>>>> 0a12b4749e48aaa1a65cdfd2551eccfd88d1378f
+>>>>>>> Stashed changes
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
