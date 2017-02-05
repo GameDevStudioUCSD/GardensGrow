@@ -124,7 +124,8 @@ public class BombObject : MoveableGridObject {
     public override void Move(Globals.Direction direction) {
         if (!(Globals.player.canvas.paused)) {
             base.Move(direction);
-            if (direction == Globals.Direction.South) {
+            //this code makes the bomb explode automatically when an enemy is range
+            /*if (direction == Globals.Direction.South) {
                 killList = southHitCollider.GetKillList();
                 foreach (KillableGridObject other in killList) {
                     if (other.gameObject.GetComponent<KillableGridObject>() != null) {
@@ -175,7 +176,7 @@ public class BombObject : MoveableGridObject {
                 }
                 if (eastCollider.isTriggered)
                     isRolling = false;
-            }
+            } */
         }
     }
 }
