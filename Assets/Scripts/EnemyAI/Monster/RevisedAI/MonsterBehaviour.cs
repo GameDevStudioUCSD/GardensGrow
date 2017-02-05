@@ -3,41 +3,50 @@ using System.Collections;
 
 public class MonsterBehaviour : MonsterBehaviourAbstractFSM {
 
-    //
+    public PathFindingBehaviour pathFindingFSM;
+
+    public override void Reset()
+    {
+    }
+
+    // ================================================
     // | States
-    //
+    // ================================================
 
-    protected override void ExecuteActionPathFinding()
+    protected override IEnumerator ExecuteActionPathFinding()
     {
-        throw new System.NotImplementedException();
+        pathFindingFSM.Step();
+
+        yield return null;
     }
 
-    protected override void ExecuteActionDamaged()
+    protected override IEnumerator ExecuteActionDamaged()
     {
-        throw new System.NotImplementedException();
+        yield return null;
     }
 
-    protected override void ExecuteActionPrimaryBehaviour()
+    protected override IEnumerator ExecuteActionPrimaryBehaviour()
     {
-        throw new System.NotImplementedException();
+        pathFindingFSM.Step();
+        yield return null;
     }
 
-    //
-    // | States
-    //
+    // ================================================
+    // | Transitions
+    // ================================================
 
     protected override bool IsPathStale()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     protected override bool Recovered()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     protected override bool OnHit()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 }

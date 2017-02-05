@@ -1,30 +1,94 @@
 
 using UnityEngine;
-public abstract class MonsterBehaviourAbstractFSM  {
+using System;
+using System.IO;
+using System.Collections;
+
+public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachine {
      
     protected float transitionedAt;
+    [Header("State Machine Variables")]
+    public int exceptionCount;
+    public int shutDownFSMAfterNExceptions = 10;
+    public Coroutine coroutine;
     public enum State { 
         PathFinding = 0,
         Damaged = 1,
         PrimaryBehaviour = 2
     }  
     public State state = State.PathFinding;
+    protected override void Start() {
+        base.Start();
+        RunFSM();
+    }
+    private IEnumerator FSMThread( float delayRate ) {
+        bool isRunning = true;
+        while(isRunning) {
+            yield return Step();
+            yield return new WaitForSeconds(delayRate);
+            if (exceptionCount > shutDownFSMAfterNExceptions)
+            {
+                Debug.LogError(this + " has exceeded the number of allowed exceptions! Shutting down.");
+                isRunning = false;
+            }
+        }
+    }
+	public void RunFSM()
+    {
+        RunFSM(Time.fixedDeltaTime);
+    }
+    public void RunFSM(float delayRate)
+    {
+        coroutine = StartCoroutine(FSMThread(delayRate));
+    }
 
-    public void Step()
+	public bool TestAndSet(ref bool variable, bool val) {
+        bool rv = variable;
+        variable = val;
+        return rv;
+    }
+    protected void LogException(Exception e) {
+        string exceptionAcc = this + " threw exception " + e.GetType();
+        exceptionAcc += " during state: " + state + "\n";
+        #if (EXCEPTION_LOGGER)
+		if( exceptionCount++ == 0 ) {
+			var dest = ExceptionLogger.LogException(e, exceptionAcc, this);
+			exceptionAcc += "Full details logged to: " + dest + "\n";
+			exceptionAcc += e.StackTrace;
+		}
+		#else
+		exceptionCount++;
+		#endif
+        Debug.LogError( exceptionAcc );
+    }
+	public abstract void Reset();
+
+    public IEnumerator Step()
     {
 		State prevState = state;
-		 
+		
+        IEnumerator stateAction = null;
+        try {
+			    // The following switch statement handles the state machine's action logic
                 switch(state) {
                     case State.PathFinding:
-                        ExecuteActionPathFinding();
+                        stateAction = ExecuteActionPathFinding();
                         break;
                     case State.Damaged:
-                        ExecuteActionDamaged();
+                        stateAction = ExecuteActionDamaged();
                         break;
                     case State.PrimaryBehaviour:
-                        ExecuteActionPrimaryBehaviour();
+                        stateAction = ExecuteActionPrimaryBehaviour();
                         break;
+                }
             }
+        catch( Exception e ) {
+                LogException(e);
+            }
+        yield return stateAction;
+
+            try {
+                
 
 // The following switch statement handles the HLSM's state transition logic
             switch(state) {
@@ -44,18 +108,20 @@ public abstract class MonsterBehaviourAbstractFSM  {
                         state = State.Damaged;
                     break;
             }		
-		
-            if (prevState != state)
-            {
-                transitionedAt = Time.time;
-                OnTransition();
             }
-			
+            catch(Exception e) {
+                LogException(e);
+            }
+            
+
+					
+            
+
     }
     // State Logic Functions
-    protected abstract void ExecuteActionPathFinding();
-    protected abstract void ExecuteActionDamaged();
-    protected abstract void ExecuteActionPrimaryBehaviour();
+    protected abstract IEnumerator ExecuteActionPathFinding();
+    protected abstract IEnumerator ExecuteActionDamaged();
+    protected abstract IEnumerator ExecuteActionPrimaryBehaviour();
     // Transitional Logic Functions
     protected abstract bool IsPathStale();
     protected abstract bool Recovered();

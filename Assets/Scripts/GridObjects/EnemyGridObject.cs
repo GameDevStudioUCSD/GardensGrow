@@ -2,13 +2,13 @@
 
 public class EnemyGridObject : MoveableGridObject {
 
-    protected Animator animator;
+    public Animator animator;
 
     // Use this for initialization
     protected override void Start()
     {
         base.Start();
-        animator = this.gameObject.GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
     }
 
 	// Update is called once per frame

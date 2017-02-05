@@ -15,7 +15,7 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
 
     [Header("Path Finding Components")]
     public TileMap tileMap;
-    public MoveableGridObject creature;
+    public EnemyGridObject creature;
     public GameObject target;
 
     protected Transform creatureTransform;
@@ -46,6 +46,7 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
     [SerializeField]
     protected Tile targetTile;
 
+    [SerializeField]
     protected int stepsTaken;
 
     // Transition conditions
@@ -156,6 +157,12 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
             }
         }
 
+        // If we got to the end but target still exists, reevaluate
+        if(tilesMoved >= path.Count)
+        {
+            pathNeedsReevaluation = true;
+            return;
+        }
     }
 
     // ================================================
