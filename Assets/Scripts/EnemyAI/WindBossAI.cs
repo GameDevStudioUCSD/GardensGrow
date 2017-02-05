@@ -5,17 +5,20 @@ using System.Collections.Generic;
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
+	public GameObject bossBody;
 
 	private BossState state;
 	private int numRocks;
 	private List<RollingBoulder> rocks = new List<RollingBoulder>();
 	private int framesInState;
+	private Globals.Direction direction;
 
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
 		numRocks = 5;
 		state = BossState.SpawningRocks;
+		direction = Globals.Direction.South;
 	}
 	
 	// Update is called once per frame
@@ -31,6 +34,31 @@ public class WindBossAI : KillableGridObject {
 			Debug.Log("Spawning monsters");
 			state = BossState.Idle;
 			framesInState = 0;
+			int integerDirection = Random.Range(0, 4);
+			int position;
+			Vector3 newPosition;
+			if (integerDirection == 0) {
+				direction = Globals.Direction.South;
+				position = Random.Range(-4, 4);
+				newPosition = new Vector3(position, -5.0f, 0.0f);
+			}
+			else if (integerDirection == 1) {
+				direction = Globals.Direction.East;
+				position = Random.Range(-3, 3);
+				newPosition = new Vector3(-5.5f, position, 0.0f);
+			}
+			else if (integerDirection == 2) {
+				direction = Globals.Direction.North;
+				position = Random.Range(-4, 4);
+				newPosition = new Vector3(position, 5.0f, 0.0f);
+			}
+			else {
+				direction = Globals.Direction.West;
+				position = Random.Range(-3, 3);
+				newPosition = new Vector3(5.5f, position, 0.0f);
+			}
+
+			bossBody.transform.position = newPosition;
 		}
 		if (state == BossState.Idle) {
 			Debug.Log("Idle");
