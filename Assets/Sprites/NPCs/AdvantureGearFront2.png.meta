@@ -1,27 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
 guid: ab194970f85e83f47aaf538e4d092a28
-timeCreated: 1486250229
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-guid: 15a875e37c77640b39017e93f9907fca
-timeCreated: 1486252500
-=======
-guid: ab194970f85e83f47aaf538e4d092a28
-timeCreated: 1486250229
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-guid: ab194970f85e83f47aaf538e4d092a28
-timeCreated: 1486250229
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-guid: ab194970f85e83f47aaf538e4d092a28
-timeCreated: 1486250229
->>>>>>> 0a12b4749e48aaa1a65cdfd2551eccfd88d1378f
->>>>>>> Stashed changes
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -49,28 +27,8 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-<<<<<<< Updated upstream
     filterMode: 0
     aniso: 16
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    filterMode: -1
-    aniso: -1
-=======
-    filterMode: 0
-    aniso: 16
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-    filterMode: 0
-    aniso: 16
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-    filterMode: 0
-    aniso: 16
->>>>>>> 0a12b4749e48aaa1a65cdfd2551eccfd88d1378f
->>>>>>> Stashed changes
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -84,27 +42,16 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-<<<<<<< Updated upstream
   spritePixelsToUnits: 32
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  spritePixelsToUnits: 100
-=======
-  spritePixelsToUnits: 32
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-  spritePixelsToUnits: 32
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-  spritePixelsToUnits: 32
->>>>>>> 0a12b4749e48aaa1a65cdfd2551eccfd88d1378f
->>>>>>> Stashed changes
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []

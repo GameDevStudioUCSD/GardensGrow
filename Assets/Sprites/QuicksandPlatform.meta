@@ -1,33 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
 guid: ac64e1a22d99a25409b2182ac85e348a
 folderAsset: yes
 timeCreated: 1486252823
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-guid: cd2a12b19d6d54e32bdbab97d506c68e
-folderAsset: yes
-timeCreated: 1486252496
-=======
-guid: ac64e1a22d99a25409b2182ac85e348a
-folderAsset: yes
-timeCreated: 1486252823
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-guid: ac64e1a22d99a25409b2182ac85e348a
-folderAsset: yes
-timeCreated: 1486252823
->>>>>>> 09561d0091f45f500e78ff966cf5af261eccb8e7
-=======
-guid: ac64e1a22d99a25409b2182ac85e348a
-folderAsset: yes
-timeCreated: 1486252823
->>>>>>> 0a12b4749e48aaa1a65cdfd2551eccfd88d1378f
->>>>>>> Stashed changes
 licenseType: Free
 DefaultImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:
