@@ -34,7 +34,7 @@ public class KillableGridObject : RotateableGridObject {
     private const int numDyingFrames = 11;
 
     // Prevents "Die" function from being called more than once if something is taking continuous damage
-    private bool hasDied = false;
+    protected bool hasDied = false;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -73,7 +73,8 @@ public class KillableGridObject : RotateableGridObject {
 			return false;
 		}
 
-   		gameObject.GetComponent<Animation>().Play("Damaged");
+        Animation animation = gameObject.GetComponent<Animation>();
+        if (animation) animation.Play("Damaged");
 
         if (!bombable) {
             health -= damage;
@@ -125,7 +126,7 @@ public class KillableGridObject : RotateableGridObject {
             Application.LoadLevel(Application.loadedLevel);
         }
 
-        if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner") {
+        if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner" || this.gameObject.GetComponent<PlantGridObject>()) {
         	SpawnItem();
         }
         isDying = true;
@@ -175,6 +176,7 @@ public class KillableGridObject : RotateableGridObject {
             {
                 if(this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>())
                 {
+                    //note enemy kill plant doesn't work
                     Debug.Log("SMACKING THE WATERMELOON");
                 }
                 target.TakeDamage(damage);
@@ -189,7 +191,7 @@ public class KillableGridObject : RotateableGridObject {
         
     }
 
-    void SpawnItem() {
+    public void SpawnItem() {
         /*
     	if (guaranteeDrop) {
     		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
@@ -217,10 +219,12 @@ public class KillableGridObject : RotateableGridObject {
 	    	}
     	}
         */
-        GameObject droppedItem = lootTable.GetItem();
+        if (lootTable) {
+            GameObject droppedItem = lootTable.GetItem();
 
-        // If there was a dropped item, create it
-        if (droppedItem)
-            Instantiate(droppedItem, transform.position, Quaternion.identity);
+            // If there was a dropped item, create it
+            if (droppedItem)
+                Instantiate(droppedItem, transform.position, Quaternion.identity);
+        }
     }
 }

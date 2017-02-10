@@ -10,11 +10,13 @@ public class BombObject : MoveableGridObject {
     private Globals.Direction rollDirection = Globals.Direction.North;
 
     private BombPlantObject bombPlantObject;
+    private Animator animator;
 
     // Use this for initialization
     protected override void Start() {
         fuseLit = false;
         frames = 0;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,8 @@ public class BombObject : MoveableGridObject {
     public void Roll(Globals.Direction direction) {
         LightFuse();
         if (!isRolling) { //remove this if statement to allow bomb to change direction mid-roll
+            animator.SetInteger("Direction", (int)direction);
+            animator.SetTrigger("Roll");
             isRolling = true;
             rollDirection = direction;
         }
@@ -49,9 +53,15 @@ public class BombObject : MoveableGridObject {
         fuseLit = true;
     }
 
-    //call to have bomb attack everything around it, disappear, and regrow
+    //call to have bomb attack everything around it
     public void Explode() {
+        animator.SetTrigger("Explode");
+        isRolling = false;
         Attack();
+    }
+
+    //call to destroy bomb and trigger regrowth; called by animation
+    public void FinishExploding() {
         bombPlantObject.RegrowBomb();
         Destroy(this.gameObject);
     }
@@ -98,12 +108,10 @@ public class BombObject : MoveableGridObject {
 
         // Deal damage to all targets of the enemy faction
         foreach (KillableGridObject target in killList) {
-            if (target.faction != this.faction) {
-                if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
-                    Debug.Log("SMACKING THE WATERMELOON");
-                }
-                target.TakeBombDamage(damage);
+            if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
+                Debug.Log("SMACKING THE WATERMELOON");
             }
+            target.TakeBombDamage(damage);
         }
 
     }
@@ -116,7 +124,8 @@ public class BombObject : MoveableGridObject {
     public override void Move(Globals.Direction direction) {
         if (!(Globals.player.canvas.paused)) {
             base.Move(direction);
-            if (direction == Globals.Direction.South) {
+            //this code makes the bomb explode automatically when an enemy is range
+            /*if (direction == Globals.Direction.South) {
                 killList = southHitCollider.GetKillList();
                 foreach (KillableGridObject other in killList) {
                     if (other.gameObject.GetComponent<KillableGridObject>() != null) {
@@ -167,7 +176,7 @@ public class BombObject : MoveableGridObject {
                 }
                 if (eastCollider.isTriggered)
                     isRolling = false;
-            }
+            } */
         }
     }
 }

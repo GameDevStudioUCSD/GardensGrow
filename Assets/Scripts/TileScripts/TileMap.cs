@@ -19,15 +19,14 @@ public class TileMap : MonoBehaviour {
     {
     	int plantType;
     	Vector3 plantVector;
-    	for (int i = 0; i < Globals.plantedListTypes.Count; i++)
-    	{
-    		if (Globals.plantedListScenes[i] == Application.loadedLevelName)
-    		{
-	    		plantType = Globals.plantedListTypes[i];
-	    		plantVector = Globals.plantedListVectors[i];
-	    		Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
-    		}
-    	}
+		foreach (KeyValuePair<Globals.PlantData, int> kvp in Globals.plants)
+		{
+			if (kvp.Key.PlantScene == Application.loadedLevelName) {
+				plantVector = kvp.Key.PlantLocation;
+				plantType = kvp.Value;
+				Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
+			}
+		}
 
         grid = new Tile[mapDimensionX, mapDimensionY];
 

@@ -73,44 +73,23 @@ public class EnemySpawner : KillableGridObject
         if (randInt == 1)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
-            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            list.Add(enemyObj);
-            //I needed a reference to every specific enemyObj to keep track of them, so I couldn't use 1 GameObject enemyObj for all spawns.
-            // TODO: change this later to fit other AI
-            // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
         else if (randInt == 2)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
-            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            list.Add(enemyObj);
-            // TODO: change this later to fit other AI
-            // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
         else if (randInt == 3)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
-            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            list.Add(enemyObj);
-            // TODO: change this later to fit other AI
-            // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
         else
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
-            GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            list.Add(enemyObj);
-            // TODO: change this later to fit other AI
-            // Give AI info about the tile map and the target object
-            enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
-            enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
         }
+        GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+        list.Add(enemyObj);
+        enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
+        enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
 
         currSpawns++;
     }
@@ -159,8 +138,8 @@ public class EnemySpawner : KillableGridObject
     */
 
     protected override void Die() {
+		deathEvent.Invoke();
         base.Die();
-        deathEvent.Invoke();
     }
 
     IEnumerator waitForDeathAnim()

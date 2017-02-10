@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
 	public UIController canvas;
+
+    //check if can plant here
+
+    bool canPlant = true;
 
     private float horizontalAxis;
     private float verticalAxis;
@@ -18,12 +24,12 @@ public class PlayerGridObject : MoveableGridObject {
     public bool onPlatform;
 
 	private GameObject dialogue;
-
+    private bool invincible;
     // Use this for initialization
     protected override void Start () {
         base.Start();
 
-       this.gameObject.transform.position = Globals.spawnLocation;
+        this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
@@ -117,23 +123,6 @@ public class PlayerGridObject : MoveableGridObject {
                     Plant(i - 1);
             }
         }
-
-		/**
-		 * THIS IS A QUICK HACK SEGMENT TO GET A TEST FOR DIALOGUE GOING!
-		 * 
-		 * POSSIBLE FEATURE: TAB CAN BE USED TO HELP GUIDE PLAYERS TOWARD
-		 * OBJECTIVES. LOOKUP OTENKO FROM BOKTAI.
-		 * 
-		 * I MESSED WITH SOME PREFABS AND MOVED THE SEED UI UP TO THE TOP
-		 * FOR CONVENIENCE.
-		 * 
-		 **/
-//		if (!dialogue.activeSelf && Input.GetKeyDown(KeyCode.Tab)) {
-//			dialogue.SetActive (true);
-//
-//			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/test");
-//			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
-//		}
 		
 	}
 		
@@ -151,51 +140,38 @@ public class PlayerGridObject : MoveableGridObject {
         // Vector3 dirr = Globals.DirectionToVector(direction);
         // PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], transform.position + dirr, Quaternion.identity);
         if (Globals.inventory[plantNumber] > 0){
-			switch (direction) {
-				case Globals.Direction.East:
-					if (!eastCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				case Globals.Direction.West:
-					if (!westCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				case Globals.Direction.South:
-					if (!southCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				case Globals.Direction.North:
-					if (!northCollider.isTriggered) {
-						PlantGridObject newPlant = (PlantGridObject)Instantiate (plants[plantNumber], new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-						newPlant.Rotate(direction);
-						Globals.inventory[plantNumber]--;
-						Globals.plantedListTypes.Add(plantNumber);
-						Globals.plantedListVectors.Add(new Vector3 (transform.position.x, transform.position.y, 0));
-						Globals.plantedListScenes.Add(Application.loadedLevelName);
-					}
-					break;
-				default:
-					break;
-			}
-			canvas.UpdateUI();
+
+            canPlant = true;
+            foreach (KeyValuePair<Globals.PlantData, int> plant in Globals.plants)
+            {
+
+                if (plant.Key.PlantScene == Application.loadedLevelName)
+                {
+                    if (Mathf.Abs(plant.Key.PlantLocation.x - this.gameObject.transform.position.x) < 0.5
+                     && Mathf.Abs(plant.Key.PlantLocation.y - this.gameObject.transform.position.y) < 0.5)
+                    {
+                        canPlant = false;
+                    }
+                }
+                
+            }
+            if (canPlant == true)
+            {
+                //planting code
+                PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                newPlant.Rotate(direction);
+                Globals.inventory[plantNumber]--;
+
+                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName);
+                Globals.plants.Add(thisPlant, plantNumber);
+
+                canvas.UpdateUI();          //recheck if player can plant
+            }
+            else
+            {
+                audioSource.clip = hurtSound;       //PLZ CHANGE SOUND EFFECT
+                audioSource.Play();
+            }
 		}
 	}
 
@@ -203,12 +179,21 @@ public class PlayerGridObject : MoveableGridObject {
     {
         if (damage >= 1)
         {
-            //gameObject.GetComponent<Animation>().Play("Damaged"); deleting as parent class does animation
             canvas.UpdateHealth(health - damage);
         }
-        return base.TakeDamage(damage);
+        if (!invincible)
+        {
+            invincible = true;
+            StartCoroutine(invicibilityWait());
+            return base.TakeDamage(damage);
+        }
+        return base.TakeDamage(0);
     }
-
+    IEnumerator invicibilityWait()
+    {
+        yield return new WaitForSeconds(2.0f);
+        invincible = false;
+    }
     protected virtual void LateUpdate() {
         float pixelSize = Globals.pixelSize;
         Vector3 current = this.transform.position;
@@ -216,6 +201,20 @@ public class PlayerGridObject : MoveableGridObject {
         current.y = Mathf.Floor(current.y / pixelSize + 0.5f) * pixelSize;
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
+    }
+    //below is code for de-planting your own plant
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (isAttacking)
+        {
+            if (other.gameObject.GetComponent<PlantGridObject>())
+            {
+                other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
+                Destroy(other.gameObject);
+
+                isAttacking = !isAttacking;
+            }
+        }
     }
 
 }

@@ -18,29 +18,33 @@ public class CactusPlantObject : PlantGridObject {
     //private stuff
     private bool isPunching = false;
     private Animator anim;
-     
-	protected override void Start () {
+
+    protected override void Start() {
         anim = this.gameObject.GetComponent<Animator>();
-	}
-	
-	protected override void Update ()
+    }
+
+    protected override void Update()
     {
         if (health <= 0)
         {
             Destroy(this.gameObject);
         }
         // base.Update();   //idk maybe usable
-	}
+    }
     void Punch(Collider2D other, Globals.Direction dir)
     {
+        if (other.gameObject.GetComponent<Switch>())
+        {
+            other.gameObject.GetComponent<Switch>().TakeDamage(0);
+        }
         if (other.gameObject.CompareTag("Enemy"))
         {
-            StartCoroutine(punchAnimationWaiting(other,dir)); //changeable
+            StartCoroutine(punchAnimationWaiting(other, dir)); //changeable
         }
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner") || other.gameObject.GetComponent<Switch>())
         {
             if (isAttacking == false)
             {

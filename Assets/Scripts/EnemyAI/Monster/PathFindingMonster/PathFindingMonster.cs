@@ -29,27 +29,27 @@ public class PathFindingMonster : PathFindingMonsterAbstractFSM {
     protected AStar astarAlgorithm;
 
     // Path found by astar
-    private List<Globals.Direction> path;
+    protected List<Globals.Direction> path;
     [SerializeField]
-    private int currentPathIndex = 0;
+    protected int currentPathIndex = 0;
 
     // Data about the path the monster is on
     [SerializeField]
-    private Tile startTile;
+    protected Tile startTile;
     [SerializeField]
-    private Tile currentTile;
+    protected Tile currentTile;
     [SerializeField]
-    private Tile nextTile;
+    protected Tile nextTile;
     [SerializeField]
-    private Tile targetTile;
+    protected Tile targetTile;
 
     private int stepsTaken = 0;
     private int stepsUntilReevaluationCounter = 0;
     private float stepToMoveDelay;
 
     // Transition conditions
-    private bool pathNeedsReevaluation = false;
-    private bool pathIsComplete = false;
+    protected bool pathNeedsReevaluation = false;
+    protected bool pathIsComplete = false;
 
     protected override void Start()
     {
