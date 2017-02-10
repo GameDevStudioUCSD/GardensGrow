@@ -6,7 +6,6 @@ using System;
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
-	public GameObject bossBody;
 
 	public struct BoulderLocation : IComparable <BoulderLocation> {
 		public Vector3 location;
@@ -90,7 +89,7 @@ public class WindBossAI : KillableGridObject {
 				newPosition = new Vector3(5.5f, position, 0.0f);
 			}
 
-			bossBody.transform.position = newPosition;
+			this.transform.position = newPosition;
 		}
 		if (state == BossState.Idle) {
 			Debug.Log("Idle");
