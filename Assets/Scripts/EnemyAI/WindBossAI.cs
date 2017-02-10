@@ -95,16 +95,18 @@ public class WindBossAI : KillableGridObject {
 		if (state == BossState.Idle) {
 			Debug.Log("Idle");
 			framesInState++;
-			if (framesInState > 50) {
+			if (framesInState > 100) {
 				state = BossState.Inhaling;
+				isInvulnerable = false;
 				framesInState = 0;
 			}
 		}
 		if (state == BossState.Inhaling) {
 			Debug.Log("Inhaling");
 			framesInState++;
-			if (framesInState > 20) {
+			if (framesInState > 1000) {
 				state = BossState.Blowing;
+				isInvulnerable = true;
 				framesInState = 0;
 			}
 		}
@@ -115,7 +117,8 @@ public class WindBossAI : KillableGridObject {
 			if (framesInState == 1) {
 
 			}
-			if (framesInState > 50) {
+			if (framesInState > 300) {
+				DestroyRocks();
 				state = BossState.SpawningRocks;
 				framesInState = 0;
 			}
