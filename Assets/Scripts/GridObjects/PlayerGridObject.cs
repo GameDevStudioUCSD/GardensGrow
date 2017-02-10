@@ -11,7 +11,6 @@ public class PlayerGridObject : MoveableGridObject {
     //check if can plant here
 
     bool canPlant = true;
-
     private float horizontalAxis;
     private float verticalAxis;
     public int knockBackPower;
@@ -29,7 +28,7 @@ public class PlayerGridObject : MoveableGridObject {
     protected override void Start () {
         base.Start();
 
-        this.gameObject.transform.position = Globals.spawnLocation;
+        //this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
@@ -207,11 +206,10 @@ public class PlayerGridObject : MoveableGridObject {
     {
         if (isAttacking)
         {
-            if (other.gameObject.GetComponent<PlantGridObject>())
+            if (other.gameObject.GetComponent<PlantGridObject>() && this.gameObject.GetComponent<PlayerGridObject>())
             {
-                other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
                 other.gameObject.GetComponent<PlantGridObject>().TakeDamage(100);
-
+                
                 isAttacking = !isAttacking;
             }
         }
