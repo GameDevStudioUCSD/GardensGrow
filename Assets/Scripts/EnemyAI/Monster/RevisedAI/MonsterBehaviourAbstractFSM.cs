@@ -17,7 +17,7 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
         PrimaryBehaviour = 2
     }  
     public State state = State.PathFinding;
-    protected override void Start() {
+    protected virtual void Start() {
         base.Start();
         RunFSM();
     }
@@ -93,7 +93,8 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
 // The following switch statement handles the HLSM's state transition logic
             switch(state) {
                 case State.PathFinding:
-                    state = State.PrimaryBehaviour;
+                    if( CanAct() ) 
+                        state = State.PrimaryBehaviour;
                     if( OnHit() ) 
                         state = State.Damaged;
                     break;
@@ -124,6 +125,7 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     protected abstract IEnumerator ExecuteActionPrimaryBehaviour();
     // Transitional Logic Functions
     protected abstract bool IsPathStale();
+    protected abstract bool CanAct();
     protected abstract bool Recovered();
     protected abstract bool OnHit();
     public float TimeInState()

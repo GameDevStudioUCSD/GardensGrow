@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MonsterBehaviour : MonsterBehaviourAbstractFSM {
+public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
-    public PathFindingBehaviour pathFindingFSM;
+    public BehaviourModule pathFindingModule;
+    public BehaviourModule primaryBehaviourModule;
 
     public override void Reset()
     {
@@ -15,7 +16,7 @@ public class MonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override IEnumerator ExecuteActionPathFinding()
     {
-        pathFindingFSM.Step();
+        pathFindingModule.Step();
 
         yield return null;
     }
@@ -27,7 +28,8 @@ public class MonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override IEnumerator ExecuteActionPrimaryBehaviour()
     {
-        pathFindingFSM.Step();
+        primaryBehaviourModule.Step();
+
         yield return null;
     }
 
@@ -37,16 +39,25 @@ public class MonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool IsPathStale()
     {
+        // TODO:
         return false;
     }
 
     protected override bool Recovered()
     {
+        // TODO:
         return false;
     }
 
     protected override bool OnHit()
     {
+        // TODO:
+        return false;
+    }
+
+    protected override bool CanAct()
+    {
+        // TODO:
         return false;
     }
 }

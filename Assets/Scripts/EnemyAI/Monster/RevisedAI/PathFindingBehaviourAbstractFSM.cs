@@ -1,6 +1,19 @@
 
 using UnityEngine;
-public abstract class PathFindingBehaviourAbstractFSM : MonoBehaviour  {
+
+/// <summary>
+/// Abstract path finding behaviour class.
+/// 
+/// Pathfinding submodules should inherit from this class.
+/// 
+/// This is a representation of a Finite State Machine.
+///
+/// There should be a provided .jff file.
+/// Please open the .jff file with JFlap to get a visual representation
+/// of this state machine.
+/// 
+/// </summary>
+public abstract class PathFindingBehaviourAbstractFSM : BehaviourModule  {
 
     protected float transitionedAt;
     public enum State { 
@@ -11,7 +24,7 @@ public abstract class PathFindingBehaviourAbstractFSM : MonoBehaviour  {
     }  
     public State state = State.FindPath;
 
-    public void Step()
+    public override void Step()
     {
 		State prevState = state;
 		 

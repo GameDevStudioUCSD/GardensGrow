@@ -106,6 +106,10 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
         pathNeedsReevaluation = false;
     }
 
+    /// <summary>
+    /// Begin the step taking process.
+    /// Determine which tile we want to move towards.
+    /// </summary>
     protected override void ExecuteActionStartStep()
     {
         // Each step is a Move call
@@ -114,6 +118,11 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
         nextTile = tileMap.NextTile(currentTile, path[tilesMoved]);
     }
 
+    /// <summary>
+    /// Take steps.
+    /// Each step is a Move call in the direction
+    /// of the tile we want to move towards.
+    /// </summary>
     protected override void ExecuteActionStepping()
     {
         // Move in the direction of the next tile
