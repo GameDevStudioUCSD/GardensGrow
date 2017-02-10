@@ -210,7 +210,7 @@ public class PlayerGridObject : MoveableGridObject {
             if (other.gameObject.GetComponent<PlantGridObject>())
             {
                 other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
-                Destroy(other.gameObject);
+                other.gameObject.GetComponent<PlantGridObject>().TakeDamage(100);
 
                 isAttacking = !isAttacking;
             }
