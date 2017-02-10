@@ -28,7 +28,7 @@ public class PlayerGridObject : MoveableGridObject {
     protected override void Start () {
         base.Start();
 
-        //this.gameObject.transform.position = Globals.spawnLocation;
+        this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
@@ -201,6 +201,7 @@ public class PlayerGridObject : MoveableGridObject {
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
     }
+    /*
     //below is code for de-planting your own plant
     void OnTriggerStay2D(Collider2D other)
     {
@@ -213,6 +214,6 @@ public class PlayerGridObject : MoveableGridObject {
                 isAttacking = !isAttacking;
             }
         }
-    }
+    }*/
 
 }
