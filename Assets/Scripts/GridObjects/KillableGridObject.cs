@@ -140,12 +140,23 @@ public class KillableGridObject : RotateableGridObject {
 
         isAttacking = true;
 
-		if (audioSource != null)
-		{
-			audioSource.clip = attackSound;
-			audioSource.Play();
-		}
+        if (audioSource != null)
+        {
+            audioSource.clip = attackSound;
+            audioSource.Play();
+        }
+        if (this.gameObject.GetComponent<PlayerGridObject>())
+        {
+            if (isAttacking)
+            {
+                foreach (PlantGridObject plant in killList)
+                {
+                    plant.TakeDamage(100);
 
+                    isAttacking = !isAttacking;
+                }
+            }
+        }
         switch (direction)
         {
             case Globals.Direction.South:
