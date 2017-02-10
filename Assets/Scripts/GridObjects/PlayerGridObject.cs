@@ -29,7 +29,7 @@ public class PlayerGridObject : MoveableGridObject {
     protected override void Start () {
         base.Start();
 
-        //this.gameObject.transform.position = Globals.spawnLocation;
+        this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
@@ -210,7 +210,7 @@ public class PlayerGridObject : MoveableGridObject {
             if (other.gameObject.GetComponent<PlantGridObject>())
             {
                 other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
-                Destroy(other.gameObject);
+                other.gameObject.GetComponent<PlantGridObject>().TakeDamage(100);
 
                 isAttacking = !isAttacking;
             }
