@@ -145,18 +145,6 @@ public class KillableGridObject : RotateableGridObject {
             audioSource.clip = attackSound;
             audioSource.Play();
         }
-        if (this.gameObject.GetComponent<PlayerGridObject>())
-        {
-            if (isAttacking)
-            {
-                foreach (PlantGridObject plant in killList)
-                {
-                    plant.TakeDamage(100);
-
-                    isAttacking = !isAttacking;
-                }
-            }
-        }
         switch (direction)
         {
             case Globals.Direction.South:
@@ -171,6 +159,18 @@ public class KillableGridObject : RotateableGridObject {
             case Globals.Direction.West:
                 killList = westHitCollider.GetKillList();
                 break;
+        }
+		if (this.gameObject.GetComponent<PlayerGridObject>())
+        {
+            if (isAttacking)
+            {
+                foreach (PlantGridObject plant in killList)
+                {
+                    plant.TakeDamage(100);
+
+                    isAttacking = !isAttacking;
+                }
+            }
         }
 
         /*

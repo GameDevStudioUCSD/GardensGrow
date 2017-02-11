@@ -103,7 +103,7 @@ public class WindBossAI : KillableGridObject {
 		if (state == BossState.Inhaling) {
 			Debug.Log("Inhaling");
 			framesInState++;
-			if (framesInState > 1000) {
+			if (framesInState > 100) {
 				state = BossState.Blowing;
 				isInvulnerable = true;
 				framesInState = 0;
