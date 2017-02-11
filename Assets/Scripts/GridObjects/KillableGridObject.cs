@@ -101,7 +101,8 @@ public class KillableGridObject : RotateableGridObject {
             return false;
         }
 
-        gameObject.GetComponent<Animation>().Play("Damaged");
+        Animation animation = gameObject.GetComponent<Animation>();
+        if (animation) animation.Play("Damaged");
         
         health -= damage;
 
@@ -145,18 +146,6 @@ public class KillableGridObject : RotateableGridObject {
             audioSource.clip = attackSound;
             audioSource.Play();
         }
-        if (this.gameObject.GetComponent<PlayerGridObject>())
-        {
-            if (isAttacking)
-            {
-                foreach (PlantGridObject plant in killList)
-                {
-                    plant.TakeDamage(100);
-
-                    isAttacking = !isAttacking;
-                }
-            }
-        }
         switch (direction)
         {
             case Globals.Direction.South:
@@ -181,7 +170,7 @@ public class KillableGridObject : RotateableGridObject {
         killList.RemoveAll((KillableGridObject target) => target == null);
 
         // Deal damage to all targets of the enemy faction
-        foreach(KillableGridObject target in killList)
+        foreach (KillableGridObject target in killList)
         {
             if(target.faction != this.faction)
             {
@@ -196,6 +185,11 @@ public class KillableGridObject : RotateableGridObject {
                 BombObject bomb = target.GetComponent<BombObject>();
                 if (bomb) {
                     bomb.Roll(direction);
+                }
+                PlantGridObject plant = target.GetComponent<PlantGridObject>();
+                if (plant) {
+                    plant.TakeDamage(100);
+                    isAttacking = !isAttacking;
                 }
             }
         }
