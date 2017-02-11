@@ -1,10 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
+    [Header("Behaviour Modules")]
     public BehaviourModule pathFindingModule;
-    public BehaviourModule primaryBehaviourModule;
+    public BehaviourModule attackModule;
+
+    [Header("AI Parameters")]
+    public GameObject mainTarget;
+
+    private GameObject currentTarget;
+
+    protected override void Start()
+    {
+        if (mainTarget) currentTarget = mainTarget;
+
+        base.Start();
+    }
 
     public override void Reset()
     {
@@ -25,10 +40,14 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         yield return null;
     }
-
-    protected override IEnumerator ExecuteActionPrimaryBehaviour()
+    protected override IEnumerator ExecuteActionDetect()
     {
-        primaryBehaviourModule.Step();
+        throw new NotImplementedException();
+    }
+
+    protected override IEnumerator ExecuteActionAttack()
+    {
+        attackModule.Step();
 
         yield return null;
     }
@@ -36,12 +55,6 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
     // ================================================
     // | Transitions
     // ================================================
-
-    protected override bool IsPathStale()
-    {
-        // TODO:
-        return false;
-    }
 
     protected override bool Recovered()
     {
@@ -55,9 +68,20 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
         return false;
     }
 
-    protected override bool CanAct()
+    protected override bool Detected()
     {
-        // TODO:
-        return false;
+        throw new NotImplementedException();
+    }
+
+    protected override bool CanAttack()
+    {
+        AttackCollider attackCollider = getHitColliderFromDirection(direction);
+
+        List<KillableGridObject> killList = attackCollider.GetKillList();
+
+        if (killList.Count > 0)
+            return true;
+        else
+            return false;
     }
 }

@@ -32,7 +32,7 @@ public class EnemyGridObject : MoveableGridObject {
         animator.SetInteger("Direction", (int)direction);
     }
 
-    protected override void Attack()
+    public override void Attack()
     {
         animator.SetTrigger("Attack");
         base.Attack();

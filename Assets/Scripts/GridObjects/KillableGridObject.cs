@@ -132,7 +132,7 @@ public class KillableGridObject : RotateableGridObject {
         isDying = true;
     }
 
-    protected virtual void Attack()
+    public virtual void Attack()
     {
         // Don't attack if we are currently attacking
         if (isAttacking)

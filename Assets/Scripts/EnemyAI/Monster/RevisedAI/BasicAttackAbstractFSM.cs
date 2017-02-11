@@ -1,14 +1,15 @@
-using UnityEngine;
 
-public abstract class BasicAttackAbstractFSM : BehaviourModule  {
+using UnityEngine;
+public abstract class BasicAttackAbstractFSM : BehaviourModule {
      
     protected float transitionedAt;
     public enum State { 
-        Attack = 0
+        Attack = 0,
+        Cooldown = 1
     }  
-    public State state = State.Attack;
+    public State state = State.Cooldown;
 
-    public void Step()
+    public override void Step()
     {
 		State prevState = state;
 		 
@@ -16,11 +17,19 @@ public abstract class BasicAttackAbstractFSM : BehaviourModule  {
                     case State.Attack:
                         ExecuteActionAttack();
                         break;
+                    case State.Cooldown:
+                        ExecuteActionCooldown();
+                        break;
             }
 
 // The following switch statement handles the HLSM's state transition logic
             switch(state) {
                 case State.Attack:
+                    state = State.Cooldown;
+                    break;
+                case State.Cooldown:
+                    if( AttackReady() ) 
+                        state = State.Attack;
                     break;
             }		
 		
@@ -33,7 +42,9 @@ public abstract class BasicAttackAbstractFSM : BehaviourModule  {
     }
     // State Logic Functions
     protected abstract void ExecuteActionAttack();
+    protected abstract void ExecuteActionCooldown();
     // Transitional Logic Functions
+    protected abstract bool AttackReady();
     public float TimeInState()
     {
         return Time.time - transitionedAt;
