@@ -103,7 +103,7 @@ public class WindBossAI : KillableGridObject {
 		if (state == BossState.Inhaling) {
 			Debug.Log("Inhaling");
 			framesInState++;
-			if (framesInState > 1000) {
+			if (framesInState > 100) {
 				state = BossState.Blowing;
 				isInvulnerable = true;
 				framesInState = 0;
@@ -147,7 +147,8 @@ public class WindBossAI : KillableGridObject {
 	void DestroyRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-			Destroy(kvp.Value.gameObject);
+            if (kvp.Value && kvp.Value.gameObject)
+			    Destroy(kvp.Value.gameObject);
 		}
 		rocks.Clear();
 	}
