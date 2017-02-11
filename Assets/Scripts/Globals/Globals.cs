@@ -103,4 +103,8 @@ public class Globals {
             return Direction.South;
         }
     }
+    public void SaveTheGame()
+    {
+
+    }
 }
