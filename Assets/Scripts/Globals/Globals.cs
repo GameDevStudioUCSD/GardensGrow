@@ -105,6 +105,11 @@ public class Globals {
     }
     public void SaveTheGame()
     {
+        if (PlayerPrefs.HasKey("respawn"))
+        {
+            //PlayerPrefsX.SetVector3("")
+           //PlayerPrefsX.setVector3("respawn", spawnLocation);
+        }
 
     }
 }
