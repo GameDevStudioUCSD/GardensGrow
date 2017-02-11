@@ -6,6 +6,7 @@ using System;
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
+	public WindSlime windslime;
 
 	public struct BoulderLocation : IComparable <BoulderLocation> {
 		public Vector3 location;
@@ -88,6 +89,9 @@ public class WindBossAI : KillableGridObject {
 				position = UnityEngine.Random.Range(-3, 3);
 				newPosition = new Vector3(5.5f, position, 0.0f);
 			}
+
+			Instantiate(windslime, new Vector3(-3, 0, 0), Quaternion.identity);
+			Instantiate(windslime, new Vector3(3, 0, 0), Quaternion.identity);
 
 			this.transform.position = newPosition;
 		}
