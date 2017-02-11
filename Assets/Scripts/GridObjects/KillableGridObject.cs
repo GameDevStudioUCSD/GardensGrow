@@ -161,18 +161,6 @@ public class KillableGridObject : RotateableGridObject {
                 killList = westHitCollider.GetKillList();
                 break;
         }
-		if (this.gameObject.GetComponent<PlayerGridObject>())
-        {
-            if (isAttacking)
-            {
-                foreach (PlantGridObject plant in killList)
-                {
-                    plant.TakeDamage(100);
-
-                    isAttacking = !isAttacking;
-                }
-            }
-        }
 
         /*
          * Clear all dead targets in killList.
