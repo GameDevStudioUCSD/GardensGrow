@@ -11,7 +11,6 @@ public class PlayerGridObject : MoveableGridObject {
     //check if can plant here
 
     bool canPlant = true;
-
     private float horizontalAxis;
     private float verticalAxis;
     public int knockBackPower;
@@ -29,7 +28,7 @@ public class PlayerGridObject : MoveableGridObject {
     protected override void Start () {
         base.Start();
 
-        //this.gameObject.transform.position = Globals.spawnLocation;
+        this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
@@ -202,19 +201,19 @@ public class PlayerGridObject : MoveableGridObject {
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
     }
+    /*
     //below is code for de-planting your own plant
     void OnTriggerStay2D(Collider2D other)
     {
         if (isAttacking)
         {
-            if (other.gameObject.GetComponent<PlantGridObject>())
+            if (other.gameObject.GetComponent<PlantGridObject>() && this.gameObject.GetComponent<PlayerGridObject>())
             {
-                other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
-                Destroy(other.gameObject);
-
+                other.gameObject.GetComponent<PlantGridObject>().TakeDamage(100);
+                
                 isAttacking = !isAttacking;
             }
         }
-    }
+    }*/
 
 }

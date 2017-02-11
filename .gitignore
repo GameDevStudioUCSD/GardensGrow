@@ -27,3 +27,9 @@ ProjectSettings/ProjectSettings.asset
 ProjectSettings/ProjectSettings.asset
 
 *.idea/*
+
+# Executable
+*.exe
+
+# Data for executable
+*_Data

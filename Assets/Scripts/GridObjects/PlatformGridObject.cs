@@ -206,7 +206,7 @@ public class PlatformGridObject : MonoBehaviour
             {
 				direction = Globals.Direction.North;
             }
-            moveList.Add(col.gameObject.transform.parent.gameObject);
+            moveList.Add(col.gameObject);
             hasTurbine = true;
             turbineMove = true;
         }

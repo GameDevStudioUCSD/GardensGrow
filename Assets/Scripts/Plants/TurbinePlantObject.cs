@@ -88,6 +88,12 @@ public class TurbinePlantObject : PlantGridObject
         if (bombObject) {
             bombObject.Roll(direction);
         }
+        if (other.gameObject.CompareTag("Player")) {
+        	PlayerGridObject player = other.GetComponent<PlayerGridObject>();
+        	if (!player.onPlatform) {
+        		player.Move(direction);
+        	}
+        }
         else if (otherGridObject && !other.gameObject.CompareTag("WindSlime"))
         {
            	otherGridObject.Move(direction);
