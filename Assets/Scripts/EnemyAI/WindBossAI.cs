@@ -147,7 +147,8 @@ public class WindBossAI : KillableGridObject {
 	void DestroyRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-			Destroy(kvp.Value.gameObject);
+            if (kvp.Value && kvp.Value.gameObject)
+			    Destroy(kvp.Value.gameObject);
 		}
 		rocks.Clear();
 	}
