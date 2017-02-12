@@ -8,7 +8,8 @@ public class PlantGridObject : KillableGridObject
 	}
 
 	protected override void Die() {
-		Globals.plants.Remove(new Globals.PlantData(this.transform.position, Application.loadedLevelName));
+		Globals.plants.Remove(new Globals.PlantData(this.transform.position, Application.loadedLevelName,0));
 		base.Die();
+        
 	}
 }

@@ -161,7 +161,7 @@ public class UIController : MonoBehaviour {
     }
     public void Save()
     {
-        //start a function in Global
+        Globals.SaveTheGame();
         SaveLoad.Save();
     }
     public void LoadSlot1()

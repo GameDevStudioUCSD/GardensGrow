@@ -40,7 +40,7 @@ public class PlayerGridObject : MoveableGridObject {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-
+        
         // TODO: pull up animator code for player up to here so monster can have their own
         // Get Left or Right
         horizontalAxis = Input.GetAxisRaw("Horizontal");
@@ -161,7 +161,9 @@ public class PlayerGridObject : MoveableGridObject {
                 newPlant.Rotate(direction);
                 Globals.inventory[plantNumber]--;
 
-                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName);
+                
+
+                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName, newPlant.direction);
                 Globals.plants.Add(thisPlant, plantNumber);
 
                 canvas.UpdateUI();          //recheck if player can plant
