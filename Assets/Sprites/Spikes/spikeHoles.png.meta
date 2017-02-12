@@ -1,8 +1,13 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: 8871badd0d09945038bde10527e0d469
 timeCreated: 1486860469
+=======
+guid: 1638d691ce50b43b89f3ba6f1576624a
+timeCreated: 1486860202
+>>>>>>> origin/master
 =======
 guid: 1638d691ce50b43b89f3ba6f1576624a
 timeCreated: 1486860202
@@ -41,8 +46,13 @@ TextureImporter:
   textureSettings:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     filterMode: -1
     aniso: -1
+=======
+    filterMode: 0
+    aniso: 16
+>>>>>>> origin/master
 =======
     filterMode: 0
     aniso: 16
@@ -66,7 +76,11 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   spritePixelsToUnits: 100
+=======
+  spritePixelsToUnits: 32
+>>>>>>> origin/master
 =======
   spritePixelsToUnits: 32
 >>>>>>> origin/master
