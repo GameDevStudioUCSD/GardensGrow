@@ -37,7 +37,7 @@ public class BombPlantObject : PlantGridObject {
 	}
 
     public override bool TakeDamage(int damage) {
-        if (noBomb)
+        if (noBomb || bomb.CheckFrames() > 26)
             return base.TakeDamage(damage);
         else return false;
     }
