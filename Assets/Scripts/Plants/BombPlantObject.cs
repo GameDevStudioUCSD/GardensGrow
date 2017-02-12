@@ -13,6 +13,7 @@ public class BombPlantObject : PlantGridObject {
 	// Use this for initialization
 	protected override void Start ()
     {
+        base.Start();
         noBomb = false;
         frames = 0;
         GameObject newBomb = (GameObject)Instantiate(bombObject, this.gameObject.transform.position, Quaternion.identity);
@@ -22,6 +23,7 @@ public class BombPlantObject : PlantGridObject {
 	
 	// Update is called once per frame
 	protected override void Update () {
+        base.Update();
 		if (noBomb) {
 			frames++;
 			if (frames >= regrowFrames) {
@@ -34,7 +36,17 @@ public class BombPlantObject : PlantGridObject {
 		}
 	}
 
-	public void RegrowBomb() {
+    public override bool TakeDamage(int damage) {
+        if (noBomb || bomb.CheckFrames() > 26)
+            return base.TakeDamage(damage);
+        else return false;
+    }
+
+    public override bool TakeBombDamage(int damage) {
+        return false;
+    }
+
+    public void RegrowBomb() {
 		noBomb = true;
 	}
 }
