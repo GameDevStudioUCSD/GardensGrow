@@ -189,7 +189,6 @@ public class KillableGridObject : RotateableGridObject {
                 PlantGridObject plant = target.GetComponent<PlantGridObject>();
                 if (plant) {
                     plant.TakeDamage(100);
-                    isAttacking = !isAttacking;
                 }
             }
         }
