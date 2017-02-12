@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Spikes : TerrainObject {
 	public int damage = 12;
-	private int framesPerHit = 10;
+	private int framesPerHit = 50;
 	private int currentFrame = 0;
 
 	public bool activeCollider;
@@ -18,8 +18,10 @@ public class Spikes : TerrainObject {
 			Destroy(transform.GetComponent<Rigidbody>());
 		}
 	}
-	void OnTriggerEnter2D(Collider2D other) {
+	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
+			Debug.Log(currentFrame);
+
 			currentFrame++;
 			if (currentFrame > framesPerHit) {
 				PlayerGridObject player = other.GetComponent<PlayerGridObject>();
