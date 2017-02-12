@@ -103,12 +103,14 @@ public class PlayerGridObject : MoveableGridObject {
                 Attack();
 
                 //knockBack logic
-                foreach (MoveableGridObject target in killList)
+                foreach (KillableGridObject target in killList)
                 {
-                    if (!(target.gameObject.GetComponent<BombObject>())) {
-                        for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
-                        {
-                            target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    MoveableGridObject moveable = target.GetComponent<MoveableGridObject>();
+                    if (moveable) {
+                        if (!(moveable.gameObject.GetComponent<BombObject>()) && !(moveable.gameObject.GetComponent<RollingBoulder>())) {
+                            for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++) {
+                                moveable.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                            }
                         }
                     }
                 }
