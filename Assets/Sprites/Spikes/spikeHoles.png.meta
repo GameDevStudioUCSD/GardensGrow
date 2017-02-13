@@ -1,22 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-guid: 8871badd0d09945038bde10527e0d469
-timeCreated: 1486860469
-=======
-guid: 1638d691ce50b43b89f3ba6f1576624a
-timeCreated: 1486860202
->>>>>>> origin/master
-=======
-guid: 1638d691ce50b43b89f3ba6f1576624a
-timeCreated: 1486860202
->>>>>>> origin/master
-=======
-guid: 1638d691ce50b43b89f3ba6f1576624a
-timeCreated: 1486860202
->>>>>>> origin/master
-licenseType: Free
+guid: 8559bda19c979644fb9e28f46f683ae2
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -44,23 +27,8 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    filterMode: -1
-    aniso: -1
-=======
     filterMode: 0
     aniso: 16
->>>>>>> origin/master
-=======
-    filterMode: 0
-    aniso: 16
->>>>>>> origin/master
-=======
-    filterMode: 0
-    aniso: 16
->>>>>>> origin/master
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -74,19 +42,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  spritePixelsToUnits: 100
-=======
   spritePixelsToUnits: 32
->>>>>>> origin/master
-=======
-  spritePixelsToUnits: 32
->>>>>>> origin/master
-=======
-  spritePixelsToUnits: 32
->>>>>>> origin/master
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
