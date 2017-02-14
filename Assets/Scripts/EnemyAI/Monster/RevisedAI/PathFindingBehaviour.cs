@@ -15,10 +15,8 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
 
     [Header("Path Finding Components")]
     public TileMap tileMap;
+    public GameObject target;
     public EnemyGridObject creature;
-
-    [SerializeField]
-    protected GameObject target;
 
     protected Transform creatureTransform;
 
@@ -60,11 +58,6 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
         creatureTransform = creature.transform;
 
         astar = new AStar(tileMap);
-    }
-
-    public void SetTarget(GameObject target)
-    {
-        this.target = target;
     }
 
     /// <summary>

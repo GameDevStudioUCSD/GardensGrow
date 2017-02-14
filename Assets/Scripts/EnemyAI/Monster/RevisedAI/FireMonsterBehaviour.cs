@@ -9,17 +9,8 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
     public PathFindingBehaviour pathFindingModule;
     public BehaviourModule attackModule;
 
-    [Header("AI Parameters")]
-    public GameObject mainTarget;
-
-    private GameObject currentTarget;
-
     protected override void Start()
     {
-        if (mainTarget) currentTarget = mainTarget;
-
-        pathFindingModule.SetTarget(currentTarget);
-
         base.Start();
     }
 
