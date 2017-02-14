@@ -14,7 +14,7 @@ public class ScorpionMonster : PathFindingMonster {
         base.Move(direction);
     }
 
-    protected override void Attack() {
+    public override void Attack() {
         if (isAttacking)
             return;
 

@@ -18,7 +18,6 @@ public class AttackCollider : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
     public List<KillableGridObject> GetKillList()
