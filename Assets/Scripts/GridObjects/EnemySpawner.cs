@@ -88,8 +88,8 @@ public class EnemySpawner : KillableGridObject
         }
         GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
         list.Add(enemyObj);
-        enemyObj.GetComponent<PathFindingMonster>().tileMap = tileMap;
-        enemyObj.GetComponent<PathFindingMonster>().targetObject = targetObj;
+        enemyObj.GetComponentInChildren<PathFindingBehaviour>().tileMap = tileMap;
+        enemyObj.GetComponentInChildren<PathFindingBehaviour>().target = targetObj;
 
         currSpawns++;
     }
