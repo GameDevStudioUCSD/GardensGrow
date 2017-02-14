@@ -6,7 +6,7 @@ using System;
 public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
-    public BehaviourModule pathFindingModule;
+    public PathFindingBehaviour pathFindingModule;
     public BehaviourModule attackModule;
 
     [Header("AI Parameters")]
@@ -17,6 +17,8 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
     protected override void Start()
     {
         if (mainTarget) currentTarget = mainTarget;
+
+        pathFindingModule.SetTarget(currentTarget);
 
         base.Start();
     }
@@ -40,9 +42,10 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         yield return null;
     }
+
     protected override IEnumerator ExecuteActionDetect()
     {
-        throw new NotImplementedException();
+        yield return null;
     }
 
     protected override IEnumerator ExecuteActionAttack()
@@ -70,7 +73,8 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool Detected()
     {
-        throw new NotImplementedException();
+        // TODO:
+        return false;
     }
 
     protected override bool CanAttack()
@@ -80,7 +84,16 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
         List<KillableGridObject> killList = attackCollider.GetKillList();
 
         if (killList.Count > 0)
-            return true;
+        {
+            // Check if the killable is an enemy
+            foreach(KillableGridObject tar in killList)
+            {
+                if (tar.faction != this.faction)
+                    return true;
+            }
+
+            return false;
+        }
         else
             return false;
     }

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 /// <summary>
@@ -13,18 +12,19 @@ using UnityEngine;
 /// of this state machine.
 /// 
 /// </summary>
-public abstract class PathFindingBehaviourAbstractFSM : BehaviourModule  {
-
+public abstract class PathFindingBehaviourAbstractFSM : MonoBehaviour {
+     
     protected float transitionedAt;
     public enum State { 
         FindPath = 0,
         StartStep = 1,
         Stepping = 2,
-        EvaluateStep = 3
+        EvaluateStep = 3,
+        PathDone = 4
     }  
     public State state = State.FindPath;
 
-    public override void Step()
+    public void Step()
     {
 		State prevState = state;
 		 
@@ -41,12 +41,18 @@ public abstract class PathFindingBehaviourAbstractFSM : BehaviourModule  {
                     case State.EvaluateStep:
                         ExecuteActionEvaluateStep();
                         break;
+                    case State.PathDone:
+                        ExecuteActionPathDone();
+                        break;
             }
 
 // The following switch statement handles the HLSM's state transition logic
             switch(state) {
                 case State.FindPath:
-                    state = State.StartStep;
+                    if( !NewPath() ) 
+                        state = State.StartStep;
+                    if( FinishedPath() ) 
+                        state = State.PathDone;
                     break;
                 case State.StartStep:
                     state = State.Stepping;
@@ -60,6 +66,10 @@ public abstract class PathFindingBehaviourAbstractFSM : BehaviourModule  {
                         state = State.FindPath;
                     else 
                        state = State.StartStep;
+                    break;
+                case State.PathDone:
+                    if( !FinishedPath() ) 
+                        state = State.FindPath;
                     break;
             }		
 		
@@ -75,8 +85,10 @@ public abstract class PathFindingBehaviourAbstractFSM : BehaviourModule  {
     protected abstract void ExecuteActionStartStep();
     protected abstract void ExecuteActionStepping();
     protected abstract void ExecuteActionEvaluateStep();
+    protected abstract void ExecuteActionPathDone();
     // Transitional Logic Functions
     protected abstract bool NewPath();
+    protected abstract bool FinishedPath();
     protected abstract bool StepDone();
     public float TimeInState()
     {
@@ -85,6 +97,5 @@ public abstract class PathFindingBehaviourAbstractFSM : BehaviourModule  {
 
     
     protected virtual void OnTransition() { }
-    protected virtual void SetTarget(GameObject target) { }
   
 }
