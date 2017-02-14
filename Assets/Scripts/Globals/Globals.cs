@@ -139,7 +139,7 @@ public class Globals: MonoBehaviour {
 
 
     }
-    public static void LoadTheGame()
+    public static void LoadTheGame(int loadslot)
     {
         //FIRST CLEAN THE SLATE AKA THE GAME STATE
 
@@ -163,6 +163,6 @@ public class Globals: MonoBehaviour {
 
    
         }
-        
+        //consider instantiating somewhere else 
     }
 }
