@@ -3,12 +3,20 @@ using UnityEngine.UI;
 
 public class PlantGridObject : KillableGridObject
 {
+	// Used for saving plant's position in the data structure
+	private Vector3 startLocation;
+
+	protected override void Start() {
+		startLocation = this.transform.position;
+		base.Start();
+	}
+
 	protected override void Update() {
 		base.Update();
 	}
 
 	protected override void Die() {
-		Globals.plants.Remove(new Globals.PlantData(this.transform.position, Application.loadedLevelName,0));
+		Globals.plants.Remove(new Globals.PlantData(startLocation, Application.loadedLevelName,0));
 		base.Die();
         
 	}
