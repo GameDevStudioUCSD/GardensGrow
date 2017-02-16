@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlantGridObject : KillableGridObject
 {
 	// Used for saving plant's position in the data structure
-	private Vector3 startLocation;
+	protected Vector3 startLocation;
 
 	protected override void Start() {
 		startLocation = this.transform.position;

@@ -27,9 +27,10 @@ public class TurbinePlantObject : PlantGridObject
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
-        setDirection();
+		//base.Start();
+		startLocation = this.transform.position;
 
-        base.Start();
+        setDirection();
     }
 
     // Update is called once per frame
