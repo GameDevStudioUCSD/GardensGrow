@@ -9,6 +9,9 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     public PathFindingBehaviour pathFindingModule;
     public BasicAttackModule attackModule;
 
+    [Header("Behaviour Parameters")]
+    public bool isDisabled;
+
     [Header("Parameters for Modules")]
     public PathFindingBehaviour.PathFindingParameters pathFindingParameters;
 
@@ -16,11 +19,26 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         pathFindingModule.SetParameters(pathFindingParameters);
 
+        if (isDisabled)
+            Disable();
+
         base.Start();
     }
 
     public override void Reset()
     {
+    }
+
+    public void Disable()
+    {
+        isDisabled = true;
+        state = State.Disabled;
+    }
+
+    public void Enable()
+    {
+        isDisabled = false;
+        state = State.PathFinding;
     }
 
     // ================================================
@@ -48,6 +66,11 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         attackModule.Step();
 
+        yield return null;
+    }
+
+    protected override IEnumerator ExecuteActionDisabled()
+    {
         yield return null;
     }
 
@@ -93,4 +116,5 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
         else
             return false;
     }
+
 }
