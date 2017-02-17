@@ -10,6 +10,7 @@ public class LavaBossAI : KillableGridObject {
 	public GameObject[] spawners;
 	public Vector3[] boatLocations;
 	public GameObject boat;
+	public GameObject portal;
 	private List<Fireball> fireballs = new List<Fireball>(); 
 	public Fireball fireball; 
 	//public BoxCollider2D collider;
@@ -234,6 +235,7 @@ public class LavaBossAI : KillableGridObject {
     }
 
     protected override void Die() {
+    	Instantiate(portal, new Vector3(0, 0, 0), Quaternion.identity);
     	base.Die();
     }
 
