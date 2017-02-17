@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,40 +14,29 @@ using System.Collections.Generic;
 /// </summary>
 public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
 
-    [Header("Path Finding Components")]
-    public TileMap tileMap;
-    public GameObject target;
-    public EnemyGridObject creature;
-
     protected Transform creatureTransform;
 
-    [Header("Path Finding Parameters")]
-    public int stepAmount = 32;
-    public float delayBetweenSteps = 0.03f;
-    public float allowedStepOffset = 0.50f;
-    public int tilesUntilReevaluation = 5;
+    private PathFindingParameters parameters;
+    private TileMap tileMap;
+    private GameObject target;
+    private EnemyGridObject creature;
+    private int stepAmount = 32;
+    private float delayBetweenSteps = 0.03f;
+    private float allowedStepOffset = 0.50f;
+    private int tilesUntilReevaluation = 5;
 
     public bool debug = false;
 
     protected AStar astar;
-
     // Path found by astar
-    [SerializeField]
     protected List<Globals.Direction> path;
-    [SerializeField]
-    protected int tilesMoved;
 
     // Data about the path the monster is on
-    [SerializeField]
+    protected int tilesMoved;
     protected Tile startTile;
-    [SerializeField]
     protected Tile currentTile;
-    [SerializeField]
     protected Tile nextTile;
-    [SerializeField]
     protected Tile targetTile;
-
-    [SerializeField]
     protected int stepsTaken;
 
     // Transition conditions
@@ -58,6 +48,12 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
         creatureTransform = creature.transform;
 
         astar = new AStar(tileMap);
+    }
+
+    public void SetParameters(PathFindingParameters p)
+    {
+        // TODO: need to get parameters into the script
+        this.parameters = p;
     }
 
     /// <summary>
@@ -211,5 +207,20 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
     protected override bool FinishedPath()
     {
         return !pathNeedsReevaluation && pathIsFinished;
+    }
+
+    [Serializable]
+    public class PathFindingParameters
+    {
+        [Header("Path Finding Components")]
+        public TileMap tileMap;
+        public GameObject target;
+        public EnemyGridObject creature;
+
+        [Header("Path Finding Parameters")]
+        public int stepAmount = 32;
+        public float delayBetweenSteps = 0.03f;
+        public float allowedStepOffset = 0.50f;
+        public int tilesUntilReevaluation = 5; 
     }
 }

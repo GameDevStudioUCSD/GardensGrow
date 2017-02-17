@@ -3,14 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
+public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
     public PathFindingBehaviour pathFindingModule;
-    public BehaviourModule attackModule;
+    public BasicAttackModule attackModule;
+
+    [Header("Parameters for Modules")]
+    public PathFindingBehaviour.PathFindingParameters pathFindingParameters;
 
     protected override void Start()
     {
+        pathFindingModule.SetParameters(pathFindingParameters);
+
         base.Start();
     }
 
