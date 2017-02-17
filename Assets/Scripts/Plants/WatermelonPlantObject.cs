@@ -3,10 +3,10 @@ using System.Collections;
 
 public class WatermelonPlantObject : PlantGridObject
 {
-
     public GameObject bullet;
     private int counter;
     public int shotDelay;
+    private bool triggered = false;
 
     public int changeDirectionWaitTime;
     private bool canChangeDir = true;
@@ -41,6 +41,13 @@ public class WatermelonPlantObject : PlantGridObject
         {
             Destroy(this.gameObject);
         }
+        if (triggered) {
+            if (counter > shotDelay) {
+                Shooter();
+                counter = 0;
+            }
+            counter++;
+        }
         base.Update();
     }
     IEnumerator changeDirectionWait()
@@ -50,6 +57,7 @@ public class WatermelonPlantObject : PlantGridObject
     }
     private void Shooter()
     {
+        Debug.Log("FIRE");
         bullet.GetComponent<PlantProjectileObject>().dir = direction;
 		//seed.dir = direction;
 
@@ -91,42 +99,35 @@ public class WatermelonPlantObject : PlantGridObject
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
-        {
-            if (canChangeDir)
-            {
-                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner")) {
+            triggered = true;
+            if (canChangeDir) {
+                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.South;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
-                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.North;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
-                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.East;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
-                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.West;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
             }
-
-            if (counter > shotDelay)
-            {
-                Shooter();
-                counter = 0;
-            }
-            counter++;
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
+            triggered = false;
     }
 }
