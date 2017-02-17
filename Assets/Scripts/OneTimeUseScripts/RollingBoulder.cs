@@ -35,4 +35,9 @@ public class RollingBoulder : MoveableGridObject {
 		animator.SetInteger("Direction", (int)direction);
         animator.SetTrigger("Roll");
     }
+
+    public override void Attack() {
+        base.Attack();
+        if (hitSomething) Die();
+    }
 }
