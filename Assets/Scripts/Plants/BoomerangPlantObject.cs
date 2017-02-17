@@ -7,6 +7,7 @@ public class BoomerangPlantObject : PlantGridObject {
     private BoomerangPlantProjectileObject boomerangScript;
 
     void Start () {
+    	base.Start();
     }
 
     void Update () {
