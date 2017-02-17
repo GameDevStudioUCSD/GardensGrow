@@ -31,6 +31,7 @@ public class WatermelonPlantObject : PlantGridObject
         northCollider.enabled = true;
         westCollider.enabled = true;
 
+        base.Start();
     }
 
     // Update is called once per frame
