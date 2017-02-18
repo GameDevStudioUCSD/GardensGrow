@@ -266,8 +266,8 @@ public class PlatformGridObject : MonoBehaviour
         }*/
         for (int i = 0; i < moveList.Count; i++) {
         	if (moveList[i].CompareTag("Turbine") || moveList[i].CompareTag("Plant")) {
-        		GameObject plant = moveList[i];
-        		Destroy(plant);
+        		PlantGridObject plant = moveList[i].GetComponent<PlantGridObject>();
+        		plant.TakeDamage(500);
         	}
         	if (moveList[i].CompareTag("Player")) {
         		PlayerGridObject player = moveList[i].GetComponent<PlayerGridObject>();

@@ -16,4 +16,8 @@ public class Building : KillableGridObject{
 		if (animator)
 			animator.SetInteger ("health", health);
 	}
+
+	public void Repair () {
+		health = 100;
+	}
 }

@@ -27,6 +27,9 @@ public class TurbinePlantObject : PlantGridObject
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
+		//base.Start();
+		startLocation = this.transform.position;
+
         setDirection();
     }
 

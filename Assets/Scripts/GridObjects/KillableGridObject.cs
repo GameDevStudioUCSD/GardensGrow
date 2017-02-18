@@ -11,12 +11,12 @@ public class KillableGridObject : RotateableGridObject {
     public int damage = 5;
     public bool bombable = false;
 
-	public AttackCollider southHitCollider;
-	public AttackCollider westHitCollider;
-	public AttackCollider northHitCollider;
-	public AttackCollider eastHitCollider;
+    public AttackCollider southHitCollider;
+    public AttackCollider westHitCollider;
+    public AttackCollider northHitCollider;
+    public AttackCollider eastHitCollider;
     public Globals.Faction faction = Globals.Faction.Ally;
-    
+
     public Text hpBarText;
 
     public AudioSource audioSource;
@@ -28,6 +28,7 @@ public class KillableGridObject : RotateableGridObject {
     public bool isInvulnerable = false;
 
     protected List<KillableGridObject> killList;
+    protected bool hitSomething;
 
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
@@ -36,42 +37,37 @@ public class KillableGridObject : RotateableGridObject {
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     protected bool hasDied = false;
 
-	// Use this for initialization
-	protected override void Start () {
+    // Use this for initialization
+    protected override void Start() {
         base.Start();
-	}
-	
-	// Update is called once per frame
-	protected override void Update ()
-    {
+    }
+
+    // Update is called once per frame
+    protected override void Update() {
         //base.Update();
-        if (isDying)
-        {
+        if (isDying) {
             dyingFrame++;
-            if (dyingFrame >= numDyingFrames)
-            {
+            if (dyingFrame >= numDyingFrames) {
                 Destroy(this.gameObject);
             }
         }
 
-	}
+    }
 
     /// <summary>
     /// The object has finished attacking.
     /// This should be called as an animation event.
     /// Look in the attack animations.
     /// </summary>
-    public void FinishedAttack()
-    {
+    public void FinishedAttack() {
         isAttacking = false;
     }
 
-	// returns true if the attack kills the object
-    public virtual bool TakeDamage (int damage) {
-  		if (isInvulnerable)
-		{
-			return false;
-		}
+    // returns true if the attack kills the object
+    public virtual bool TakeDamage(int damage) {
+        if (isInvulnerable) {
+            return false;
+        }
 
         Animation animation = gameObject.GetComponent<Animation>();
         if (animation) animation.Play("Damaged");
@@ -79,8 +75,7 @@ public class KillableGridObject : RotateableGridObject {
         if (!bombable) {
             health -= damage;
 
-            if (audioSource != null)
-            {
+            if (audioSource != null) {
                 audioSource.clip = hurtSound;
                 audioSource.Play();
             }
@@ -91,29 +86,25 @@ public class KillableGridObject : RotateableGridObject {
             }
         }
 
-		return false;
+        return false;
     }
 
-    public virtual bool TakeBombDamage(int damage)
-    {
-        if (isInvulnerable)
-        {
+    public virtual bool TakeBombDamage(int damage) {
+        if (isInvulnerable) {
             return false;
         }
 
         Animation animation = gameObject.GetComponent<Animation>();
         if (animation) animation.Play("Damaged");
-        
+
         health -= damage;
 
-        if (audioSource != null)
-        {
-        	audioSource.clip = hurtSound;
-        	audioSource.Play();
+        if (audioSource != null) {
+            audioSource.clip = hurtSound;
+            audioSource.Play();
         }
 
-        if (health <= 0 && hasDied == false)
-        {
+        if (health <= 0 && hasDied == false) {
             Die();
             return true;
         }
@@ -123,31 +114,29 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Die() {
         hasDied = true;
-		if(this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
+        if (this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
             Application.LoadLevel(Application.loadedLevel);
         }
 
         if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner" || this.gameObject.GetComponent<PlantGridObject>()) {
-        	SpawnItem();
+            SpawnItem();
         }
         isDying = true;
     }
 
-    protected virtual void Attack()
-    {
+    public virtual void Attack() {
         // Don't attack if we are currently attacking
         if (isAttacking)
             return;
 
         isAttacking = true;
+        hitSomething = false;
 
-        if (audioSource != null)
-        {
+        if (audioSource != null) {
             audioSource.clip = attackSound;
             audioSource.Play();
         }
-        switch (direction)
-        {
+        switch (direction) {
             case Globals.Direction.South:
                 killList = southHitCollider.GetKillList();
                 break;
@@ -170,15 +159,13 @@ public class KillableGridObject : RotateableGridObject {
         killList.RemoveAll((KillableGridObject target) => target == null);
 
         // Deal damage to all targets of the enemy faction
-        foreach (KillableGridObject target in killList)
-        {
-            if(target.faction != this.faction)
-            {
-                if(this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>())
-                {
+        foreach (KillableGridObject target in killList) {
+            if (target.faction != this.faction) {
+                if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
                     //note enemy kill plant doesn't work
                     Debug.Log("SMACKING THE WATERMELOON");
                 }
+                hitSomething = true;
                 target.TakeDamage(damage);
             }
             if (this.GetComponent<PlayerGridObject>()) {
@@ -192,7 +179,7 @@ public class KillableGridObject : RotateableGridObject {
                 }
             }
         }
-        
+
     }
 
     public void SpawnItem() {
