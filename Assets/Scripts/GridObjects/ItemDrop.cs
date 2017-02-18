@@ -21,9 +21,9 @@ public class ItemDrop : StaticGridObject {
 	// Update is called once per frame
 	void Update () {
 		life++;
-		/*if (permanent == false && life > lifeSpan) {
+		if (permanent == false && life > lifeSpan) {
 			Destroy(this.gameObject);
-		}*/
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -31,7 +31,11 @@ public class ItemDrop : StaticGridObject {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			UIController controller = player.canvas;
 
-			if (itemId == 9) {
+			if (itemId == 10) {
+				Globals.numKeys++;
+				controller.UpdateUI();
+			}
+			else if (itemId == 9) {
 				player.health++;
 				if (player.health > 12)
 					player.health = 12;
