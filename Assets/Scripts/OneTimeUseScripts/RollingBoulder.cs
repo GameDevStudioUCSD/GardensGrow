@@ -6,6 +6,8 @@ public class RollingBoulder : MoveableGridObject {
     public bool isRolling = false;
 	private Animator animator;
 
+    protected new const int numDyingFrames = 51;
+
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
@@ -38,6 +40,9 @@ public class RollingBoulder : MoveableGridObject {
 
     public override void Attack() {
         base.Attack();
-        if (hitSomething) Die();
+        if (hitSomething) {
+            animator.SetTrigger("Explode");
+            Die();
+        }
     }
 }

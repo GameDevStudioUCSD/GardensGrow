@@ -3,19 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
+public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
     public PathFindingBehaviour pathFindingModule;
-    public BehaviourModule attackModule;
+    public BasicAttackModule attackModule;
+
+    [Header("Behaviour Parameters")]
+    public bool isDisabled;
+
+    [Header("Parameters for Modules")]
+    public PathFindingBehaviour.PathFindingParameters pathFindingParameters;
 
     protected override void Start()
     {
+        pathFindingModule.SetParameters(pathFindingParameters);
+
+        if (isDisabled)
+            Disable();
+
         base.Start();
     }
 
     public override void Reset()
     {
+    }
+
+    public void Disable()
+    {
+        isDisabled = true;
+        state = State.Disabled;
+    }
+
+    public void Enable()
+    {
+        isDisabled = false;
+        state = State.PathFinding;
     }
 
     // ================================================
@@ -43,6 +66,11 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         attackModule.Step();
 
+        yield return null;
+    }
+
+    protected override IEnumerator ExecuteActionDisabled()
+    {
         yield return null;
     }
 
@@ -88,4 +116,5 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
         else
             return false;
     }
+
 }
