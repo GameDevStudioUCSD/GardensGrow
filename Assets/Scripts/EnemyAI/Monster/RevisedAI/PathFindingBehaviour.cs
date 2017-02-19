@@ -20,8 +20,9 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
 
     public bool debug = false;
 
-    protected AStar astar;
+    protected AStar astar = null;
     // Path found by astar
+    [SerializeField]
     protected List<Globals.Direction> path;
 
     // Data about the path the monster is on
@@ -43,7 +44,8 @@ public class PathFindingBehaviour : PathFindingBehaviourAbstractFSM {
 
         creatureTransform = p.creature.transform;
 
-        astar = new AStar(p.tileMap);
+        if(astar == null)
+            astar = new AStar(p.tileMap);
     }
 
     /// <summary>
