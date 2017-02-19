@@ -17,10 +17,14 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override void Start()
     {
-        pathFindingModule.SetParameters(pathFindingParameters);
-
         if (isDisabled)
+        {
             Disable();
+        }
+        else
+        {
+            pathFindingModule.SetParameters(pathFindingParameters);
+        }
 
         base.Start();
     }
@@ -39,6 +43,20 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         isDisabled = false;
         state = State.PathFinding;
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        RunFSM();
+    }
+
+    /// <summary>
+    /// Called by Spawner to activate this creature
+    /// </summary>
+    public void SpawnStart()
+    {
+        pathFindingModule.SetParameters(pathFindingParameters);
     }
 
     // ================================================

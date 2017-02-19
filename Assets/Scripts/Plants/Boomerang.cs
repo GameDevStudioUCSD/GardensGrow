@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BoomerangPlantProjectileObject : MonoBehaviour {
+public class Boomerang : MonoBehaviour {
+
+    public static Dictionary<string, Boomerang> boomerangs = new Dictionary<string, Boomerang>();
 
     [SerializeField]
-    private List<Vector3> visiblePlants;
+    private List<Vector3> plants;
 
     [SerializeField]
     private List<GameObject> itemHeld;
@@ -19,20 +21,20 @@ public class BoomerangPlantProjectileObject : MonoBehaviour {
     [SerializeField]
     private int damage = 1;
 
-    // Use this for initialization
-    void Start() {
-        visiblePlants = new List<Vector3>();
-        itemHeld = new List<GameObject>();
+    public static string RoomId(Vector3 pos) {
+        int x = Mathf.RoundToInt(pos.x / 14.0f) * 14;
+        int y = Mathf.RoundToInt(pos.y / 10.0f) * 10;
+        return string.Format("{0}{1:D5}{2:D5}", Application.loadedLevelName, x, y);
     }
 
     // Update is called once per frame
     void Update() {
         if (nextPlant != -1) {
-            if (Vector2.Distance(transform.position, visiblePlants[nextPlant]) <= speed) {
-                nextPlant = (nextPlant + 1) % visiblePlants.Count;
+            if (Vector2.Distance(transform.position, plants[nextPlant]) <= speed) {
+                nextPlant = (nextPlant + 1) % plants.Count;
             }
             else {
-                Vector3 dt = (visiblePlants[nextPlant] - transform.position).normalized * speed;
+                Vector3 dt = (plants[nextPlant] - transform.position).normalized * speed;
                 dt /= Globals.pixelSize;
                 dt = new Vector3(Mathf.Round(dt.x), Mathf.Round(dt.y), 0);
                 dt *= Globals.pixelSize;
@@ -51,17 +53,20 @@ public class BoomerangPlantProjectileObject : MonoBehaviour {
     }
 
     public void AddPlant(Vector3 plant) {
-        visiblePlants.Add(plant);
-        if (visiblePlants.Count == 1) {
+        plants.Add(plant);
+        if (plants.Count == 1) {
             nextPlant = 0;
-            transform.position = plant;
         }
     }
 
     public void RemovePlant(Vector3 plant) {
-        visiblePlants.Remove(plant);
-        if (visiblePlants.Count <= 0) {
-            nextPlant = -1;
+        plants.Remove(plant);
+        if (nextPlant >= plants.Count) {
+            nextPlant = 0;
+        }
+        else if (plants.Count <= 0) {
+            Destroy(gameObject);
+            boomerangs.Remove(RoomId(transform.position));
         }
     }
 
