@@ -156,30 +156,34 @@ public class UIController : MonoBehaviour {
     public void NewGame()
     {
         mainMenuUI.SetActive(false);
-        Game newGame = new Game();
-        
+        Application.LoadLevel(1);
+
     }
     public void Save()
     {
-        //Globals.SaveTheGame();
-        SaveLoad.Save();
+        /* autosaves to 1st loadslot
+         * please change UI and logic
+         * to give the option to save in 3 
+         * different slots
+         */
+        Globals.SaveTheGame(1);
     }
     public void LoadSlot1()
     {
-        //Globals.Load
-        SaveLoad.Load(0);
+        loadMenuUI.SetActive(false);
+        Globals.LoadTheGame(1);
     }
     public void LoadSlot2()
     {
-        SaveLoad.Load(1);
+        Globals.LoadTheGame(2);
     }
     public void LoadSlot3()
     {
-        SaveLoad.Load(2);
+        Globals.LoadTheGame(3);
     }
-    public void LoadSlot4()
+    public void LoadSlot4() //no UI for 4th load slot maybe take out this method?
     {
-        SaveLoad.Load(3);
+        Globals.LoadTheGame(4);
     }
 
 }

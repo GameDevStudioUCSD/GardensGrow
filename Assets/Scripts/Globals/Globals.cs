@@ -106,15 +106,14 @@ public class Globals: MonoBehaviour {
             return Direction.South;
         }
     }
-    public static void SaveTheGame()
+    public static void SaveTheGame(int saveSlot) //should be 1-4
     {
         //KEEP PLANTS IN THE SAME ORDER FOR INSTANTIATION IN PLAYERGRIDOBJECT?
-        //check which save 
-        PlayerPrefsX.SetVector3("respawn", spawnLocation);
-        PlayerPrefs.SetString("activeScene", SceneManager.GetActiveScene().name);
-        PlayerPrefs.SetInt("playerHealth", player.health);
+        PlayerPrefsX.SetVector3("respawn"+saveSlot, spawnLocation);
+        PlayerPrefs.SetString("activeScene"+saveSlot, SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetInt("playerHealth"+saveSlot, player.health);
 
-        PlayerPrefsX.SetIntArray("playerInventory", inventory);
+        PlayerPrefsX.SetIntArray("playerInventory"+saveSlot, inventory);
 
         Vector3[] tempPlantPositions = new Vector3[plants.Count];
         int[] tempPlantTypes = new int[plants.Count];       //need plant type
@@ -131,22 +130,27 @@ public class Globals: MonoBehaviour {
             i++;
         }
 
-        PlayerPrefsX.SetVector3Array("PlantPositions", tempPlantPositions);
-        PlayerPrefsX.SetIntArray("PlantTypes", tempPlantTypes);
-        PlayerPrefsX.SetStringArray("PlantScenes", tempPlantScenes);
-        PlayerPrefsX.SetIntArray("PlantDirections", tempPlantDirections);
+        PlayerPrefsX.SetVector3Array("PlantPositions"+saveSlot, tempPlantPositions);
+        PlayerPrefsX.SetIntArray("PlantTypes"+saveSlot, tempPlantTypes);
+        PlayerPrefsX.SetStringArray("PlantScenes"+saveSlot, tempPlantScenes);
+        PlayerPrefsX.SetIntArray("PlantDirections"+saveSlot, tempPlantDirections);
 
 
     }
-    public static void LoadTheGame(int loadslot)
+    public static void LoadTheGame(int loadSlot) //should be 1-4
     {
-        //FIRST CLEAN THE SLATE AKA THE GAME STATE
+        //check if load exists, if not doesn't load the game
+        if(PlayerPrefsX.GetVector3("respawn" + loadSlot) == null)
+        {
+            return;
+        }
+        //CLEARS GAME STATE OF PLANTS
+        plants.Clear();
+        //LOADS THE GAME
+        SceneManager.LoadScene(PlayerPrefs.GetString("activeScene" + loadSlot));
 
-
-        //check which save
-        player.transform.position = PlayerPrefsX.GetVector3("respawn", spawnLocation);
-        SceneManager.LoadScene(PlayerPrefs.GetString("activeScene", SceneManager.GetActiveScene().name));
-        player.health = PlayerPrefs.GetInt("playerHealth", player.health);
+        player.transform.position = PlayerPrefsX.GetVector3("respawn"+loadSlot);
+        player.health = PlayerPrefs.GetInt("playerHealth"+loadSlot);
 
         inventory = PlayerPrefsX.GetIntArray("playerInventory");
 
@@ -158,10 +162,6 @@ public class Globals: MonoBehaviour {
         for (int i = 0; i < tempPlantDirections.Length; i++)
         {
             plants.Add(new PlantData(tempPlantPositions[i], tempPlantScenes[i], (Direction)tempPlantDirections[i]), tempPlantTypes[i]);
-            PlantGridObject newPlant = (PlantGridObject)Instantiate(player.plants[tempPlantTypes[i]],tempPlantPositions[i], Quaternion.identity);
-
-   
         }
-        //consider instantiating somewhere else 
     }
 }

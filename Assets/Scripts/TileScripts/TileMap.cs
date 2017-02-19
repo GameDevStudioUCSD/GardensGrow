@@ -24,7 +24,8 @@ public class TileMap : MonoBehaviour {
 			if (kvp.Key.PlantScene == Application.loadedLevelName) {
 				plantVector = kvp.Key.PlantLocation;
 				plantType = kvp.Value;
-				Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
+				PlantGridObject newPlant = (PlantGridObject) Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
+                newPlant.Rotate(kvp.Key.PlantDirection);
 			}
 		}
 
