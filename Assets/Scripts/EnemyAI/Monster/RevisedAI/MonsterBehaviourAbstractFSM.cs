@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections;
 
 public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachine {
-     
+
     protected float transitionedAt;
     [Header("State Machine Variables")]
     public int exceptionCount;
@@ -15,9 +15,10 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
         PathFinding = 0,
         Damaged = 1,
         Detect = 2,
-        Attack = 3
+        Attack = 3,
+        Disabled = 4
     }  
-    public State state = State.PathFinding;
+    public State state = State.Disabled;
     protected override void Start() {
         base.Start();
         RunFSM();
@@ -42,6 +43,16 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     {
         coroutine = StartCoroutine(FSMThread(delayRate));
     }
+
+    /*
+    public void Update()
+    {
+        if (coroutine == null)
+            Debug.Log("NULL");
+        else
+            Debug.Log("EXISTS");
+    }
+    */
 
 	public bool TestAndSet(ref bool variable, bool val) {
         bool rv = variable;
@@ -84,6 +95,9 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
                     case State.Attack:
                         stateAction = ExecuteActionAttack();
                         break;
+                    case State.Disabled:
+                        stateAction = ExecuteActionDisabled();
+                        break;
                 }
             }
         catch( Exception e ) {
@@ -119,6 +133,8 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
                     if( OnHit() ) 
                         state = State.Damaged;
                     break;
+                case State.Disabled:
+                    break;
             }		
             }
             catch(Exception e) {
@@ -135,6 +151,7 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     protected abstract IEnumerator ExecuteActionDamaged();
     protected abstract IEnumerator ExecuteActionDetect();
     protected abstract IEnumerator ExecuteActionAttack();
+    protected abstract IEnumerator ExecuteActionDisabled();
     // Transitional Logic Functions
     protected abstract bool Detected();
     protected abstract bool CanAttack();
@@ -147,5 +164,10 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
 
     
     protected virtual void OnTransition() { }
+
+    public void OnDisable()
+    {
+        StopCoroutine(coroutine);
+    }
   
 }

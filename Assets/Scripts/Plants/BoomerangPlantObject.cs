@@ -3,21 +3,18 @@ using System.Collections;
 
 public class BoomerangPlantObject : PlantGridObject {
 
-    [SerializeField]
-    private BoomerangPlantProjectileObject boomerangScript;
+    public GameObject boomerangPrefab;
 
-    void Start () {
-    	base.Start();
+    void OnEnable() {
+        string id = Boomerang.RoomId(transform.position);
+        if (!Boomerang.boomerangs.ContainsKey(id)) {
+            GameObject boomerang = (GameObject)Instantiate(boomerangPrefab, transform.position, Quaternion.identity);
+            Boomerang.boomerangs.Add(id, boomerang.GetComponent<Boomerang>());
+        }
+        Boomerang.boomerangs[id].AddPlant(transform.position);
     }
 
-    void Update () {
-    }
-
-    private void OnBecameVisible() {
-        boomerangScript.AddPlant(transform.position);
-    }
-
-    private void OnBecameInvisible() {
-        boomerangScript.RemovePlant(transform.position);
+    void OnDisable() {
+        Boomerang.boomerangs[Boomerang.RoomId(transform.position)].RemovePlant(transform.position);
     }
 }
