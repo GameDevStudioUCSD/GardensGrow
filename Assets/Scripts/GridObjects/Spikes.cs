@@ -4,6 +4,10 @@ using System.Collections;
 public class Spikes : TerrainObject {
 	public int damage = 2;
 	public int framesPerHit = 50;
+
+	public bool toggleable = false;
+	public bool spikesUp = false;
+
 	private int currentFrame = 0;
     private Animator anim;
     private bool striked = false;
@@ -19,27 +23,39 @@ public class Spikes : TerrainObject {
 			thisCollider.enabled = false;
 			Destroy(transform.GetComponent<Rigidbody>());
 		}
+
+		if (toggleable) {
+			anim.SetBool("Hit", false);
+			anim.SetBool("SpikesUp", spikesUp);
+		}
 	}
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
-			Debug.Log(currentFrame);
+			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 
-			currentFrame++;
-			if (currentFrame > framesPerHit) {
-				PlayerGridObject player = other.GetComponent<PlayerGridObject>();
-				if (player.onPlatform == false && !striked) {
-					player.TakeDamage(damage);
-					//player.gameObject.transform.position = Globals.spawnLocation;
-                    anim.SetBool("Hit", true);
-                    striked = true;
-                    StartCoroutine(wait());
+			if (toggleable == false) {
+				currentFrame++;
+				if (currentFrame > framesPerHit) {
+					if (player.onPlatform == false && !striked) {
+						player.TakeDamage(damage);
+						//player.gameObject.transform.position = Globals.spawnLocation;
+	                    anim.SetBool("Hit", true);
+	                    striked = true;
+	                    StartCoroutine(Wait());
+					}
+					currentFrame = 0;
 				}
-				currentFrame = 0;
+			}
+			else {
+				if (spikesUp) {
+					player.TakeDamage(damage);
+					player.gameObject.transform.position = Globals.spawnLocation;
+				}
 			}
 		}
 	}
     //method for animation ease
-    IEnumerator wait()
+    IEnumerator Wait()
     {
         yield return new WaitForSeconds(0.33f);
         anim.SetBool("Hit", false);
@@ -49,6 +65,17 @@ public class Spikes : TerrainObject {
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			currentFrame = 0;
+		}
+	}
+
+	public void Toggle() {
+		if (spikesUp) {
+			spikesUp = false;
+			anim.SetBool("SpikesUp", false);
+		}
+		else {
+			spikesUp = true;
+			anim.SetBool("SpikesUp", true);
 		}
 	}
 }
