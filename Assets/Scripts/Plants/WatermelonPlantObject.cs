@@ -7,6 +7,7 @@ public class WatermelonPlantObject : PlantGridObject
     private int counter;
     public int shotDelay;
     private bool triggered = false;
+    private UIController uic;
 
     public int changeDirectionWaitTime;
     private bool canChangeDir = true;
@@ -21,6 +22,7 @@ public class WatermelonPlantObject : PlantGridObject
     // Use this for initialization
     protected override void Start()
     {
+        uic = FindObjectOfType<UIController>();
         counter = 0;
         animator = animator = GetComponent<Animator>();
         
@@ -42,11 +44,15 @@ public class WatermelonPlantObject : PlantGridObject
             Destroy(this.gameObject);
         }
         if (triggered) {
-            if (counter > shotDelay) {
-                Shooter();
-                counter = 0;
+            if (!uic.paused)
+            {
+                if (counter > shotDelay)
+                {
+                    Shooter();
+                    counter = 0;
+                }
+                counter++;
             }
-            counter++;
         }
         base.Update();
     }
