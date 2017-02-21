@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour {
     public GameObject mainMenuUI;
     public GameObject loadMenuUI;
 	public GameObject dialogUI;
+	public GameObject saveMenuUI;
 	public PlayerGridObject player;
 
 	public Sprite[] seedPackets;
@@ -115,6 +116,16 @@ public class UIController : MonoBehaviour {
 		player.canMove = true;
     }
 
+    public void ShowSaveMenu() {
+    	pauseUI.SetActive(false);
+    	saveMenuUI.SetActive(true);
+    }
+
+    public void HideSaveMenu() {
+		pauseUI.SetActive(true);
+    	saveMenuUI.SetActive(false);
+    }
+
 	public void LoadButton()
     {
         mainMenuUI.SetActive(false);
@@ -159,7 +170,8 @@ public class UIController : MonoBehaviour {
         Application.LoadLevel(1);
 
     }
-    public void Save()
+
+    public void Save1()
     {
         /* autosaves to 1st loadslot
          * please change UI and logic
@@ -168,6 +180,25 @@ public class UIController : MonoBehaviour {
          */
         Globals.SaveTheGame(1);
     }
+	public void Save2()
+    {
+        /* autosaves to 1st loadslot
+         * please change UI and logic
+         * to give the option to save in 3 
+         * different slots
+         */
+        Globals.SaveTheGame(2);
+    }
+	public void Save3()
+    {
+        /* autosaves to 1st loadslot
+         * please change UI and logic
+         * to give the option to save in 3 
+         * different slots
+         */
+        Globals.SaveTheGame(3);
+    }
+
     public void LoadSlot1()
     {
         if(Globals.LoadTheGame(1) == 1)
