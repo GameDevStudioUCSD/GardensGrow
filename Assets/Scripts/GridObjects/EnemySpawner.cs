@@ -63,7 +63,6 @@ public class EnemySpawner : KillableGridObject
 
     void SpawnEnemy()
     {
-        Debug.Log("SPAWN ENEMY");
 		randInt = randGen.Next(0, 4);
 
         if (randInt == 1)
