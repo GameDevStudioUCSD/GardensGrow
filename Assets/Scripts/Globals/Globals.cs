@@ -61,6 +61,7 @@ public class Globals: MonoBehaviour {
 	public static Vector3 spawnLocation = new Vector3(0.0f, -2.0f, 0.0f);
 
     public static PlayerGridObject player;
+    public static int playerHealth = 12;
 
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";
@@ -83,7 +84,7 @@ public class Globals: MonoBehaviour {
             case Globals.Direction.North:
                 dirr = Vector2.up;
                 break;
-        }
+        }   
         return dirr;
     }
 
@@ -112,7 +113,7 @@ public class Globals: MonoBehaviour {
         PlayerPrefsX.SetVector3("respawn"+saveSlot, spawnLocation);
         PlayerPrefs.SetString("activeScene"+saveSlot, SceneManager.GetActiveScene().name);
         PlayerPrefs.SetInt("playerHealth"+saveSlot, player.health);
-
+        //Debug.Log("SAVING HEALTH AS " + player.health);
         PlayerPrefsX.SetIntArray("playerInventory"+saveSlot, inventory);
 
         Vector3[] tempPlantPositions = new Vector3[plants.Count];
@@ -129,7 +130,7 @@ public class Globals: MonoBehaviour {
             tempPlantDirections[i] = (int)plantInfo.Key.PlantDirection;
             i++;
         }
-
+        //also save NPC states
         PlayerPrefsX.SetVector3Array("PlantPositions"+saveSlot, tempPlantPositions);
         PlayerPrefsX.SetIntArray("PlantTypes"+saveSlot, tempPlantTypes);
         PlayerPrefsX.SetStringArray("PlantScenes"+saveSlot, tempPlantScenes);
@@ -137,31 +138,31 @@ public class Globals: MonoBehaviour {
 
 
     }
-    public static void LoadTheGame(int loadSlot) //should be 1-4
+    public static int LoadTheGame(int loadSlot) //should be 1-4
     {
         //check if load exists, if not doesn't load the game
         if(PlayerPrefsX.GetVector3("respawn" + loadSlot) == null)
         {
-            return;
+            return -1;
         }
-        //CLEARS GAME STATE OF PLANTS
         plants.Clear();
         //LOADS THE GAME
         SceneManager.LoadScene(PlayerPrefs.GetString("activeScene" + loadSlot));
 
-        player.transform.position = PlayerPrefsX.GetVector3("respawn"+loadSlot);
-        player.health = PlayerPrefs.GetInt("playerHealth"+loadSlot);
+        //change update player next respawn
+        spawnLocation = PlayerPrefsX.GetVector3("respawn"+loadSlot);
+        playerHealth = PlayerPrefs.GetInt("playerHealth"+loadSlot);
+        inventory = PlayerPrefsX.GetIntArray("playerInventory"+loadSlot);
 
-        inventory = PlayerPrefsX.GetIntArray("playerInventory");
-
-        Vector3[] tempPlantPositions = PlayerPrefsX.GetVector3Array("PlantPositions");
-        int[] tempPlantTypes = PlayerPrefsX.GetIntArray("PlantTypes");
-        String[] tempPlantScenes = PlayerPrefsX.GetStringArray("PlantScenes");
-        int[] tempPlantDirections = PlayerPrefsX.GetIntArray("PlantDirections");
+        Vector3[] tempPlantPositions = PlayerPrefsX.GetVector3Array("PlantPositions"+loadSlot);
+        int[] tempPlantTypes = PlayerPrefsX.GetIntArray("PlantTypes"+loadSlot);
+        String[] tempPlantScenes = PlayerPrefsX.GetStringArray("PlantScenes"+loadSlot);
+        int[] tempPlantDirections = PlayerPrefsX.GetIntArray("PlantDirections"+loadSlot);
 
         for (int i = 0; i < tempPlantDirections.Length; i++)
         {
             plants.Add(new PlantData(tempPlantPositions[i], tempPlantScenes[i], (Direction)tempPlantDirections[i]), tempPlantTypes[i]);
         }
+        return 1;
     }
 }

@@ -14,10 +14,16 @@ public class TileMap : MonoBehaviour {
     public bool debug = false;
     private GameObject[] rooms;
 
-    // Awake happens before Start and is preferred for generating references between objects
-    void Awake()
+   //start happens 1st frame
+    void Start()
     {
-    	int plantType;
+        rooms = new GameObject[transform.GetChild(0).childCount];
+        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+            rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
+        }
+
+        int plantType;
     	Vector3 plantVector;
 		foreach (KeyValuePair<Globals.PlantData, int> kvp in Globals.plants)
 		{
@@ -50,16 +56,7 @@ public class TileMap : MonoBehaviour {
             //nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);
         }
 
-	}
-
-    // Use this for initialization
-    void Start() {
-    	rooms = new GameObject[transform.GetChild(0).childCount];
-       	for (int i = 0; i < transform.GetChild(0).childCount; i++) {
-			rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
-    	}
-    }
-	
+	}	
 	// Update is called once per frame
 	void Update () {
 		for (int i = 0; i < rooms.Length; i++) {
