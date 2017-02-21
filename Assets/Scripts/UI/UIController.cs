@@ -7,6 +7,8 @@ public class UIController : MonoBehaviour {
 	public UnityEngine.UI.Image[] uiPlants;
 	public UnityEngine.UI.Image[] healthIcons;
 	public UnityEngine.UI.Text[] uiPlantCounters;
+	public UnityEngine.UI.Image uiKeyIcon;
+	public UnityEngine.UI.Text uiKeyCounter;
 
 	public GameObject pauseUI;
     public GameObject mainMenuUI;
@@ -69,6 +71,16 @@ public class UIController : MonoBehaviour {
 					uiPlantCounters[i].color = new Color (0.35f, 0.73f, 0.13f, 1);
 				}
 			}
+		}
+
+		if (Globals.numKeys != 0) {
+		Debug.Log(Globals.numKeys);
+			uiKeyCounter.text = Globals.numKeys.ToString();
+			uiKeyIcon.enabled = true;
+		}
+		else {
+			uiKeyCounter.text = "";
+			uiKeyIcon.enabled = false;
 		}
 	}
 
