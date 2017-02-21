@@ -27,11 +27,6 @@ public class PlatformGridObject : MonoBehaviour
     private bool hasPlayer = false;
     private bool turbineMove = false;
     private List<GameObject> moveList = new List<GameObject>();
-    //miniBoss stuff
-    public bool miniBoss = false;
-    private bool isMovingLeft = false;
-    public int miniBossDistance;
-    private int counter = 0;
 
     // Use this for initialization
     void Start()
@@ -44,39 +39,6 @@ public class PlatformGridObject : MonoBehaviour
     {
         if (!uic.paused)
         {
-            if (miniBoss)
-            {
-                counter++;
-                if (counter > miniBossDistance)
-                {
-                    counter = 0;
-                    isMovingLeft = !isMovingLeft;
-                }
-                if (!isMovingLeft)
-                {
-                    Vector3 position = this.transform.position;
-                    position.x += Globals.pixelSize;
-                    this.transform.position = position;
-                    if (hasPlayer)
-                    {
-                        Vector3 position2 = player.transform.position;
-                        position2.x += Globals.pixelSize;
-                        player.transform.position = position2;
-                    }
-                }
-                else
-                {
-                    Vector3 position = this.transform.position;
-                    position.x -= Globals.pixelSize;
-                    this.transform.position = position;
-                    if (hasPlayer)
-                    {
-                        Vector3 position2 = player.transform.position;
-                        position2.x -= Globals.pixelSize;
-                        player.transform.position = position2;
-                    }
-                }
-            }
             if (pingPong) //includes miniBoss behavior
             {
                 delayCounter++;
@@ -134,8 +96,17 @@ public class PlatformGridObject : MonoBehaviour
                 }
                 if (delayCounter > delay)
                 {
+                    bool foundTurbine = false;
                     foreach (GameObject obj in moveList)
                     {
+                        if (!obj) {
+                            moveList.Remove(obj);
+                            foundTurbine = true;
+                            break;
+                        }
+                        if (obj.GetComponent<TurbinePlantObject>())
+                            foundTurbine = true;
+
                         if (direction == Globals.Direction.East)
                         {
                             Vector3 position = obj.transform.position;
@@ -161,6 +132,10 @@ public class PlatformGridObject : MonoBehaviour
                             obj.transform.position = position;
                         }
                     }
+                    if (!foundTurbine) {
+                        hasTurbine = false;
+                        turbineMove = false;
+                    }
                     delayCounter = 0;
                 }
             }
@@ -178,11 +153,6 @@ public class PlatformGridObject : MonoBehaviour
 			PlayerGridObject player = col.GetComponent<PlayerGridObject>();
 			player.onPlatform = false;
 			moveList.Remove(col.gameObject);
-        }
-        if (col.gameObject.CompareTag("Turbine"))
-        {
-            hasTurbine = false;
-            moveList.Remove(col.gameObject);
         }
     }
 
@@ -266,8 +236,8 @@ public class PlatformGridObject : MonoBehaviour
         }*/
         for (int i = 0; i < moveList.Count; i++) {
         	if (moveList[i].CompareTag("Turbine") || moveList[i].CompareTag("Plant")) {
-        		GameObject plant = moveList[i];
-        		Destroy(plant);
+        		PlantGridObject plant = moveList[i].GetComponent<PlantGridObject>();
+        		plant.TakeDamage(500);
         	}
         	if (moveList[i].CompareTag("Player")) {
         		PlayerGridObject player = moveList[i].GetComponent<PlayerGridObject>();
