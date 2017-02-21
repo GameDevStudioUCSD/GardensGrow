@@ -24,6 +24,8 @@ public class PlayerGridObject : MoveableGridObject {
 
 	private GameObject dialogue;
     private bool invincible;
+    private int frames = 0;
+    private float time = 0;
     // Use this for initialization
     protected override void Start () {
         base.Start();
@@ -40,7 +42,7 @@ public class PlayerGridObject : MoveableGridObject {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-        
+
         // TODO: pull up animator code for player up to here so monster can have their own
         // Get Left or Right
         horizontalAxis = Input.GetAxisRaw("Horizontal");
