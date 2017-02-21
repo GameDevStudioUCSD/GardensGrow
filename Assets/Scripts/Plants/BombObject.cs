@@ -72,7 +72,7 @@ public class BombObject : MoveableGridObject {
     }
 
     //KillableGridObject's Attack(), but calls TakeBombDamage() instead of TakeDamage()
-    protected override void Attack() {
+    public override void Attack() {
         // Don't attack if we are currently attacking
         if (isAttacking)
             return;
@@ -178,5 +178,9 @@ public class BombObject : MoveableGridObject {
                     isRolling = false;
             } */
         }
+    }
+
+    public int CheckFrames() {
+        return frames;
     }
 }

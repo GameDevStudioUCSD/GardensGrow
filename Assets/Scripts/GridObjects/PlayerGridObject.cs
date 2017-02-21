@@ -24,6 +24,8 @@ public class PlayerGridObject : MoveableGridObject {
 
 	private GameObject dialogue;
     private bool invincible;
+    private int frames = 0;
+    private float time = 0;
     // Use this for initialization
     protected override void Start () {
         base.Start();
@@ -103,12 +105,14 @@ public class PlayerGridObject : MoveableGridObject {
                 Attack();
 
                 //knockBack logic
-                foreach (MoveableGridObject target in killList)
+                foreach (KillableGridObject target in killList)
                 {
-                    if (!(target.gameObject.GetComponent<BombObject>())) {
-                        for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
-                        {
-                            target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    MoveableGridObject moveable = target.GetComponent<MoveableGridObject>();
+                    if (moveable) {
+                        if (!(moveable.gameObject.GetComponent<BombObject>()) && !(moveable.gameObject.GetComponent<RollingBoulder>())) {
+                            for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++) {
+                                moveable.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                            }
                         }
                     }
                 }
@@ -161,7 +165,9 @@ public class PlayerGridObject : MoveableGridObject {
                 newPlant.Rotate(direction);
                 Globals.inventory[plantNumber]--;
 
-                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName);
+                
+
+                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName, newPlant.direction);
                 Globals.plants.Add(thisPlant, plantNumber);
 
                 canvas.UpdateUI();          //recheck if player can plant

@@ -4,11 +4,15 @@ using System.Collections;
 public class RollingBoulder : MoveableGridObject {
 
     public bool isRolling = false;
+	private Animator animator;
+
+    protected new const int numDyingFrames = 51;
 
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
         bombable = true;
+		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -30,5 +34,15 @@ public class RollingBoulder : MoveableGridObject {
     public void startRolling(Globals.Direction rollDirection) {
         direction = rollDirection;
         isRolling = true;
+		animator.SetInteger("Direction", (int)direction);
+        animator.SetTrigger("Roll");
+    }
+
+    public override void Attack() {
+        base.Attack();
+        if (hitSomething) {
+            animator.SetTrigger("Explode");
+            Die();
+        }
     }
 }

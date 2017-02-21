@@ -6,6 +6,7 @@ using System;
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
+	public WindSlime windslime;
 
 	public struct BoulderLocation : IComparable <BoulderLocation> {
 		public Vector3 location;
@@ -89,6 +90,9 @@ public class WindBossAI : KillableGridObject {
 				newPosition = new Vector3(5.5f, position, 0.0f);
 			}
 
+			Instantiate(windslime, new Vector3(-3, 0, 0), Quaternion.identity);
+			Instantiate(windslime, new Vector3(3, 0, 0), Quaternion.identity);
+
 			this.transform.position = newPosition;
 		}
 		if (state == BossState.Idle) {
@@ -103,7 +107,7 @@ public class WindBossAI : KillableGridObject {
 		if (state == BossState.Inhaling) {
 			Debug.Log("Inhaling");
 			framesInState++;
-			if (framesInState > 1000) {
+			if (framesInState > 500) {
 				state = BossState.Blowing;
 				isInvulnerable = true;
 				framesInState = 0;
@@ -140,14 +144,16 @@ public class WindBossAI : KillableGridObject {
 	void BlowRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-			kvp.Value.startRolling(direction);
+            if (kvp.Value) //check that boulder has not been destroyed
+			    kvp.Value.startRolling(direction);
 		}
 	}
 
 	void DestroyRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-			Destroy(kvp.Value.gameObject);
+            if (kvp.Value && kvp.Value.gameObject)
+			    Destroy(kvp.Value.gameObject);
 		}
 		rocks.Clear();
 	}

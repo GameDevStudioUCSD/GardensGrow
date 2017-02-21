@@ -42,6 +42,15 @@ public class UIController : MonoBehaviour {
                 Time.timeScale = 1;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+        	if (paused) {
+        		Resume();
+        	}
+        	else {
+        		Pause();
+        	}
+        }
 	}
 
 	public void UpdateUI () {
@@ -152,10 +161,12 @@ public class UIController : MonoBehaviour {
     }
     public void Save()
     {
+        //Globals.SaveTheGame();
         SaveLoad.Save();
     }
     public void LoadSlot1()
     {
+        //Globals.Load
         SaveLoad.Load(0);
     }
     public void LoadSlot2()

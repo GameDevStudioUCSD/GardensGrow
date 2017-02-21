@@ -21,6 +21,8 @@ public class CactusPlantObject : PlantGridObject {
 
     protected override void Start() {
         anim = this.gameObject.GetComponent<Animator>();
+
+        base.Start();
     }
 
     protected override void Update()
