@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour {
     public GameObject mainMenuUI;
     public GameObject loadMenuUI;
 	public GameObject dialogUI;
+	public GameObject saveMenuUI;
 	public PlayerGridObject player;
 
 	public Sprite[] seedPackets;
@@ -115,6 +116,16 @@ public class UIController : MonoBehaviour {
 		player.canMove = true;
     }
 
+    public void ShowSaveMenu() {
+    	pauseUI.SetActive(false);
+    	saveMenuUI.SetActive(true);
+    }
+
+    public void HideSaveMenu() {
+		pauseUI.SetActive(true);
+    	saveMenuUI.SetActive(false);
+    }
+
 	public void LoadButton()
     {
         mainMenuUI.SetActive(false);
@@ -156,30 +167,65 @@ public class UIController : MonoBehaviour {
     public void NewGame()
     {
         mainMenuUI.SetActive(false);
-        Game newGame = new Game();
-        
+        Application.LoadLevel(1);
+
     }
-    public void Save()
+
+    public void Save1()
     {
-        //Globals.SaveTheGame();
-        SaveLoad.Save();
+        /* autosaves to 1st loadslot
+         * please change UI and logic
+         * to give the option to save in 3 
+         * different slots
+         */
+        Globals.SaveTheGame(1);
     }
+	public void Save2()
+    {
+        /* autosaves to 1st loadslot
+         * please change UI and logic
+         * to give the option to save in 3 
+         * different slots
+         */
+        Globals.SaveTheGame(2);
+    }
+	public void Save3()
+    {
+        /* autosaves to 1st loadslot
+         * please change UI and logic
+         * to give the option to save in 3 
+         * different slots
+         */
+        Globals.SaveTheGame(3);
+    }
+
     public void LoadSlot1()
     {
-        //Globals.Load
-        SaveLoad.Load(0);
+        if(Globals.LoadTheGame(1) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
     public void LoadSlot2()
     {
-        SaveLoad.Load(1);
+        if (Globals.LoadTheGame(2) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
     public void LoadSlot3()
     {
-        SaveLoad.Load(2);
+        if (Globals.LoadTheGame(3) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
-    public void LoadSlot4()
+    public void LoadSlot4() //no UI for 4th load slot maybe take out this method?
     {
-        SaveLoad.Load(3);
+        if (Globals.LoadTheGame(4) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
 
 }

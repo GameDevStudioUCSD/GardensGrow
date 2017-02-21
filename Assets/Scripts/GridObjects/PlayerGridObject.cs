@@ -29,7 +29,9 @@ public class PlayerGridObject : MoveableGridObject {
     // Use this for initialization
     protected override void Start () {
         base.Start();
-
+        //Debug.Log("PLAYER HEALTH SHOULD BE " + Globals.playerHealth);
+        canvas.UpdateHealth(Globals.playerHealth);  //update players health from load/Globals
+      
         this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
@@ -182,6 +184,7 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
+        //Debug.Log("CURRENT HEALTH IS: " + (health-1));
         if (damage >= 1)
         {
             canvas.UpdateHealth(health - damage);
