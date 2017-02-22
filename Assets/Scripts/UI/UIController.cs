@@ -74,7 +74,6 @@ public class UIController : MonoBehaviour {
 		}
 
 		if (Globals.numKeys != 0) {
-		Debug.Log(Globals.numKeys);
 			uiKeyCounter.text = Globals.numKeys.ToString();
 			uiKeyIcon.enabled = true;
 		}
