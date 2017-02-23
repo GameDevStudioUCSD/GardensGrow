@@ -163,7 +163,6 @@ public class KillableGridObject : RotateableGridObject {
             if (target.faction != this.faction) {
                 if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
                     //note enemy kill plant doesn't work
-                    Debug.Log("SMACKING THE WATERMELOON");
                 }
                 hitSomething = true;
                 target.TakeDamage(damage);

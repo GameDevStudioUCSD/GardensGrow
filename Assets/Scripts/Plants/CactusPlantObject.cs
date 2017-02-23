@@ -35,6 +35,8 @@ public class CactusPlantObject : PlantGridObject {
     }
     void Punch(Collider2D other, Globals.Direction dir)
     {
+    	audioSource.clip = attackSound;
+    	audioSource.Play();
         if (other.gameObject.GetComponent<Switch>())
         {
             other.gameObject.GetComponent<Switch>().TakeDamage(0);
