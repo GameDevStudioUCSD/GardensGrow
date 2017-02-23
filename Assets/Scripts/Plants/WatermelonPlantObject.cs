@@ -63,10 +63,10 @@ public class WatermelonPlantObject : PlantGridObject
     }
     private void Shooter()
     {
-        Debug.Log("FIRE");
         bullet.GetComponent<PlantProjectileObject>().dir = direction;
-		//seed.dir = direction;
 
+        audioSource.clip = attackSound;
+        audioSource.Play();
         if (direction == Globals.Direction.North)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);

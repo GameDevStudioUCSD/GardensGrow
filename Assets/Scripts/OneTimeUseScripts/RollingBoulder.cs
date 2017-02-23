@@ -45,4 +45,9 @@ public class RollingBoulder : MoveableGridObject {
             Die();
         }
     }
+
+    protected override void Die () {
+    	animator.SetTrigger("Explode");
+    	base.Die();
+	}
 }
