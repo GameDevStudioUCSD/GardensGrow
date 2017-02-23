@@ -143,7 +143,7 @@ public class Globals: MonoBehaviour {
         //check if load exists, if not doesn't load the game
         if(PlayerPrefsX.GetVector3("respawn" + loadSlot) == null)
         {
-            return -1;
+            return -1; //failure
         }
         plants.Clear();
         //LOADS THE GAME
@@ -163,6 +163,6 @@ public class Globals: MonoBehaviour {
         {
             plants.Add(new PlantData(tempPlantPositions[i], tempPlantScenes[i], (Direction)tempPlantDirections[i]), tempPlantTypes[i]);
         }
-        return 1;
+        return 1; //success
     }
 }

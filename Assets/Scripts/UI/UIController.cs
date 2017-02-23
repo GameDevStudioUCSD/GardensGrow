@@ -173,29 +173,14 @@ public class UIController : MonoBehaviour {
 
     public void Save1()
     {
-        /* autosaves to 1st loadslot
-         * please change UI and logic
-         * to give the option to save in 3 
-         * different slots
-         */
         Globals.SaveTheGame(1);
     }
 	public void Save2()
     {
-        /* autosaves to 1st loadslot
-         * please change UI and logic
-         * to give the option to save in 3 
-         * different slots
-         */
         Globals.SaveTheGame(2);
     }
 	public void Save3()
     {
-        /* autosaves to 1st loadslot
-         * please change UI and logic
-         * to give the option to save in 3 
-         * different slots
-         */
         Globals.SaveTheGame(3);
     }
 
