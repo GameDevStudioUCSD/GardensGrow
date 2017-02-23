@@ -9,19 +9,27 @@ public class LockedDoor : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log("test");
 		animator = this.gameObject.GetComponent<Animator>();
 	}
 
 	void UnlockDoor() {
-		animator.SetBool("Opening", true);
+	Debug.Log("Opening door");
+		animator.SetTrigger("Open");
 		barrier.gameObject.SetActive(false);
 	}
 
-	void OnTriggerEnter2d(Collider other) {
+	void OnTriggerEnter2d(Collider2D other) {
+		Debug.Log("enter");
+
 		if (unlockable) {
 			if (other.gameObject.tag == "Player") {
+				Debug.Log("player");
+
 				if (Globals.numKeys > 0) {
 					Globals.numKeys--;
+					Debug.Log("enough keys");
+
 					PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 					UIController controller = player.canvas;
 
