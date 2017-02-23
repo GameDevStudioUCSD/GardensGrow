@@ -6,38 +6,50 @@ public class LockedDoor : MonoBehaviour {
 	public bool unlockable;
 
 	private Animator animator;
+	private bool closed;
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log("test");
+		closed = true;
 		animator = this.gameObject.GetComponent<Animator>();
 	}
 
-	void UnlockDoor() {
-	Debug.Log("Opening door");
+	void OpenDoor() {
 		animator.SetTrigger("Open");
 		barrier.gameObject.SetActive(false);
+		closed = false;
 	}
 
-	void OnTriggerEnter2d(Collider2D other) {
-		Debug.Log("enter");
+	void CloseDoor() {
+		animator.SetTrigger("Close");
+		barrier.gameObject.SetActive(true);
+		closed = true;
+	}
 
+	void OnTriggerEnter2D(Collider2D other) {
 		if (unlockable) {
 			if (other.gameObject.tag == "Player") {
-				Debug.Log("player");
 
 				if (Globals.numKeys > 0) {
 					Globals.numKeys--;
-					Debug.Log("enough keys");
 
 					PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 					UIController controller = player.canvas;
 
 					controller.UpdateUI();
 
-					UnlockDoor();
+					OpenDoor();
 				}
 			}
+		}
+	}
+
+	public void Toggle() {
+		if (closed) {
+			OpenDoor();
+		}
+		else {
+			CloseDoor();
 		}
 	}
 }
