@@ -19,6 +19,8 @@ public class PlayerGridObject : MoveableGridObject {
     public Animation anim;
     public bool canMove;
 
+    public AudioClip invalidPlacement;
+
     //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
 
@@ -176,7 +178,7 @@ public class PlayerGridObject : MoveableGridObject {
             }
             else
             {
-                audioSource.clip = hurtSound;       //PLZ CHANGE SOUND EFFECT
+                audioSource.clip = invalidPlacement;       //PLZ CHANGE SOUND EFFECT
                 audioSource.Play();
             }
 		}
