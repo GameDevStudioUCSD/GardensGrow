@@ -42,12 +42,16 @@ public class RollingBoulder : MoveableGridObject {
         base.Attack();
         if (hitSomething) {
             animator.SetTrigger("Explode");
-            Die();
+            StartCoroutine(waitDieAnimation());
         }
     }
-
+    IEnumerator waitDieAnimation()
+    {
+        yield return new WaitForSeconds(1.0f);
+        this.Die();
+    }
     protected override void Die () {
-    	animator.SetTrigger("Explode");
+    	//animator.SetTrigger("Explode");
     	base.Die();
 	}
 }
