@@ -21,6 +21,8 @@ public class CactusPlantObject : PlantGridObject {
 
     protected override void Start() {
         anim = this.gameObject.GetComponent<Animator>();
+
+        base.Start();
     }
 
     protected override void Update()
@@ -33,9 +35,13 @@ public class CactusPlantObject : PlantGridObject {
     }
     void Punch(Collider2D other, Globals.Direction dir)
     {
+    	audioSource.clip = attackSound;
+    	audioSource.Play();
         if (other.gameObject.GetComponent<Switch>())
         {
-            other.gameObject.GetComponent<Switch>().TakeDamage(0);
+            other.gameObject.GetComponent<Switch>().TakeDamage(0);  //check how player switches the switch
+            Debug.Log("trying to switch the SWITCH");
+            isAttacking = false;
         }
         if (other.gameObject.CompareTag("Enemy"))
         {

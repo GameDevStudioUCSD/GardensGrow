@@ -6,14 +6,14 @@ using System;
 public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
-    public PathFindingBehaviour pathFindingModule;
+    public PathFindingModule pathFindingModule;
     public BasicAttackModule attackModule;
 
     [Header("Behaviour Parameters")]
     public bool isDisabled;
 
     [Header("Parameters for Modules")]
-    public PathFindingBehaviour.PathFindingParameters pathFindingParameters;
+    public PathFindingModule.PathFindingParameters pathFindingParameters;
 
     protected override void Start()
     {
@@ -120,6 +120,7 @@ public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
             return false;
     }
 
+    // Summon
     protected override IEnumerator ExecuteActionPrimaryBehaviour()
     {
         // TODO: 

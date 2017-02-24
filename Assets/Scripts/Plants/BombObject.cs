@@ -179,4 +179,8 @@ public class BombObject : MoveableGridObject {
             } */
         }
     }
+
+    public int CheckFrames() {
+        return frames;
+    }
 }

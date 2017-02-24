@@ -27,6 +27,9 @@ public class TurbinePlantObject : PlantGridObject
     {
 		// setting direction for corresponding animation
 		animator = GetComponent <Animator> ();
+		//base.Start();
+		startLocation = this.transform.position;
+
         setDirection();
     }
 
@@ -87,6 +90,12 @@ public class TurbinePlantObject : PlantGridObject
         BombObject bombObject = other.GetComponent<BombObject>();
         if (bombObject) {
             bombObject.Roll(direction);
+        }
+        if (other.gameObject.CompareTag("Player")) {
+        	PlayerGridObject player = other.GetComponent<PlayerGridObject>();
+        	if (!player.onPlatform) {
+        		player.Move(direction);
+        	}
         }
         else if (otherGridObject && !other.gameObject.CompareTag("WindSlime"))
         {

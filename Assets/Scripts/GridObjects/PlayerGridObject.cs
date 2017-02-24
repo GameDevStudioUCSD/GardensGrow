@@ -11,7 +11,6 @@ public class PlayerGridObject : MoveableGridObject {
     //check if can plant here
 
     bool canPlant = true;
-
     private float horizontalAxis;
     private float verticalAxis;
     public int knockBackPower;
@@ -20,15 +19,21 @@ public class PlayerGridObject : MoveableGridObject {
     public Animation anim;
     public bool canMove;
 
+    public AudioClip invalidPlacement;
+
     //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
 
 	private GameObject dialogue;
     private bool invincible;
+    private int frames = 0;
+    private float time = 0;
     // Use this for initialization
     protected override void Start () {
         base.Start();
-
+        //Debug.Log("PLAYER HEALTH SHOULD BE " + Globals.playerHealth);
+        canvas.UpdateHealth(Globals.playerHealth);  //update players health from load/Globals
+      
         this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
@@ -104,12 +109,14 @@ public class PlayerGridObject : MoveableGridObject {
                 Attack();
 
                 //knockBack logic
-                foreach (MoveableGridObject target in killList)
+                foreach (KillableGridObject target in killList)
                 {
-                    if (!(target.gameObject.GetComponent<BombObject>())) {
-                        for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++)
-                        {
-                            target.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                    MoveableGridObject moveable = target.GetComponent<MoveableGridObject>();
+                    if (moveable) {
+                        if (!(moveable.gameObject.GetComponent<BombObject>()) && !(moveable.gameObject.GetComponent<RollingBoulder>())) {
+                            for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++) {
+                                moveable.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
+                            }
                         }
                     }
                 }
@@ -162,14 +169,16 @@ public class PlayerGridObject : MoveableGridObject {
                 newPlant.Rotate(direction);
                 Globals.inventory[plantNumber]--;
 
-                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName);
+                
+
+                Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName, newPlant.direction);
                 Globals.plants.Add(thisPlant, plantNumber);
 
                 canvas.UpdateUI();          //recheck if player can plant
             }
             else
             {
-                audioSource.clip = hurtSound;       //PLZ CHANGE SOUND EFFECT
+                audioSource.clip = invalidPlacement;       //PLZ CHANGE SOUND EFFECT
                 audioSource.Play();
             }
 		}
@@ -177,6 +186,7 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
+        //Debug.Log("CURRENT HEALTH IS: " + (health-1));
         if (damage >= 1)
         {
             canvas.UpdateHealth(health - damage);
@@ -202,19 +212,19 @@ public class PlayerGridObject : MoveableGridObject {
         current.z = Mathf.Floor(current.z / pixelSize + 0.5f) * pixelSize;
         this.transform.position = current;
     }
+    /*
     //below is code for de-planting your own plant
     void OnTriggerStay2D(Collider2D other)
     {
         if (isAttacking)
         {
-            if (other.gameObject.GetComponent<PlantGridObject>())
+            if (other.gameObject.GetComponent<PlantGridObject>() && this.gameObject.GetComponent<PlayerGridObject>())
             {
-                other.gameObject.GetComponent<KillableGridObject>().SpawnItem();
                 other.gameObject.GetComponent<PlantGridObject>().TakeDamage(100);
-
+                
                 isAttacking = !isAttacking;
             }
         }
-    }
+    }*/
 
 }

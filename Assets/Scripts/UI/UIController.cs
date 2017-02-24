@@ -7,11 +7,14 @@ public class UIController : MonoBehaviour {
 	public UnityEngine.UI.Image[] uiPlants;
 	public UnityEngine.UI.Image[] healthIcons;
 	public UnityEngine.UI.Text[] uiPlantCounters;
+	public UnityEngine.UI.Image uiKeyIcon;
+	public UnityEngine.UI.Text uiKeyCounter;
 
 	public GameObject pauseUI;
     public GameObject mainMenuUI;
     public GameObject loadMenuUI;
 	public GameObject dialogUI;
+	public GameObject saveMenuUI;
 	public PlayerGridObject player;
 
 	public Sprite[] seedPackets;
@@ -42,6 +45,15 @@ public class UIController : MonoBehaviour {
                 Time.timeScale = 1;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+        	if (paused) {
+        		Resume();
+        	}
+        	else {
+        		Pause();
+        	}
+        }
 	}
 
 	public void UpdateUI () {
@@ -59,6 +71,15 @@ public class UIController : MonoBehaviour {
 					uiPlantCounters[i].color = new Color (0.35f, 0.73f, 0.13f, 1);
 				}
 			}
+		}
+
+		if (Globals.numKeys != 0) {
+			uiKeyCounter.text = Globals.numKeys.ToString();
+			uiKeyIcon.enabled = true;
+		}
+		else {
+			uiKeyCounter.text = "";
+			uiKeyIcon.enabled = false;
 		}
 	}
 
@@ -106,6 +127,16 @@ public class UIController : MonoBehaviour {
 		player.canMove = true;
     }
 
+    public void ShowSaveMenu() {
+    	pauseUI.SetActive(false);
+    	saveMenuUI.SetActive(true);
+    }
+
+    public void HideSaveMenu() {
+		pauseUI.SetActive(true);
+    	saveMenuUI.SetActive(false);
+    }
+
 	public void LoadButton()
     {
         mainMenuUI.SetActive(false);
@@ -147,28 +178,50 @@ public class UIController : MonoBehaviour {
     public void NewGame()
     {
         mainMenuUI.SetActive(false);
-        Game newGame = new Game();
-        
+        Application.LoadLevel(1);
+
     }
-    public void Save()
+
+    public void Save1()
     {
-        SaveLoad.Save();
+        Globals.SaveTheGame(1);
     }
+	public void Save2()
+    {
+        Globals.SaveTheGame(2);
+    }
+	public void Save3()
+    {
+        Globals.SaveTheGame(3);
+    }
+
     public void LoadSlot1()
     {
-        SaveLoad.Load(0);
+        if(Globals.LoadTheGame(1) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
     public void LoadSlot2()
     {
-        SaveLoad.Load(1);
+        if (Globals.LoadTheGame(2) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
     public void LoadSlot3()
     {
-        SaveLoad.Load(2);
+        if (Globals.LoadTheGame(3) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
-    public void LoadSlot4()
+    public void LoadSlot4() //no UI for 4th load slot maybe take out this method?
     {
-        SaveLoad.Load(3);
+        if (Globals.LoadTheGame(4) == 1)
+        {
+            loadMenuUI.SetActive(false);
+        }
     }
 
 }

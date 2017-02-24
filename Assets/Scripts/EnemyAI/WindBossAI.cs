@@ -6,6 +6,7 @@ using System;
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
+	public WindSlime windslime;
 
 	public struct BoulderLocation : IComparable <BoulderLocation> {
 		public Vector3 location;
@@ -44,6 +45,7 @@ public class WindBossAI : KillableGridObject {
 	private SortedList<BoulderLocation, RollingBoulder> rocks = new SortedList<BoulderLocation, RollingBoulder>();
 	private int framesInState;
 	private Globals.Direction direction;
+	private Animator animator;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -51,6 +53,8 @@ public class WindBossAI : KillableGridObject {
 		numRocks = 5;
 		state = BossState.SpawningRocks;
 		direction = Globals.Direction.South;
+		animator = this.gameObject.GetComponent<Animator>();
+		animator.SetInteger("State", 0);
 	}
 	
 	// Update is called once per frame
@@ -72,22 +76,29 @@ public class WindBossAI : KillableGridObject {
 				direction = Globals.Direction.North;
 				position = UnityEngine.Random.Range(-4, 4);
 				newPosition = new Vector3(position, -5.0f, 0.0f);
+				animator.SetInteger("Direction", 1);
 			}
 			else if (integerDirection == 1) {
 				direction = Globals.Direction.East;
 				position = UnityEngine.Random.Range(-3, 3);
 				newPosition = new Vector3(-5.5f, position, 0.0f);
+				animator.SetInteger("Direction", 3);
 			}
 			else if (integerDirection == 2) {
 				direction = Globals.Direction.South;
 				position = UnityEngine.Random.Range(-4, 4);
 				newPosition = new Vector3(position, 5.0f, 0.0f);
+				animator.SetInteger("Direction", 0);
 			}
 			else {
 				direction = Globals.Direction.West;
 				position = UnityEngine.Random.Range(-3, 3);
 				newPosition = new Vector3(5.5f, position, 0.0f);
+				animator.SetInteger("Direction", 2);
 			}
+
+			Instantiate(windslime, new Vector3(-3, 0, 0), Quaternion.identity);
+			Instantiate(windslime, new Vector3(3, 0, 0), Quaternion.identity);
 
 			this.transform.position = newPosition;
 		}
@@ -98,15 +109,17 @@ public class WindBossAI : KillableGridObject {
 				state = BossState.Inhaling;
 				isInvulnerable = false;
 				framesInState = 0;
+				animator.SetInteger("State", 1);
 			}
 		}
 		if (state == BossState.Inhaling) {
 			Debug.Log("Inhaling");
 			framesInState++;
-			if (framesInState > 1000) {
+			if (framesInState > 500) {
 				state = BossState.Blowing;
 				isInvulnerable = true;
 				framesInState = 0;
+				animator.SetInteger("State", 2);
 			}
 		}
 		if (state == BossState.Blowing) {
@@ -120,6 +133,7 @@ public class WindBossAI : KillableGridObject {
 				DestroyRocks();
 				state = BossState.SpawningRocks;
 				framesInState = 0;
+				animator.SetInteger("State", 0);
 			}
 		}
 	}
@@ -140,14 +154,16 @@ public class WindBossAI : KillableGridObject {
 	void BlowRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-			kvp.Value.startRolling(direction);
+            if (kvp.Value) //check that boulder has not been destroyed
+			    kvp.Value.startRolling(direction);
 		}
 	}
 
 	void DestroyRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-			Destroy(kvp.Value.gameObject);
+            if (kvp.Value && kvp.Value.gameObject)
+			    Destroy(kvp.Value.gameObject);
 		}
 		rocks.Clear();
 	}

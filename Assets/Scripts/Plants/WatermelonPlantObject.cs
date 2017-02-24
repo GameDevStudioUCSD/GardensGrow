@@ -3,10 +3,11 @@ using System.Collections;
 
 public class WatermelonPlantObject : PlantGridObject
 {
-
     public GameObject bullet;
     private int counter;
     public int shotDelay;
+    private bool triggered = false;
+    private UIController uic;
 
     public int changeDirectionWaitTime;
     private bool canChangeDir = true;
@@ -21,6 +22,7 @@ public class WatermelonPlantObject : PlantGridObject
     // Use this for initialization
     protected override void Start()
     {
+        uic = FindObjectOfType<UIController>();
         counter = 0;
         animator = animator = GetComponent<Animator>();
         
@@ -31,6 +33,7 @@ public class WatermelonPlantObject : PlantGridObject
         northCollider.enabled = true;
         westCollider.enabled = true;
 
+        base.Start();
     }
 
     // Update is called once per frame
@@ -39,6 +42,17 @@ public class WatermelonPlantObject : PlantGridObject
         if (health <= 0)
         {
             Destroy(this.gameObject);
+        }
+        if (triggered) {
+            if (!uic.paused)
+            {
+                if (counter > shotDelay)
+                {
+                    Shooter();
+                    counter = 0;
+                }
+                counter++;
+            }
         }
         base.Update();
     }
@@ -50,8 +64,9 @@ public class WatermelonPlantObject : PlantGridObject
     private void Shooter()
     {
         bullet.GetComponent<PlantProjectileObject>().dir = direction;
-		//seed.dir = direction;
 
+        audioSource.clip = attackSound;
+        audioSource.Play();
         if (direction == Globals.Direction.North)
         {
             Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f);
@@ -90,42 +105,35 @@ public class WatermelonPlantObject : PlantGridObject
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
-        {
-            if (canChangeDir)
-            {
-                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner")) {
+            triggered = true;
+            if (canChangeDir) {
+                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.South;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
-                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.North;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
-                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.East;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
-                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
+                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>())) {
                     direction = Globals.Direction.West;
                     canChangeDir = false;
                     StartCoroutine(changeDirectionWait());
                 }
             }
-
-            if (counter > shotDelay)
-            {
-                Shooter();
-                counter = 0;
-            }
-            counter++;
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
+            triggered = false;
     }
 }

@@ -105,29 +105,33 @@ public class RangedEnemy : EnemyGridObject {
         }
     }*/
     //code for if wants to shoot in Player direction;
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!uic.paused) {
             if (!isShooter)
             {
                 if (other.gameObject.tag == "Player")
                 {
-
+					PlayerGridObject player = other.GetComponent<PlayerGridObject>();
                     if (direction == Globals.Direction.South && other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
-                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+						player.TakeDamage(damage);
+						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                     else if (direction == Globals.Direction.North && other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
-                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+						player.TakeDamage(damage);
+						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                     else if (direction == Globals.Direction.East && other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
-                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+						player.TakeDamage(damage);
+						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                     else if (direction == Globals.Direction.West && other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
-                        other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+						player.TakeDamage(damage);
+						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                 }
             }
