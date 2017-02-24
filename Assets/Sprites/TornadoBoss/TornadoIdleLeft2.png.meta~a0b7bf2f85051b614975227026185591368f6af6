@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Sprites/TornadoBoss/TornadoIdleRight3.png.meta
-guid: d6c3430b424484a62a94cbeac3003307
-timeCreated: 1487963143
-=======
-guid: 650299ed952241e468848fd25f4a35e3
-timeCreated: 1487931908
->>>>>>> a0b7bf2f85051b614975227026185591368f6af6:Assets/Sprites/TornadoBoss/TornadoIdleRight3.png.meta
+guid: d87f6f546abc55c479b96297e2d0f192
+timeCreated: 1487931909
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
