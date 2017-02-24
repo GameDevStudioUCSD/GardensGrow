@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 9397fc76a5e9cf948896e96dfe4cf2f2
-timeCreated: 1487915175
-=======
-guid: d70dcb528063e4ffaa0e42b382064847
-timeCreated: 1487911137
->>>>>>> ea080637c7ce40d2567ab4ed02931c9c064e7511
+guid: 99859a6237fd94be98a334aef82a747d
+timeCreated: 1487916137
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -34,13 +29,8 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-<<<<<<< HEAD
     filterMode: -1
     aniso: -1
-=======
-    filterMode: 0
-    aniso: 16
->>>>>>> ea080637c7ce40d2567ab4ed02931c9c064e7511
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -54,11 +44,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-<<<<<<< HEAD
   spritePixelsToUnits: 100
-=======
-  spritePixelsToUnits: 32
->>>>>>> ea080637c7ce40d2567ab4ed02931c9c064e7511
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
