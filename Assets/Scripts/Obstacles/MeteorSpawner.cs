@@ -38,7 +38,7 @@ public class MeteorSpawner : MonoBehaviour {
 			if (i != indexToIgnore) {
 				Instantiate(fireball, spawnLocations[i], Quaternion.identity);
 			}
-		} 
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
