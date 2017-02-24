@@ -1,6 +1,6 @@
-
 using UnityEngine;
-public abstract class BasicAttackAbstractFSM : BehaviourModule {
+
+public abstract class AttackAbstractFSM : MonoBehaviour {
      
     protected float transitionedAt;
     public enum State { 
@@ -9,7 +9,7 @@ public abstract class BasicAttackAbstractFSM : BehaviourModule {
     }  
     public State state = State.Cooldown;
 
-    public override void Step()
+    public void Step()
     {
 		State prevState = state;
 		 

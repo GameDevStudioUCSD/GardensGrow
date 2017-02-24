@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
+public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
     public PathFindingBehaviour pathFindingModule;
-    public BehaviourModule attackModule;
+    public BasicAttackModule attackModule;
 
-    [Header("AI Parameters")]
-    public GameObject mainTarget;
+    [Header("Behaviour Parameters")]
+    public bool isDisabled;
 
-    private GameObject currentTarget;
+    [Header("Parameters for Modules")]
+    public PathFindingBehaviour.PathFindingParameters pathFindingParameters;
 
     protected override void Start()
     {
@@ -26,6 +27,32 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     public override void Reset()
     {
+    }
+
+    public void Disable()
+    {
+        isDisabled = true;
+        state = State.Disabled;
+    }
+
+    public void Enable()
+    {
+        isDisabled = false;
+        state = State.PathFinding;
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        RunFSM();
+    }
+
+    /// <summary>
+    /// Called by Spawner to activate this creature
+    /// </summary>
+    public void SpawnStart()
+    {
+        pathFindingModule.SetParameters(pathFindingParameters);
     }
 
     // ================================================
@@ -48,6 +75,11 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         attackModule.Step();
 
+        yield return null;
+    }
+
+    protected override IEnumerator ExecuteActionDisabled()
+    {
         yield return null;
     }
 
@@ -76,7 +108,7 @@ public class FireMonsterBehaviour : MonsterBehaviourAbstractFSM {
         if (killList.Count > 0)
         {
             // Check if the killable is an enemy
-            foreach(KillableGridObject tar in killList)
+            foreach (KillableGridObject tar in killList)
             {
                 if (tar.faction != this.faction)
                     return true;

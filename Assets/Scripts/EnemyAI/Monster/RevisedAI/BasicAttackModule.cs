@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BasicAttackModule : BasicAttackAbstractFSM {
+public class BasicAttackModule : AttackAbstractFSM {
 
     [Header("Attacking Components")]
     public EnemyGridObject creature;
