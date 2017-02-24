@@ -45,7 +45,13 @@ public class RollingBoulder : MoveableGridObject {
             StartCoroutine(waitDieAnimation());
         }
     }
-    IEnumerator waitDieAnimation()
+
+    public void PublicDeath() {
+		animator.SetTrigger("Explode");
+        StartCoroutine(waitDieAnimation());
+    }
+
+    public IEnumerator waitDieAnimation()
     {
         yield return new WaitForSeconds(1.0f);
         this.Die();
