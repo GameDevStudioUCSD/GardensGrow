@@ -45,4 +45,8 @@ public class Switch : KillableGridObject {
         }
         return false;
     }
+
+    public override bool TakeBombDamage(int damage) {
+        return TakeDamage(damage);
+    }
 }

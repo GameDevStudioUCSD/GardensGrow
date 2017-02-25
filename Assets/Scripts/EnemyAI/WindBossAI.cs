@@ -7,6 +7,8 @@ public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
 	public WindSlime windslime;
+    private UnityEngine.Object windSlimeOne;
+    private UnityEngine.Object windSlimeTwo;
 
 	public struct BoulderLocation : IComparable <BoulderLocation> {
 		public Vector3 location;
@@ -97,8 +99,10 @@ public class WindBossAI : KillableGridObject {
 				animator.SetInteger("Direction", 2);
 			}
 
-			Instantiate(windslime, new Vector3(-3, 0, 0), Quaternion.identity);
-			Instantiate(windslime, new Vector3(3, 0, 0), Quaternion.identity);
+            if (!windSlimeOne)
+                windSlimeOne = Instantiate(windslime, new Vector3(-3, 0, 0), Quaternion.identity);
+            if (!windSlimeTwo)
+                windSlimeTwo = Instantiate(windslime, new Vector3(3, 0, 0), Quaternion.identity);
 
 			this.transform.position = newPosition;
 		}
@@ -154,8 +158,8 @@ public class WindBossAI : KillableGridObject {
 	void BlowRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-            if (kvp.Value) //check that boulder has not been destroyed
-			    kvp.Value.startRolling(direction);
+            if (kvp.Value && !kvp.Value.isCrumbling) //check that boulder has not been destroyed
+			    kvp.Value.StartRolling(direction);
 		}
 	}
 
