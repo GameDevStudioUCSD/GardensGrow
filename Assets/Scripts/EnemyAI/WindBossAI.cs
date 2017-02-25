@@ -75,7 +75,7 @@ public class WindBossAI : KillableGridObject {
 			if (integerDirection == 0) {
 				direction = Globals.Direction.North;
 				position = UnityEngine.Random.Range(-4, 4);
-				newPosition = new Vector3(position, -5.0f, 0.0f);
+				newPosition = new Vector3(position, -4.5f, 0.0f);
 				animator.SetInteger("Direction", 1);
 			}
 			else if (integerDirection == 1) {
@@ -87,7 +87,7 @@ public class WindBossAI : KillableGridObject {
 			else if (integerDirection == 2) {
 				direction = Globals.Direction.South;
 				position = UnityEngine.Random.Range(-4, 4);
-				newPosition = new Vector3(position, 5.0f, 0.0f);
+				newPosition = new Vector3(position, 4.5f, 0.0f);
 				animator.SetInteger("Direction", 0);
 			}
 			else {
