@@ -4,6 +4,7 @@ using System.Collections;
 public class RollingBoulder : MoveableGridObject {
 
     public bool isRolling = false;
+    public bool isCrumbling = false;
 	private Animator animator;
 
     protected new const int numDyingFrames = 51;
@@ -42,22 +43,16 @@ public class RollingBoulder : MoveableGridObject {
         base.Attack();
         if (hitSomething) {
             animator.SetTrigger("Explode");
-            StartCoroutine(waitDieAnimation());
+            isRolling = false;
+            isCrumbling = true;
         }
     }
 
     public void PublicDeath() {
 		animator.SetTrigger("Explode");
-        StartCoroutine(waitDieAnimation());
     }
-
-    public IEnumerator waitDieAnimation()
-    {
-        yield return new WaitForSeconds(1.0f);
-        this.Die();
-    }
+    
     protected override void Die () {
-    	//animator.SetTrigger("Explode");
     	base.Die();
 	}
 }

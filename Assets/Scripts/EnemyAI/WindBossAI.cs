@@ -158,7 +158,7 @@ public class WindBossAI : KillableGridObject {
 	void BlowRocks() {
 		foreach (KeyValuePair<BoulderLocation, RollingBoulder> kvp in rocks)
 		{
-            if (kvp.Value) //check that boulder has not been destroyed
+            if (kvp.Value && !kvp.Value.isCrumbling) //check that boulder has not been destroyed
 			    kvp.Value.startRolling(direction);
 		}
 	}
