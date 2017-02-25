@@ -27,6 +27,6 @@ public class HostileTerrainObject : TerrainObject {
 			}
 		}
         RollingBoulder boulder = other.GetComponent<RollingBoulder>();
-        if (boulder) boulder.PublicDeath();
+        if (boulder) boulder.StartCrumbling();
 	}
 }

@@ -27,7 +27,7 @@ public class BoulderSpawner : MonoBehaviour {
 
 	void SummonBoulder() {
 		if (currentBoulder != null) {
-			currentBoulder.PublicDeath();
+			currentBoulder.StartCrumbling();
 		}
 		currentBoulder = (RollingBoulder)Instantiate(boulder, spawningLocation, Quaternion.identity);
 		currentBoulder.StartRolling(direction);

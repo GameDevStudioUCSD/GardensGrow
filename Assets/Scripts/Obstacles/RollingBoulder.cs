@@ -21,6 +21,10 @@ public class RollingBoulder : MoveableGridObject {
             Move(direction);
             Attack();
             FinishedAttack();
+            if (direction == Globals.Direction.North && northCollider.isTriggered) StartCrumbling();
+            else if (direction == Globals.Direction.South && southCollider.isTriggered) StartCrumbling();
+            else if (direction == Globals.Direction.East && eastCollider.isTriggered) StartCrumbling();
+            else if (direction == Globals.Direction.West && westCollider.isTriggered) StartCrumbling();
         }
 	}
 
@@ -41,13 +45,11 @@ public class RollingBoulder : MoveableGridObject {
     public override void Attack() {
         base.Attack();
         if (hitSomething) {
-            animator.SetTrigger("Explode");
-            isRolling = false;
-            isCrumbling = true;
+            StartCrumbling();
         }
     }
 
-    public void PublicDeath() {
+    public void StartCrumbling() {
 		animator.SetTrigger("Explode");
         isRolling = false;
         isCrumbling = true;
