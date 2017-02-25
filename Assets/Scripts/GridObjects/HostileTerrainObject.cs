@@ -26,5 +26,7 @@ public class HostileTerrainObject : TerrainObject {
 				player.gameObject.transform.position = Globals.spawnLocation;
 			}
 		}
+        RollingBoulder boulder = other.GetComponent<RollingBoulder>();
+        if (boulder) boulder.PublicDeath();
 	}
 }

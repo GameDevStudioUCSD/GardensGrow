@@ -7,8 +7,6 @@ public class RollingBoulder : MoveableGridObject {
     public bool isCrumbling = false;
 	private Animator animator;
 
-    protected new const int numDyingFrames = 51;
-
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
@@ -32,11 +30,12 @@ public class RollingBoulder : MoveableGridObject {
         }
     }
 
-    public void startRolling(Globals.Direction rollDirection) {
+    public void StartRolling(Globals.Direction rollDirection) {
         direction = rollDirection;
         isRolling = true;
 		animator.SetInteger("Direction", (int)direction);
         animator.SetTrigger("Roll");
+        GetComponent<Rigidbody2D>().WakeUp();
     }
 
     public override void Attack() {
@@ -50,6 +49,8 @@ public class RollingBoulder : MoveableGridObject {
 
     public void PublicDeath() {
 		animator.SetTrigger("Explode");
+        isRolling = false;
+        isCrumbling = true;
     }
     
     protected override void Die () {

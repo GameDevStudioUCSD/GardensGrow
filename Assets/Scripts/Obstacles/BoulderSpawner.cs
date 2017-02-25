@@ -30,6 +30,6 @@ public class BoulderSpawner : MonoBehaviour {
 			currentBoulder.PublicDeath();
 		}
 		currentBoulder = (RollingBoulder)Instantiate(boulder, spawningLocation, Quaternion.identity);
-		currentBoulder.startRolling(direction);
+		currentBoulder.StartRolling(direction);
 	}
 }
