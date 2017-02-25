@@ -53,6 +53,7 @@ public class RollingBoulder : MoveableGridObject {
 		animator.SetTrigger("Explode");
         isRolling = false;
         isCrumbling = true;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
     
     protected override void Die () {
