@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 7e088e22037a74790bae649dba6c2817
-timeCreated: 1487963145
-=======
 guid: 9f1022e00c635bd4eb47f10ab7f5cf4a
 timeCreated: 1487931911
->>>>>>> a0b7bf2f85051b614975227026185591368f6af6
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -17,9 +12,9 @@ TrueTypeFontImporter:
   fontNames:
   - StephenFont
   fallbackFontReferences: []
-  customCharacters: 
+  customCharacters:
   fontRenderingMode: 0
   ascentCalculationMode: 1
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:

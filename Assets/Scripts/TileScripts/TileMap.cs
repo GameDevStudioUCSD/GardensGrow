@@ -17,6 +17,7 @@ public class TileMap : MonoBehaviour {
    //start happens 1st frame
     void Start()
     {
+        Globals.tileMap = this;
         rooms = new GameObject[transform.GetChild(0).childCount];
         for (int i = 0; i < transform.GetChild(0).childCount; i++)
         {
