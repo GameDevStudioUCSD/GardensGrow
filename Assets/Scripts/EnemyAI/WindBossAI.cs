@@ -7,6 +7,11 @@ public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
 	public WindSlime windslime;
+    public GameObject portal;
+    public int idleFrames = 0;
+    public int inhalingFrames = 360;
+    public int blowingFrames = 300;
+
     private UnityEngine.Object windSlimeOne;
     private UnityEngine.Object windSlimeTwo;
 
@@ -109,7 +114,7 @@ public class WindBossAI : KillableGridObject {
 		if (state == BossState.Idle) {
 			Debug.Log("Idle");
 			framesInState++;
-			if (framesInState > 100) {
+			if (framesInState > idleFrames) {
 				state = BossState.Inhaling;
 				isInvulnerable = false;
 				framesInState = 0;
@@ -119,7 +124,7 @@ public class WindBossAI : KillableGridObject {
 		if (state == BossState.Inhaling) {
 			Debug.Log("Inhaling");
 			framesInState++;
-			if (framesInState > 500) {
+			if (framesInState > inhalingFrames) {
 				state = BossState.Blowing;
 				isInvulnerable = true;
 				framesInState = 0;
@@ -133,7 +138,7 @@ public class WindBossAI : KillableGridObject {
 			if (framesInState == 1) {
 
 			}
-			if (framesInState > 300) {
+			if (framesInState > blowingFrames) {
 				DestroyRocks();
 				state = BossState.SpawningRocks;
 				framesInState = 0;
@@ -171,4 +176,15 @@ public class WindBossAI : KillableGridObject {
 		}
 		rocks.Clear();
 	}
+
+    void OnCollisionEnter2D(Collider2D other) {
+        KillableGridObject killable = other.GetComponent<KillableGridObject>();
+        if (killable)
+            killable.TakeDamage(damage);
+    }
+
+    protected override void Die() {
+        portal.SetActive(true);
+        base.Die();
+    }
 }
