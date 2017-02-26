@@ -8,8 +8,9 @@ public class BoulderSpawner : MonoBehaviour {
 	public Globals.Direction direction;
 	public int framesBetweenBoulders;
 
+    private RollingBoulder currentBoulder;
+
 	private int currentFrame;
-	private RollingBoulder currentBoulder;
 
 	// Use this for initialization
 	void Start () {
@@ -19,17 +20,17 @@ public class BoulderSpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		currentFrame++;
-		if (currentFrame > framesBetweenBoulders) {
+        if (currentBoulder) {
+            currentBoulder.StartRolling(direction);
+            currentBoulder = null;
+        }
+        if (currentFrame > framesBetweenBoulders) {
 			currentFrame = 0;
 			SummonBoulder();
 		}
 	}
 
 	void SummonBoulder() {
-		if (currentBoulder != null) {
-			currentBoulder.PublicDeath();
-		}
-		currentBoulder = (RollingBoulder)Instantiate(boulder, spawningLocation, Quaternion.identity);
-		currentBoulder.startRolling(direction);
+		currentBoulder = ((GameObject)Instantiate(boulder, spawningLocation, Quaternion.identity)).GetComponent<RollingBoulder>();
 	}
 }

@@ -4,9 +4,8 @@ using System.Collections;
 public class RollingBoulder : MoveableGridObject {
 
     public bool isRolling = false;
+    public bool isCrumbling = false;
 	private Animator animator;
-
-    protected new const int numDyingFrames = 51;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -22,6 +21,10 @@ public class RollingBoulder : MoveableGridObject {
             Move(direction);
             Attack();
             FinishedAttack();
+            if (direction == Globals.Direction.North && northCollider.isTriggered) StartCrumbling();
+            else if (direction == Globals.Direction.South && southCollider.isTriggered) StartCrumbling();
+            else if (direction == Globals.Direction.East && eastCollider.isTriggered) StartCrumbling();
+            else if (direction == Globals.Direction.West && westCollider.isTriggered) StartCrumbling();
         }
 	}
 
@@ -31,33 +34,29 @@ public class RollingBoulder : MoveableGridObject {
         }
     }
 
-    public void startRolling(Globals.Direction rollDirection) {
+    public void StartRolling(Globals.Direction rollDirection) {
         direction = rollDirection;
         isRolling = true;
 		animator.SetInteger("Direction", (int)direction);
         animator.SetTrigger("Roll");
+        GetComponent<Rigidbody2D>().WakeUp();
     }
 
     public override void Attack() {
         base.Attack();
         if (hitSomething) {
-            animator.SetTrigger("Explode");
-            StartCoroutine(waitDieAnimation());
+            StartCrumbling();
         }
     }
 
-    public void PublicDeath() {
+    public void StartCrumbling() {
 		animator.SetTrigger("Explode");
-        StartCoroutine(waitDieAnimation());
+        isRolling = false;
+        isCrumbling = true;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
-
-    public IEnumerator waitDieAnimation()
-    {
-        yield return new WaitForSeconds(1.0f);
-        this.Die();
-    }
+    
     protected override void Die () {
-    	//animator.SetTrigger("Explode");
     	base.Die();
 	}
 }
