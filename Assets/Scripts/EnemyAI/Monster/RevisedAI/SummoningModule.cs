@@ -3,14 +3,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SummoningBehaviour : MonoBehaviour {
+public class SummoningModule : MonoBehaviour {
 
     protected SummoningParameters p = null;
 
     protected List<GameObject> summons;
     protected float spawnCooldownTimer = 0.0f;
     // Ready to spawn based on cooldown timer
-    protected bool spawnReady;
+    protected bool spawnTimeReady;
 
     public void Update()
     {
@@ -18,17 +18,15 @@ public class SummoningBehaviour : MonoBehaviour {
         if (p == null)
             return;
 
-        // TODO: 
-        if(!spawnReady)
+        if(!spawnTimeReady)
         {
             spawnCooldownTimer += Time.deltaTime;
             if(spawnCooldownTimer > p.spawnCooldown)
             {
-                spawnReady = true;
+                spawnTimeReady = true;
                 spawnCooldownTimer = 0.0f;
             }
         }
-        
     }
 
     public void SetParameters(SummoningParameters p)
@@ -60,16 +58,35 @@ public class SummoningBehaviour : MonoBehaviour {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
         }
 
-        GameObject summonedSlime = (GameObject)Instantiate(p.summonedGameObject, spawnPosition, Quaternion.identity);
+        GameObject summonedMonster = (GameObject)Instantiate(p.summonedGameObject, spawnPosition, Quaternion.identity);
 
-        GenericMonsterBehaviour monsterBehaviour = summonedSlime.GetComponent<GenericMonsterBehaviour>();
+        GenericMonsterBehaviour monsterBehaviour = summonedMonster.GetComponent<GenericMonsterBehaviour>();
         monsterBehaviour.pathFindingParameters.tileMap = p.tileMap;
         monsterBehaviour.pathFindingParameters.target = p.target;
+
+        summons.Add(summonedMonster);
+
+        spawnTimeReady = false;
     }
 
     public bool CanSummon()
     {
+        bool canSummon = false;
 
+        // Remove any dead summons from list
+        // Iterate backwards to avoid any list removal issues
+        for(int i = summons.Count - 1; i >= 0; i--)
+        {
+            if (summons[i] == null)
+                summons.RemoveAt(i);
+        }
+
+        // Is there an open spot for a summon
+        if (summons.Count < p.maxNumberOfSpawns)
+            canSummon = true;
+
+        // Is there an open spot and is the summon off cooldown
+        return canSummon && spawnTimeReady;
     }
 
     [Serializable]

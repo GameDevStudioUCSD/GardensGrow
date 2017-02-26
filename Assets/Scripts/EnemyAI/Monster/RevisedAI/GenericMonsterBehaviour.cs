@@ -14,13 +14,17 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Parameters for Modules")]
     public PathFindingModule.PathFindingParameters pathFindingParameters;
+    public BasicAttackModule.BasicAttackParameters basicAttackParameters;
 
     protected override void Start()
     {
         if (isDisabled)
             Disable();
         else
+        {
             pathFindingModule.SetParameters(pathFindingParameters);
+            attackModule.SetParameters(basicAttackParameters);
+        }
 
         base.Start();
     }
@@ -53,6 +57,7 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     public void SpawnStart()
     {
         pathFindingModule.SetParameters(pathFindingParameters);
+        attackModule.SetParameters(basicAttackParameters);
     }
 
     // ================================================
@@ -101,7 +106,7 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool CanAttack()
     {
-        AttackCollider attackCollider = getHitColliderFromDirection(direction);
+        AttackCollider attackCollider = GetHitColliderFromDirection(direction);
 
         List<KillableGridObject> killList = attackCollider.GetKillList();
 

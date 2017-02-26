@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class AttackAbstractFSM : MonoBehaviour {
@@ -52,5 +53,11 @@ public abstract class AttackAbstractFSM : MonoBehaviour {
 
     
     protected virtual void OnTransition() { }
-  
+
+    [Serializable]
+    public class AttackAbstractParameters
+    {
+        [Header("Required Component")]
+        public EnemyGridObject creature;
+    }
 }

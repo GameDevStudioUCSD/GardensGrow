@@ -204,7 +204,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     [Serializable]
     public class PathFindingParameters
     {
-        [Header("Path Finding Components")]
+        [Header("Required Components")]
         public TileMap tileMap;
         public GameObject target;
         public EnemyGridObject creature;

@@ -3,24 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
+public class WindMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
     public PathFindingModule pathFindingModule;
-    public BasicAttackModule attackModule;
+    public WindAttackModule attackModule;
+    public SummoningModule summonModule;
 
     [Header("Behaviour Parameters")]
     public bool isDisabled;
 
     [Header("Parameters for Modules")]
     public PathFindingModule.PathFindingParameters pathFindingParameters;
+    public WindAttackModule.WindAttackParameters attackParameters;
+    public SummoningModule.SummoningParameters summoningParameters;
 
     protected override void Start()
     {
         if (isDisabled)
             Disable();
         else
+        {
             pathFindingModule.SetParameters(pathFindingParameters);
+            attackModule.SetParameters(attackParameters);
+            summonModule.SetParameters(summoningParameters);
+        }
 
         base.Start();
     }
@@ -53,6 +60,8 @@ public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
     public void SpawnStart()
     {
         pathFindingModule.SetParameters(pathFindingParameters);
+        attackModule.SetParameters(attackParameters);
+        summonModule.SetParameters(summoningParameters);
     }
 
     // ================================================
@@ -74,6 +83,14 @@ public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
     protected override IEnumerator ExecuteActionAttack()
     {
         attackModule.Step();
+
+        yield return null;
+    }
+
+    // Summon
+    protected override IEnumerator ExecuteActionPrimaryBehaviour()
+    {
+        summonModule.Summon();
 
         yield return null;
     }
@@ -101,7 +118,7 @@ public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool CanAttack()
     {
-        AttackCollider attackCollider = getHitColliderFromDirection(direction);
+        AttackCollider attackCollider = GetHitColliderFromDirection(direction);
 
         List<KillableGridObject> killList = attackCollider.GetKillList();
 
@@ -120,12 +137,7 @@ public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
             return false;
     }
 
-    // Summon
-    protected override IEnumerator ExecuteActionPrimaryBehaviour()
-    {
-        // TODO: 
-        yield return null;
-    }
+
 
     protected override bool CanMove()
     {
@@ -134,7 +146,6 @@ public class WindSlimeBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool CanAct()
     {
-        // TODO: 
-        return false;
+        return summonModule.CanSummon();
     }
 }
