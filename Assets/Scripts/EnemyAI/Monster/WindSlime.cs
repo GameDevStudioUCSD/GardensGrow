@@ -319,6 +319,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM {
         SpawnSlime();
         SpawnSlime();
         SpawnSlime();
+        player.canMove = true;
         base.Die();
     }
 }
