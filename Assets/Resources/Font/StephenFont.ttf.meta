@@ -4,7 +4,7 @@ timeCreated: 1487931911
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
-  fontSize: 16
+  fontSize: 9
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
@@ -12,9 +12,9 @@ TrueTypeFontImporter:
   fontNames:
   - StephenFont
   fallbackFontReferences: []
-  customCharacters:
+  customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
