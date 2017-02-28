@@ -29,6 +29,11 @@ public class Spikes : TerrainObject {
 			anim.SetBool("SpikesUp", spikesUp);
 		}
 	}
+    //called when re enabled
+    void OnEnable()
+    {
+        anim.SetBool("SpikesUp", spikesUp);
+    }
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
