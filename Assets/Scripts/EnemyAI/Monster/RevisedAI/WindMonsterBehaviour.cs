@@ -13,21 +13,14 @@ public class WindMonsterBehaviour : MonsterBehaviourAbstractFSM {
     [Header("Behaviour Parameters")]
     public bool isDisabled;
 
-    [Header("Parameters for Modules")]
-    public PathFindingModule.PathFindingParameters pathFindingParameters;
-    public WindAttackModule.WindAttackParameters attackParameters;
-    public SummoningModule.SummoningParameters summoningParameters;
-
     protected override void Start()
     {
         if (isDisabled)
             Disable();
-        else
-        {
-            pathFindingModule.SetParameters(pathFindingParameters);
-            attackModule.SetParameters(attackParameters);
-            summonModule.SetParameters(summoningParameters);
-        }
+
+        // Set up summoning module tilemap/target
+        summonModule.parameters.tileMap = pathFindingModule.parameters.tileMap;
+        summonModule.parameters.target = pathFindingModule.parameters.target;
 
         base.Start();
     }
@@ -59,9 +52,6 @@ public class WindMonsterBehaviour : MonsterBehaviourAbstractFSM {
     /// </summary>
     public void SpawnStart()
     {
-        pathFindingModule.SetParameters(pathFindingParameters);
-        attackModule.SetParameters(attackParameters);
-        summonModule.SetParameters(summoningParameters);
     }
 
     // ================================================

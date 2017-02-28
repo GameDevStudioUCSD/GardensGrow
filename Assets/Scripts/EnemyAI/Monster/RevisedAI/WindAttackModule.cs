@@ -5,55 +5,23 @@ using System.Collections.Generic;
 
 public class WindAttackModule : AttackAbstractFSM {
 
-    protected WindAttackParameters p;
+    public WindAttackParameters parameters;
 
     protected bool canAttack = false;
     protected float attackTimer = 0.0f;
-    protected Coroutine spinCoroutine;
-
-    public void SetParameters(WindAttackParameters p)
-    {
-        this.p = p;
-    }
 
     public void Update()
     {
-        // Null guard
-        if (p == null)
-            return;
-
         // Attack cooldown timer
         if(!canAttack)
         {
             attackTimer += Time.deltaTime;
-            if(attackTimer > p.attackCooldown)
+            if(attackTimer > parameters.attackCooldown)
             {
                 canAttack = true;
                 attackTimer = 0.0f;
             }
         }
-    }
-
-    private IEnumerator SpinTarget(KillableGridObject target)
-    {
-        // Disable movement for player
-        if (target.tag == Globals.player_tag)
-            target.gameObject.GetComponent<PlayerGridObject>().canMove = false;
-
-        // Spin the target
-        for (int i = 0; i < 4; i++)
-        {
-            // If the target died mid spin, exit coroutine
-            if (target == null)
-                yield break;
-
-            target.transform.Rotate(new Vector3(0.0f, 0.0f, 90.0f));
-            yield return new WaitForSeconds(p.spinDuration / 4.0f);
-        }
-
-        // Reenable movement for player
-        if (target.tag == Globals.player_tag)
-            target.gameObject.GetComponent<PlayerGridObject>().canMove = true;
     }
 
     // =====================================================
@@ -63,7 +31,7 @@ public class WindAttackModule : AttackAbstractFSM {
     protected override void ExecuteActionAttack()
     {
         // Get the targets of the attack
-        AttackCollider attackCollider = p.creature.GetHitColliderFromDirection();
+        AttackCollider attackCollider = parameters.creature.GetHitColliderFromDirection();
         List<KillableGridObject> targets = attackCollider.GetKillList();
 
         if(targets.Count > 0)
@@ -74,12 +42,13 @@ public class WindAttackModule : AttackAbstractFSM {
             // Damage each target
             foreach (KillableGridObject target in targets)
             {
-                if (target.faction != p.creature.faction)
+                if (target.faction != parameters.creature.faction)
                 {
-                    target.TakeDamage(p.creature.damage);
+                    target.TakeDamage(parameters.creature.damage);
 
-                    // Spin targets
-                    StartCoroutine(SpinTarget(target));
+                    // Apply status effect to targets
+                    GameObject statusEffect = Instantiate(parameters.statusEffectPrefab);
+                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(target, parameters.spinDuration);
                 }
             }
         }
@@ -105,6 +74,7 @@ public class WindAttackModule : AttackAbstractFSM {
     {
         [Range(0.0f, 60.0f)]
         public float attackCooldown;
+        public GameObject statusEffectPrefab;
         [Range(0.0f, 60.0f)]
         public float spinDuration;
     }

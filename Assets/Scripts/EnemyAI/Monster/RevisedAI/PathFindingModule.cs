@@ -14,12 +14,11 @@ using System.Collections.Generic;
 /// </summary>
 public class PathFindingModule : PathFindingBehaviourAbstractFSM {
 
-    protected Transform creatureTransform;
-
-    private PathFindingParameters p;
+    public PathFindingParameters parameters;
 
     public bool debug = false;
 
+    protected Transform creatureTransform = null;
     protected AStar astar = null;
     // Path found by astar
     [SerializeField]
@@ -37,15 +36,10 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     protected bool pathNeedsReevaluation;
     protected bool pathIsFinished;
 
-    public void SetParameters(PathFindingParameters p)
+    public void Start()
     {
-        // TODO: need to get parameters into the script
-        this.p = p;
-
-        creatureTransform = p.creature.transform;
-
-        if (astar == null)
-            astar = new AStar(p.tileMap);
+        creatureTransform = parameters.creature.transform;
+        astar = new AStar(parameters.tileMap);
     }
 
     /// <summary>
@@ -77,9 +71,9 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     /// </summary>
     protected override void ExecuteActionFindPath()
     {
-        startTile = p.tileMap.GetNearestTile(creatureTransform.position);
+        startTile = parameters.tileMap.GetNearestTile(creatureTransform.position);
         currentTile = startTile;
-        targetTile = p.tileMap.GetNearestTile(p.target.transform.position);
+        targetTile = parameters.tileMap.GetNearestTile(parameters.target.transform.position);
 
         if (startTile == targetTile)
         {
@@ -108,7 +102,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         // Each step is a Move call
         stepsTaken = 0;
 
-        nextTile = p.tileMap.NextTile(currentTile, path[tilesMoved]);
+        nextTile = parameters.tileMap.NextTile(currentTile, path[tilesMoved]);
     }
 
     /// <summary>
@@ -119,7 +113,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     protected override void ExecuteActionStepping()
     {
         // Move in the direction of the next tile
-        p.creature.Move(path[tilesMoved]);
+        parameters.creature.Move(path[tilesMoved]);
 
         stepsTaken++;
     }
@@ -130,10 +124,10 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         // Check how close we got to the next tile
         float stepOffset = Vector2.Distance(creatureTransform.position, nextTilePosition);
 
-        if (stepOffset < p.allowedStepOffset)
+        if (stepOffset < parameters.allowedStepOffset)
         {
             // Move the creature to the center of the tile
-            creatureTransform.position = Vector2.MoveTowards(creatureTransform.position, nextTilePosition, p.delayBetweenSteps * Time.deltaTime);
+            creatureTransform.position = Vector2.MoveTowards(creatureTransform.position, nextTilePosition, parameters.delayBetweenSteps * Time.deltaTime);
         }
         else
         {
@@ -147,10 +141,10 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         currentTile = nextTile;
 
         // The creature checks if the target has moved so the path is stale
-        if (tilesMoved % p.tilesUntilReevaluation == 0)
+        if (tilesMoved % parameters.tilesUntilReevaluation == 0)
         {
             // The tile the target is on now
-            Tile targetCurrentTile = p.tileMap.GetNearestTile(p.target.transform.position);
+            Tile targetCurrentTile = parameters.tileMap.GetNearestTile(parameters.target.transform.position);
 
             if (targetCurrentTile != targetTile)
             {
@@ -160,7 +154,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         }
 
         // If we got to the end but target still exists, reevaluate
-        if (tilesMoved >= path.Count && p.target)
+        if (tilesMoved >= path.Count && parameters.target)
         {
             pathNeedsReevaluation = true;
             return;
@@ -170,12 +164,12 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     protected override void ExecuteActionPathDone()
     {
         // If target doesn't exist, do nothing
-        if (p.target == null)
+        if (parameters.target == null)
             return;
 
-        startTile = p.tileMap.GetNearestTile(creatureTransform.position);
+        startTile = parameters.tileMap.GetNearestTile(creatureTransform.position);
         currentTile = startTile;
-        targetTile = p.tileMap.GetNearestTile(p.target.transform.position);
+        targetTile = parameters.tileMap.GetNearestTile(parameters.target.transform.position);
 
         // The target is somewhere else, we need to find a new path to it
         if (startTile != targetTile)
@@ -193,7 +187,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
 
     protected override bool StepDone()
     {
-        return stepsTaken >= p.stepAmount;
+        return stepsTaken >= parameters.stepAmount;
     }
 
     protected override bool FinishedPath()

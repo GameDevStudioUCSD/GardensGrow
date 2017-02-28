@@ -4,27 +4,18 @@ using System;
 
 public class BasicAttackModule : AttackAbstractFSM {
 
-    protected BasicAttackParameters p;
+    public BasicAttackParameters parameters;
 
     protected bool canAttack = false;
     protected float attackTimer = 0.0f;
 
-    public void SetParameters(BasicAttackParameters p)
-    {
-        this.p = p;
-    }
-
     public void Update()
     {
-        // Null guard
-        if (p == null)
-            return;
-
         // Attack cooldown timer
         if (!canAttack)
         {
             attackTimer += Time.deltaTime;
-            if (attackTimer > p.attackCooldown)
+            if (attackTimer > parameters.attackCooldown)
             {
                 canAttack = true;
                 attackTimer = 0.0f;
@@ -38,7 +29,7 @@ public class BasicAttackModule : AttackAbstractFSM {
 
     protected override void ExecuteActionAttack()
     {
-        p.creature.Attack();
+        parameters.creature.Attack();
     }
 
     protected override void ExecuteActionCooldown()
@@ -54,7 +45,7 @@ public class BasicAttackModule : AttackAbstractFSM {
     protected override bool AttackReady()
     {
         // If creature is attacking, then it is not ready to attack
-        return !p.creature.isAttacking;
+        return !parameters.creature.isAttacking;
     }
 
     [Serializable]

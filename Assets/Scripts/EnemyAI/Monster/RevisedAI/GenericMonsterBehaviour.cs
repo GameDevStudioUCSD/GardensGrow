@@ -12,19 +12,10 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     [Header("Behaviour Parameters")]
     public bool isDisabled;
 
-    [Header("Parameters for Modules")]
-    public PathFindingModule.PathFindingParameters pathFindingParameters;
-    public BasicAttackModule.BasicAttackParameters basicAttackParameters;
-
     protected override void Start()
     {
         if (isDisabled)
             Disable();
-        else
-        {
-            pathFindingModule.SetParameters(pathFindingParameters);
-            attackModule.SetParameters(basicAttackParameters);
-        }
 
         base.Start();
     }
@@ -56,8 +47,6 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     /// </summary>
     public void SpawnStart()
     {
-        pathFindingModule.SetParameters(pathFindingParameters);
-        attackModule.SetParameters(basicAttackParameters);
     }
 
     // ================================================
