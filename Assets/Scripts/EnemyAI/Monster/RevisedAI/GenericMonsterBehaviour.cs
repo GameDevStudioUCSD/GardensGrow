@@ -6,25 +6,16 @@ using System;
 public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
-    public PathFindingBehaviour pathFindingModule;
+    public PathFindingModule pathFindingModule;
     public BasicAttackModule attackModule;
 
     [Header("Behaviour Parameters")]
     public bool isDisabled;
 
-    [Header("Parameters for Modules")]
-    public PathFindingBehaviour.PathFindingParameters pathFindingParameters;
-
     protected override void Start()
     {
         if (isDisabled)
-        {
             Disable();
-        }
-        else
-        {
-            pathFindingModule.SetParameters(pathFindingParameters);
-        }
 
         base.Start();
     }
@@ -56,7 +47,6 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     /// </summary>
     public void SpawnStart()
     {
-        pathFindingModule.SetParameters(pathFindingParameters);
     }
 
     // ================================================
@@ -71,11 +61,6 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     }
 
     protected override IEnumerator ExecuteActionDamaged()
-    {
-        yield return null;
-    }
-
-    protected override IEnumerator ExecuteActionDetect()
     {
         yield return null;
     }
@@ -108,15 +93,9 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
         return false;
     }
 
-    protected override bool Detected()
-    {
-        // TODO:
-        return false;
-    }
-
     protected override bool CanAttack()
     {
-        AttackCollider attackCollider = getHitColliderFromDirection(direction);
+        AttackCollider attackCollider = GetHitColliderFromDirection(direction);
 
         List<KillableGridObject> killList = attackCollider.GetKillList();
 
@@ -135,4 +114,20 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
             return false;
     }
 
+    protected override IEnumerator ExecuteActionPrimaryBehaviour()
+    {
+        // TODO: 
+        yield return null;
+    }
+
+    protected override bool CanMove()
+    {
+        return true;
+    }
+
+    protected override bool CanAct()
+    {
+        // TODO: 
+        return false;
+    }
 }

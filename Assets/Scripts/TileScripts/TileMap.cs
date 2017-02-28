@@ -14,6 +14,11 @@ public class TileMap : MonoBehaviour {
     public bool debug = false;
     private GameObject[] rooms;
 
+    void Awake()
+    {
+        grid = new Tile[mapDimensionX, mapDimensionY];
+    }
+
    //start happens 1st frame
     void Start()
     {
@@ -35,8 +40,6 @@ public class TileMap : MonoBehaviour {
                 newPlant.Rotate(kvp.Key.PlantDirection);
 			}
 		}
-
-        grid = new Tile[mapDimensionX, mapDimensionY];
 
         // Get all Tiles that are children of this TileMap object
         Tile[] myTiles = GetComponentsInChildren<Tile>();
@@ -221,7 +224,6 @@ public class TileMap : MonoBehaviour {
         if (grid[x, y] == null)
         {
             //throw new System.Exception("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
-            Debug.LogError("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
             return null;
         }
         else

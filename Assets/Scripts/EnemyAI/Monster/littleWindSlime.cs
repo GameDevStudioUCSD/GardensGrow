@@ -217,7 +217,7 @@ public class littleWindSlime : PathFindingMonsterAbstractFSM
     protected override bool CanAttack()
     {
         // Check cooldown
-        AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
+        AttackCollider edgeTrigger = GetHitColliderFromDirection(direction);
 
         List<KillableGridObject> killList = edgeTrigger.GetKillList();
 
