@@ -1,6 +1,7 @@
-
+using System;
 using UnityEngine;
-public abstract class BasicAttackAbstractFSM : MonoBehaviour {
+
+public abstract class AttackAbstractFSM : MonoBehaviour {
      
     protected float transitionedAt;
     public enum State { 
@@ -52,5 +53,11 @@ public abstract class BasicAttackAbstractFSM : MonoBehaviour {
 
     
     protected virtual void OnTransition() { }
-  
+
+    [Serializable]
+    public class AttackAbstractParameters
+    {
+        [Header("Required Component")]
+        public EnemyGridObject creature;
+    }
 }

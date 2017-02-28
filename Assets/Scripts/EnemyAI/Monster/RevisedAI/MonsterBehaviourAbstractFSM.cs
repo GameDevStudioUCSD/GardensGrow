@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System;
 using System.IO;
@@ -14,14 +13,14 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     public enum State { 
         PathFinding = 0,
         Damaged = 1,
-        Detect = 2,
-        Attack = 3,
-        Disabled = 4
+        PrimaryBehaviour = 2,
+        Disabled = 3,
+        Attack = 4
     }  
-    public State state = State.Disabled;
-    protected override void Start() {
-        base.Start();
+    public State state = State.PathFinding;
+    protected override void Start() { 
         RunFSM();
+        base.Start();
     }
     private IEnumerator FSMThread( float delayRate ) {
         bool isRunning = true;
@@ -89,14 +88,14 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
                     case State.Damaged:
                         stateAction = ExecuteActionDamaged();
                         break;
-                    case State.Detect:
-                        stateAction = ExecuteActionDetect();
-                        break;
-                    case State.Attack:
-                        stateAction = ExecuteActionAttack();
+                    case State.PrimaryBehaviour:
+                        stateAction = ExecuteActionPrimaryBehaviour();
                         break;
                     case State.Disabled:
                         stateAction = ExecuteActionDisabled();
+                        break;
+                    case State.Attack:
+                        stateAction = ExecuteActionAttack();
                         break;
                 }
             }
@@ -111,10 +110,10 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
 // The following switch statement handles the HLSM's state transition logic
             switch(state) {
                 case State.PathFinding:
-                    if( Detected() ) 
-                        state = State.Detect;
                     if( CanAttack() ) 
                         state = State.Attack;
+                    if( CanAct() ) 
+                        state = State.PrimaryBehaviour;
                     if( OnHit() ) 
                         state = State.Damaged;
                     break;
@@ -122,18 +121,19 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
                     if( Recovered() ) 
                         state = State.PathFinding;
                     break;
-                case State.Detect:
-                    state = State.PathFinding;
-                    if( OnHit() ) 
-                        state = State.Damaged;
-                    break;
-                case State.Attack:
-                    if( !CanAttack() ) 
+                case State.PrimaryBehaviour:
+                    if( CanMove() ) 
                         state = State.PathFinding;
                     if( OnHit() ) 
                         state = State.Damaged;
                     break;
                 case State.Disabled:
+                    break;
+                case State.Attack:
+                    if( CanMove() ) 
+                        state = State.PathFinding;
+                    if( OnHit() ) 
+                        state = State.Damaged;
                     break;
             }		
             }
@@ -149,11 +149,12 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     // State Logic Functions
     protected abstract IEnumerator ExecuteActionPathFinding();
     protected abstract IEnumerator ExecuteActionDamaged();
-    protected abstract IEnumerator ExecuteActionDetect();
-    protected abstract IEnumerator ExecuteActionAttack();
+    protected abstract IEnumerator ExecuteActionPrimaryBehaviour();
     protected abstract IEnumerator ExecuteActionDisabled();
+    protected abstract IEnumerator ExecuteActionAttack();
     // Transitional Logic Functions
-    protected abstract bool Detected();
+    protected abstract bool CanMove();
+    protected abstract bool CanAct();
     protected abstract bool CanAttack();
     protected abstract bool Recovered();
     protected abstract bool OnHit();

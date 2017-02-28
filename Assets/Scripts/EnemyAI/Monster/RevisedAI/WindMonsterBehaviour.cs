@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
+public class WindMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
     public PathFindingModule pathFindingModule;
-    public BasicAttackModule attackModule;
+    public WindAttackModule attackModule;
+    public SummoningModule summonModule;
 
     [Header("Behaviour Parameters")]
     public bool isDisabled;
@@ -16,6 +17,10 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         if (isDisabled)
             Disable();
+
+        // Set up summoning module tilemap/target
+        summonModule.parameters.tileMap = pathFindingModule.parameters.tileMap;
+        summonModule.parameters.target = pathFindingModule.parameters.target;
 
         base.Start();
     }
@@ -34,7 +39,7 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
         isDisabled = false;
         state = State.PathFinding;
-        if(coroutine != null)
+        if (coroutine != null)
         {
             StopCoroutine(coroutine);
         }
@@ -72,6 +77,14 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
         yield return null;
     }
 
+    // Summon
+    protected override IEnumerator ExecuteActionPrimaryBehaviour()
+    {
+        summonModule.Summon();
+
+        yield return null;
+    }
+
     protected override IEnumerator ExecuteActionDisabled()
     {
         yield return null;
@@ -102,7 +115,7 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
         if (killList.Count > 0)
         {
             // Check if the killable is an enemy
-            foreach(KillableGridObject tar in killList)
+            foreach (KillableGridObject tar in killList)
             {
                 if (tar.faction != this.faction)
                     return true;
@@ -114,11 +127,7 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
             return false;
     }
 
-    protected override IEnumerator ExecuteActionPrimaryBehaviour()
-    {
-        // TODO: 
-        yield return null;
-    }
+
 
     protected override bool CanMove()
     {
@@ -127,7 +136,6 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool CanAct()
     {
-        // TODO: 
-        return false;
+        return summonModule.CanSummon();
     }
 }
