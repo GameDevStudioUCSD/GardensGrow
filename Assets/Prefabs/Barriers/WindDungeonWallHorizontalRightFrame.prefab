@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBarrier: 1
   sprites:
-  - {fileID: 21300000, guid: 1bfa850156f1a6a45810950dd6b95b8e, type: 3}
-  chosenSprite: {fileID: 21300000, guid: 1bfa850156f1a6a45810950dd6b95b8e, type: 3}
+  - {fileID: 21300000, guid: 99d3983911a52a345b3ce37674f8e09a, type: 3}
+  chosenSprite: {fileID: 21300000, guid: 99d3983911a52a345b3ce37674f8e09a, type: 3}
 --- !u!212 &212000012923995946
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1bfa850156f1a6a45810950dd6b95b8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99d3983911a52a345b3ce37674f8e09a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

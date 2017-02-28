@@ -429,7 +429,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -777,14 +777,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   lootTable: {fileID: 0}
-  health: 4
+  health: 1
   damage: 1
   bombable: 0
   southHitCollider: {fileID: 114000012069081706}
   westHitCollider: {fileID: 114000011426831208}
   northHitCollider: {fileID: 114000011690638846}
   eastHitCollider: {fileID: 114000012069081706}
-  faction: 0
+  faction: 1
   hpBarText: {fileID: 0}
   audioSource: {fileID: 0}
   attackSound: {fileID: 0}

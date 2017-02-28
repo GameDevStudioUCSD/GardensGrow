@@ -415,7 +415,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -760,7 +760,7 @@ MonoBehaviour:
   westHitCollider: {fileID: 114000010314200524}
   northHitCollider: {fileID: 114000012783264202}
   eastHitCollider: {fileID: 114000012029553222}
-  faction: 0
+  faction: 1
   hpBarText: {fileID: 0}
   audioSource: {fileID: 0}
   attackSound: {fileID: 0}

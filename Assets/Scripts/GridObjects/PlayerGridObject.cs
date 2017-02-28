@@ -178,7 +178,7 @@ public class PlayerGridObject : MoveableGridObject {
             }
             else
             {
-                audioSource.clip = invalidPlacement;       //PLZ CHANGE SOUND EFFECT
+                audioSource.clip = invalidPlacement;
                 audioSource.Play();
             }
 		}

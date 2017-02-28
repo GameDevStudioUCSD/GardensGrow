@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System;
 
 [RequireComponent(typeof(Vision))]
-public class WindSlime : PathFindingMonsterAbstractFSM
-{
+public class WindSlime : PathFindingMonsterAbstractFSM {
     private PlayerGridObject player;
 
     private int dir2;
@@ -70,8 +69,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM
     protected bool pathNeedsReevaluation = false;
     protected bool pathIsComplete = false;
 
-    protected override void Start()
-    {
+    protected override void Start() {
         player = FindObjectOfType<PlayerGridObject>();
         animator = GetComponent<Animator>();
 
@@ -90,53 +88,45 @@ public class WindSlime : PathFindingMonsterAbstractFSM
 
         base.Start();
     }
-    void Update()
-    {
-        if (canSpin)
-        {
+    protected override void Update() {
+        if (canSpin) {
             counter++;
-            if (counter > turnDelay)
-            {
+            if (counter > turnDelay) {
                 player.gameObject.transform.Rotate(new Vector3(0, 0, 90f));
                 // or player.gameObject.direction = Globals.Direction.NEWS;
                 counter = 0;
                 maxSpinCounter++;
 
-                if (maxSpinCounter >= maxSpin)
-                {
+                if (maxSpinCounter >= maxSpin) {
                     player.TakeDamage(damage);
                     canSpin = false;
                     player.gameObject.transform.rotation = spawnRotation;
                     player.canMove = true;
                     maxSpinCounter = 0;
                     //depending on player direction, push player in x direction
-                    dir2 = (int)player.direction*-1;
-                    for(int i=0; i<15; i++)
-                    {
+                    dir2 = (int)player.direction * -1;
+                    for (int i = 0; i < 15; i++) {
                         player.Move((Globals.Direction)dir2);
                     }
                 }
             }
         }
-        foreach (GameObject obj in list)
-        {
-            if (obj == null)
-            {
+        foreach (GameObject obj in list) {
+            if (obj == null) {
                 currentSpawns--;
                 list.Remove(obj);
                 break; //prevents error from modifying list during foreach loop
             }
         }
+        base.Update();
     }
-    public void OnDrawGizmos()
-    {
+    public void OnDrawGizmos() {
         if (!debug) return;
 
         if (!Application.isPlaying) return;
 
         Vector2 acc = startTile.transform.position;
-        foreach (var v in path)
-        {
+        foreach (var v in path) {
             var v_real = Globals.DirectionToVector(v);
             Gizmos.DrawRay(acc, v_real);
             acc += v_real;
@@ -151,8 +141,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM
     /// Take a step on the path to target.
     /// </summary>
     /// <returns></returns>
-    protected override IEnumerator ExecuteActionTakeStep()
-    {
+    protected override IEnumerator ExecuteActionTakeStep() {
         stepIndex = 0;
 
         nextTile = tileMap.NextTile(currentTile, path[currentPathIndex]);
@@ -160,8 +149,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionStepping()
-    {
+    protected override IEnumerator ExecuteActionStepping() {
         Move(path[currentPathIndex]);
 
         stepIndex++;
@@ -169,25 +157,21 @@ public class WindSlime : PathFindingMonsterAbstractFSM
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionAttack()
-    {
+    protected override IEnumerator ExecuteActionAttack() {
         Attack();
 
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionEvaluateStep()
-    {
+    protected override IEnumerator ExecuteActionEvaluateStep() {
         // Check if we got close to the next tile
         float offsetMagnitude = Vector2.Distance(transform.position, nextTile.transform.position);
 
-        if (offsetMagnitude < allowedOffset)
-        {
+        if (offsetMagnitude < allowedOffset) {
             // Move the monster to the center of the tile
             transform.position = nextTile.transform.position;
         }
-        else
-        {
+        else {
             // TODO: if too far from the next tile do something
             pathNeedsReevaluation = true;
         }
@@ -196,8 +180,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM
         currentPathIndex++;
 
         // Check if we finished our path
-        if (currentPathIndex >= path.Count)
-        {
+        if (currentPathIndex >= path.Count) {
             pathIsComplete = true;
         }
 
@@ -207,8 +190,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionChaseTarget()
-    {
+    protected override IEnumerator ExecuteActionChaseTarget() {
         Move(direction);
 
         yield return null;
@@ -217,10 +199,8 @@ public class WindSlime : PathFindingMonsterAbstractFSM
     /// <summary>
     /// Create the path from current location to the target object
     /// </summary>
-    protected override IEnumerator ExecuteActionPathFind()
-    {
-        if (targetObject)
-        {
+    protected override IEnumerator ExecuteActionPathFind() {
+        if (targetObject) {
             targetTile = tileMap.GetNearestTile(targetObject.transform.position);
 
             // Find a path
@@ -229,8 +209,7 @@ public class WindSlime : PathFindingMonsterAbstractFSM
             // We are on the first step of the path
             currentPathIndex = 0;
         }
-        else
-        {
+        else {
             // Idle if there is nothing to target
             state = State.Idle;
         }
@@ -238,15 +217,13 @@ public class WindSlime : PathFindingMonsterAbstractFSM
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionWander()
-    {
+    protected override IEnumerator ExecuteActionWander() {
         Globals.Direction dir = (Globals.Direction)UnityEngine.Random.Range(0, 4);
         path.Add(dir);
         yield return null;
     }
 
-    protected override IEnumerator ExecuteActionDisabled()
-    {
+    protected override IEnumerator ExecuteActionDisabled() {
         // Do nothing, the monster is disabled
         yield return null;
     }
@@ -255,26 +232,21 @@ public class WindSlime : PathFindingMonsterAbstractFSM
     // | Transitions
     // ============================================================
 
-    protected override bool ReevaluatePath()
-    {
+    protected override bool ReevaluatePath() {
         return pathNeedsReevaluation;
     }
 
-    protected override bool CanAttack()
-    {
+    protected override bool CanAttack() {
         // Check cooldown
         AttackCollider edgeTrigger = getHitColliderFromDirection(direction);
 
         List<KillableGridObject> killList = edgeTrigger.GetKillList();
 
         // Check if there is anything to kill
-        if (killList.Count > 0)
-        {
+        if (killList.Count > 0) {
             // Check if any of the killables are an enemy
-            foreach (KillableGridObject target in killList)
-            {
-                if (target.faction != this.faction)
-                {
+            foreach (KillableGridObject target in killList) {
+                if (target.faction != this.faction) {
                     // Rotate in the direction of the target monster is attacking
                     Rotate(Globals.VectorsToDirection(transform.position, target.transform.position));
                     return true;
@@ -285,43 +257,35 @@ public class WindSlime : PathFindingMonsterAbstractFSM
         return false;
     }
 
-    protected override bool CanSenseTarget()
-    {
+    protected override bool CanSenseTarget() {
         return visionModule.CanSeePlayer(direction);
     }
 
-    protected override bool StepFinished()
-    {
+    protected override bool StepFinished() {
         // step is finished if we have gone moveAmount number of steps
         // and finished the step to move amount delay
         return stepIndex >= moveAmount && TimeInState() > stepToMoveDelay;
     }
 
-    protected override bool PathComplete()
-    {
+    protected override bool PathComplete() {
         return pathIsComplete;
     }
 
     public override void Reset() { }
-    
-    void SpawnSlime()
-    {
-		randInt = randGen.Next(0, 4);
 
-        if (randInt == 1)
-        {
+    void SpawnSlime() {
+        randInt = randGen.Next(0, 4);
+
+        if (randInt == 1) {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
         }
-        else if (randInt == 2)
-        {
-            spawnPosition = new Vector3(this.gameObject.transform.position.x+1, this.gameObject.transform.position.y, 0.0f);
+        else if (randInt == 2) {
+            spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
         }
-        else if (randInt == 3)
-        {
-            spawnPosition = new Vector3(this.gameObject.transform.position.x-1, this.gameObject.transform.position.y, 0.0f);
+        else if (randInt == 3) {
+            spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
         }
-        else
-        {
+        else {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
         }
         GameObject newLilSlime = (GameObject)Instantiate(littleSlime, spawnPosition, spawnRotation);
@@ -330,21 +294,17 @@ public class WindSlime : PathFindingMonsterAbstractFSM
         newLilSlime.GetComponent<littleWindSlime>().targetObject = targetObject;
 
         currentSpawns++;
-        
+
     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Player")) {
             player.canMove = false;
             canSpin = true;
         }
     }
-    IEnumerator SpawnRandomDir()
-    {
-        while (health > 0)
-        {
-            if(currentSpawns < maxSpawn)    {
+    IEnumerator SpawnRandomDir() {
+        while (health > 0) {
+            if (currentSpawns < maxSpawn) {
 
                 SpawnSlime();
                 yield return new WaitForSeconds(spawnDelay);
@@ -352,5 +312,13 @@ public class WindSlime : PathFindingMonsterAbstractFSM
             yield return 0;
         }
         yield return 0;
+    }
+
+    protected override void Die() {
+        SpawnSlime();
+        SpawnSlime();
+        SpawnSlime();
+        SpawnSlime();
+        base.Die();
     }
 }

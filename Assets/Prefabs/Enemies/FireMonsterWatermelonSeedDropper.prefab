@@ -748,7 +748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   lootTable: {fileID: 114000012827566468}
-  health: 5
+  health: 3
   damage: 1
   bombable: 0
   southHitCollider: {fileID: 114000013956876118}

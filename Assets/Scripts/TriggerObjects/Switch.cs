@@ -8,15 +8,20 @@ public class Switch : KillableGridObject {
     public UnityEvent unpressEvent;
     public bool timed = false;
     public int timeout = 0;
+
+    public Sprite switchUnpowered;
+    public Sprite switchPowered;
+
     private int timer = 0;
     private bool pressed;
-    private Animator animator;
+    private SpriteRenderer renderer;
 
     // Use this for initialization
     protected override void Start() {
         base.Start();
         pressed = false;
         //animator = this.gameObject.GetComponent<Animator>();
+        renderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
     protected override void Update() {
@@ -25,6 +30,7 @@ public class Switch : KillableGridObject {
             timer--;
             if (timer <= 0) {
                 unpressEvent.Invoke();
+				renderer.sprite = switchUnpowered;
                 pressed = false;
             }
         }
@@ -33,6 +39,7 @@ public class Switch : KillableGridObject {
     public override bool TakeDamage(int damage) {
         if (!pressed) {
             pressEvent.Invoke();
+            renderer.sprite = switchPowered;
             pressed = true;
             if (timed) timer = timeout;
         }
@@ -41,8 +48,13 @@ public class Switch : KillableGridObject {
         }
         else {
             unpressEvent.Invoke();
+            renderer.sprite = switchUnpowered;
             pressed = false;
         }
         return false;
+    }
+
+    public override bool TakeBombDamage(int damage) {
+        return TakeDamage(damage);
     }
 }
