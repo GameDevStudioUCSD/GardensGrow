@@ -160,7 +160,7 @@ MonoBehaviour:
   itemId: 10
   clip: {fileID: 8300000, guid: 0591541c228c94551a975f7919a7f109, type: 3}
   permanent: 1
-  lifeSpan: 100
+  lifeSpan: 500
 --- !u!212 &212000013252941722
 SpriteRenderer:
   m_ObjectHideFlags: 1

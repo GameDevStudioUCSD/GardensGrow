@@ -147,7 +147,7 @@ MonoBehaviour:
   itemId: 5
   clip: {fileID: 8300000, guid: 0affd501fe4bb46a6ba68ba032d47ee8, type: 3}
   permanent: 1
-  lifeSpan: 100
+  lifeSpan: 500
 --- !u!114 &114000012855432674
 MonoBehaviour:
   m_ObjectHideFlags: 1
