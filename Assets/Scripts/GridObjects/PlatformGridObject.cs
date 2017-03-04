@@ -40,7 +40,7 @@ public class PlatformGridObject : MonoBehaviour {
                 delayCounter++;
                 pingPongPauseCounter--;
                 if (delayCounter > delay && pingPongPauseCounter <= 0) {
-                    pingPongDistanceCounter += moveStep;
+                    pingPongDistanceCounter += 2 * moveStep;
 
                     //reverse direction
                     if (pingPongDistanceCounter > pingPongDistance) {
@@ -54,26 +54,30 @@ public class PlatformGridObject : MonoBehaviour {
 
                     //move forward
                     Vector3 position = this.transform.position;
-                    if (direction == Globals.Direction.North)
-                        position.y += moveStep;
-                    else if (direction == Globals.Direction.South)
-                        position.y -= moveStep;
-                    else if (direction == Globals.Direction.East)
-                        position.x += moveStep;
-                    else if (direction == Globals.Direction.West)
-                        position.x -= moveStep;
+                    if (direction == Globals.Direction.North) {
+                        position.y += 2 * moveStep;
+                    }
+                    else if (direction == Globals.Direction.South) {
+                        position.y -= 2 * moveStep;
+                    }
+                    else if (direction == Globals.Direction.East) {
+                        position.x += 2 * moveStep;
+                    }
+                    else if (direction == Globals.Direction.West) {
+                        position.x -= 2 * moveStep;
+                    }
                     transform.position = position;
 
                     if (hasPlayer) {
                         Vector3 playerPosition = player.transform.position;
                         if (direction == Globals.Direction.North)
-                            playerPosition.y += moveStep;
+                            playerPosition.y += 2 * moveStep;
                         else if (direction == Globals.Direction.South)
-                            playerPosition.y -= moveStep;
+                            playerPosition.y -= 2 * moveStep;
                         else if (direction == Globals.Direction.East)
-                            playerPosition.x += moveStep;
+                            playerPosition.x += 2 * moveStep;
                         else if (direction == Globals.Direction.West)
-                            playerPosition.x -= moveStep;
+                            playerPosition.x -= 2 * moveStep;
                         player.transform.position = playerPosition;
                     }
                     delayCounter = 0;
@@ -98,22 +102,22 @@ public class PlatformGridObject : MonoBehaviour {
 
                         if (direction == Globals.Direction.East) {
                             Vector3 position = obj.transform.position;
-                            position.x += moveStep;
+                            position.x += 2 * moveStep;
                             obj.transform.position = position;
                         }
                         else if (direction == Globals.Direction.West) {
                             Vector3 position = obj.transform.position;
-                            position.x -= moveStep;
+                            position.x -= 2 * moveStep;
                             obj.transform.position = position;
                         }
                         else if (direction == Globals.Direction.North) {
                             Vector3 position = obj.transform.position;
-                            position.y += moveStep;
+                            position.y += 2 * moveStep;
                             obj.transform.position = position;
                         }
                         else if (direction == Globals.Direction.South) {
                             Vector3 position = obj.transform.position;
-                            position.y -= moveStep;
+                            position.y -= 2 * moveStep;
                             obj.transform.position = position;
                         }
                     }
