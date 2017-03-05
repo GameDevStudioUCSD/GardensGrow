@@ -6,94 +6,98 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	private UIController canvas;
 	public string textFileName;
 	public Collider2D activeRegionPreTrigger;
-	public Collider2D activeRegionPostTrigger;
+	//public Collider2D activeRegionPostTrigger;
 
     //moving stuff
 	private PlayerGridObject player;
-    private bool talkedToPlayer = false;
-    private int moveDist;
-    private bool moving = true;
-    private bool movingBack = true;
-    private bool calculatedDist;
-    private int counter = 0;
-	private GameObject dialogue;
-	private bool triggered;
-    private bool walkingBack = false;
+    private Vector3 originalPosition;
+
+    private bool isTalkingToPlayer = false;
+
+    private bool calculatedDistUp = false;
+    private bool calculatedDistDown = false;
+
+    private int moveDistUp; // |orig position - current position|
+    private int moveDistDown; // |cur position - player position|
+    private bool movingDown;
+    private bool movingUp;
+
+    private int upCounter = 0;
+    private int downCounter = 0;
+
+
+    private GameObject dialogue;
     private Animator anim;
 
 	// Use this for initialization
 	void Start () {
+        originalPosition = this.gameObject.transform.position;
+
         anim = this.gameObject.GetComponent<Animator>();
         player = FindObjectOfType<PlayerGridObject>();
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
-		triggered = false;
 	}
     // Update is called once per frame
     void Update () {
-		if (!dialogue.activeSelf && activeRegionPreTrigger.bounds.Contains(player.transform.position) && triggered == false) {
-            if (!calculatedDist)
+        if (activeRegionPreTrigger.bounds.Contains(player.transform.position))
+        {
+            calculatedDistUp = false;
+            if (!calculatedDistDown)
             {
-                moveDist = (int)System.Math.Round(System.Math.Abs(this.transform.position.y - player.transform.position.y) / .0315)-10;
-                calculatedDist = true;
-                //anim.SetBool("IsWalking", true);
+                moveDistDown = (int)System.Math.Round(System.Math.Abs(this.transform.position.y - player.transform.position.y) / .0315) - 10;
+                calculatedDistDown = true;
                 anim.SetInteger("Direction", 1); //walking down
-            }
-            if (moving)
-            {
-                player.canMove = false;
-                player.animator.SetBool("IsWalking", false);
-                Mover(Globals.Direction.South);
-                counter++;
-                if(counter > moveDist)
-                {
-                    anim.SetInteger("Direction", 0);    //walking up 
-                    moving = false;
-                    counter = 0;
-                }
-            }
-            else
-            {
+                isTalkingToPlayer = true;
+                movingDown = true;
                 canvas.ShowDialog();
-                talkedToPlayer = true;
                 dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
                 dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
-                //canvas.paused = false;
-
-                triggered = true;
             }
-		}
-        if (talkedToPlayer && !activeRegionPreTrigger.bounds.Contains(player.transform.position))
-        {
-            if (calculatedDist)
+            if (movingDown)
             {
-                //anim.SetBool("IsWalking", true);
-                anim.SetInteger("Direction", 2); //idle
-                calculatedDist = false;
-                movingBack = true;
-            }
-    
-            Mover(Globals.Direction.North);
-            counter++;
-            if (counter > moveDist)
-            {
-                movingBack = false;
-                //anim.SetInteger("Direction", 2);
-                anim.SetInteger("Direction", 0);
-                //anim.SetBool("IsWalking", false);
-                talkedToPlayer = false;
-                counter = 0;
+                Mover(Globals.Direction.South);
+                downCounter++;
+                if (downCounter > moveDistDown)
+                {
+                    anim.SetInteger("Direction", 0);    //idle
+                    movingDown = false;
+                    downCounter = 0;
+                }
             }
         }
-        if (!dialogue.activeSelf && activeRegionPostTrigger.bounds.Contains(player.transform.position) && 
-			(Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return))&& !movingBack) {
+        else if (!activeRegionPreTrigger.bounds.Contains(player.transform.position) && isTalkingToPlayer)
+        {
+            calculatedDistDown = false;
+            if (!calculatedDistUp)
+            {
+                anim.SetInteger("Direction", 2); //walking up
+                calculatedDistUp = true;
+                moveDistUp = (int)System.Math.Round(System.Math.Abs(originalPosition.y - this.transform.position.y) / .0315) - 10;
+                movingUp = true;
+                canvas.EndDialog();
+            }
+            Mover(Globals.Direction.North);
+            upCounter++;
+            if (movingUp)
+            {
+                if (upCounter > moveDistUp)
+                {
+                    anim.SetInteger("Direction", 0);    //idle
+                    upCounter = 0;
+                    isTalkingToPlayer = false;
+                    movingUp = false;
+                }
+            }
+         }
+        if (!dialogue.activeSelf && activeRegionPreTrigger.bounds.Contains(player.transform.position) &&
+             (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return)) && !movingUp)
+        {
             canvas.ShowDialog();
 
-			dialogue.GetComponentInChildren<DialogueSystem> ().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
-			dialogue.GetComponentInChildren<DialogueSystem> ().LoadText ();
-            //canvas.paused = false;
-		}
-
+            dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
+            dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
+        }
     }
     public void Mover(Globals.Direction dir)
     {

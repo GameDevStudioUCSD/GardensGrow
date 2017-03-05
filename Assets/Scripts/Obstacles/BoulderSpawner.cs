@@ -4,9 +4,9 @@ using System.Collections;
 public class BoulderSpawner : MonoBehaviour {
 
 	public GameObject boulder;
-	public Vector3  spawningLocation;
 	public Globals.Direction direction;
 	public int framesBetweenBoulders;
+	public int startFrame;
 
     private RollingBoulder currentBoulder;
 
@@ -14,7 +14,7 @@ public class BoulderSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		currentFrame = 0;
+		currentFrame = startFrame;
 	}
 	
 	// Update is called once per frame
@@ -31,6 +31,6 @@ public class BoulderSpawner : MonoBehaviour {
 	}
 
 	void SummonBoulder() {
-		currentBoulder = ((GameObject)Instantiate(boulder, spawningLocation, Quaternion.identity)).GetComponent<RollingBoulder>();
+		currentBoulder = ((GameObject)Instantiate(boulder, this.gameObject.transform.position, Quaternion.identity)).GetComponent<RollingBoulder>();
 	}
 }
