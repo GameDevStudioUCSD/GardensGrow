@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
 	public UIController canvas;
-
+    public float tempInvincibiltySeconds;
     //check if can plant here
 
     bool canPlant = true;
@@ -184,7 +184,7 @@ public class PlayerGridObject : MoveableGridObject {
             }
             else
             {
-                audioSource.clip = invalidPlacement;       //PLZ CHANGE SOUND EFFECT
+                audioSource.clip = invalidPlacement;
                 audioSource.Play();
             }
 		}
@@ -207,7 +207,7 @@ public class PlayerGridObject : MoveableGridObject {
     }
     IEnumerator invicibilityWait()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(tempInvincibiltySeconds);
         invincible = false;
     }
     protected virtual void LateUpdate() {

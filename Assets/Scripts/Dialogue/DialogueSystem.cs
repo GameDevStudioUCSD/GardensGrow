@@ -11,6 +11,7 @@ public class DialogueSystem : MonoBehaviour {
 	bool writing = false;
 
 	//Class initialization.
+    //initialize printing text
 	public void LoadText()
 	{
 		textLines = null;
@@ -26,7 +27,6 @@ public class DialogueSystem : MonoBehaviour {
 			StartCoroutine (AnimateText (textLines [lineCounter]));
 		}
 		lineCounter++;
-
 	}
 
 	//You only need concern yourself with WaitForSeconds.
@@ -45,7 +45,11 @@ public class DialogueSystem : MonoBehaviour {
 
 		writing = false;
 	}
-
+    void OnDisable()
+    {
+        writing = false;
+    }
+    //text besides 1st test
 	void Update()
 	{
 		if ((Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return)) && !writing)

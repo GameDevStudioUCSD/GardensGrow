@@ -102,15 +102,12 @@ public class UIController : MonoBehaviour {
 	// Hides the plant UI when dialog is being said
 	public void ShowDialog() {
         player.GetComponent<Animator>().StartPlayback(); //don't know why start stops animations, but it does
-        paused = true;
 		dialogUI.SetActive(true);
 
 		for (int i = 0; i < 8; i++) {
 			uiPlants[i].enabled = false;
 			uiPlantCounters[i].enabled = false;
 		}
-
-		player.canMove = false;
 	}
 
 	// Hides the dialog box and enables the plant UI again
@@ -123,8 +120,6 @@ public class UIController : MonoBehaviour {
 			uiPlants[i].enabled = true;
 			uiPlantCounters[i].enabled = true;
 		}
-
-		player.canMove = true;
     }
 
     public void ShowSaveMenu() {
