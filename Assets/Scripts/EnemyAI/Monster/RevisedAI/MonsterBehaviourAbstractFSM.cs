@@ -9,7 +9,7 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     [Header("State Machine Variables")]
     public int exceptionCount;
     public int shutDownFSMAfterNExceptions = 10;
-    public Coroutine coroutine;
+    public Coroutine FSMCoroutine;
     public enum State { 
         PathFinding = 0,
         Damaged = 1,
@@ -18,9 +18,14 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
         Attack = 4
     }  
     public State state = State.PathFinding;
+    public bool isDisabled = true;
     protected override void Start() { 
-        RunFSM();
         base.Start();
+
+        if (isDisabled)
+            Disable();
+        else
+            Enable();
     }
     private IEnumerator FSMThread( float delayRate ) {
         bool isRunning = true;
@@ -40,7 +45,7 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     }
     public void RunFSM(float delayRate)
     {
-        coroutine = StartCoroutine(FSMThread(delayRate));
+        FSMCoroutine = StartCoroutine(FSMThread(delayRate));
     }
 
     /*
@@ -168,7 +173,34 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
 
     public void OnDisable()
     {
-        StopCoroutine(coroutine);
+        Disable();
     }
-  
+
+    /// <summary>
+    /// Stop the AI
+    /// </summary>
+    public virtual void Disable()
+    {
+        isDisabled = true;
+        state = State.Disabled;
+        if (FSMCoroutine != null)
+        {
+            StopCoroutine(FSMCoroutine);
+        }
+    }
+
+    /// <summary>
+    /// Start the AI
+    /// </summary>
+    public virtual void Enable()
+    {
+        isDisabled = false;
+        state = State.PathFinding;
+        if (FSMCoroutine != null)
+        {
+            StopCoroutine(FSMCoroutine);
+        }
+
+        RunFSM();
+    }
 }

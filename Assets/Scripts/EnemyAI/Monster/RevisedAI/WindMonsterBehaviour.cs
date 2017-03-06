@@ -10,48 +10,17 @@ public class WindMonsterBehaviour : MonsterBehaviourAbstractFSM {
     public WindAttackModule attackModule;
     public SummoningModule summonModule;
 
-    [Header("Behaviour Parameters")]
-    public bool isDisabled;
-
-    protected override void Start()
-    {
-        if (isDisabled)
-            Disable();
-
-        // Set up summoning module tilemap/target
-        summonModule.parameters.tileMap = pathFindingModule.parameters.tileMap;
-        summonModule.parameters.target = pathFindingModule.parameters.target;
-
-        base.Start();
-    }
-
     public override void Reset()
     {
     }
 
-    public void Disable()
+    public override void Enable()
     {
-        isDisabled = true;
-        state = State.Disabled;
-    }
+        // Set up tilemap and targetting for any summons
+        summonModule.parameters.tileMap = pathFindingModule.parameters.tileMap;
+        summonModule.parameters.target = pathFindingModule.parameters.target;
 
-    public void Enable()
-    {
-        isDisabled = false;
-        state = State.PathFinding;
-        if (coroutine != null)
-        {
-            StopCoroutine(coroutine);
-        }
-
-        RunFSM();
-    }
-
-    /// <summary>
-    /// Called by Spawner to activate this creature
-    /// </summary>
-    public void SpawnStart()
-    {
+        base.Enable();
     }
 
     // ================================================

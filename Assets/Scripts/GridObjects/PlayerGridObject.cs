@@ -132,7 +132,13 @@ public class PlayerGridObject : MoveableGridObject {
         }
 		
 	}
-		
+
+    public override void Attack()
+    {
+        isAttacking = true;
+        base.Attack();
+    }
+
 	protected virtual void Plant(int plantNumber) {
 		// Plant animation in that direction
 		// Check if there is space in front to plant

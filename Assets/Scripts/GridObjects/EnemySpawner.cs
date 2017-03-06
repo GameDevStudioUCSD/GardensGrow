@@ -81,13 +81,15 @@ public class EnemySpawner : KillableGridObject
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
         }
-        GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-        list.Add(enemyObj);
+        GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+        list.Add(summonedMonster);
 
-        PathFindingModule monsterPathFinding = enemyObj.GetComponentInChildren<PathFindingModule>();
+        PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
         monsterPathFinding.parameters.tileMap = tileMap;
         monsterPathFinding.parameters.target = targetObj;
-        enemyObj.GetComponent<GenericMonsterBehaviour>().SpawnStart();
+
+        // Activate monster
+        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().Enable();
 
         currSpawns++;
     }
