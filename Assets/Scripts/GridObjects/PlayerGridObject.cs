@@ -122,6 +122,26 @@ public class PlayerGridObject : MoveableGridObject {
                 }
             }
         }
+        else if (Input.GetButtonDown("Deplant"))
+        {
+            killList.RemoveAll((KillableGridObject target) => target == null);
+
+            // Deal damage to all targets of the enemy faction
+            foreach (KillableGridObject target in killList)
+            {
+                BombObject bomb = target.GetComponent<BombObject>();
+                if (bomb)
+                {
+                    bomb.Roll(direction);
+                }   
+                //deplant code MOVED so deplanting is a different button
+                PlantGridObject plant = target.GetComponent<PlantGridObject>();
+                if (plant)
+                {
+                    plant.TakeDamage(100);
+                }
+            }
+        }
         else
         {
             for (int i = 0; i < 10; ++i)
