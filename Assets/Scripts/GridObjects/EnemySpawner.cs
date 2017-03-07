@@ -34,7 +34,8 @@ public class EnemySpawner : KillableGridObject
 
     // Used for initialization
     private bool wasInitialized = false;
-
+    
+    
     // Use this for initialization
     protected override void Start()
     {
@@ -57,8 +58,6 @@ public class EnemySpawner : KillableGridObject
                 break; //prevents error from modifying list during foreach loop
             }
         }
-    
-
     }
 
     void SpawnEnemy()
@@ -93,7 +92,7 @@ public class EnemySpawner : KillableGridObject
 
         currSpawns++;
     }
-
+    
     public void SpawnAtOnce()
     {
         for (int i = 0; i < maxSpawns; i++)
@@ -101,7 +100,7 @@ public class EnemySpawner : KillableGridObject
         	SpawnEnemy();
         }
     }
-
+    
     IEnumerator SpawnRandomDir()
     {
         while (health > 0)
@@ -127,15 +126,6 @@ public class EnemySpawner : KillableGridObject
             TakeDamage(player.damage);
         }
     }
-
-
-    /* deleting this function as the killablegridobject function does the same thing
-    public override bool TakeDamage(int dmg)
-    {
-        gameObject.GetComponent<Animation>().Play("Damaged");
-        return base.TakeDamage(dmg);
-    }
-    */
 
     protected override void Die() {
 		deathEvent.Invoke();
