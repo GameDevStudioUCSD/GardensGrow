@@ -130,7 +130,6 @@ public class WindBossAI : KillableGridObject {
 				isInvulnerable = true;
 				framesInState = 0;
 				animator.SetInteger("State", 2);
-<<<<<<< HEAD
 			}
 		}
 		if (state == BossState.Blowing) {
