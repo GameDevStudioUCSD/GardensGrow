@@ -32,18 +32,13 @@ public class EnemySpawner : KillableGridObject
     System.Random randGen = new System.Random();
     private int randInt;
 
+    // Used for initialization
+    private bool wasInitialized = false;
+
     // Use this for initialization
     protected override void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
-        animator = GetComponent<Animator>();
-        if(spawnOnStart)
-        {
-            if (spawnsOnce)
-                SpawnRandomDir();
-            else
-                spawningCoroutine = StartCoroutine(SpawnRandomDir());
-        }
+        Init();
     }
 
     // Update is called once per frame
@@ -86,10 +81,15 @@ public class EnemySpawner : KillableGridObject
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
         }
-        GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-        list.Add(enemyObj);
-        enemyObj.GetComponentInChildren<PathFindingBehaviour>().tileMap = tileMap;
-        enemyObj.GetComponentInChildren<PathFindingBehaviour>().target = targetObj;
+        GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+        list.Add(summonedMonster);
+
+        PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
+        monsterPathFinding.parameters.tileMap = tileMap;
+        monsterPathFinding.parameters.target = targetObj;
+
+        // Activate monster
+        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().Enable();
 
         currSpawns++;
     }
@@ -168,5 +168,54 @@ public class EnemySpawner : KillableGridObject
     	}
 
     	currSpawns = 0;
+    }
+
+    public void OnEnable()
+    {
+        Init();
+    }
+
+    // Disabling is when the active "check mark" in the editor is turned off
+    public void OnDisable()
+    {
+        // Stop the current spawning coroutine to avoid bugs
+        if (spawningCoroutine != null)
+            StopCoroutine(spawningCoroutine);
+
+        // Reset so next time this object is enaled, the Init can run.
+        wasInitialized = false;
+    }
+
+    /// <summary>
+    /// One initialization function since this script needs both OnEnable
+    /// and Start and both shouldn't run at the same time.  This adds a check
+    /// so it only runs once.
+    /// 
+    /// Because the spawner can be disabled and reenabled, this function
+    /// may actually be called multiple times throughout the lifetime of
+    /// the object.  Everytime the object was disabled and then reenabled,
+    /// this Init should run to success.
+    /// </summary>
+    private void Init()
+    {
+        if (wasInitialized)
+            return;
+
+        wasInitialized = true;
+
+        // Needs these checks
+        if(!player)
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
+        if(!animator)
+            animator = GetComponent<Animator>();
+
+        if (spawnOnStart)
+        {
+            if (spawnsOnce)
+                SpawnRandomDir();
+            else
+                spawningCoroutine = StartCoroutine(SpawnRandomDir());
+        }
+        
     }
 }

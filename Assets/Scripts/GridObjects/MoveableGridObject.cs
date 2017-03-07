@@ -44,7 +44,7 @@ public class MoveableGridObject : KillableGridObject {
         }
 	}
 
-    protected AttackCollider getHitColliderFromDirection(Globals.Direction dir)
+    public AttackCollider GetHitColliderFromDirection(Globals.Direction dir)
     {
         switch(dir)
         {
@@ -56,4 +56,8 @@ public class MoveableGridObject : KillableGridObject {
         }
     }
 
+    public AttackCollider GetHitColliderFromDirection()
+    {
+        return GetHitColliderFromDirection(this.direction);
+    }
 }

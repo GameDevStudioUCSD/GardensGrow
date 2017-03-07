@@ -107,32 +107,36 @@ public class TurbinePlantObject : PlantGridObject
             }
         }
     }
+
     IEnumerator killWindSlimeCD(Collider2D other)
     {
         canKillWindSlime = false;
-        spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1, 0.0f);
-        GameObject newLilSlime = (GameObject)Instantiate(littleSlime, spawnPosition, spawnRotation);
-        other.gameObject.GetComponent<WindSlime>().list.Add(newLilSlime);
-        newLilSlime.GetComponent<littleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
-        newLilSlime.GetComponent<littleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
 
+        PathFindingModule windMonsterPathFinding = other.gameObject.GetComponentInChildren<PathFindingModule>();
+
+        spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1, 0.0f);
+        GameObject littleMonster = (GameObject)Instantiate(littleSlime, spawnPosition, spawnRotation);
+        //other.gameObject.GetComponent<WindMonsterBehaviour>().list.Add(newLilSlime);
+        PathFindingModule littleMonsterPathFinding = littleMonster.GetComponentInChildren<PathFindingModule>();
+        littleMonsterPathFinding.parameters.tileMap = windMonsterPathFinding.parameters.tileMap;
+        littleMonsterPathFinding.parameters.target = windMonsterPathFinding.parameters.target;
+
+        /*
         spawnPosition = new Vector3(other.gameObject.transform.position.x + 1, other.gameObject.transform.position.y, 0.0f);
         GameObject newLilSlime2 = (GameObject)Instantiate(littleSlime, spawnPosition, spawnRotation);
-        other.gameObject.GetComponent<WindSlime>().list.Add(newLilSlime2);
-        newLilSlime2.GetComponent<littleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
-        newLilSlime2.GetComponent<littleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
+        newLilSlime2.GetComponent<LittleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
+        newLilSlime2.GetComponent<LittleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
 
         spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y - 1, 0.0f);
         GameObject newLilSlime3 = (GameObject)Instantiate(littleSlime, spawnPosition, spawnRotation);
-        other.gameObject.GetComponent<WindSlime>().list.Add(newLilSlime3);
-        newLilSlime3.GetComponent<littleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
-        newLilSlime3.GetComponent<littleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
+        newLilSlime3.GetComponent<LittleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
+        newLilSlime3.GetComponent<LittleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
 
         spawnPosition = new Vector3(other.gameObject.transform.position.x - 1, other.gameObject.transform.position.y, 0.0f);
         GameObject newLilSlime4 = (GameObject)Instantiate(littleSlime, spawnPosition, spawnRotation);
-        other.gameObject.GetComponent<WindSlime>().list.Add(newLilSlime4);
-        newLilSlime4.GetComponent<littleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
-        newLilSlime4.GetComponent<littleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
+        newLilSlime4.GetComponent<LittleWindSlime>().tileMap = other.gameObject.GetComponent<WindSlime>().tileMap;
+        newLilSlime4.GetComponent<LittleWindSlime>().targetObject = other.gameObject.GetComponent<WindSlime>().targetObject;
+        */
      
         Destroy(other.gameObject);
 
@@ -141,7 +145,7 @@ public class TurbinePlantObject : PlantGridObject
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<WindSlime>() && canKillWindSlime)
+        if (other.gameObject.GetComponent<WindMonsterBehaviour>() && canKillWindSlime)
         {
             StartCoroutine(killWindSlimeCD(other));
         }

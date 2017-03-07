@@ -68,6 +68,7 @@ public class BombObject : MoveableGridObject {
 
     //hiding KillableGridObject's method; bombs don't die
     public override bool TakeDamage(int damage) {
+        Explode();
         return false;
     }
 
@@ -124,6 +125,14 @@ public class BombObject : MoveableGridObject {
     public override void Move(Globals.Direction direction) {
         if (!(Globals.player.canvas.paused)) {
             base.Move(direction);
+            if (direction == Globals.Direction.North && northCollider.isTriggered && northCollider.other.GetComponent<WindBossAI>())
+                Explode();
+            else if (direction == Globals.Direction.South && southCollider.isTriggered && southCollider.other.GetComponent<WindBossAI>())
+                Explode();
+            else if (direction == Globals.Direction.West && westCollider.isTriggered && westCollider.other.GetComponent<WindBossAI>())
+                Explode();
+            else if (direction == Globals.Direction.South && eastCollider.isTriggered && eastCollider.other.GetComponent<WindBossAI>())
+                Explode();
             //this code makes the bomb explode automatically when an enemy is range
             /*if (direction == Globals.Direction.South) {
                 killList = southHitCollider.GetKillList();

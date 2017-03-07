@@ -23,6 +23,7 @@ public class KillableGridObject : RotateableGridObject {
     public AudioClip attackSound;
     public AudioClip hurtSound;
 
+    // Currently isAttacking is not being used
     public bool isAttacking = false;
     public bool isDying = false;
     public bool isInvulnerable = false;
@@ -32,7 +33,7 @@ public class KillableGridObject : RotateableGridObject {
 
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
-    private const int numDyingFrames = 11;
+    protected const int numDyingFrames = 11;
 
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     protected bool hasDied = false;
@@ -125,11 +126,6 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     public virtual void Attack() {
-        // Don't attack if we are currently attacking
-        if (isAttacking)
-            return;
-
-        isAttacking = true;
         hitSomething = false;
 
         if (audioSource != null) {
@@ -163,7 +159,6 @@ public class KillableGridObject : RotateableGridObject {
             if (target.faction != this.faction) {
                 if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
                     //note enemy kill plant doesn't work
-                    Debug.Log("SMACKING THE WATERMELOON");
                 }
                 hitSomething = true;
                 target.TakeDamage(damage);
@@ -179,7 +174,6 @@ public class KillableGridObject : RotateableGridObject {
                 }
             }
         }
-
     }
 
     public void SpawnItem() {

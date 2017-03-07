@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class PlayerGridObject : MoveableGridObject {
 	public PlantGridObject[] plants;
 	public UIController canvas;
-
+    public float tempInvincibiltySeconds;
     //check if can plant here
 
     bool canPlant = true;
@@ -19,15 +19,21 @@ public class PlayerGridObject : MoveableGridObject {
     public Animation anim;
     public bool canMove;
 
+    public AudioClip invalidPlacement;
+
     //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
 
 	private GameObject dialogue;
     private bool invincible;
+    private int frames = 0;
+    private float time = 0;
     // Use this for initialization
     protected override void Start () {
         base.Start();
-
+        //Debug.Log("PLAYER HEALTH SHOULD BE " + Globals.playerHealth);
+        canvas.UpdateHealth(Globals.playerHealth);  //update players health from load/Globals
+      
         this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
@@ -40,7 +46,7 @@ public class PlayerGridObject : MoveableGridObject {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-        
+
         // TODO: pull up animator code for player up to here so monster can have their own
         // Get Left or Right
         horizontalAxis = Input.GetAxisRaw("Horizontal");
@@ -126,7 +132,13 @@ public class PlayerGridObject : MoveableGridObject {
         }
 		
 	}
-		
+
+    public override void Attack()
+    {
+        isAttacking = true;
+        base.Attack();
+    }
+
 	protected virtual void Plant(int plantNumber) {
 		// Plant animation in that direction
 		// Check if there is space in front to plant
@@ -172,7 +184,7 @@ public class PlayerGridObject : MoveableGridObject {
             }
             else
             {
-                audioSource.clip = hurtSound;       //PLZ CHANGE SOUND EFFECT
+                audioSource.clip = invalidPlacement;
                 audioSource.Play();
             }
 		}
@@ -180,6 +192,7 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
+        //Debug.Log("CURRENT HEALTH IS: " + (health-1));
         if (damage >= 1)
         {
             canvas.UpdateHealth(health - damage);
@@ -194,7 +207,7 @@ public class PlayerGridObject : MoveableGridObject {
     }
     IEnumerator invicibilityWait()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(tempInvincibiltySeconds);
         invincible = false;
     }
     protected virtual void LateUpdate() {

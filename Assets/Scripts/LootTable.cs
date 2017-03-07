@@ -43,6 +43,7 @@ public class LootTable : MonoBehaviour
         }
 
         // If set up correctly, we should never end up here
+        Debug.LogError("LootTable: GetItem() ended up in a strange place.");
         return null;
     }
 

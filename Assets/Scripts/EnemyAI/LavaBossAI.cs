@@ -235,7 +235,7 @@ public class LavaBossAI : KillableGridObject {
     }
 
     protected override void Die() {
-    	Instantiate(portal, new Vector3(0, 0, 0), Quaternion.identity);
+        portal.SetActive(true);
     	base.Die();
     }
 

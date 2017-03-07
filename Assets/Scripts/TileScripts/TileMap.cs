@@ -14,21 +14,32 @@ public class TileMap : MonoBehaviour {
     public bool debug = false;
     private GameObject[] rooms;
 
-    // Awake happens before Start and is preferred for generating references between objects
     void Awake()
     {
-    	int plantType;
+        grid = new Tile[mapDimensionX, mapDimensionY];
+    }
+
+   //start happens 1st frame
+    void Start()
+    {
+        Globals.tileMap = this;
+        rooms = new GameObject[transform.GetChild(0).childCount];
+        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+            rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
+        }
+
+        int plantType;
     	Vector3 plantVector;
 		foreach (KeyValuePair<Globals.PlantData, int> kvp in Globals.plants)
 		{
 			if (kvp.Key.PlantScene == Application.loadedLevelName) {
 				plantVector = kvp.Key.PlantLocation;
 				plantType = kvp.Value;
-				Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
+				PlantGridObject newPlant = (PlantGridObject) Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
+                newPlant.Rotate(kvp.Key.PlantDirection);
 			}
 		}
-
-        grid = new Tile[mapDimensionX, mapDimensionY];
 
         // Get all Tiles that are children of this TileMap object
         Tile[] myTiles = GetComponentsInChildren<Tile>();
@@ -49,16 +60,7 @@ public class TileMap : MonoBehaviour {
             //nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);
         }
 
-	}
-
-    // Use this for initialization
-    void Start() {
-    	rooms = new GameObject[transform.GetChild(0).childCount];
-       	for (int i = 0; i < transform.GetChild(0).childCount; i++) {
-			rooms[i] = transform.GetChild(0).GetChild(i).gameObject;
-    	}
-    }
-	
+	}	
 	// Update is called once per frame
 	void Update () {
 		for (int i = 0; i < rooms.Length; i++) {
@@ -222,7 +224,6 @@ public class TileMap : MonoBehaviour {
         if (grid[x, y] == null)
         {
             //throw new System.Exception("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
-            Debug.LogError("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
             return null;
         }
         else

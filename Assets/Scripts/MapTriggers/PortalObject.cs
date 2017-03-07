@@ -6,6 +6,8 @@ public class PortalObject : RespawnLocation {
 	// 1 = Overworld
 	// 2 = Lava Dungeon
 	// 3 = Lava Dungeon Boss
+    // 4 = Wind Dungeon
+    // 5 = Wind Dungeon Boss
 
 	public int levelToLoad;
 
