@@ -7,10 +7,14 @@ public class HostileTerrainObject : TerrainObject {
 	private int currentFrame = 0;
 
 	public bool activeCollider;
+    public GameObject deathPanel;
+    PlayerGridObject player;
+
 
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
+        player = FindObjectOfType<PlayerGridObject>();
 
 		if (!activeCollider) {
 			BoxCollider2D thisCollider = this.gameObject.GetComponent<BoxCollider2D>();
@@ -23,10 +27,22 @@ public class HostileTerrainObject : TerrainObject {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			if (player.onPlatform == false) {
 				player.TakeDamage(damage);
-				player.gameObject.transform.position = Globals.spawnLocation;
+                player.gameObject.transform.position = Globals.spawnLocation;
+
+                /*player.canMove = false;
+                StartCoroutine(screenBlackout());*/
 			}
 		}
         RollingBoulder boulder = other.GetComponent<RollingBoulder>();
         if (boulder) boulder.StartCrumbling();
 	}
+    IEnumerator screenBlackout()
+    {
+        //replace the following with a transparent animation later
+        deathPanel.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        deathPanel.SetActive(false);
+        player.canMove = true;
+
+    }
 }
