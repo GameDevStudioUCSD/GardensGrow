@@ -133,7 +133,7 @@ public class PlayerGridObject : MoveableGridObject {
                 if (bomb)
                 {
                     bomb.Roll(direction);
-                }
+                }   
                 //deplant code MOVED so deplanting is a different button
                 PlantGridObject plant = target.GetComponent<PlantGridObject>();
                 if (plant)
