@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour {
 	public UnityEngine.UI.Image[] uiPlants;
 	public UnityEngine.UI.Image[] healthIcons;
 	public UnityEngine.UI.Text[] uiPlantCounters;
+	public UnityEngine.UI.Text[] uiButtonCounter;
 	public UnityEngine.UI.Image uiKeyIcon;
 	public UnityEngine.UI.Text uiKeyCounter;
 
@@ -107,6 +108,7 @@ public class UIController : MonoBehaviour {
 		for (int i = 0; i < 8; i++) {
 			uiPlants[i].enabled = false;
 			uiPlantCounters[i].enabled = false;
+			uiButtonCounter[i].enabled = false;
 		}
 	}
 
@@ -119,6 +121,7 @@ public class UIController : MonoBehaviour {
 		for (int i = 0; i < 8; i++) {
 			uiPlants[i].enabled = true;
 			uiPlantCounters[i].enabled = true;
+			uiButtonCounter[i].enabled = true;
 		}
     }
 
