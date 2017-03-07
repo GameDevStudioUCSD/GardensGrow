@@ -6,14 +6,14 @@ using System;
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
 	public RollingBoulder boulder;
-	public WindSlime windslime;
     public GameObject portal;
+    public GameObject spawnedMonster;
     public int idleFrames = 0;
     public int inhalingFrames = 360;
     public int blowingFrames = 300;
 
-    private UnityEngine.Object windSlimeOne;
-    private UnityEngine.Object windSlimeTwo;
+    private GameObject spawnedMonster1;
+    private GameObject spawnedMonster2;
 
 	public struct BoulderLocation : IComparable <BoulderLocation> {
 		public Vector3 location;
@@ -104,10 +104,11 @@ public class WindBossAI : KillableGridObject {
 				animator.SetInteger("Direction", 2);
 			}
 
-            if (!windSlimeOne)
-                windSlimeOne = Instantiate(windslime, new Vector3(-3, 0, 0), Quaternion.identity);
-            if (!windSlimeTwo)
-                windSlimeTwo = Instantiate(windslime, new Vector3(3, 0, 0), Quaternion.identity);
+            // TODO: these slimes need to have their targeting and tilemap setup
+            if (!spawnedMonster1)
+                spawnedMonster1 = (GameObject)Instantiate(spawnedMonster, new Vector3(-3, 0, 0), Quaternion.identity);
+            if (!spawnedMonster2)
+                spawnedMonster2 = (GameObject)Instantiate(spawnedMonster, new Vector3(3, 0, 0), Quaternion.identity);
 
 			this.transform.position = newPosition;
 		}
@@ -129,6 +130,7 @@ public class WindBossAI : KillableGridObject {
 				isInvulnerable = true;
 				framesInState = 0;
 				animator.SetInteger("State", 2);
+<<<<<<< HEAD
 			}
 		}
 		if (state == BossState.Blowing) {

@@ -23,6 +23,7 @@ public class KillableGridObject : RotateableGridObject {
     public AudioClip attackSound;
     public AudioClip hurtSound;
 
+    // Currently isAttacking is not being used
     public bool isAttacking = false;
     public bool isDying = false;
     public bool isInvulnerable = false;
@@ -125,11 +126,6 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     public virtual void Attack() {
-        // Don't attack if we are currently attacking
-        if (isAttacking)
-            return;
-
-        isAttacking = true;
         hitSomething = false;
 
         if (audioSource != null) {
@@ -178,7 +174,6 @@ public class KillableGridObject : RotateableGridObject {
                 }
             }
         }
-
     }
 
     public void SpawnItem() {

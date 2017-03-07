@@ -248,7 +248,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012166925212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 2, z: 0}
+  m_LocalPosition: {x: 20.053684, y: 1.6743772, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parameters:
-    summonedGameObject: {fileID: 1000013157515858, guid: 5dcdff7770814dd4c9f88be5f022467e,
+    summonedGameObject: {fileID: 1000013897443506, guid: 68abcdd49203626469a6802676732a44,
       type: 2}
     maxNumberOfSpawns: 3
     spawnCooldown: 3
@@ -843,10 +843,10 @@ MonoBehaviour:
   exceptionCount: 0
   shutDownFSMAfterNExceptions: 10
   state: 0
+  isDisabled: 0
   pathFindingModule: {fileID: 114000011623130300}
   attackModule: {fileID: 114000014017438476}
   summonModule: {fileID: 114000010008486226}
-  isDisabled: 0
 --- !u!114 &114000012675797342
 MonoBehaviour:
   m_ObjectHideFlags: 1

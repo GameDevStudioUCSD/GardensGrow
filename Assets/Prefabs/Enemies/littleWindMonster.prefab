@@ -83,6 +83,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011918267124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012673913972}
+  - 114: {fileID: 114000012546060954}
+  m_Layer: 0
+  m_Name: AttackModule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012021749420
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +130,22 @@ GameObject:
   - 114: {fileID: 114000012748490202}
   m_Layer: 0
   m_Name: EastCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012476736522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012279018090}
+  - 114: {fileID: 114000012113707492}
+  m_Layer: 0
+  m_Name: PathFindingModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +197,7 @@ GameObject:
   - 4: {fileID: 4000014032524126}
   - 114: {fileID: 114000013705935258}
   m_Layer: 0
-  m_Name: FireMonsterLoot
+  m_Name: LittleWindMonsterLoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,10 +215,9 @@ GameObject:
   - 50: {fileID: 50000014047014128}
   - 61: {fileID: 61000010236260680}
   - 95: {fileID: 95000012152872514}
-  - 114: {fileID: 114000010953032338}
   - 111: {fileID: 111000013188696646}
   - 82: {fileID: 82000013466236834}
-  - 114: {fileID: 114000014262070864}
+  - 114: {fileID: 114000012180825652}
   m_Layer: 0
   m_Name: littleWindMonster
   m_TagString: WindSlime
@@ -206,7 +237,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &4000011001414252
 Transform:
   m_ObjectHideFlags: 1
@@ -214,18 +245,20 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013897443506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.05, y: 4.69, z: 0}
+  m_LocalPosition: {x: 23.974876, y: 3.2658758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 4000012279018090}
+  - {fileID: 4000012673913972}
   - {fileID: 4000010528007070}
   - {fileID: 4000012492345462}
   - {fileID: 4000012761250610}
   - {fileID: 4000013061376036}
+  - {fileID: 4000013284313634}
   - {fileID: 4000011207870702}
   - {fileID: 4000011212859996}
   - {fileID: 4000013525622820}
-  - {fileID: 4000013284313634}
   - {fileID: 4000014032524126}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -241,7 +274,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 4
+  m_RootOrder: 7
 --- !u!4 &4000011212859996
 Transform:
   m_ObjectHideFlags: 1
@@ -254,7 +287,20 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 5
+  m_RootOrder: 8
+--- !u!4 &4000012279018090
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012476736522}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 26.46651, y: 5.4996257, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011001414252}
+  m_RootOrder: 0
 --- !u!4 &4000012492345462
 Transform:
   m_ObjectHideFlags: 1
@@ -264,6 +310,19 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.35, y: -0.051, z: 0}
   m_LocalScale: {x: 0.0625, y: 0.8, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011001414252}
+  m_RootOrder: 3
+--- !u!4 &4000012673913972
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011918267124}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 26.46651, y: 5.4996257, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
@@ -280,7 +339,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!4 &4000013061376036
 Transform:
   m_ObjectHideFlags: 1
@@ -293,7 +352,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!4 &4000013284313634
 Transform:
   m_ObjectHideFlags: 1
@@ -306,7 +365,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &4000013525622820
 Transform:
   m_ObjectHideFlags: 1
@@ -319,7 +378,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 6
+  m_RootOrder: 9
 --- !u!4 &4000014032524126
 Transform:
   m_ObjectHideFlags: 1
@@ -332,7 +391,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011001414252}
-  m_RootOrder: 8
+  m_RootOrder: 10
 --- !u!33 &33000010482757474
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -664,20 +723,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   other: {fileID: 0}
---- !u!114 &114000010953032338
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013897443506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423bc39aede7b964686ff9b612ee24d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumViewDistance: 5
-  lookDirection: {x: 0, y: 1, z: 0}
-  debugMode: 0
 --- !u!114 &114000011426831208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -711,6 +756,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df40761583f8024cbdc5454cdea7643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000012113707492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012476736522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35b626c1da8a1f4b8978c3e0abbec60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  parameters:
+    tileMap: {fileID: 0}
+    target: {fileID: 0}
+    creature: {fileID: 114000012180825652}
+    stepAmount: 32
+    delayBetweenSteps: 0.03
+    allowedStepOffset: 0.5
+    tilesUntilReevaluation: 5
+  debug: 0
+  path: 
+--- !u!114 &114000012180825652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013897443506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f9687e493ff8044b21b0b434b73b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+  lootTable: {fileID: 114000013705935258}
+  health: 1
+  damage: 1
+  bombable: 0
+  southHitCollider: {fileID: 114000014017007444}
+  westHitCollider: {fileID: 114000011426831208}
+  northHitCollider: {fileID: 114000011690638846}
+  eastHitCollider: {fileID: 114000012069081706}
+  faction: 1
+  hpBarText: {fileID: 0}
+  audioSource: {fileID: 0}
+  attackSound: {fileID: 0}
+  hurtSound: {fileID: 0}
+  isAttacking: 0
+  isDying: 0
+  isInvulnerable: 0
+  southCollider: {fileID: 114000010200896180}
+  westCollider: {fileID: 114000010459739420}
+  northCollider: {fileID: 114000012477448594}
+  eastCollider: {fileID: 114000012748490202}
+  animator: {fileID: 0}
+  exceptionCount: 0
+  shutDownFSMAfterNExceptions: 10
+  state: 0
+  isDisabled: 0
+  pathFindingModule: {fileID: 114000012113707492}
+  attackModule: {fileID: 114000012546060954}
 --- !u!114 &114000012477448594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -724,6 +830,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   other: {fileID: 0}
+--- !u!114 &114000012546060954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011918267124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3df2e739466dd8468c87de4812f96e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 1
+  parameters:
+    creature: {fileID: 114000012180825652}
+    attackCooldown: 1
 --- !u!114 &114000012748490202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -748,11 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3935d2199d7814f893744569061581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entries:
-  - item: {fileID: 1000014157247844, guid: 4a3f78087eb3946eeba5c3fdcf220c4c, type: 2}
-    odds: 1
-  - item: {fileID: 0}
-    odds: 9
+  entries: []
 --- !u!114 &114000014017007444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -764,53 +881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df40761583f8024cbdc5454cdea7643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000014262070864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013897443506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c841e4c4433e8774186f978f85eb0861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 0
-  lootTable: {fileID: 0}
-  health: 1
-  damage: 1
-  bombable: 0
-  southHitCollider: {fileID: 114000012069081706}
-  westHitCollider: {fileID: 114000011426831208}
-  northHitCollider: {fileID: 114000011690638846}
-  eastHitCollider: {fileID: 114000012069081706}
-  faction: 1
-  hpBarText: {fileID: 0}
-  audioSource: {fileID: 0}
-  attackSound: {fileID: 0}
-  hurtSound: {fileID: 0}
-  isAttacking: 0
-  isDying: 0
-  isInvulnerable: 0
-  southCollider: {fileID: 114000010200896180}
-  westCollider: {fileID: 114000010459739420}
-  northCollider: {fileID: 114000012477448594}
-  eastCollider: {fileID: 114000012748490202}
-  animator: {fileID: 0}
-  exceptionCount: 0
-  shutDownFSMAfterNExceptions: 10
-  state: 4
-  tileMap: {fileID: 0}
-  targetObject: {fileID: 0}
-  moveAmount: 32
-  stepDelay: 1
-  allowedOffset: 0.5
-  debug: 0
-  currentPathIndex: 0
-  startTile: {fileID: 0}
-  currentTile: {fileID: 0}
-  nextTile: {fileID: 0}
-  targetTile: {fileID: 0}
 --- !u!212 &212000010721950404
 SpriteRenderer:
   m_ObjectHideFlags: 1
