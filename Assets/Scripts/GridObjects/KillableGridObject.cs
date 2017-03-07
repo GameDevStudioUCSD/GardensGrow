@@ -11,6 +11,7 @@ public class KillableGridObject : RotateableGridObject {
     public int damage = 5;
     public bool bombable = false;
 
+    public GameObject deathPanel;
     public AttackCollider southHitCollider;
     public AttackCollider westHitCollider;
     public AttackCollider northHitCollider;
@@ -48,8 +49,9 @@ public class KillableGridObject : RotateableGridObject {
         //base.Update();
         if (isDying) {
             dyingFrame++;
-            if (dyingFrame >= numDyingFrames) {
-                Destroy(this.gameObject);
+            if (dyingFrame >= numDyingFrames)
+            {
+               Destroy(this.gameObject);   
             }
         }
 
@@ -82,8 +84,16 @@ public class KillableGridObject : RotateableGridObject {
             }
 
             if (health <= 0 && hasDied == false) {
-                Die();
-                return true;
+                if (this.gameObject.GetComponent<PlayerGridObject>())
+                {
+                    StartCoroutine(screenBlackout());
+                    return true;
+                }
+                else
+                {
+                    Die();
+                    return true;
+                }
             }
         }
 
@@ -124,7 +134,14 @@ public class KillableGridObject : RotateableGridObject {
         }
         isDying = true;
     }
-
+    IEnumerator screenBlackout()
+    {
+        //replace the following with a transparent animation later
+        deathPanel.SetActive(true);
+        yield return new WaitForSeconds(1);
+        deathPanel.SetActive(false);
+        Die();
+    }
     public virtual void Attack() {
         hitSomething = false;
 

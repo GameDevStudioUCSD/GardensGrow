@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour {
 	public UnityEngine.UI.Text[] uiButtonCounter;
 	public UnityEngine.UI.Image uiKeyIcon;
 	public UnityEngine.UI.Text uiKeyCounter;
-
+    
 	public GameObject pauseUI;
     public GameObject mainMenuUI;
     public GameObject loadMenuUI;

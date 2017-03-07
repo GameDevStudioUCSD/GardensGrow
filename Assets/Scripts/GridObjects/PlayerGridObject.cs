@@ -192,7 +192,6 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
-        //Debug.Log("CURRENT HEALTH IS: " + (health-1));
         if (damage >= 1)
         {
             canvas.UpdateHealth(health - damage);
