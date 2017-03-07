@@ -185,10 +185,11 @@ public class KillableGridObject : RotateableGridObject {
                 if (bomb) {
                     bomb.Roll(direction);
                 }
-                PlantGridObject plant = target.GetComponent<PlantGridObject>();
+                //deplant code MOVED so deplanting is a different button
+                /*PlantGridObject plant = target.GetComponent<PlantGridObject>();
                 if (plant) {
                     plant.TakeDamage(100);
-                }
+                }*/
             }
         }
     }
