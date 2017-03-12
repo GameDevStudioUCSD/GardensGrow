@@ -80,18 +80,22 @@ public class EnemySpawner : KillableGridObject
         if (randInt == 1 && north)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
+            currSpawns++;
         }
         else if (randInt == 2 && east)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
+            currSpawns++;
         }
         else if (randInt == 3 && west)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
+            currSpawns++;
         }
         else if (randInt == 4 && south)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
+            currSpawns++;
         }
         GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
         list.Add(summonedMonster);
@@ -102,8 +106,6 @@ public class EnemySpawner : KillableGridObject
 
         // Activate monster
         summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().Enable();
-
-        currSpawns++;
     }
     
     public void SpawnAtOnce()
