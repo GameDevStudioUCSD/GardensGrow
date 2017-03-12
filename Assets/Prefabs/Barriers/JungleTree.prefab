@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010962886854}
   - 212: {fileID: 212000011588610824}
   m_Layer: 0
-  m_Name: TreeTop
+  m_Name: JungleTreeTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ GameObject:
   - 4: {fileID: 4000010530208658}
   - 212: {fileID: 212000013803324536}
   m_Layer: 0
-  m_Name: TreeBottom
+  m_Name: JungleTreeBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014144626906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20, y: 4, z: 0}
+  m_LocalPosition: {x: 1, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -142,17 +142,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBarrier: 0
   sprites:
-  - {fileID: 21300000, guid: 065407ce594514e37a3a07403a287914, type: 3}
-  - {fileID: 21300000, guid: 065407ce594514e37a3a07403a287914, type: 3}
-  - {fileID: 21300000, guid: 26ae54f6be4424f06864a8683daf3ba2, type: 3}
-  - {fileID: 21300000, guid: 26ae54f6be4424f06864a8683daf3ba2, type: 3}
-  chosenSprite: {fileID: 21300000, guid: 065407ce594514e37a3a07403a287914, type: 3}
+  - {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}
+  - {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}
+  - {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}
+  - {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}
+  - {fileID: 21300000, guid: e25fe24c70323094a90dc57f69528c41, type: 3}
+  - {fileID: 21300000, guid: e25fe24c70323094a90dc57f69528c41, type: 3}
+  - {fileID: 21300000, guid: 55446d53b9e159648974b62f0962a217, type: 3}
+  - {fileID: 21300000, guid: 55446d53b9e159648974b62f0962a217, type: 3}
+  - {fileID: 21300000, guid: 55446d53b9e159648974b62f0962a217, type: 3}
+  - {fileID: 21300000, guid: 55446d53b9e159648974b62f0962a217, type: 3}
+  - {fileID: 21300000, guid: 00dc4fd0305a4ec4098e3272d2c94590, type: 3}
+  - {fileID: 21300000, guid: 00dc4fd0305a4ec4098e3272d2c94590, type: 3}
+  chosenSprite: {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}
   sprites2:
-  - {fileID: 21300000, guid: dd2dc23c093a44239a5e2115dd92982a, type: 3}
-  - {fileID: 21300000, guid: 255097053f05a4829be57c95ed17b29f, type: 3}
-  - {fileID: 21300000, guid: 83d362240cd0a407b8165d099ea12c5a, type: 3}
-  - {fileID: 21300000, guid: aa9e76e3b03a2486d90d88467639b76a, type: 3}
-  chosenSprite2: {fileID: 21300000, guid: dd2dc23c093a44239a5e2115dd92982a, type: 3}
+  - {fileID: 21300000, guid: 8deee96c4323436488bae08df9605cd0, type: 3}
+  - {fileID: 21300000, guid: 8deee96c4323436488bae08df9605cd0, type: 3}
+  - {fileID: 21300000, guid: 1c0735595143ea14a8675105c307f80a, type: 3}
+  - {fileID: 21300000, guid: 0c0fc4450b0566e4296a6e989e41c892, type: 3}
+  - {fileID: 21300000, guid: 610536fe4e993494faa595f8b366b590, type: 3}
+  - {fileID: 21300000, guid: 8deee96c4323436488bae08df9605cd0, type: 3}
+  - {fileID: 21300000, guid: d73045907780aac4f8fc02acb7690df8, type: 3}
+  - {fileID: 21300000, guid: 3e01c87beceff6d489e895f2d6ca7765, type: 3}
+  - {fileID: 21300000, guid: 2003787b73e5ac742b271576724a1b36, type: 3}
+  - {fileID: 21300000, guid: b51972819b427454ab19b800a7da5c99, type: 3}
+  - {fileID: 21300000, guid: d73045907780aac4f8fc02acb7690df8, type: 3}
+  - {fileID: 21300000, guid: b51972819b427454ab19b800a7da5c99, type: 3}
+  chosenSprite2: {fileID: 21300000, guid: 1c0735595143ea14a8675105c307f80a, type: 3}
   top: {fileID: 212000011588610824}
   bottom: {fileID: 212000013803324536}
 --- !u!212 &212000011588610824
@@ -184,7 +200,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 065407ce594514e37a3a07403a287914, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -217,7 +233,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: dd2dc23c093a44239a5e2115dd92982a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c0735595143ea14a8675105c307f80a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
