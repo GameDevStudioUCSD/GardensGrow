@@ -64,6 +64,7 @@ GameObject:
   - 111: {fileID: 111000010640560258}
   - 114: {fileID: 114000012048135876}
   - 114: {fileID: 114000011859388140}
+  - 114: {fileID: 114000010923541818}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: EnemySpawner
@@ -225,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010271383466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -535,6 +536,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114000010923541818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010271383466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7339698b807213b46bbdd8215b7abfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBarrier: 1
+  sprites: []
+  chosenSprite: {fileID: 0}
 --- !u!114 &114000011088871322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -617,6 +632,7 @@ MonoBehaviour:
   health: 15
   damage: 0
   bombable: 0
+  deathPanel: {fileID: 0}
   southHitCollider: {fileID: 0}
   westHitCollider: {fileID: 0}
   northHitCollider: {fileID: 0}
@@ -629,7 +645,7 @@ MonoBehaviour:
   isAttacking: 0
   isDying: 0
   isInvulnerable: 0
-  enemy: {fileID: 1000011684432824, guid: 95500d6f45bda4da2a86c09aaf6a3f82, type: 2}
+  enemy: {fileID: 1000013157515858, guid: 5dcdff7770814dd4c9f88be5f022467e, type: 2}
   tileMap: {fileID: 0}
   targetObj: {fileID: 0}
   deathEvent:
@@ -671,9 +687,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   spawnDelay: 2
-  maxSpawns: 1
+  maxSpawns: 3
   spawnsOnce: 0
   spawnOnStart: 1
+  eastCollider: {fileID: 1000012251863756}
+  westCollider: {fileID: 1000013062898962}
+  northCollider: {fileID: 1000012687312004}
+  southCollider: {fileID: 1000010150071782}
 --- !u!114 &114000012823293958
 MonoBehaviour:
   m_ObjectHideFlags: 1

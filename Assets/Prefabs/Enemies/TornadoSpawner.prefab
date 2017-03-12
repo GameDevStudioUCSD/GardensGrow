@@ -680,6 +680,7 @@ MonoBehaviour:
   health: 15
   damage: 0
   bombable: 0
+  deathPanel: {fileID: 0}
   southHitCollider: {fileID: 0}
   westHitCollider: {fileID: 0}
   northHitCollider: {fileID: 0}
@@ -726,6 +727,10 @@ MonoBehaviour:
   maxSpawns: 1
   spawnsOnce: 0
   spawnOnStart: 1
+  eastCollider: {fileID: 1000011766303126}
+  westCollider: {fileID: 1000011673068312}
+  northCollider: {fileID: 1000010076592124}
+  southCollider: {fileID: 1000011036021302}
 --- !u!114 &114000014230317828
 MonoBehaviour:
   m_ObjectHideFlags: 1

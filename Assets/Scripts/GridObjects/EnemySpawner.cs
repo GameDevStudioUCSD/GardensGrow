@@ -32,6 +32,19 @@ public class EnemySpawner : KillableGridObject
     System.Random randGen = new System.Random();
     private int randInt;
 
+    //bools for finding where spawner can spawn
+    private bool hasChecked = false;
+    private bool east = true;
+    private bool west = true;
+    private bool north = true;
+    private bool south = true;
+
+    //colliders to check for where to spawn
+    public GameObject eastCollider;
+    public GameObject westCollider;
+    public GameObject northCollider;
+    public GameObject southCollider;
+
     // Used for initialization
     private bool wasInitialized = false;
     
@@ -62,21 +75,21 @@ public class EnemySpawner : KillableGridObject
 
     void SpawnEnemy()
     {
-		randInt = randGen.Next(0, 4);
+		randInt = randGen.Next(1,5);
 
-        if (randInt == 1)
+        if (randInt == 1 && north)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
         }
-        else if (randInt == 2)
+        else if (randInt == 2 && east)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
         }
-        else if (randInt == 3)
+        else if (randInt == 3 && west)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
         }
-        else
+        else if (randInt == 4 && south)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
         }
@@ -126,7 +139,48 @@ public class EnemySpawner : KillableGridObject
             TakeDamage(player.damage);
         }
     }
-
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (!hasChecked)
+        {
+            //is touching a terrain object
+            if (other.gameObject.GetComponent<TerrainObject>())
+            {
+                //is touching a barrier
+                if (other.gameObject.GetComponent<TerrainObject>().isBarrier)
+                {
+                    if (other.IsTouching(eastCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("East");
+                        east = false;
+                    }
+                    if (other.IsTouching(westCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("west");
+                        west = false;
+                    }
+                    if (other.IsTouching(northCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("north");
+                        north = false;
+                    }
+                    if (other.IsTouching(southCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("south");
+                        south = false;
+                    }
+                }
+            }
+            
+        }
+    }
+    //coroutine to wait for spawner to decide appropriate spawning locations
+    IEnumerator initWait()
+    {
+        yield return new WaitForSeconds(2.0f);
+        hasChecked = true;
+        StartCoroutine(SpawnRandomDir());
+    }
     protected override void Die() {
 		deathEvent.Invoke();
         base.Die();
@@ -204,7 +258,7 @@ public class EnemySpawner : KillableGridObject
             if (spawnsOnce)
                 SpawnRandomDir();
             else
-                spawningCoroutine = StartCoroutine(SpawnRandomDir());
+                spawningCoroutine = StartCoroutine(initWait());
         }
         
     }
