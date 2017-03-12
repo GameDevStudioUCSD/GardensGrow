@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Spikes : TerrainObject {
 	public int damage = 2;
-	public int framesPerHit = 50;
+    //public int framesPerHit = 50;
+    public float spikeCD;
 
 	public bool toggleable = false;
 	public bool spikesUp = false;
@@ -36,34 +37,45 @@ public class Spikes : TerrainObject {
     }
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
-			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
-
-			if (toggleable == false) {
-				currentFrame++;
-				if (currentFrame > framesPerHit) {
-					if (player.onPlatform == false && !striked) {
-						player.TakeDamage(damage);
-						//player.gameObject.transform.position = Globals.spawnLocation;
-	                    anim.SetBool("Hit", true);
-	                    striked = true;
-	                    StartCoroutine(Wait());
-					}
-					currentFrame = 0;
-				}
-			}
-			else {
-				if (spikesUp) {
-					player.TakeDamage(damage);
-					player.gameObject.transform.position = Globals.spawnLocation;
-				}
-			}
+            StartCoroutine(spikeUpWait(other));
 		}
+        if (striked)
+        {
+            other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
+        }
 	}
+    IEnumerator spikeUpWait(Collider2D other)
+    { 
+        PlayerGridObject player = other.GetComponent<PlayerGridObject>();
+
+        if (toggleable == false)
+        {
+           if (player.onPlatform == false && !striked)
+           {
+                yield return new WaitForSeconds(spikeCD);
+                if (other.IsTouching(this.gameObject.GetComponent<Collider2D>()))
+                {
+                    player.TakeDamage(damage);
+                }
+                anim.SetBool("SpikesUp", true);
+                striked = true;
+                StartCoroutine(Wait());
+           }
+         }
+        else
+        {
+            if (spikesUp)
+            {
+                player.TakeDamage(damage);
+                player.gameObject.transform.position = Globals.spawnLocation;
+            }
+        }
+    }
     //method for animation ease
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.33f);
-        anim.SetBool("Hit", false);
+        yield return new WaitForSeconds(1.0f);
+        anim.SetBool("SpikesUp", false);
         yield return new WaitForSeconds(.5f);
         striked = false;
     }
