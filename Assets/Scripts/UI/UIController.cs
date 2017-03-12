@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour {
     public GameObject loadMenuUI;
 	public GameObject dialogUI;
 	public GameObject saveMenuUI;
+    public GameObject deathPanelUI;
+
 	public PlayerGridObject player;
 
 	public Sprite[] seedPackets;
