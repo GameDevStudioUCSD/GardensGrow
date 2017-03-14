@@ -178,8 +178,8 @@ public class WindBossAI : KillableGridObject {
 		rocks.Clear();
 	}
 
-    void OnCollisionEnter2D(Collider2D other) {
-        KillableGridObject killable = other.GetComponent<KillableGridObject>();
+    void OnCollisionEnter2D(Collision2D coll) {
+        KillableGridObject killable = coll.gameObject.GetComponent<KillableGridObject>();
         if (killable)
             killable.TakeDamage(damage);
     }

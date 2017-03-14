@@ -46,7 +46,6 @@ public class KillableGridObject : RotateableGridObject {
 
     // Update is called once per frame
     protected override void Update() {
-        //base.Update();
         if (isDying) {
             dyingFrame++;
             if (dyingFrame >= numDyingFrames)
@@ -132,6 +131,7 @@ public class KillableGridObject : RotateableGridObject {
         if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner" || this.gameObject.GetComponent<PlantGridObject>()) {
             SpawnItem();
         }
+
         isDying = true;
     }
     IEnumerator screenBlackout()

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBarrier: 0
-  itemId: 9
+  itemId: 8
   clip: {fileID: 8300000, guid: 0591541c228c94551a975f7919a7f109, type: 3}
   permanent: 0
   lifeSpan: 500

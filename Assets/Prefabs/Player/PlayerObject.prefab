@@ -24,7 +24,7 @@ GameObject:
   - 114: {fileID: 114000011129332270}
   m_Layer: 0
   m_Name: NorthHitCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - 114: {fileID: 114000012383963344}
   m_Layer: 0
   m_Name: EastCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ GameObject:
   - 114: {fileID: 114000011581185472}
   m_Layer: 0
   m_Name: WestHitCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ GameObject:
   - 114: {fileID: 114000011925548660}
   m_Layer: 0
   m_Name: EastHitCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - 114: {fileID: 114000012591045928}
   m_Layer: 0
   m_Name: NorthCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   - 114: {fileID: 114000010635738926}
   m_Layer: 0
   m_Name: SouthCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - 114: {fileID: 114000013150832458}
   m_Layer: 0
   m_Name: SouthHitCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,7 @@ GameObject:
   - 114: {fileID: 114000011374333278}
   m_Layer: 0
   m_Name: WestCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013935595360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 22.1, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -193,9 +193,9 @@ Transform:
   - {fileID: 4000010550904578}
   - {fileID: 4000012380728882}
   - {fileID: 4000011083257646}
-  - {fileID: 4000012510711370}
   - {fileID: 4000013708126262}
   - {fileID: 4000012478140156}
+  - {fileID: 4000012510711370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000010503875874
@@ -262,7 +262,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010304366098}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &4000012510711370
 Transform:
   m_ObjectHideFlags: 1
@@ -275,7 +275,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010304366098}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!4 &4000013513090540
 Transform:
   m_ObjectHideFlags: 1
@@ -301,7 +301,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010304366098}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!33 &33000010239257802
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -708,13 +708,14 @@ MonoBehaviour:
   health: 12
   damage: 1
   bombable: 0
+  deathPanel: {fileID: 0}
   southHitCollider: {fileID: 114000013150832458}
   westHitCollider: {fileID: 114000011581185472}
   northHitCollider: {fileID: 114000011129332270}
   eastHitCollider: {fileID: 114000011925548660}
   faction: 0
   hpBarText: {fileID: 0}
-  audioSource: {fileID: 82000012154244790}
+  audioSource: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 1d3b28e22cc5a44bab5d9144362d898c, type: 3}
   hurtSound: {fileID: 8300000, guid: 1d0b16d9c2a524ecea1fa166a3e2f46a, type: 3}
   isAttacking: 0
@@ -725,12 +726,12 @@ MonoBehaviour:
   northCollider: {fileID: 114000012591045928}
   eastCollider: {fileID: 114000012383963344}
   plants:
-  - {fileID: 114000012064042260, guid: 16ec6caa2cf74cf44b13c464c1b4c4e9, type: 2}
-  - {fileID: 114000011820506654, guid: 329a6202a7fb44f43913cd8d42a29de2, type: 2}
-  - {fileID: 114000010697526088, guid: 899bd1b99292e1f49b787ca310da66b5, type: 2}
-  - {fileID: 114000013237617554, guid: 2df139c0d1cc9486a8e3a423c361eff2, type: 2}
-  - {fileID: 114000010431043682, guid: 2bd63c1965133ae45a99af7487a83896, type: 2}
-  - {fileID: 114000013934547044, guid: 25b20e613274d51479e14f8ff25d6653, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   canvas: {fileID: 0}

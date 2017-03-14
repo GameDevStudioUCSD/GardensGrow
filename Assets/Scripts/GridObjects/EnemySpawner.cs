@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,53 +15,58 @@ public class EnemySpawner : KillableGridObject
     //Keep track of spawns
 
     [Header("Spawning Options")]
-    public float spawnDelay;
+    [Range(0.0f, 60.0f)]
+    public float spawnDelay = 3.0f;
+    [Range(0, 99)]
     public int maxSpawns;
     public bool spawnsOnce = false;
     [Tooltip("Should the spawner start spawning from start?")]
-    public bool spawnOnStart = true;
+    public bool canSpawn = true;
 
     private int currSpawns = 0;
-    private List<GameObject> list = new List<GameObject>();
-    private Animator animator;
+    private List<GameObject> spawnedMonsters = new List<GameObject>();
+    private Animator spawnerAnimator;
     private Quaternion spawnRotation = Quaternion.identity;
     private PlayerGridObject player;
     private Coroutine spawningCoroutine = null;
 
-    System.Random randGen = new System.Random();
+    private bool coolingDown = true;
+    private float cooldownTimer = 0.0f;
     private int randInt;
 
-    // Used for initialization
-    private bool wasInitialized = false;
-    
-    
     // Use this for initialization
     protected override void Start()
     {
-        Init();
+        spawnerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     protected override void Update() {
-        if (health <= 0)
+        if(coolingDown == true)
         {
-            StartCoroutine(waitForDeathAnim());
-        }
-        
-        foreach(GameObject obj in list)
-        {
-            if (obj == null)
+            cooldownTimer += Time.deltaTime;
+
+            if (cooldownTimer > spawnDelay)
             {
-                currSpawns--;
-                list.Remove(obj);
-                break; //prevents error from modifying list during foreach loop
+                coolingDown = false;
+                cooldownTimer = 0.0f;
             }
+        }
+
+        if(currSpawns >= maxSpawns)
+        {
+            ClearDeadSpawns();
+        }
+
+        if(canSpawn == true && coolingDown == false && currSpawns < maxSpawns)
+        {
+            SpawnEnemy();
         }
     }
 
     void SpawnEnemy()
     {
-		randInt = randGen.Next(0, 4);
+        randInt = Random.Range(0, 4);
 
         if (randInt == 1)
         {
@@ -81,7 +85,7 @@ public class EnemySpawner : KillableGridObject
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
         }
         GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-        list.Add(summonedMonster);
+        spawnedMonsters.Add(summonedMonster);
 
         PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
         monsterPathFinding.parameters.tileMap = tileMap;
@@ -101,43 +105,40 @@ public class EnemySpawner : KillableGridObject
         }
     }
     
-    IEnumerator SpawnRandomDir()
-    {
-        while (health > 0)
-        {
-            if (currSpawns < maxSpawns)
-            {
-                SpawnEnemy();
-            }
-            yield return new WaitForSeconds(spawnDelay);
-        }
-    }
-
-    public void BeginSpawning()
-    {
-        if (spawningCoroutine != null)
-            spawningCoroutine = StartCoroutine(SpawnRandomDir());
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Player") && player.isAttacking)
-        {
-            TakeDamage(player.damage);
-        }
-    }
-
     protected override void Die() {
+        // Trigger all death events (for example opening doors)
 		deathEvent.Invoke();
-        base.Die();
+
+        // Set death flags used by KillableGridObject
+        hasDied = true;
+        isDying = true;
+
+        spawnerAnimator.SetBool("dead", true);
+
+        // Allows the death animation to play fully
+        StartCoroutine(DeathSequence());
     }
 
-    IEnumerator waitForDeathAnim()
+    /// <summary>
+    /// Allows the death animation to play fully before spawning items and destroying game object
+    /// </summary>
+    private IEnumerator DeathSequence()
     {
-        animator.SetBool("dead", true);
-        yield return new WaitForSeconds(1.2f);
-        this.gameObject.SetActive(false);
+        // The animator does not change to death animation until the next frame
+        yield return new WaitForEndOfFrame();
+
+        // Get the length of the current clip which should be death animation
+        //float deathAnimationLength = spawnerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        float deathAnimationLength = spawnerAnimator.GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Length: " + deathAnimationLength);
+
+        yield return new WaitForSeconds(deathAnimationLength);
+
+        SpawnItem();
+
+        Destroy(this.gameObject);
     }
+
     public int numSpawns() {
     	return currSpawns;
     }
@@ -145,67 +146,45 @@ public class EnemySpawner : KillableGridObject
     public void KillSpawns() {
     	int i = 0;
 
-    	while (i < list.Count) {
-    		GameObject obj = list[i];
+    	while (i < spawnedMonsters.Count) {
+    		GameObject obj = spawnedMonsters[i];
 
     		if (obj == null) {
-    			list.RemoveAt(i);
+    			spawnedMonsters.RemoveAt(i);
     		} else {
 				KillableGridObject spawn = obj.GetComponent<KillableGridObject>();
     			spawn.TakeDamage(10000);
-				list.RemoveAt(i);
+				spawnedMonsters.RemoveAt(i);
     		}
     	}
 
     	currSpawns = 0;
     }
 
+    public void AllowSpawning()
+    {
+        canSpawn = true;
+    }
+
     public void OnEnable()
     {
-        Init();
     }
 
     // Disabling is when the active "check mark" in the editor is turned off
     public void OnDisable()
     {
-        // Stop the current spawning coroutine to avoid bugs
-        if (spawningCoroutine != null)
-            StopCoroutine(spawningCoroutine);
-
-        // Reset so next time this object is enaled, the Init can run.
-        wasInitialized = false;
     }
 
-    /// <summary>
-    /// One initialization function since this script needs both OnEnable
-    /// and Start and both shouldn't run at the same time.  This adds a check
-    /// so it only runs once.
-    /// 
-    /// Because the spawner can be disabled and reenabled, this function
-    /// may actually be called multiple times throughout the lifetime of
-    /// the object.  Everytime the object was disabled and then reenabled,
-    /// this Init should run to success.
-    /// </summary>
-    private void Init()
+    private void ClearDeadSpawns()
     {
-        if (wasInitialized)
-            return;
-
-        wasInitialized = true;
-
-        // Needs these checks
-        if(!player)
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridObject>();
-        if(!animator)
-            animator = GetComponent<Animator>();
-
-        if (spawnOnStart)
+        // Step through the spawn list backwards so we can remove as we iterate
+        for(int i = maxSpawns - 1; i >= 0 ; i--)
         {
-            if (spawnsOnce)
-                SpawnRandomDir();
-            else
-                spawningCoroutine = StartCoroutine(SpawnRandomDir());
+            GameObject monster = spawnedMonsters[i];
+            if (monster == null)
+                spawnedMonsters.RemoveAt(i);
         }
-        
+
+        currSpawns = spawnedMonsters.Count;
     }
 }
