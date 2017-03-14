@@ -6,6 +6,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	private UIController canvas;
 	public string textFileName;
 	public Collider2D activeRegionPreTrigger;
+    public GameObject exclamationMark;
 	//public Collider2D activeRegionPostTrigger;
 
     //moving stuff
@@ -49,6 +50,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
                 calculatedDistDown = true;
                 anim.SetInteger("Direction", 1); //walking down
                 isTalkingToPlayer = true;
+                exclamationMark.SetActive(true);
                 movingDown = true;
                 canvas.ShowDialog();
                 dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
@@ -86,6 +88,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
                     anim.SetInteger("Direction", 0);    //idle
                     upCounter = 0;
                     isTalkingToPlayer = false;
+                    exclamationMark.SetActive(false);
                     movingUp = false;
                 }
             }
