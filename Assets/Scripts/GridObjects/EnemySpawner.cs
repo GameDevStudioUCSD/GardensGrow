@@ -34,6 +34,23 @@ public class EnemySpawner : KillableGridObject
     private float cooldownTimer = 0.0f;
     private int randInt;
 
+    //bools for finding where spawner can spawn
+    private bool hasChecked = false;
+    private bool east = true;
+    private bool west = true;
+    private bool north = true;
+    private bool south = true;
+
+    //colliders to check for where to spawn
+    public GameObject eastCollider;
+    public GameObject westCollider;
+    public GameObject northCollider;
+    public GameObject southCollider;
+
+    // Used for initialization
+    private bool wasInitialized = false;
+    
+    
     // Use this for initialization
     protected override void Start()
     {
@@ -68,21 +85,25 @@ public class EnemySpawner : KillableGridObject
     {
         randInt = Random.Range(0, 4);
 
-        if (randInt == 1)
+        if (randInt == 0 && north)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
+            currSpawns++;
         }
-        else if (randInt == 2)
+        else if (randInt == 1 && east)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
+            currSpawns++;
         }
-        else if (randInt == 3)
+        else if (randInt == 2 && west)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
+            currSpawns++;
         }
-        else
+        else if (randInt == 3 && south)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
+            currSpawns++;
         }
         GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
         spawnedMonsters.Add(summonedMonster);
@@ -93,8 +114,6 @@ public class EnemySpawner : KillableGridObject
 
         // Activate monster
         summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().Enable();
-
-        currSpawns++;
     }
     
     public void SpawnAtOnce()
@@ -104,10 +123,11 @@ public class EnemySpawner : KillableGridObject
         	SpawnEnemy();
         }
     }
-    
-    protected override void Die() {
+
+    protected override void Die()
+    {
         // Trigger all death events (for example opening doors)
-		deathEvent.Invoke();
+        deathEvent.Invoke();
 
         // Set death flags used by KillableGridObject
         hasDied = true;
@@ -117,6 +137,50 @@ public class EnemySpawner : KillableGridObject
 
         // Allows the death animation to play fully
         StartCoroutine(DeathSequence());
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player") && player.isAttacking)
+        {
+            TakeDamage(player.damage);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (!hasChecked)
+        {
+            //is touching a terrain object
+            if (other.gameObject.GetComponent<TerrainObject>())
+            {
+                //is touching a barrier
+                if (other.gameObject.GetComponent<TerrainObject>().isBarrier)
+                {
+                    if (other.IsTouching(eastCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("East");
+                        east = false;
+                    }
+                    if (other.IsTouching(westCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("west");
+                        west = false;
+                    }
+                    if (other.IsTouching(northCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("north");
+                        north = false;
+                    }
+                    if (other.IsTouching(southCollider.GetComponent<Collider2D>()))
+                    {
+                        Debug.Log("south");
+                        south = false;
+                    }
+                }
+            }
+            
+        }
     }
 
     /// <summary>
@@ -129,7 +193,8 @@ public class EnemySpawner : KillableGridObject
 
         // Get the length of the current clip which should be death animation
         //float deathAnimationLength = spawnerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
-        float deathAnimationLength = spawnerAnimator.GetCurrentAnimatorStateInfo(0).length;
+        //float deathAnimationLength = spawnerAnimator.GetCurrentAnimatorStateInfo(0).length;
+        float deathAnimationLength = spawnerAnimator.GetNextAnimatorClipInfo(0)[0].clip.length;
         Debug.Log("Length: " + deathAnimationLength);
 
         yield return new WaitForSeconds(deathAnimationLength);

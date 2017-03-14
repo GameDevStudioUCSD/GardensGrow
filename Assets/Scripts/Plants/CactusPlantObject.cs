@@ -34,9 +34,7 @@ public class CactusPlantObject : PlantGridObject {
         // base.Update();   //idk maybe usable
     }
     void Punch(Collider2D other, Globals.Direction dir)
-    {
-    	audioSource.clip = attackSound;
-    	audioSource.Play();
+    { 
         if (other.gameObject.GetComponent<Switch>())
         {
             other.gameObject.GetComponent<Switch>().TakeDamage(0);  //check how player switches the switch
@@ -90,6 +88,8 @@ public class CactusPlantObject : PlantGridObject {
     {
         yield return new WaitForSeconds(punchAnimationWait);
         other.gameObject.GetComponent<EnemyGridObject>().TakeDamage(damage);
+        audioSource.clip = attackSound;
+        audioSource.Play();
         for (int i = 0; i < knockBackPower; i++)
         {
             other.gameObject.GetComponent<MoveableGridObject>().Move(dir);

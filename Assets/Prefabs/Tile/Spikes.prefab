@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011958498716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: -6, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -107,9 +107,9 @@ MonoBehaviour:
   sprites: []
   chosenSprite: {fileID: 0}
   damage: 2
-  framesPerHit: 50
-  toggleable: 1
-  spikesUp: 1
+  spikeCD: 0.5
+  toggleable: 0
+  spikesUp: 0
   activeCollider: 1
 --- !u!114 &114000012946253768
 MonoBehaviour:
