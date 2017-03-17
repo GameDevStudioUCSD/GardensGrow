@@ -124,28 +124,43 @@ public class EnemySpawner : KillableGridObject
         }
     }
 
+    /// <summary>
+    /// Sets up the death flags and allows the animator to take over.
+    /// Animator has state machine behaviour scripts to ensure that the entire
+    /// death animation will take place.
+    /// </summary>
     protected override void Die()
     {
-        // Trigger all death events (for example opening doors)
         deathEvent.Invoke();
 
-        // Set death flags used by KillableGridObject
         hasDied = true;
         isDying = true;
 
         spawnerAnimator.SetBool("dead", true);
-
-        // Allows the death animation to play fully
-        StartCoroutine(DeathSequence());
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    /// <summary>
+    /// Function called by state machine behaviour script to ensure the entire
+    /// death animation will take place.
+    /// </summary>
+    public void InitiateDeathSequence(float deathDuration)
     {
-        if (col.CompareTag("Player") && player.isAttacking)
-        {
-            TakeDamage(player.damage);
-        }
+        // Allows the death animation to play fully
+        StartCoroutine(DeathSequence(deathDuration)); // Arbitrary death duration
     }
+
+    /// <summary>
+    /// Allows the death animation to play fully before spawning items and destroying game object
+    /// </summary>
+    private IEnumerator DeathSequence(float deathDuration)
+    {
+        yield return new WaitForSeconds(deathDuration);
+
+        SpawnItem();
+
+        Destroy(this.gameObject);
+    }
+
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -181,27 +196,6 @@ public class EnemySpawner : KillableGridObject
             }
             
         }
-    }
-
-    /// <summary>
-    /// Allows the death animation to play fully before spawning items and destroying game object
-    /// </summary>
-    private IEnumerator DeathSequence()
-    {
-        // The animator does not change to death animation until the next frame
-        yield return new WaitForEndOfFrame();
-
-        // Get the length of the current clip which should be death animation
-        //float deathAnimationLength = spawnerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
-        //float deathAnimationLength = spawnerAnimator.GetCurrentAnimatorStateInfo(0).length;
-        float deathAnimationLength = spawnerAnimator.GetNextAnimatorClipInfo(0)[0].clip.length;
-        Debug.Log("Length: " + deathAnimationLength);
-
-        yield return new WaitForSeconds(deathAnimationLength);
-
-        SpawnItem();
-
-        Destroy(this.gameObject);
     }
 
     public int numSpawns() {

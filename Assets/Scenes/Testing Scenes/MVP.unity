@@ -5799,35 +5799,17 @@ MonoBehaviour:
   targetObj: {fileID: 459985664}
   deathEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   spawnDelay: 5
   maxSpawns: 1
   spawnsOnce: 0
   canSpawn: 1
+  eastCollider: {fileID: 718403966}
+  westCollider: {fileID: 192266303}
+  northCollider: {fileID: 1045729968}
+  southCollider: {fileID: 1032430318}
 --- !u!95 &443106418
 Animator:
   serializedVersion: 3
@@ -5933,7 +5915,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 443106413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24, y: 6, z: 0}
+  m_LocalPosition: {x: 4, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -8243,6 +8225,10 @@ MonoBehaviour:
   maxSpawns: 1
   spawnsOnce: 0
   canSpawn: 1
+  eastCollider: {fileID: 0}
+  westCollider: {fileID: 0}
+  northCollider: {fileID: 0}
+  southCollider: {fileID: 0}
 --- !u!95 &606463605
 Animator:
   serializedVersion: 3
