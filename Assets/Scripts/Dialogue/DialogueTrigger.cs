@@ -7,8 +7,9 @@ public class DialogueTrigger : MonoBehaviour {
 	public Collider2D activeRegionTrigger;
     private bool isTalkingToPlayer = false;
 	public PlayerGridObject player;
+    public GameObject exclamationMark;
 
-	private GameObject dialogue;
+    private GameObject dialogue;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class DialogueTrigger : MonoBehaviour {
             {
                 isTalkingToPlayer = true;
                 canvas.ShowDialog();
+                exclamationMark.SetActive(true);
                 dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
                 dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
             }
@@ -31,6 +33,7 @@ public class DialogueTrigger : MonoBehaviour {
         else if (!activeRegionTrigger.bounds.Contains(player.transform.position) && isTalkingToPlayer)
         {
             canvas.EndDialog();
+            exclamationMark.SetActive(false);
             isTalkingToPlayer = false;
         }
         if (!dialogue.activeSelf && activeRegionTrigger.bounds.Contains(player.transform.position) &&
