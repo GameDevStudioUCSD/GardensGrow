@@ -1,0 +1,2 @@
+These Crystal Switches are used to control mechanical objects like spikes and doors.
+Crystal Switches are very sensitive and can be triggered by most weapons and even some plants!
