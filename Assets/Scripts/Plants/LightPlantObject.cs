@@ -9,7 +9,6 @@ public class LightPlantObject : PlantGridObject {
 
     void OnEnable() {
     	for (int i = 1; i <= 3; i++) {
-    		Debug.Log(i);
         	Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, i);
         	foreach (Collider2D collider in colliders) {
             	LightLevel ll = collider.GetComponent<LightLevel>();

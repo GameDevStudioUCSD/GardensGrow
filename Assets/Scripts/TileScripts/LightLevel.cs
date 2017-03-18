@@ -18,7 +18,6 @@ public class LightLevel : MonoBehaviour {
 
     public void Brighten(float amount) {
         level += amount;
-        //Debug.Log(level);
 		if(!spriteRenderer)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
