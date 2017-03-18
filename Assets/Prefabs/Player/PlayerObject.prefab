@@ -184,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013935595360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.1, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -726,12 +726,12 @@ MonoBehaviour:
   northCollider: {fileID: 114000012591045928}
   eastCollider: {fileID: 114000012383963344}
   plants:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114000012064042260, guid: 16ec6caa2cf74cf44b13c464c1b4c4e9, type: 2}
+  - {fileID: 114000011820506654, guid: 329a6202a7fb44f43913cd8d42a29de2, type: 2}
+  - {fileID: 114000010697526088, guid: 899bd1b99292e1f49b787ca310da66b5, type: 2}
+  - {fileID: 114000013237617554, guid: 2df139c0d1cc9486a8e3a423c361eff2, type: 2}
+  - {fileID: 114000010431043682, guid: 2bd63c1965133ae45a99af7487a83896, type: 2}
+  - {fileID: 114000013934547044, guid: 25b20e613274d51479e14f8ff25d6653, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   canvas: {fileID: 0}

@@ -1,15 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LightLevel : MonoBehaviour {
+public class LightLevel : TerrainObject {
 
-    public int level = 0;
+    public float level = 0;
 
-    public void Brighten(int amount) {
-        level += amount;
+    private Color defaultIllumination;
+
+    public void Start() {
+    	base.Start();
+		if(!spriteRenderer)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+    	spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f);
     }
 
-    public void Dim(int amount) {
-        level -= amount;
+    public void Brighten(float amount) {
+        level += amount;
+        //Debug.Log(level);
+		if(!spriteRenderer)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+		spriteRenderer.color = new Color(level, level, level);
+    }
+
+    public void Dim() {
+        level = 0;
+		if(!spriteRenderer)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+		spriteRenderer.color = new Color(level, level, level);
     }
 }

@@ -3,19 +3,20 @@ using System.Collections;
 
 public class LightPlantObject : PlantGridObject {
 
-    [SerializeField]
-    private int radius;
+    public int radius;
 
-    [SerializeField]
-    private int lightLevel;
+    public float lightLevel;
 
     void OnEnable() {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
-        foreach (Collider2D collider in colliders) {
-            LightLevel ll = collider.GetComponent<LightLevel>();
-            if (ll != null) {
-                ll.Brighten(lightLevel);
-            }
+    	for (int i = 1; i <= 3; i++) {
+    		Debug.Log(i);
+        	Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, i);
+        	foreach (Collider2D collider in colliders) {
+            	LightLevel ll = collider.GetComponent<LightLevel>();
+           	 	if (ll != null) {
+            	    ll.Brighten(1 / lightLevel);
+            	}
+        	}
         }
     }
 
@@ -24,7 +25,7 @@ public class LightPlantObject : PlantGridObject {
         foreach (Collider2D collider in colliders) {
             LightLevel ll = collider.GetComponent<LightLevel>();
             if (ll != null) {
-                ll.Dim(lightLevel);
+                ll.Dim();
             }
         }
     }
