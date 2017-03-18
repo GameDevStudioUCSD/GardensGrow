@@ -24,6 +24,7 @@ GameObject:
   - 61: {fileID: 61000013521748524}
   - 114: {fileID: 114000012028564546}
   - 114: {fileID: 114000011694678186}
+  - 114: {fileID: 114000012718517308}
   m_Layer: 8
   m_Name: CaveGround
   m_TagString: Ground
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012198746958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -69,13 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2c38a12d88c6449a101999b72d15d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBarrier: 0
-  sprites:
-  - {fileID: 21300000, guid: 344531f923090e745b8b6768c440c931, type: 3}
-  - {fileID: 21300000, guid: ba42a8b0a4e42b14c82a9d6bdbdf4cd0, type: 3}
-  - {fileID: 21300000, guid: 543fc8dd423746e4c8845d9ed85a6228, type: 3}
-  chosenSprite: {fileID: 21300000, guid: 344531f923090e745b8b6768c440c931, type: 3}
   level: 0
+  spriteRenderer: {fileID: 212000010060042466}
 --- !u!114 &114000012028564546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,6 +101,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapValue: 1
   depth: 0
+--- !u!114 &114000012718517308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012198746958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7339698b807213b46bbdd8215b7abfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBarrier: 0
+  sprites:
+  - {fileID: 21300000, guid: 344531f923090e745b8b6768c440c931, type: 3}
+  - {fileID: 21300000, guid: ba42a8b0a4e42b14c82a9d6bdbdf4cd0, type: 3}
+  - {fileID: 21300000, guid: 543fc8dd423746e4c8845d9ed85a6228, type: 3}
+  chosenSprite: {fileID: 21300000, guid: 344531f923090e745b8b6768c440c931, type: 3}
 --- !u!212 &212000010060042466
 SpriteRenderer:
   m_ObjectHideFlags: 1

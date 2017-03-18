@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LightLevel : TerrainObject {
+public class LightLevel : MonoBehaviour {
 
     public float level = 0;
+    public SpriteRenderer spriteRenderer;
 
     private Color defaultIllumination;
 
     public void Start() {
-    	base.Start();
 		if(!spriteRenderer)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
