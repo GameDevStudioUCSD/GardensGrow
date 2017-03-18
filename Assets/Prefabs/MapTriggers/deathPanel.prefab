@@ -56,7 +56,7 @@ GameObject:
   - 222: {fileID: 222000011756345588}
   - 114: {fileID: 114000013730505430}
   m_Layer: 5
-  m_Name: DeathPanel
+  m_Name: deathPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,6 +18,7 @@ TagManager:
   - Lava
   - Room
   - WindSlime
+  - Choppable
   layers:
   - Default
   - TransparentFX
