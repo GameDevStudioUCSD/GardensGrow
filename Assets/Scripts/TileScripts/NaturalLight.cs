@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LightPlantObject : PlantGridObject {
+public class NaturalLight : StaticGridObject {
 
-    public int radius;
+	public int radius;
 
     public float lightLevel;
 
     void OnEnable() {
-    	for (int i = 1; i <= radius; i += 1) {
+    	for (int i = radius - 3 + 1; i <= radius; i++) {
         	Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, i);
         	foreach (Collider2D collider in colliders) {
             	LightLevel ll = collider.GetComponent<LightLevel>();
