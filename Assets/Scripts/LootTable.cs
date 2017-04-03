@@ -23,12 +23,10 @@ public class LootTable : MonoBehaviour
     {
         // If the loot table is empty, drop nothing
         if(entries.Count == 0)
-        {
             return null;
-        }
 
-        int randomNumber = Random.Range(1, totalWeight);
         int currentSample = 0;
+        int randomNumber = Random.Range(1, totalWeight + 1);
 
         // Sample the entries to find the item to drop
         // Each item in the entry has a range of values based on it's weight.
@@ -39,7 +37,18 @@ public class LootTable : MonoBehaviour
             currentSample += entry.odds;
 
             if (randomNumber <= currentSample)
-                return entry.item;
+            {
+                // No drop
+                if (entry.item == null)
+                    return null;
+
+                // Check if the item is a seed packet that is unlocked
+                ItemDrop itemScript = entry.item.GetComponent<ItemDrop>();
+                if(Globals.unlockedSeeds[itemScript.itemId] == true)
+                    return entry.item;
+                else
+                    return null;
+            }
         }
 
         // If set up correctly, we should never end up here

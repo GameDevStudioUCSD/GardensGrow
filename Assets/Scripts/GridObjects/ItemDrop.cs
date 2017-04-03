@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class ItemDrop : StaticGridObject {
 
-	// The ID for the drop, 9 for health pickup, 0-8 for plants
+	// The ID for the drop, 8 for health pickup, 0-7 for plants
 	public int itemId;
 	// The sound bite for when the player picks up the item
 	public AudioClip clip;
@@ -29,19 +29,23 @@ public class ItemDrop : StaticGridObject {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
+            if (player == null) return; // Ignore the player's other colliders (hacky)
 			UIController controller = player.canvas;
 
-			if (itemId == 10) {
+            // Key is 9
+			if (itemId == 9) {
 				Globals.numKeys++;
 				controller.UpdateUI();
 			}
-			else if (itemId == 9) {
+            // Health is 8
+			else if (itemId == 8) {
 				player.health++;
 				if (player.health > 12)
 					player.health = 12;
 				controller.UpdateHealth(player.health);
 			}
-			else if (Globals.inventory[itemId] < 9) {
+            // Seeds are 0 - 7
+			else if (Globals.inventory[itemId] < 7) {
 				Globals.inventory[itemId]++;
 				controller.UpdateUI();
 			}

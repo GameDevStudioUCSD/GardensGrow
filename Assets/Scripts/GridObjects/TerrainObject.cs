@@ -10,10 +10,11 @@ public class TerrainObject : StaticGridObject
     [ContextMenuItem("Randomize Sprite", "Randomize")]
     public Sprite chosenSprite;
 
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     // Use this for initialization
     protected override void Start ()
     {
+		spriteRenderer = GetComponent<SpriteRenderer>();
     	Randomize();
     	base.Start();
     }
