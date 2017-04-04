@@ -8197,7 +8197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   lootTable: {fileID: 1525536467}
-  health: 1
+  health: 10
   damage: 5
   bombable: 0
   deathPanel: {fileID: 0}
