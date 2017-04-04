@@ -74,6 +74,9 @@ public class Boomerang : MonoBehaviour {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemySpawner") {
             other.gameObject.GetComponent<KillableGridObject>().TakeDamage(damage);
         }
+        if (other.gameObject.tag == "Choppable") {
+            Destroy(other.gameObject);
+        }
         if (other.gameObject.GetComponent<ItemDrop>() != null) {
             itemHeld.Add(other.gameObject);
         }
