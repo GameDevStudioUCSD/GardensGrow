@@ -42,9 +42,8 @@ public class GenericSlimeBehaviour : GenericMonsterBehaviour {
 
     private void ChangeType(GameObject newSlime) {
         GameObject replacement = Instantiate(newSlime);
-        Vector3 position = this.gameObject.transform.position;
-        newSlime.transform.position = position;
-        newSlime.GetComponent<KillableGridObject>().health = this.health;
+        replacement.transform.position = transform.position;
+        replacement.GetComponent<KillableGridObject>().health = this.health;
         replacement.GetComponentInChildren<PathFindingModule>().parameters.tileMap = pathFindingModule.parameters.tileMap;
         replacement.GetComponentInChildren<PathFindingModule>().parameters.target = pathFindingModule.parameters.target;
         Destroy(this.gameObject);

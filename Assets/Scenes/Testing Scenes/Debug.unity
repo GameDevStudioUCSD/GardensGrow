@@ -51694,6 +51694,11 @@ Prefab:
       propertyPath: parameters.tileMap
       value: 
       objectReference: {fileID: 1380614864}
+    - target: {fileID: 95000013266538938, guid: e76a0950e9a26a144898226deba5400a,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ff23f263cc642fe43b0fe35fe6a22d4c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e76a0950e9a26a144898226deba5400a, type: 2}
   m_IsPrefabParent: 0

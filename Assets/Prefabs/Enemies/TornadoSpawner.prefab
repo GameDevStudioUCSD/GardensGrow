@@ -264,7 +264,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010823112864}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -726,7 +726,7 @@ MonoBehaviour:
   spawnDelay: 5
   maxSpawns: 1
   spawnsOnce: 0
-  spawnOnStart: 1
+  canSpawn: 1
   eastCollider: {fileID: 1000011766303126}
   westCollider: {fileID: 1000011673068312}
   northCollider: {fileID: 1000010076592124}
