@@ -28,7 +28,6 @@ public class EnemySpawner : KillableGridObject
     private Animator spawnerAnimator;
     private Quaternion spawnRotation = Quaternion.identity;
     private PlayerGridObject player;
-    private Coroutine spawningCoroutine = null;
 
     private bool coolingDown = true;
     private float cooldownTimer = 0.0f;
@@ -170,22 +169,18 @@ public class EnemySpawner : KillableGridObject
                 {
                     if (other.IsTouching(eastCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("East");
                         east = false;
                     }
                     if (other.IsTouching(westCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("west");
                         west = false;
                     }
                     if (other.IsTouching(northCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("north");
                         north = false;
                     }
                     if (other.IsTouching(southCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("south");
                         south = false;
                     }
                 }

@@ -4,8 +4,6 @@ using System.Collections;
 public class HostileTerrainObject : TerrainObject {
     private UIController canvas;
     public int damage = 12;
-	private int framesPerHit = 10;
-	private int currentFrame = 0;
 
 	public bool activeCollider;
     private GameObject deathPanel;

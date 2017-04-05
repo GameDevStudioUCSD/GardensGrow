@@ -3,8 +3,6 @@ using System.Collections;
 
 public class GhostSlimeBehaviour : GenericMonsterBehaviour {
 
-    int lightTimer = 0;
-
     protected override void Start() {
         base.Start();
         isInvulnerable = true;
