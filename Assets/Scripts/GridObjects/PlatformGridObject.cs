@@ -97,28 +97,31 @@ public class PlatformGridObject : MonoBehaviour {
                             foundTurbine = true;
                             break;
                         }
-                        if (obj.GetComponent<TurbinePlantObject>())
-                            foundTurbine = true;
+						if (obj.CompareTag("Turbine") || obj.CompareTag("Player") || 
+							obj.CompareTag("Plant") || obj.CompareTag("Platform")) {
+	                        if (obj.GetComponent<TurbinePlantObject>())
+	                            foundTurbine = true;
 
-                        if (direction == Globals.Direction.East) {
-                            Vector3 position = obj.transform.position;
-                            position.x += 2 * moveStep;
-                            obj.transform.position = position;
-                        }
-                        else if (direction == Globals.Direction.West) {
-                            Vector3 position = obj.transform.position;
-                            position.x -= 2 * moveStep;
-                            obj.transform.position = position;
-                        }
-                        else if (direction == Globals.Direction.North) {
-                            Vector3 position = obj.transform.position;
-                            position.y += 2 * moveStep;
-                            obj.transform.position = position;
-                        }
-                        else if (direction == Globals.Direction.South) {
-                            Vector3 position = obj.transform.position;
-                            position.y -= 2 * moveStep;
-                            obj.transform.position = position;
+	                        if (direction == Globals.Direction.East) {
+	                            Vector3 position = obj.transform.position;
+	                            position.x += 2 * moveStep;
+	                            obj.transform.position = position;
+	                        }
+	                        else if (direction == Globals.Direction.West) {
+	                            Vector3 position = obj.transform.position;
+	                            position.x -= 2 * moveStep;
+	                            obj.transform.position = position;
+	                        }
+	                        else if (direction == Globals.Direction.North) {
+	                            Vector3 position = obj.transform.position;
+	                            position.y += 2 * moveStep;
+	                            obj.transform.position = position;
+	                        }
+	                        else if (direction == Globals.Direction.South) {
+	                            Vector3 position = obj.transform.position;
+	                            position.y -= 2 * moveStep;
+	                            obj.transform.position = position;
+	                        }
                         }
                     }
                     if (!foundTurbine) {
