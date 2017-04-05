@@ -713,7 +713,7 @@ MonoBehaviour:
   parameters:
     tileMap: {fileID: 0}
     target: {fileID: 0}
-    creature: {fileID: 0}
+    creature: {fileID: 114000011074513602}
     stepAmount: 32
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 1
   parameters:
-    creature: {fileID: 0}
+    creature: {fileID: 114000011074513602}
     attackCooldown: 1
 --- !u!114 &114000011700386900
 MonoBehaviour:

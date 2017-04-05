@@ -7,27 +7,16 @@ public class GhostSlimeBehaviour : GenericMonsterBehaviour {
 
     protected override void Start() {
         base.Start();
-        animator.SetTrigger("Darken");
         isInvulnerable = true;
     }
 
-	protected override void Update() {
-        base.Update();
-        lightTimer++;
-        if (lightTimer >= 200) {
-            lightTimer = 0;
-            if (isInvulnerable) Lighten();
-            else Darken();
-        }
-	}
-
-    public override void Move(Globals.Direction direction) { }
-
+    //Call this every time the Slime enters the light
     public void Lighten() {
         animator.SetTrigger("Lighten");
         isInvulnerable = false;
     }
 
+    //Call this every time the Slime exits the light
     public void Darken() {
         animator.SetTrigger("Darken");
         isInvulnerable = true;
