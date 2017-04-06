@@ -6,16 +6,8 @@ using System.Collections.Generic;
 /// </summary>
 public class AttackCollider : MonoBehaviour {
 
-    // Collider this script is for
-    private Collider2D coll;
-
     private List<KillableGridObject> killList = new List<KillableGridObject>();
-
-    void Start()
-    {
-        coll = GetComponent<Collider2D>();
-    }
-
+    
 	// Update is called once per frame
 	void Update () {
 	}

@@ -24,7 +24,7 @@ GameObject:
   - 114: {fileID: 114000011129332270}
   m_Layer: 0
   m_Name: NorthHitCollider
-  m_TagString: Player
+  m_TagString: NorthCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - 114: {fileID: 114000012383963344}
   m_Layer: 0
   m_Name: EastCollider
-  m_TagString: Player
+  m_TagString: EastCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ GameObject:
   - 114: {fileID: 114000011581185472}
   m_Layer: 0
   m_Name: WestHitCollider
-  m_TagString: Player
+  m_TagString: WestCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ GameObject:
   - 114: {fileID: 114000011925548660}
   m_Layer: 0
   m_Name: EastHitCollider
-  m_TagString: Player
+  m_TagString: EastCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - 114: {fileID: 114000012591045928}
   m_Layer: 0
   m_Name: NorthCollider
-  m_TagString: Player
+  m_TagString: NorthCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   - 114: {fileID: 114000010635738926}
   m_Layer: 0
   m_Name: SouthCollider
-  m_TagString: Player
+  m_TagString: SouthCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - 114: {fileID: 114000013150832458}
   m_Layer: 0
   m_Name: SouthHitCollider
-  m_TagString: Player
+  m_TagString: SouthCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,7 @@ GameObject:
   - 114: {fileID: 114000011374333278}
   m_Layer: 0
   m_Name: WestCollider
-  m_TagString: Player
+  m_TagString: WestCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013935595360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -428,7 +428,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.25, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
 --- !u!61 &61000012470733372
@@ -442,7 +442,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.25, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
 --- !u!61 &61000012589334744

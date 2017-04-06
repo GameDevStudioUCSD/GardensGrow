@@ -23,12 +23,11 @@ public class EnemySpawner : KillableGridObject
     [Tooltip("Should the spawner start spawning from start?")]
     public bool canSpawn = true;
 
-    private int currSpawns = 0;
+    private int currentSpawnCount = 0;
     private List<GameObject> spawnedMonsters = new List<GameObject>();
     private Animator spawnerAnimator;
     private Quaternion spawnRotation = Quaternion.identity;
     private PlayerGridObject player;
-    private Coroutine spawningCoroutine = null;
 
     private bool coolingDown = true;
     private float cooldownTimer = 0.0f;
@@ -47,10 +46,6 @@ public class EnemySpawner : KillableGridObject
     public GameObject northCollider;
     public GameObject southCollider;
 
-    // Used for initialization
-    private bool wasInitialized = false;
-    
-    
     // Use this for initialization
     protected override void Start()
     {
@@ -59,7 +54,7 @@ public class EnemySpawner : KillableGridObject
 
     // Update is called once per frame
     protected override void Update() {
-        if(coolingDown == true)
+        if(coolingDown)
         {
             cooldownTimer += Time.deltaTime;
 
@@ -70,12 +65,12 @@ public class EnemySpawner : KillableGridObject
             }
         }
 
-        if(currSpawns >= maxSpawns)
+        if(currentSpawnCount >= maxSpawns)
         {
             ClearDeadSpawns();
         }
 
-        if(canSpawn == true && coolingDown == false && currSpawns < maxSpawns)
+        if(canSpawn == true && coolingDown == false && currentSpawnCount < maxSpawns)
         {
             SpawnEnemy();
         }
@@ -88,22 +83,22 @@ public class EnemySpawner : KillableGridObject
         if (randInt == 0 && north)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
-            currSpawns++;
+            currentSpawnCount++;
         }
         else if (randInt == 1 && east)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x + 1, this.gameObject.transform.position.y, 0.0f);
-            currSpawns++;
+            currentSpawnCount++;
         }
         else if (randInt == 2 && west)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y, 0.0f);
-            currSpawns++;
+            currentSpawnCount++;
         }
         else if (randInt == 3 && south)
         {
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
-            currSpawns++;
+            currentSpawnCount++;
         }
         GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
         spawnedMonsters.Add(summonedMonster);
@@ -174,22 +169,18 @@ public class EnemySpawner : KillableGridObject
                 {
                     if (other.IsTouching(eastCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("East");
                         east = false;
                     }
                     if (other.IsTouching(westCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("west");
                         west = false;
                     }
                     if (other.IsTouching(northCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("north");
                         north = false;
                     }
                     if (other.IsTouching(southCollider.GetComponent<Collider2D>()))
                     {
-                        Debug.Log("south");
                         south = false;
                     }
                 }
@@ -199,7 +190,7 @@ public class EnemySpawner : KillableGridObject
     }
 
     public int numSpawns() {
-    	return currSpawns;
+    	return currentSpawnCount;
     }
 
     public void KillSpawns() {
@@ -217,7 +208,7 @@ public class EnemySpawner : KillableGridObject
     		}
     	}
 
-    	currSpawns = 0;
+    	currentSpawnCount = 0;
     }
 
     public void AllowSpawning()
@@ -244,6 +235,6 @@ public class EnemySpawner : KillableGridObject
                 spawnedMonsters.RemoveAt(i);
         }
 
-        currSpawns = spawnedMonsters.Count;
+        currentSpawnCount = spawnedMonsters.Count;
     }
 }
