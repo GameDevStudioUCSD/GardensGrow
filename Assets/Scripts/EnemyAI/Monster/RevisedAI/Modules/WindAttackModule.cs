@@ -3,7 +3,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WindAttackModule : AttackAbstractFSM {
+/// <summary>
+/// Attack module for wind monsters.  
+/// It has the ability to pass the wind spinning status effect.
+/// </summary>
+
+// TODO: might be easier to generalize this and make any attack pass status effects
+
+public class WindAttackModule : BasicAttackAbstractFSM {
 
     public WindAttackParameters parameters;
 

@@ -230,4 +230,9 @@ public class KillableGridObject : RotateableGridObject {
                 Instantiate(droppedItem, transform.position, Quaternion.identity);
         }
     }
+
+    public bool HitSomething()
+    {
+        return hitSomething;
+    }
 }
