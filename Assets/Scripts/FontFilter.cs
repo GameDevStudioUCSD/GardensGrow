@@ -8,7 +8,8 @@ public class FontFilter : MonoBehaviour {
     // Use this for initialization
     void Start () {
         foreach (Font font in fonts) {
-            font.material.mainTexture.filterMode = FilterMode.Point;
+            if (font != null)
+                font.material.mainTexture.filterMode = FilterMode.Point;
         }
     }
 

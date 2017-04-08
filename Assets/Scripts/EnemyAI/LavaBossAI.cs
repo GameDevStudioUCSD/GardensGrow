@@ -28,12 +28,9 @@ public class LavaBossAI : KillableGridObject {
 	private const int FIREBALL_MIN_INTERVAL = 10;
 	private const int FIREBALL_MAX_INTERVAL = 300;
 	private const float BOSS_TIMER_DURATION = 7f;
-
-    //for gameplay design
-    private PlayerGridObject player;
+    
 	// Use this for initialization
 	protected override void Start() {
-        player = FindObjectOfType<PlayerGridObject>();
 		base.Start();
 		currentSpawnerIndex = -1; // so boss randomly spawns in any corner
 		state = BossState.StartEmerge;
