@@ -55,7 +55,7 @@ public class WindAttackModule : BasicAttackAbstractFSM {
 
                     // Apply status effect to targets
                     GameObject statusEffect = Instantiate(parameters.statusEffectPrefab);
-                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(target, parameters.effectDuration);
+                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(target);
                 }
             }
         }
@@ -82,7 +82,5 @@ public class WindAttackModule : BasicAttackAbstractFSM {
         [Range(0.0f, 60.0f)]
         public float attackCooldown;
         public GameObject statusEffectPrefab;
-        [Range(0.0f, 60.0f)]
-        public float effectDuration;
     }
 }
