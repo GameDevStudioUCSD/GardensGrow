@@ -39,6 +39,7 @@ GameObject:
   - 61: {fileID: 61000013547067400}
   - 114: {fileID: 114000012463911462}
   - 114: {fileID: 114000011998580660}
+  - 114: {fileID: 114000010384417802}
   m_Layer: 8
   m_Name: CaveWallHorizontalTop
   m_TagString: Ground
@@ -59,6 +60,7 @@ GameObject:
   - 61: {fileID: 61000012149931608}
   - 114: {fileID: 114000012899647180}
   - 114: {fileID: 114000013186982024}
+  - 114: {fileID: 114000011424076856}
   m_Layer: 8
   m_Name: CaveWallHorizontalBottom
   m_TagString: Ground
@@ -135,6 +137,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &114000010384417802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011704764412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2c38a12d88c6449a101999b72d15d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  spriteRenderer: {fileID: 212000011876985672}
 --- !u!114 &114000011216116458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,6 +163,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapValue: 1
   depth: 0
+--- !u!114 &114000011424076856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013443863358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2c38a12d88c6449a101999b72d15d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  spriteRenderer: {fileID: 212000010478447364}
 --- !u!114 &114000011845431738
 MonoBehaviour:
   m_ObjectHideFlags: 1
