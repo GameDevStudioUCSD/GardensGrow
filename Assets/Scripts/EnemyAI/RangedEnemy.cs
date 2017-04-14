@@ -4,10 +4,10 @@ using System.Collections;
 public class RangedEnemy : EnemyGridObject {
 
     public GameObject projectile;
-    //public bool shootsIndefinately = false;
+    //public bool shootsIndefinitely = false;
 
     /*NOTE: commented out stuff can be reused later for some projectile shooter
-     * that can shoot indefinately or shoot when only detecting the player
+     * that can shoot indefinitely or shoot when only detecting the player
      */
 
     public bool isShooter = false;
@@ -90,7 +90,7 @@ public class RangedEnemy : EnemyGridObject {
     /*
     void OnTriggerStay2D(Collider2D other)
     {
-        if (!shootsIndefinately)
+        if (!shootsIndefinitely)
         {
             if (other.CompareTag("Player"))
             {
@@ -138,7 +138,7 @@ public class RangedEnemy : EnemyGridObject {
         }
 
         /**
-        if (!shootsIndefinately)
+        if (!shootsIndefinitely)
         {
             if (other.gameObject.tag == "Player")
             {
