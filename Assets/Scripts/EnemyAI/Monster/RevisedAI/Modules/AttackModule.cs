@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class AttackModule : MonoBehaviour {
 
+    public abstract void Step();
+
     [Serializable]
     public class AttackAbstractParameters
     {

@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ScorpionMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
-    public override void Reset()
-    {
-        throw new System.NotImplementedException();
-    }
+    [Header("Behaviour Modules")]
+    public PathFindingModule pathFindingModule;
+    public ScorpionAttackModule scorpionAttackModule;
+
+    public override void Reset() { }
 
     // =====================================================
     // | States
@@ -14,27 +16,34 @@ public class ScorpionMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override IEnumerator ExecuteActionPathFinding()
     {
-        throw new System.NotImplementedException();
+        pathFindingModule.Step();
+
+        yield return null;
     }
 
+    // TODO: Maybe used for bombed state
     protected override IEnumerator ExecuteActionDamaged()
     {
-        throw new System.NotImplementedException();
+        yield return null;
     }
 
+    // Unused for scorpion
     protected override IEnumerator ExecuteActionPrimaryBehaviour()
     {
-        throw new System.NotImplementedException();
+        yield return null;
     }
 
+    // will be unused for scorpion
     protected override IEnumerator ExecuteActionDisabled()
     {
-        throw new System.NotImplementedException();
+        yield return null;
     }
 
     protected override IEnumerator ExecuteActionAttack()
     {
-        throw new System.NotImplementedException();
+        scorpionAttackModule.Step();
+
+        yield return null;
     }
 
     // =====================================================
@@ -43,26 +52,46 @@ public class ScorpionMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool CanMove()
     {
-        throw new System.NotImplementedException();
+        // Scorpion can get stuck while attacking
+        return scorpionAttackModule.CanMove();
     }
 
     protected override bool CanAct()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     protected override bool CanAttack()
     {
-        throw new System.NotImplementedException();
+        AttackCollider attackCollider = GetHitColliderFromDirection(direction);
+
+        List<KillableGridObject> killList = attackCollider.GetKillList();
+
+        if (killList.Count > 0)
+        {
+            // Check if the killable is an enemy
+            foreach (KillableGridObject tar in killList)
+            {
+                if (tar.faction != this.faction)
+                    return true;
+            }
+
+            return false;
+        }
+        else
+            return false;
     }
 
+    // TODO: may be used for bomb state
     protected override bool Recovered()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
+    // TODO: may be used for bomb state
     protected override bool OnHit()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
+
 }

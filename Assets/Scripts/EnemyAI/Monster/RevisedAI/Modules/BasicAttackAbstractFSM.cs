@@ -17,7 +17,7 @@ public abstract class BasicAttackAbstractFSM : AttackModule {
     }
     public State state = State.Cooldown;
 
-    public void Step()
+    public override void Step()
     {
         State prevState = state;
 

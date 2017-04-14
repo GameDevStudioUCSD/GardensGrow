@@ -13,7 +13,7 @@ public abstract class ScorpionAttackAbstractFSM : AttackModule {
     }  
     public State state = State.Ready;
 
-    public void Step()
+    public override void Step()
     {
 		State prevState = state;
 		 

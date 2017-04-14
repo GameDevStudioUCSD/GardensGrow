@@ -6,10 +6,11 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     public ScorpionAttackParameters parameters;
 
+    protected int clawAttacksUsed = 0;
     // Change this based on animator
-    protected string tailAttackTrigger = "TailAttack";
+    protected string tailAttackTrigger = "Attack";
     // Change this based on animator
-    protected string clawAttackTrigger = "ClawAttack";
+    protected string clawAttackTrigger = "Attack";
     protected bool tailIsCharging = false;
     protected bool tailIsStuck = false;
     protected bool tailHasHit = false;
@@ -23,7 +24,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
     /// </summary>
     public bool CanMove()
     {
-        return tailIsCharging || tailIsStuck;
+        return !tailIsCharging && !tailIsStuck;
     }
 
     // =====================================================
@@ -32,6 +33,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected override void ExecuteActionReady()
     {
+        // Reset transition and state flags
         tailIsCharging = false;
         tailIsStuck = false;
         tailHasHit = false;
@@ -39,6 +41,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected override void ExecuteActionClawAttack()
     {
+        clawAttacksUsed++;
         parameters.creature.Attack(clawAttackTrigger);
     }
 
@@ -49,6 +52,9 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected override void ExecuteActionTailAttack()
     {
+        // Completing an attack with the tail resets the claw attack
+        clawAttacksUsed = 0;
+
         parameters.creature.Attack(tailAttackTrigger);
 
         // Check if the tail hit anything
@@ -72,7 +78,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected override bool ShouldTailAttack()
     {
-        throw new System.NotImplementedException();
+        return clawAttacksUsed >= parameters.numClawAttacksBeforeTail;
     }
 
     protected override bool HasFinishedCooldown()
@@ -106,7 +112,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected override bool ShouldClawAttack()
     {
-        throw new System.NotImplementedException();
+        return clawAttacksUsed < parameters.numClawAttacksBeforeTail;
     }
 
     [Serializable]
@@ -115,6 +121,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
         [Range(0.0f, 60.0f)]
         public float attackCooldown;
         [Range(0, 99)]
+        [Tooltip("How many times the claw attack should be used before the tail attack.")]
         public int numClawAttacksBeforeTail = 2;
         [Range(0.0f, 60.0f)]
         public float tailChargeDuration;
