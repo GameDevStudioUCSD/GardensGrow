@@ -7,7 +7,8 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	public string textFileName;
 	public Collider2D activeRegionPreTrigger;
     public GameObject exclamationMark;
-	//public Collider2D activeRegionPostTrigger;
+    
+    private int thisNpcNum = 0;
 
     //moving stuff
 	private PlayerGridObject player;
@@ -26,6 +27,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
     private int upCounter = 0;
     private int downCounter = 0;
 
+    private bool readAlready = false;
 
     private GameObject dialogue;
     private Animator anim;
@@ -39,10 +41,11 @@ public class DialogueNPCTrigger : MoveableGridObject {
         player = FindObjectOfType<PlayerGridObject>();
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
-	}
+    }
     // Update is called once per frame
     protected override void Update () {
         base.Start();
+
         if (activeRegionPreTrigger.bounds.Contains(player.transform.position))
         {
             calculatedDistUp = false;
@@ -52,7 +55,6 @@ public class DialogueNPCTrigger : MoveableGridObject {
                 calculatedDistDown = true;
                 anim.SetInteger("Direction", 1); //walking down
                 isTalkingToPlayer = true;
-                exclamationMark.SetActive(true);
                 movingDown = true;
                 canvas.ShowDialog();
                 dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
@@ -90,7 +92,11 @@ public class DialogueNPCTrigger : MoveableGridObject {
                     anim.SetInteger("Direction", 0);    //idle
                     upCounter = 0;
                     isTalkingToPlayer = false;
-                    exclamationMark.SetActive(false);
+                    if (exclamationMark)
+                    {
+                        readAlready = true;
+                        exclamationMark.SetActive(false);
+                    }
                     movingUp = false;
                 }
             }
@@ -102,6 +108,29 @@ public class DialogueNPCTrigger : MoveableGridObject {
 
             dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
             dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
+        }
+    }
+    public void OnDisable()
+    {
+        Globals.npcNum++;
+        thisNpcNum = Globals.npcNum;
+        PlayerPrefsX.SetBool("npc" + thisNpcNum, readAlready);
+
+        //Debug.Log("i: " + thisNpcNum + "value: " + readAlready);
+
+    }
+    public void OnEnable()
+    {
+        //TODO
+        readAlready = PlayerPrefsX.GetBool("npc" + thisNpcNum);
+
+        if (!readAlready)
+        {
+            exclamationMark.SetActive(true);
+        }
+        else
+        {
+            exclamationMark.SetActive(false);
         }
     }
     public void Mover(Globals.Direction dir)

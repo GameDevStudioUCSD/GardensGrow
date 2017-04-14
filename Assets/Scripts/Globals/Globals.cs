@@ -8,7 +8,8 @@ public class Globals: MonoBehaviour {
 
     public const float pixelSize = 0.03125f;
     public enum Direction { North=0, South=1, East=2, West=3 };
-    public enum Faction { Ally=0, Enemy=1}
+    public enum Faction { Ally=0, Enemy=1};
+    public static int npcNum = 0;
 
     public struct PlantData : IComparable <PlantData>{
     	public Vector3 PlantLocation;
@@ -137,6 +138,12 @@ public class Globals: MonoBehaviour {
         PlayerPrefsX.SetStringArray("PlantScenes"+saveSlot, tempPlantScenes);
         PlayerPrefsX.SetIntArray("PlantDirections"+saveSlot, tempPlantDirections);
 
+        for(i=1; i<=npcNum; i++)
+        {
+            PlayerPrefsX.SetBool("npc" + i + "save" + saveSlot, PlayerPrefsX.GetBool("npc" + i));
+            Debug.Log("value: " + PlayerPrefsX.GetBool("npc" + i + "save" + saveSlot) + " " + i);
+        }
+
 
     }
     public static int LoadTheGame(int loadSlot) //should be 1-4
@@ -163,6 +170,12 @@ public class Globals: MonoBehaviour {
         for (int i = 0; i < tempPlantDirections.Length; i++)
         {
             plants.Add(new PlantData(tempPlantPositions[i], tempPlantScenes[i], (Direction)tempPlantDirections[i]), tempPlantTypes[i]);
+        }
+
+        for(int i = 1; i<=npcNum; i++)
+        {
+            PlayerPrefsX.SetBool("npc" + i, PlayerPrefsX.GetBool("npc" + i + "save" + loadSlot));
+            Debug.Log("value: " + PlayerPrefsX.GetBool("npc" + i) + " " + i);
         }
         return 1; //success
     }
