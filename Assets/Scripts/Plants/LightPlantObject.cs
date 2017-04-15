@@ -12,8 +12,8 @@ public class LightPlantObject : PlantGridObject {
         	foreach (Collider2D collider in colliders) {
             	LightLevel ll = collider.GetComponent<LightLevel>();
            	 	if (ll != null) {
-            	    ll.Brighten(1 / lightLevel);
-            	}
+                    ll.ChangeLightLevel(1.0f / lightLevel);
+                }
         	}
         }
     }
@@ -24,7 +24,7 @@ public class LightPlantObject : PlantGridObject {
             foreach (Collider2D collider in colliders) {
                 LightLevel ll = collider.GetComponent<LightLevel>();
                 if (ll != null) {
-                    ll.Dim(1 / lightLevel);
+                    ll.ChangeLightLevel(-1.0f / lightLevel);
                 }
             }
         }

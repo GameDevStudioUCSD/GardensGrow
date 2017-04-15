@@ -9,28 +9,29 @@ public class LightLevel : MonoBehaviour {
     private Color defaultIllumination;
 
     public void Start() {
-		if(!spriteRenderer)
+        if(!spriteRenderer)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-    	spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f);
+        spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f);
     }
 
-    public void Brighten(float amount) {
+    public void ChangeLightLevel(float amount) {
         level += amount;
-		if(!spriteRenderer)
-        {
+        
+        if(!spriteRenderer) {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-		spriteRenderer.color = new Color(level, level, level);
-    }
-
-    public void Dim(float amount) {
-        level -= amount;
-		if(!spriteRenderer)
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
+        float clamped;
+        if (level > 1.0f) {
+            clamped = 1.0f;
         }
-		spriteRenderer.color = new Color(level, level, level);
+        else if (level < 0.0f) {
+            clamped = 0.0f;
+        }
+        else {
+            clamped = level;
+        }
+        spriteRenderer.color = new Color(clamped, clamped, clamped);
     }
 }
