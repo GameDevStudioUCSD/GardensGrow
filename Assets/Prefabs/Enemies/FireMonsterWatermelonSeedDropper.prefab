@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f9687e493ff8044b21b0b434b73b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  direction: 1
   lootTable: {fileID: 114000012827566468}
   health: 5
   damage: 1
