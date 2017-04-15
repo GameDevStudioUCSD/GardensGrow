@@ -124,6 +124,20 @@ public class PlayerGridObject : MoveableGridObject {
         }
         else if (Input.GetButtonDown("Deplant"))
         {
+            switch (direction) {
+                case Globals.Direction.South:
+                    killList = southHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.East:
+                    killList = eastHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.North:
+                    killList = northHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.West:
+                    killList = westHitCollider.GetKillList();
+                    break;
+            }
             killList.RemoveAll((KillableGridObject target) => target == null);
 
             // Deal damage to all targets of the enemy faction

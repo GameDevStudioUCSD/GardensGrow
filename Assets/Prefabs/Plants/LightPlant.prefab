@@ -27,7 +27,6 @@ GameObject:
   - 61: {fileID: 61000011882344080}
   - 111: {fileID: 111000012919435100}
   - 82: {fileID: 82000010789920126}
-  - 114: {fileID: 114000010251651636}
   m_Layer: 0
   m_Name: LightPlant
   m_TagString: Turbine
@@ -289,21 +288,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114000010251651636
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011940396920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb2c38a12d88c6449a101999b72d15d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBarrier: 0
-  sprites: []
-  chosenSprite: {fileID: 0}
-  level: 0
 --- !u!114 &114000013681007212
 MonoBehaviour:
   m_ObjectHideFlags: 1

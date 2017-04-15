@@ -25,8 +25,8 @@ public class LightLevel : MonoBehaviour {
 		spriteRenderer.color = new Color(level, level, level);
     }
 
-    public void Dim() {
-        level = 0;
+    public void Dim(float amount) {
+        level -= amount;
 		if(!spriteRenderer)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();

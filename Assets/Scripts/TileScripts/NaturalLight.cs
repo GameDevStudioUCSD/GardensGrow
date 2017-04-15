@@ -24,7 +24,7 @@ public class NaturalLight : StaticGridObject {
         foreach (Collider2D collider in colliders) {
             LightLevel ll = collider.GetComponent<LightLevel>();
             if (ll != null) {
-                ll.Dim();
+                ll.Dim(1 / lightLevel);
             }
         }
     }
