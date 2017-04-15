@@ -18,7 +18,7 @@ public class LightLevel : MonoBehaviour {
 
     public void ChangeLightLevel(float amount) {
         level += amount;
-
+        
         if(!spriteRenderer) {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
