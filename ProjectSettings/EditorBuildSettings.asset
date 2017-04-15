@@ -19,3 +19,7 @@ EditorBuildSettings:
     path: Assets/Scenes/WindDungeon.unity
   - enabled: 1
     path: Assets/Scenes/WindDungeonBoss.unity
+  - enabled: 1
+    path: Assets/Scenes/CaveDungeon.unity
+  - enabled: 1
+    path: Assets/Scenes/CaveDungeonBoss.unity

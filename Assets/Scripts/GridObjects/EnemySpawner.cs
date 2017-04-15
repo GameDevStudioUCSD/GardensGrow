@@ -156,7 +156,10 @@ public class EnemySpawner : KillableGridObject
         Destroy(this.gameObject);
     }
 
-
+    /*Code Goal: prevent spawn on terrain
+           Bug: causes spawn on start location
+    */
+    /*
     void OnTriggerStay2D(Collider2D other)
     {
         if (!hasChecked)
@@ -188,7 +191,7 @@ public class EnemySpawner : KillableGridObject
             
         }
     }
-
+    */
     public int numSpawns() {
     	return currentSpawnCount;
     }
