@@ -3,10 +3,14 @@ using System.Collections;
 
 public class DialogueTrigger : MonoBehaviour {
 
-    //static
-    private int thisNpcNum=0;
+    /*NOTE: Ever time you place a new sign or npc make sure to change the saveNumber
+     *      in the inspector to a number not yet used (check the top of globals.cs 
+     *      for saveNumbers that's already been used)
+     */
+    public int saveNumber;
+    private int loadedSlot = -1;
 
-	public string textFileName;
+    public string textFileName;
 	public Collider2D activeRegionTrigger;
 
 	public PlayerGridObject player;
@@ -17,7 +21,7 @@ public class DialogueTrigger : MonoBehaviour {
     private GameObject dialogue;
 	private UIController canvas;
     private bool readAlready = false;
-
+    
 	// Use this for initialization
 	void Start () {
 		canvas = FindObjectOfType<UIController>();
@@ -41,10 +45,10 @@ public class DialogueTrigger : MonoBehaviour {
             canvas.EndDialog();
             if (exclamationMark)
             {
+                readAlready = true;
+                isTalkingToPlayer = false;
                 exclamationMark.SetActive(false);
             }
-            readAlready = true;
-            isTalkingToPlayer = false;
         }
         if (!dialogue.activeSelf && activeRegionTrigger.bounds.Contains(player.transform.position) &&
              (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Return)) && isTalkingToPlayer)
@@ -54,25 +58,27 @@ public class DialogueTrigger : MonoBehaviour {
             dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
         }
     }
-    public void OnDisable()
+
+    public void saveBool(int saveSlot)
     {
-        Globals.npcNum++;
-        thisNpcNum = Globals.npcNum;
-        PlayerPrefsX.SetBool("npc" + thisNpcNum, readAlready);
-        
-        //Debug.Log("i: " + thisNpcNum + "value: " + readAlready);
+        PlayerPrefsX.SetBool("sign" + saveNumber + "save" + saveSlot, readAlready);
     }
     public void OnEnable()
     {
-        //TODO
-        readAlready = PlayerPrefsX.GetBool("npc" + thisNpcNum);
-        if (!readAlready)
+        loadedSlot = Globals.loadedSlot;
+
+        if (loadedSlot != -1)
         {
-            exclamationMark.SetActive(true);
+            readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "save" + loadedSlot);
+        }
+
+        if (readAlready)
+        {
+            exclamationMark.SetActive(false);
         }
         else
         {
-            exclamationMark.SetActive(false);
+            exclamationMark.SetActive(true);
         }
     }
 }

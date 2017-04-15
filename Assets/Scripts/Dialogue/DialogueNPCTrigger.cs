@@ -8,7 +8,12 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	public Collider2D activeRegionPreTrigger;
     public GameObject exclamationMark;
     
-    private int thisNpcNum = 0;
+   /*NOTE: Ever time you place a new sign or npc make sure to change the saveNumber
+    *      in the inspector to a number not yet used (check the top of globals.cs 
+    *      for saveNumbers that's already been used)
+    */
+    public int saveNumber;
+    private int loadedSlot = -1;
 
     //moving stuff
 	private PlayerGridObject player;
@@ -41,6 +46,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
         player = FindObjectOfType<PlayerGridObject>();
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
+
     }
     // Update is called once per frame
     protected override void Update () {
@@ -64,6 +70,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
             {
                 Mover(Globals.Direction.South);
                 downCounter++;
+
                 if (downCounter > moveDistDown)
                 {
                     anim.SetInteger("Direction", 0);    //idle
@@ -94,9 +101,9 @@ public class DialogueNPCTrigger : MoveableGridObject {
                     isTalkingToPlayer = false;
                     if (exclamationMark)
                     {
-                        readAlready = true;
                         exclamationMark.SetActive(false);
                     }
+                    readAlready = true;
                     movingUp = false;
                 }
             }
@@ -110,27 +117,27 @@ public class DialogueNPCTrigger : MoveableGridObject {
             dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
         }
     }
-    public void OnDisable()
+
+    public void saveBool(int saveSlot)
     {
-        Globals.npcNum++;
-        thisNpcNum = Globals.npcNum;
-        PlayerPrefsX.SetBool("npc" + thisNpcNum, readAlready);
-
-        //Debug.Log("i: " + thisNpcNum + "value: " + readAlready);
-
+        PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
     }
     public void OnEnable()
     {
-        //TODO
-        readAlready = PlayerPrefsX.GetBool("npc" + thisNpcNum);
+        loadedSlot = Globals.loadedSlot;
 
-        if (!readAlready)
+        if(loadedSlot != -1)
         {
-            exclamationMark.SetActive(true);
+            readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "save" + loadedSlot);
+        }
+
+        if (readAlready)
+        {
+            exclamationMark.SetActive(false);
         }
         else
         {
-            exclamationMark.SetActive(false);
+            exclamationMark.SetActive(true);
         }
     }
     public void Mover(Globals.Direction dir)
