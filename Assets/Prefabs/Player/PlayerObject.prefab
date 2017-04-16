@@ -742,6 +742,7 @@ MonoBehaviour:
   canMove: 0
   invalidPlacement: {fileID: 8300000, guid: d7d57c5a1c70b49ca94b5279992d5eac, type: 3}
   onPlatform: 0
+  plantDelay: 100
 --- !u!114 &114000013150832458
 MonoBehaviour:
   m_ObjectHideFlags: 1

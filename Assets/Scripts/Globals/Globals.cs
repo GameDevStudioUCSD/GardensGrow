@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Globals: MonoBehaviour {
 
-    // NOTE: saveNumbers already used for npc/signs: 0-19 (PLEASE UPDATE THIS LIST WHEN NEW SAVENUMBER IS USED)
+    // NOTE: saveNumbers already used for npc/signs: 0-20 (PLEASE UPDATE THIS LIST WHEN NEW SAVENUMBER IS USED)
     public const float pixelSize = 0.03125f;
     public enum Direction { North=0, South=1, East=2, West=3 };
     public enum Faction { Ally=0, Enemy=1};
