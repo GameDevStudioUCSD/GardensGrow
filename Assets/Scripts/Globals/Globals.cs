@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class Globals: MonoBehaviour {
 
+    // NOTE: saveNumbers already used for npc/signs: 0-20 (PLEASE UPDATE THIS LIST WHEN NEW SAVENUMBER IS USED)
     public const float pixelSize = 0.03125f;
     public enum Direction { North=0, South=1, East=2, West=3 };
-    public enum Faction { Ally=0, Enemy=1}
+    public enum Faction { Ally=0, Enemy=1};
+    public static int npcNum = 0;
 
     public struct PlantData : IComparable <PlantData>{
     	public Vector3 PlantLocation;
@@ -55,7 +57,9 @@ public class Globals: MonoBehaviour {
 
     // Stuff That needs to be saved
     public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();
-	public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
+
+    public static int loadedSlot = -1;
+    public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
 	public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
 	public static int numKeys = 0;
 	public static Vector3 spawnLocation = new Vector3(0.0f, -2.0f, 0.0f);
@@ -137,6 +141,20 @@ public class Globals: MonoBehaviour {
         PlayerPrefsX.SetStringArray("PlantScenes"+saveSlot, tempPlantScenes);
         PlayerPrefsX.SetIntArray("PlantDirections"+saveSlot, tempPlantDirections);
 
+        DialogueNPCTrigger[] npcList = FindObjectsOfType<DialogueNPCTrigger>();
+
+        foreach(DialogueNPCTrigger npc in npcList)
+        {
+            npc.saveBool(saveSlot);
+        }
+
+        DialogueTrigger[] signList = FindObjectsOfType<DialogueTrigger>();
+
+        foreach (DialogueTrigger sign in signList)
+        {
+            sign.saveBool(saveSlot);
+        }
+
 
     }
     public static int LoadTheGame(int loadSlot) //should be 1-4
@@ -147,8 +165,11 @@ public class Globals: MonoBehaviour {
             return -1; //failure
         }
         plants.Clear();
+        loadedSlot = loadSlot;
         //LOADS THE GAME
         SceneManager.LoadScene(PlayerPrefs.GetString("activeScene" + loadSlot));
+
+        //loadedSlot = loadSlot; TODO which spot?
 
         //change update player next respawn
         spawnLocation = PlayerPrefsX.GetVector3("respawn"+loadSlot);
@@ -160,10 +181,12 @@ public class Globals: MonoBehaviour {
         String[] tempPlantScenes = PlayerPrefsX.GetStringArray("PlantScenes"+loadSlot);
         int[] tempPlantDirections = PlayerPrefsX.GetIntArray("PlantDirections"+loadSlot);
 
+
         for (int i = 0; i < tempPlantDirections.Length; i++)
         {
             plants.Add(new PlantData(tempPlantPositions[i], tempPlantScenes[i], (Direction)tempPlantDirections[i]), tempPlantTypes[i]);
         }
+
         return 1; //success
     }
 }

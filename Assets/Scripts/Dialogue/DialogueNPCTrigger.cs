@@ -7,7 +7,13 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	public string textFileName;
 	public Collider2D activeRegionPreTrigger;
     public GameObject exclamationMark;
-	//public Collider2D activeRegionPostTrigger;
+    
+   /*NOTE: Ever time you place a new sign or npc make sure to change the saveNumber
+    *      in the inspector to a number not yet used (check the top of globals.cs 
+    *      for saveNumbers that's already been used)
+    */
+    public int saveNumber;
+    private int loadedSlot = -1;
 
     //moving stuff
 	private PlayerGridObject player;
@@ -26,21 +32,26 @@ public class DialogueNPCTrigger : MoveableGridObject {
     private int upCounter = 0;
     private int downCounter = 0;
 
+    private bool readAlready = false;
 
     private GameObject dialogue;
     private Animator anim;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+        base.Start();
         originalPosition = this.gameObject.transform.position;
 
         anim = this.gameObject.GetComponent<Animator>();
         player = FindObjectOfType<PlayerGridObject>();
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
-	}
+
+    }
     // Update is called once per frame
-    void Update () {
+    protected override void Update () {
+        base.Start();
+
         if (activeRegionPreTrigger.bounds.Contains(player.transform.position))
         {
             calculatedDistUp = false;
@@ -50,7 +61,6 @@ public class DialogueNPCTrigger : MoveableGridObject {
                 calculatedDistDown = true;
                 anim.SetInteger("Direction", 1); //walking down
                 isTalkingToPlayer = true;
-                exclamationMark.SetActive(true);
                 movingDown = true;
                 canvas.ShowDialog();
                 dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
@@ -60,6 +70,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
             {
                 Mover(Globals.Direction.South);
                 downCounter++;
+
                 if (downCounter > moveDistDown)
                 {
                     anim.SetInteger("Direction", 0);    //idle
@@ -88,7 +99,11 @@ public class DialogueNPCTrigger : MoveableGridObject {
                     anim.SetInteger("Direction", 0);    //idle
                     upCounter = 0;
                     isTalkingToPlayer = false;
-                    exclamationMark.SetActive(false);
+                    if (exclamationMark)
+                    {
+                        exclamationMark.SetActive(false);
+                    }
+                    readAlready = true;
                     movingUp = false;
                 }
             }
@@ -100,6 +115,29 @@ public class DialogueNPCTrigger : MoveableGridObject {
 
             dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
             dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
+        }
+    }
+
+    public void saveBool(int saveSlot)
+    {
+        PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
+    }
+    public void OnEnable()
+    {
+        loadedSlot = Globals.loadedSlot;
+
+        if(loadedSlot != -1)
+        {
+            readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "save" + loadedSlot);
+        }
+
+        if (readAlready)
+        {
+            exclamationMark.SetActive(false);
+        }
+        else
+        {
+            exclamationMark.SetActive(true);
         }
     }
     public void Mover(Globals.Direction dir)

@@ -54,6 +54,7 @@ GameObject:
   - 114: {fileID: 114000011021671252}
   - 61: {fileID: 61000011115695704}
   - 114: {fileID: 114000013966895776}
+  - 114: {fileID: 114000013868334034}
   m_Layer: 8
   m_Name: JungleTree
   m_TagString: Ground
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014144626906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 3, z: 0}
+  m_LocalPosition: {x: -1, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -113,9 +114,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
 --- !u!114 &114000011021671252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,6 +130,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapValue: 1
   depth: 0
+--- !u!114 &114000013868334034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014144626906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc303b8a5bf2fa4a84ddf8043e7230c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013966895776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c551dd4cdb8417cac3491b887025b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBarrier: 0
+  isBarrier: 1
   sprites:
   - {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}
   - {fileID: 21300000, guid: bfec8264ab9a90b4683392b3f8a4bb27, type: 3}

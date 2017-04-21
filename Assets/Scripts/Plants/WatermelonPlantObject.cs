@@ -24,7 +24,7 @@ public class WatermelonPlantObject : PlantGridObject
     {
         uic = FindObjectOfType<UIController>();
         counter = 0;
-        animator = animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         
         //testing, doesn't know if this works yet
 

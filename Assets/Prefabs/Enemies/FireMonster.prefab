@@ -233,7 +233,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013157515858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 5, z: 0}
+  m_LocalPosition: {x: -2, y: -0.15625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -791,6 +791,7 @@ MonoBehaviour:
   health: 5
   damage: 1
   bombable: 0
+  deathPanel: {fileID: 0}
   southHitCollider: {fileID: 114000010819168714}
   westHitCollider: {fileID: 114000013054973728}
   northHitCollider: {fileID: 114000011587538680}
@@ -811,9 +812,9 @@ MonoBehaviour:
   exceptionCount: 0
   shutDownFSMAfterNExceptions: 10
   state: 0
+  isDisabled: 0
   pathFindingModule: {fileID: 114000010732692902}
   attackModule: {fileID: 114000010011297600}
-  isDisabled: 0
 --- !u!114 &114000012752869250
 MonoBehaviour:
   m_ObjectHideFlags: 1
