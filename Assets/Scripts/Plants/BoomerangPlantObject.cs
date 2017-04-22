@@ -14,10 +14,10 @@ public class BoomerangPlantObject : PlantGridObject {
         Boomerang.boomerangs[id].AddPlant(transform.position);
 
         //TODO: for testing uncomment the following
-        for(int i=0; i<Globals.unlockedSeeds.Length; i++)
+       /* for(int i=0; i<Globals.unlockedSeeds.Length; i++)
         {
             Globals.unlockedSeeds[i] = true;
-        }
+        }*/
     }
 
     void OnDisable() {
