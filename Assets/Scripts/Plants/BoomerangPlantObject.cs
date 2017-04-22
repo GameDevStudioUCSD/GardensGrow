@@ -22,7 +22,5 @@ public class BoomerangPlantObject : PlantGridObject {
 
     void OnDisable() {
         Boomerang.boomerangs[Boomerang.RoomId(transform.position)].RemovePlant(transform.position);
-
-
     }
 }
