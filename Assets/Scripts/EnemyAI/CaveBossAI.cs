@@ -4,6 +4,11 @@ using System.Collections;
 public class CaveBossAI : MonoBehaviour {
 
     public float moveWait = 3.0f; //boss waits x seconds before moving on to next location
+
+    public CircuitSystem[] circuitSystems;
+    public float attackCD = 5.0f;
+    private bool canAttack = true;
+
     private bool stunned = false;
     
     /*BOSS MOVE PATTERN:
@@ -17,11 +22,26 @@ public class CaveBossAI : MonoBehaviour {
     {
         StartCoroutine(MovePattern());
     }
+    void Update()
+    {
+
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<CircuitSystem>())
         {
-
+            if (canAttack)
+            {
+                if (other.gameObject.GetComponent<CircuitSystem>().isLit)
+                {
+                    //turn off this circuit
+                }
+                else
+                {
+                    //turn on all circuits
+                }
+                StartCoroutine(AttackCD());
+            }
         }
 
         if (other.gameObject.GetComponent<Boomerang>() && stunned)
@@ -29,6 +49,12 @@ public class CaveBossAI : MonoBehaviour {
             
         }
         
+    }
+    IEnumerator AttackCD()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackCD);
+        canAttack = true;
     }
     IEnumerator MovePattern()
     {
