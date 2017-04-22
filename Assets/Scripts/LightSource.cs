@@ -7,7 +7,8 @@ public class LightSource : MonoBehaviour {
     public float lightLevel;
 
     public void OnEnable() {
-        /* Light up after first update has been called to make sure every tile
+        /*
+         * Light up after first update has been called to make sure every tile
          * is initialized beforehand
          */
         StartCoroutine(LateInit());
@@ -18,6 +19,10 @@ public class LightSource : MonoBehaviour {
     }
 
     private IEnumerator LateInit() {
+        /*
+         * this will continue executing after all Update functions has been
+         * called on the next frame.
+         */
         yield return null;
         ChangeAdjacentLightLevel(1.0f / lightLevel);
     }
