@@ -4,9 +4,12 @@ using System.Collections;
 public class LightSource : MonoBehaviour {
 
     public int radius;
-
     public float lightLevel;
 
+    void Start()
+    {
+        ChangeAdjacentLightLevel(1.0f / lightLevel);
+    }
     void OnEnable() {
         ChangeAdjacentLightLevel(1.0f / lightLevel);
     }
