@@ -16,7 +16,6 @@ public class CactusPlantObject : PlantGridObject {
 
 
     //private stuff
-    private bool isPunching = false;
     private Animator anim;
 
     protected override void Start() {

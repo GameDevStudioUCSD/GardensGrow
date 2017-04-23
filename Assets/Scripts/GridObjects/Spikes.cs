@@ -8,8 +8,7 @@ public class Spikes : TerrainObject {
 
 	public bool toggleable = false;
 	public bool spikesUp = false;
-
-	private int currentFrame = 0;
+    
     private Animator anim;
     private bool striked = false;
 
@@ -33,7 +32,9 @@ public class Spikes : TerrainObject {
     //called when re enabled
     void OnEnable()
     {
-        anim.SetBool("SpikesUp", spikesUp);
+        if (anim == null) anim = gameObject.GetComponent<Animator>();
+        if (anim != null)
+            anim.SetBool("SpikesUp", spikesUp);
     }
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
@@ -79,11 +80,6 @@ public class Spikes : TerrainObject {
         yield return new WaitForSeconds(.5f);
         striked = false;
     }
-	void OnTriggerExit2D(Collider2D other) {
-		if (other.gameObject.tag == "Player") {
-			currentFrame = 0;
-		}
-	}
 
 	public void Toggle() {
 		if (spikesUp) {

@@ -19,6 +19,8 @@ TagManager:
   - Room
   - WindSlime
   - Choppable
+  - WindBoss
+  - CaveBoss
   layers:
   - Default
   - TransparentFX

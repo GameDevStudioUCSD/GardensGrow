@@ -181,7 +181,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010562988920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5007352, y: -2.102665, z: 0}
+  m_LocalPosition: {x: -6, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -331,7 +331,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fcd695a6663f44fe2866ff1ace7fda99, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.08
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -524,11 +524,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80882e0ecd1036d45afa605390501613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  direction: 1
   lootTable: {fileID: 114000013760360150}
   health: 2
   damage: 0
   bombable: 0
+  deathPanel: {fileID: 0}
   southHitCollider: {fileID: 0}
   westHitCollider: {fileID: 0}
   northHitCollider: {fileID: 0}

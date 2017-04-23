@@ -51,7 +51,6 @@ public class WindBossAI : KillableGridObject {
 	private int numRocks;
 	private SortedList<BoulderLocation, RollingBoulder> rocks = new SortedList<BoulderLocation, RollingBoulder>();
 	private int framesInState;
-	private Globals.Direction direction;
 	private Animator animator;
 
 	// Use this for initialization

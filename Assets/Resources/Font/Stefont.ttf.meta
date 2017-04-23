@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 388e1c30e6c98a44193d3581b2b29cd9
-timeCreated: 1488310691
-=======
 guid: 17bc1260785d044f0a73896a485e6798
 timeCreated: 1488311106
->>>>>>> ff37fd12a93d24ddbcee638d0fe5d97c1d8a0480
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -17,9 +12,9 @@ TrueTypeFontImporter:
   fontNames:
   - Stefont
   fallbackFontReferences: []
-  customCharacters: 
+  customCharacters:
   fontRenderingMode: 0
   ascentCalculationMode: 1
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:
