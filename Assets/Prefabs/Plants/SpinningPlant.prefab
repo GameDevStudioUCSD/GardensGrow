@@ -372,7 +372,7 @@ MonoBehaviour:
   direction: 0
   lootTable: {fileID: 114000011814784426}
   health: 5
-  damage: 0
+  damage: 1
   bombable: 0
   deathPanel: {fileID: 0}
   southHitCollider: {fileID: 0}
@@ -387,7 +387,8 @@ MonoBehaviour:
   isAttacking: 0
   isDying: 0
   isInvulnerable: 0
-  rotationSpeed: 4
+  rotationSpeed: 2
+  framesBetweenDamage: 60
 --- !u!212 &212000012504601958
 SpriteRenderer:
   m_ObjectHideFlags: 1
