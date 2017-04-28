@@ -5,19 +5,9 @@ public class SpinStun : StatusEffect {
 
     protected Coroutine spinCoroutine;
 
-    public override void ApplyEffect(KillableGridObject target, float duration)
-    {
-        this.target = target;
-        this.duration = duration;
-
-        // parent this object to the target
-        this.transform.parent = target.transform;
-
-        StartEffect();
-    }
-
     public override void StartEffect()
     {
+        // Start up a coroutine for the spinning
         spinCoroutine = StartCoroutine(SpinTarget());
     }
 

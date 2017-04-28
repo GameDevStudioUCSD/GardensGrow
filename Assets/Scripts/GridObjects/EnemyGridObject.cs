@@ -38,6 +38,16 @@ public class EnemyGridObject : MoveableGridObject {
         base.Attack();
     }
 
+    /// <summary>
+    /// Attack with a different animator trigger.
+    /// </summary>
+    /// <param name="triggerName">Trigger name for animator state switch.</param>
+    public virtual void Attack(string triggerName)
+    {
+        animator.SetTrigger(triggerName);
+        base.Attack();
+    }
+
     protected override void Die()
     {
         base.Die();
