@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
-	public PlantGridObject[] plants;
-	public UIController canvas;
+    public PlantGridObject[] plants;
+    public UIController canvas;
     public float tempInvincibiltySeconds;
     //check if can plant here
 
@@ -24,16 +24,17 @@ public class PlayerGridObject : MoveableGridObject {
     //Used to determine if player should or shouldn't take damage when on a platform with lava
     public bool onPlatform;
 
-	private GameObject dialogue;
+    public int plantDelay;
+
+    private GameObject dialogue;
     private bool invincible;
-    private int frames = 0;
-    private float time = 0;
+    private int plantCooldown = 0;
     // Use this for initialization
     protected override void Start () {
         base.Start();
         //Debug.Log("PLAYER HEALTH SHOULD BE " + Globals.playerHealth);
         canvas.UpdateHealth(Globals.playerHealth);  //update players health from load/Globals
-      
+
         this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
@@ -41,11 +42,11 @@ public class PlayerGridObject : MoveableGridObject {
         animator = GetComponent<Animator>();
         dialogue = canvas.dialogUI;
         Globals.player = this;
-	}
-	
-	// Update is called once per frame
-	protected override void Update () {
-		base.Update();
+    }
+
+    // Update is called once per frame
+    protected override void Update () {
+        base.Update();
 
         // TODO: pull up animator code for player up to here so monster can have their own
         // Get Left or Right
@@ -59,8 +60,8 @@ public class PlayerGridObject : MoveableGridObject {
             if (!isAttacking && verticalAxis > 0)
             {
                 Move(Globals.Direction.North);
-				Move(Globals.Direction.North);
-                
+                Move(Globals.Direction.North);
+
                 // Double movespeed
                 if (horizontalAxis == 0.0f) Move(Globals.Direction.North);
             }
@@ -68,7 +69,7 @@ public class PlayerGridObject : MoveableGridObject {
             else if (!isAttacking && verticalAxis < 0)
             {
                 Move(Globals.Direction.South);
-				Move(Globals.Direction.South);
+                Move(Globals.Direction.South);
 
                 if (horizontalAxis == 0.0f) Move(Globals.Direction.South);
             }
@@ -77,7 +78,7 @@ public class PlayerGridObject : MoveableGridObject {
             if (!isAttacking && horizontalAxis < 0)
             {
                 Move(Globals.Direction.West);
-				Move(Globals.Direction.West);
+                Move(Globals.Direction.West);
 
                 if (verticalAxis == 0.0f) Move(Globals.Direction.West);
             }
@@ -85,7 +86,7 @@ public class PlayerGridObject : MoveableGridObject {
             else if (!isAttacking && horizontalAxis > 0)
             {
                 Move(Globals.Direction.East);
-				Move(Globals.Direction.East);
+                Move(Globals.Direction.East);
 
                 if (verticalAxis == 0.0f) Move(Globals.Direction.East);
             }
@@ -124,6 +125,20 @@ public class PlayerGridObject : MoveableGridObject {
         }
         else if (Input.GetButtonDown("Deplant"))
         {
+            switch (direction) {
+                case Globals.Direction.South:
+                    killList = southHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.East:
+                    killList = eastHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.North:
+                    killList = northHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.West:
+                    killList = westHitCollider.GetKillList();
+                    break;
+            }
             killList.RemoveAll((KillableGridObject target) => target == null);
 
             // Deal damage to all targets of the enemy faction
@@ -133,7 +148,7 @@ public class PlayerGridObject : MoveableGridObject {
                 if (bomb)
                 {
                     bomb.Roll(direction);
-                }   
+                }
                 //deplant code MOVED so deplanting is a different button
                 PlantGridObject plant = target.GetComponent<PlantGridObject>();
                 if (plant)
@@ -150,8 +165,14 @@ public class PlayerGridObject : MoveableGridObject {
                     Plant(i - 1);
             }
         }
-		
-	}
+
+        if (plantCooldown > 0) {
+            plantCooldown--;
+            if (plantCooldown <= 0) {
+                canvas.UpdatePlantCooldown(true);
+            }
+        }
+    }
 
     public override void Attack()
     {
@@ -159,34 +180,33 @@ public class PlayerGridObject : MoveableGridObject {
         base.Attack();
     }
 
-	protected virtual void Plant(int plantNumber) {
-		// Plant animation in that direction
-		// Check if there is space in front to plant
-			// If there is plant
-				// Instatiate new plant object 
-				//  position it in the world
+    protected virtual void Plant(int plantNumber) {
+        // Plant animation in that direction
+        // Check if there is space in front to plant
+        // If there is plant
+        // Instatiate new plant object
+        //  position it in the world
 
-			// Else make failure animation
+        // Else make failure animation
 
-		// Start cooldown timer/reduce seed count
+        // Start cooldown timer/reduce seed count
         // TODO: use more general form of detecting direction
         // Vector3 dirr = Globals.DirectionToVector(direction);
         // PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], transform.position + dirr, Quaternion.identity);
-        if (Globals.inventory[plantNumber] > 0){
+        if (Globals.inventory[plantNumber] > 0 && plantCooldown <= 0) {
 
             canPlant = true;
             foreach (KeyValuePair<Globals.PlantData, int> plant in Globals.plants)
             {
-
                 if (plant.Key.PlantScene == Application.loadedLevelName)
                 {
                     if (Mathf.Abs(plant.Key.PlantLocation.x - this.gameObject.transform.position.x) < 0.5
-                     && Mathf.Abs(plant.Key.PlantLocation.y - this.gameObject.transform.position.y) < 0.5)
+                        && Mathf.Abs(plant.Key.PlantLocation.y - this.gameObject.transform.position.y) < 0.5)
                     {
                         canPlant = false;
                     }
                 }
-                
+
             }
             if (canPlant == true)
             {
@@ -195,20 +215,22 @@ public class PlayerGridObject : MoveableGridObject {
                 newPlant.Rotate(direction);
                 Globals.inventory[plantNumber]--;
 
-                
+
 
                 Globals.PlantData thisPlant = new Globals.PlantData(newPlant.transform.position, Application.loadedLevelName, newPlant.direction);
                 Globals.plants.Add(thisPlant, plantNumber);
 
                 canvas.UpdateUI();          //recheck if player can plant
+                plantCooldown = plantDelay;
+                canvas.UpdatePlantCooldown(plantCooldown <= 0);
             }
             else
             {
                 audioSource.clip = invalidPlacement;
                 audioSource.Play();
             }
-		}
-	}
+        }
+    }
 
     public override bool TakeDamage(int damage)
     {
@@ -241,15 +263,15 @@ public class PlayerGridObject : MoveableGridObject {
     //below is code for de-planting your own plant
     void OnTriggerStay2D(Collider2D other)
     {
-        if (isAttacking)
-        {
-            if (other.gameObject.GetComponent<PlantGridObject>() && this.gameObject.GetComponent<PlayerGridObject>())
-            {
-                other.gameObject.GetComponent<PlantGridObject>().TakeDamage(100);
-                
-                isAttacking = !isAttacking;
-            }
-        }
+    if (isAttacking)
+    {
+    if (other.gameObject.GetComponent<PlantGridObject>() && this.gameObject.GetComponent<PlayerGridObject>())
+    {
+    other.gameObject.GetComponent<PlantGridObject>().TakeDamage(100);
+
+    isAttacking = !isAttacking;
+    }
+    }
     }*/
 
 }

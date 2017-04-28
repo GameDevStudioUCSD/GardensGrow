@@ -1,28 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BoomerangPlantObject : PlantGridObject {
 
-    public GameObject boomerangPrefab;
+    private string roomId = null;
 
     void OnEnable() {
-        string id = Boomerang.RoomId(transform.position);
-        if (!Boomerang.boomerangs.ContainsKey(id)) {
-            GameObject boomerang = (GameObject)Instantiate(boomerangPrefab, transform.position, Quaternion.identity);
-            Boomerang.boomerangs.Add(id, boomerang.GetComponent<Boomerang>());
+        roomId = Boomerang.RoomId(transform.position);
+        if (!Boomerang.plants.ContainsKey(roomId)) {
+            Boomerang.plants[roomId] = new List<Vector3>();
         }
-        Boomerang.boomerangs[id].AddPlant(transform.position);
-
-        //TODO: for testing uncomment the following
-        for(int i=0; i<Globals.unlockedSeeds.Length; i++)
-        {
-            Globals.unlockedSeeds[i] = true;
-        }
+        Boomerang.plants[roomId].Add(transform.position);
     }
 
     void OnDisable() {
-        Boomerang.boomerangs[Boomerang.RoomId(transform.position)].RemovePlant(transform.position);
-
-
+        Boomerang.plants[roomId].Remove(transform.position);
+        roomId = null;
     }
 }

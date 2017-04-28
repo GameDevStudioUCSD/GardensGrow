@@ -7,11 +7,9 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     [Header("Behaviour Modules")]
     public PathFindingModule pathFindingModule;
-    public BasicAttackModule attackModule;
+    public AttackModule attackModule;
 
-    public override void Reset()
-    {
-    }
+    public override void Reset() { }
 
     // ================================================
     // | States
@@ -47,13 +45,11 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool Recovered()
     {
-        // TODO:
         return false;
     }
 
     protected override bool OnHit()
     {
-        // TODO:
         return false;
     }
 
@@ -80,7 +76,6 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override IEnumerator ExecuteActionPrimaryBehaviour()
     {
-        // TODO: 
         yield return null;
     }
 
@@ -91,7 +86,6 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
 
     protected override bool CanAct()
     {
-        // TODO: 
         return false;
     }
 }

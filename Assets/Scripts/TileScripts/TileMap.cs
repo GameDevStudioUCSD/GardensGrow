@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class TileMap : MonoBehaviour {
 
@@ -64,9 +65,19 @@ public class TileMap : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		for (int i = 0; i < rooms.Length; i++) {
+            const float ROOM_X_DIST = 15, ROOM_Y_DIST = 11, DIS_MULTI = 1.5f;
 			float xDist = player.transform.position.x - rooms[i].transform.position.x;
 			float yDist = player.transform.position.y - rooms[i].transform.position.y;
-			if (xDist >= 21)
+
+            if(Math.Abs(xDist) >= ROOM_X_DIST * DIS_MULTI || 
+               Math.Abs(yDist) >= ROOM_Y_DIST * DIS_MULTI) {
+                rooms[i].SetActive(debug);
+            }
+            else
+            {
+                rooms[i].SetActive(true);
+            }
+            /*if (xDist >= 21)
 			{
 				rooms[i].SetActive(debug);
 			}
@@ -85,7 +96,7 @@ public class TileMap : MonoBehaviour {
 			else
 			{
 				rooms[i].SetActive(true);
-			}
+			}*/
 		}
     }
 
@@ -195,7 +206,7 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
-        if(grid[x, y] == null)
+        if(x >= grid.GetLength(0) || y >= grid.GetLength(1))
         {
             // throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
             // Debug.LogError("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);

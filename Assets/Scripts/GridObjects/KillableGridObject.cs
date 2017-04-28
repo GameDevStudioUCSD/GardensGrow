@@ -195,33 +195,6 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     public void SpawnItem() {
-        /*
-    	if (guaranteeDrop) {
-    		Instantiate(drop, this.gameObject.transform.position, Quaternion.identity);
-    	}
-    	else {
-	    	int willSpawn = (int)Random.Range(0,chanceOfDrop);
-
-	    	if (willSpawn > 0) {
-	    		int numAvailableSeeds = 0;
-	    		int seedToSpawn = -1;
-	    		for (int i = 0; i < 9; i++) {
-	    			if (Globals.unlockedSeeds[i] == true && i < itemDropPercentages.Length) {
-						//numAvailableSeeds++;
-						numAvailableSeeds += itemDropPercentages[i];
-						int probability = (int)Random.Range(0, numAvailableSeeds);
-	    				//if (probability == 0) {
-	    				if (probability < itemDropPercentages[i]) {
-	    					seedToSpawn = i;
-	    				}
-					}
-	    		}
-	    		if (seedToSpawn != -1) {
-	    			Instantiate(itemDrops[seedToSpawn], this.gameObject.transform.position, Quaternion.identity);
-	    		}
-	    	}
-    	}
-        */
         if (lootTable) {
             GameObject droppedItem = lootTable.GetItem();
 
@@ -229,5 +202,10 @@ public class KillableGridObject : RotateableGridObject {
             if (droppedItem)
                 Instantiate(droppedItem, transform.position, Quaternion.identity);
         }
+    }
+
+    public bool HitSomething()
+    {
+        return hitSomething;
     }
 }

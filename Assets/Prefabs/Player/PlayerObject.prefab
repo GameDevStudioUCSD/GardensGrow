@@ -732,8 +732,8 @@ MonoBehaviour:
   - {fileID: 114000013237617554, guid: 2df139c0d1cc9486a8e3a423c361eff2, type: 2}
   - {fileID: 114000010431043682, guid: 2bd63c1965133ae45a99af7487a83896, type: 2}
   - {fileID: 114000013934547044, guid: 25b20e613274d51479e14f8ff25d6653, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114000011598496010, guid: b53f49712d6e63442922fef999fadf70, type: 2}
+  - {fileID: 114000012786723058, guid: 352ca68ab47794c42b2dc7e1e70e60d9, type: 2}
   canvas: {fileID: 0}
   tempInvincibiltySeconds: 1
   knockBackPower: 10
@@ -742,6 +742,7 @@ MonoBehaviour:
   canMove: 0
   invalidPlacement: {fileID: 8300000, guid: d7d57c5a1c70b49ca94b5279992d5eac, type: 3}
   onPlatform: 0
+  plantDelay: 100
 --- !u!114 &114000013150832458
 MonoBehaviour:
   m_ObjectHideFlags: 1
