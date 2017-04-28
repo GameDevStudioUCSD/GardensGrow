@@ -2452,6 +2452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveWait: 3
+  attackSpan: 2
   circuitSystems:
   - {fileID: 535624195}
   - {fileID: 1307361920}
@@ -17461,6 +17462,7 @@ GameObject:
   - 4: {fileID: 474834758}
   - 114: {fileID: 474834757}
   - 114: {fileID: 474834756}
+  - 50: {fileID: 474834759}
   m_Layer: 0
   m_Name: Maze Circuit System
   m_TagString: Untagged
@@ -17521,6 +17523,23 @@ Transform:
   - {fileID: 1778272173}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!50 &474834759
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 474834755}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &476887315
 Prefab:
   m_ObjectHideFlags: 0
@@ -18615,6 +18634,7 @@ GameObject:
   - 4: {fileID: 521548555}
   - 114: {fileID: 521548554}
   - 114: {fileID: 521548553}
+  - 50: {fileID: 521548556}
   m_Layer: 0
   m_Name: Skull Circuit System
   m_TagString: Untagged
@@ -18715,6 +18735,23 @@ Transform:
   - {fileID: 966221416}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!50 &521548556
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 521548552}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &521925274 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011229191376, guid: 8b5fc199d7f5d4ee88fdd5b6045b8475,
@@ -19239,6 +19276,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 535624196}
   - 114: {fileID: 535624195}
+  - 50: {fileID: 535624197}
   m_Layer: 0
   m_Name: SquidInc Circuit System
   m_TagString: Untagged
@@ -19283,6 +19321,23 @@ Transform:
   - {fileID: 2003571834}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!50 &535624197
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535624194}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &535866458
 Prefab:
   m_ObjectHideFlags: 0
@@ -46791,6 +46846,7 @@ GameObject:
   - 4: {fileID: 1307361922}
   - 114: {fileID: 1307361921}
   - 114: {fileID: 1307361920}
+  - 50: {fileID: 1307361923}
   m_Layer: 0
   m_Name: Shovel Circuit System
   m_TagString: Untagged
@@ -46851,6 +46907,23 @@ Transform:
   - {fileID: 2069656685}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!50 &1307361923
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1307361919}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1308883485
 Prefab:
   m_ObjectHideFlags: 0
