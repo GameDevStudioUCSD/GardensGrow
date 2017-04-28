@@ -8,9 +8,9 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected int clawAttacksUsed = 0;
     // Change this based on animator
-    protected string tailAttackTrigger = "Attack";
-    // Change this based on animator
-    protected string clawAttackTrigger = "Attack";
+    protected const string tailAttackTrigger = "TailAttack";
+    protected const string tailChargeTrigger = "ChargeTail";
+    protected const string tailStuckTrigger = "TailStuck";
     protected bool tailIsCharging = false;
     protected bool tailIsStuck = false;
     protected bool tailHasHit = false;
@@ -37,12 +37,6 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
         tailIsCharging = false;
         tailIsStuck = false;
         tailHasHit = false;
-    }
-
-    protected override void ExecuteActionClawAttack()
-    {
-        clawAttacksUsed++;
-        parameters.creature.Attack(clawAttackTrigger);
     }
 
     protected override void ExecuteActionChargingTail()
@@ -78,7 +72,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected override bool ShouldTailAttack()
     {
-        return clawAttacksUsed >= parameters.numClawAttacksBeforeTail;
+        return true;
     }
 
     protected override bool HasFinishedCooldown()
@@ -110,19 +104,11 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
         return tailHasHit;
     }
 
-    protected override bool ShouldClawAttack()
-    {
-        return clawAttacksUsed < parameters.numClawAttacksBeforeTail;
-    }
-
     [Serializable]
     public class ScorpionAttackParameters : AttackAbstractParameters
     {
         [Range(0.0f, 60.0f)]
         public float attackCooldown;
-        [Range(0, 99)]
-        [Tooltip("How many times the claw attack should be used before the tail attack.")]
-        public int numClawAttacksBeforeTail = 2;
         [Range(0.0f, 60.0f)]
         public float tailChargeDuration;
         [Range(0.0f, 60.0f)]

@@ -5,7 +5,6 @@ public abstract class ScorpionAttackAbstractFSM : AttackModule {
     protected float transitionedAt;
     public enum State { 
         Ready = 0,
-        ClawAttack = 1,
         ChargingTail = 3,
         TailAttack = 4,
         AttackCooldown = 5,
@@ -20,9 +19,6 @@ public abstract class ScorpionAttackAbstractFSM : AttackModule {
                 switch(state) {
                     case State.Ready:
                         ExecuteActionReady();
-                        break;
-                    case State.ClawAttack:
-                        ExecuteActionClawAttack();
                         break;
                     case State.ChargingTail:
                         ExecuteActionChargingTail();
@@ -43,11 +39,6 @@ public abstract class ScorpionAttackAbstractFSM : AttackModule {
                 case State.Ready:
                     if( ShouldTailAttack() ) 
                         state = State.ChargingTail;
-                    if( ShouldClawAttack() ) 
-                        state = State.ClawAttack;
-                    break;
-                case State.ClawAttack:
-                    state = State.AttackCooldown;
                     break;
                 case State.ChargingTail:
                     if( IsTailChargeComplete() ) 
@@ -78,18 +69,16 @@ public abstract class ScorpionAttackAbstractFSM : AttackModule {
     }
     // State Logic Functions
     protected abstract void ExecuteActionReady();
-    protected abstract void ExecuteActionClawAttack();
     protected abstract void ExecuteActionChargingTail();
     protected abstract void ExecuteActionTailAttack();
     protected abstract void ExecuteActionAttackCooldown();
     protected abstract void ExecuteActionTailStuck();
     // Transitional Logic Functions
+    protected abstract bool IsTailUnstuck();
     protected abstract bool ShouldTailAttack();
+    protected abstract bool HasTailHit();
     protected abstract bool HasFinishedCooldown();
     protected abstract bool IsTailChargeComplete();
-    protected abstract bool IsTailUnstuck();
-    protected abstract bool HasTailHit();
-    protected abstract bool ShouldClawAttack();
     public float TimeInState()
     {
         return Time.time - transitionedAt;
