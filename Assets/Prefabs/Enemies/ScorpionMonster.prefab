@@ -840,9 +840,10 @@ MonoBehaviour:
   parameters:
     creature: {fileID: 114000012550695020}
     attackCooldown: 1
-    numClawAttacksBeforeTail: 2
-    tailChargeDuration: 3
+    tailChargeDuration: 2
     tailStuckDuration: 2
+    scorpionVenom: {fileID: 1000010375800326, guid: e48ca34987a60fc4c8096d9de941a44c,
+      type: 2}
 --- !u!114 &114000013089653182
 MonoBehaviour:
   m_ObjectHideFlags: 1

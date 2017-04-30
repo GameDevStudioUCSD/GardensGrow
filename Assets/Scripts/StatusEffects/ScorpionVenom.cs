@@ -5,7 +5,8 @@ public class ScorpionVenom : StatusEffect {
 
     [Header("Parameters")]
     [Range(0, 99)]
-    public int poisonDamage;
+    public int damagePerTick;
+    [Tooltip("Number of times the poison will apply damage over its duration.")]
     [Range(0, 99)]
     public int damageTicks;
     public Color poisonedTint;
@@ -13,21 +14,10 @@ public class ScorpionVenom : StatusEffect {
     protected Coroutine poisonCoroutine;
 
     protected SpriteRenderer sprite;
-    // Save the color of the sprite before
-    // poison tint is applied
-    protected Color originalSpriteColor;
 
     public override void StartEffect()
     {
-        // Sprite poison tint
-        // Problem I can see with this is if a non-original sprite tint
-        // is captured by this such as the 'taking damage' tint
-        sprite = target.GetComponent<SpriteRenderer>();
-        if (sprite)
-        {
-            originalSpriteColor = sprite.color;
-            sprite.color = poisonedTint;
-        }
+        PoisonHeartTint(poisonedTint);
 
         poisonCoroutine = StartCoroutine(PoisonTarget());
     }
@@ -39,10 +29,10 @@ public class ScorpionVenom : StatusEffect {
         {
             // The first tick of poison damage does not happen immediately
             // upon being poisoned
-            yield return new WaitForSeconds(duration / damageTicks);
+            yield return new WaitForSeconds(duration / (float)damageTicks);
 
             // damage
-            target.TakeDamage(poisonDamage);
+            target.TakeDamage(damagePerTick);
 
             tickCount++;
         }
@@ -50,10 +40,24 @@ public class ScorpionVenom : StatusEffect {
         EndEffect();
     }
 
+    protected void PoisonHeartTint(Color tint)
+    {
+        // Reset heart tint
+        if (target is PlayerGridObject)
+        {
+            PlayerGridObject player = target as PlayerGridObject;
+
+            for (int i = 0; i < UIController.totalHearts; i++)
+            {
+                player.canvas.healthIcons[i].color = tint;
+            }
+        }
+    }
+
     public override void EndEffect()
     {
-        // Return sprite to original tint
-        sprite.color = originalSpriteColor;
+        // Reset the heart tint to default
+        PoisonHeartTint(Color.white);
 
         Destroy(this.gameObject);
     }

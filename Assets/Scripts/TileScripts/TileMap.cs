@@ -206,6 +206,16 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
+        if(grid[x, y] == null)
+        {
+            return false;
+        }
+        else
+        {
+            return grid[x, y].isPatheable;
+        }
+
+        /*
         if(x >= grid.GetLength(0) || y >= grid.GetLength(1))
         {
             // throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
@@ -214,8 +224,17 @@ public class TileMap : MonoBehaviour {
         }
         else
         {
-            return grid[x, y].isPatheable;
+            try
+            {
+                return grid[x, y].isPatheable;
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.LogError("NullReference when trying to access tile at grid position (" + x + ", " + y + ")");
+                throw ex;
+            }
         }
+        */
     }
 
     /// <summary>

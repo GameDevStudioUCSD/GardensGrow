@@ -37,7 +37,7 @@ public abstract class ScorpionAttackAbstractFSM : AttackModule {
 // The following switch statement handles the HLSM's state transition logic
             switch(state) {
                 case State.Ready:
-                    if( ShouldTailAttack() ) 
+                    if( ShouldChargeTail() ) 
                         state = State.ChargingTail;
                     break;
                 case State.ChargingTail:
@@ -75,7 +75,7 @@ public abstract class ScorpionAttackAbstractFSM : AttackModule {
     protected abstract void ExecuteActionTailStuck();
     // Transitional Logic Functions
     protected abstract bool IsTailUnstuck();
-    protected abstract bool ShouldTailAttack();
+    protected abstract bool ShouldChargeTail();
     protected abstract bool HasTailHit();
     protected abstract bool HasFinishedCooldown();
     protected abstract bool IsTailChargeComplete();

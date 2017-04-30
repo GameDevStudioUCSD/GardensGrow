@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     public ScorpionAttackParameters parameters;
 
-    protected int clawAttacksUsed = 0;
     // Change this based on animator
     protected const string tailAttackTrigger = "TailAttack";
     protected const string tailChargeTrigger = "ChargeTail";
     protected const string tailStuckTrigger = "TailStuck";
+    protected const string tailUnstuckTrigger = "TailUnstuck";
     protected bool tailIsCharging = false;
     protected bool tailIsStuck = false;
     protected bool tailHasHit = false;
@@ -46,17 +47,35 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
     protected override void ExecuteActionTailAttack()
     {
-        // Completing an attack with the tail resets the claw attack
-        clawAttacksUsed = 0;
-
-        parameters.creature.Attack(tailAttackTrigger);
 
         // Check if the tail hit anything
         tailHasHit = parameters.creature.HitSomething();
+
+        parameters.creature.SetAnimatorTrigger(tailAttackTrigger);
+        // Get the targets of the attack
+        AttackCollider attackCollider = parameters.creature.GetHitColliderFromDirection();
+        List<KillableGridObject> targets = attackCollider.GetKillList();
+
+        if (targets.Count > 0)
+        {
+            // Damage each target
+            foreach (KillableGridObject target in targets)
+            {
+                if (target.faction != parameters.creature.faction)
+                {
+                    target.TakeDamage(parameters.creature.damage);
+
+                    // Apply status effect to targets
+                    GameObject statusEffect = Instantiate(parameters.scorpionVenom);
+                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(target);
+                }
+            }
+        }
     }
 
     protected override void ExecuteActionAttackCooldown()
     {
+
         tailIsCharging = false;
         tailIsStuck = false;
     }
@@ -70,37 +89,48 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
     // | States
     // =====================================================
 
-    protected override bool ShouldTailAttack()
+    protected override bool ShouldChargeTail()
     {
+        // Trigger tail charging animation
+        parameters.creature.SetAnimatorTrigger(tailChargeTrigger);
         return true;
     }
 
     protected override bool HasFinishedCooldown()
     {
-        if (TimeInState() > parameters.attackCooldown)
-            return true;
-        else
-            return false;
+        return TimeInState() > parameters.attackCooldown;
     }
 
     protected override bool IsTailChargeComplete()
     {
-        if (TimeInState() > parameters.tailChargeDuration)
-            return true;
-        else
-            return false;
+        return TimeInState() > parameters.tailChargeDuration;
     }
 
     protected override bool IsTailUnstuck()
     {
         if (TimeInState() > parameters.tailStuckDuration)
+        {
+            // Go back to walking animations
+            parameters.creature.SetAnimatorTrigger(tailUnstuckTrigger);
             return true;
+        }
         else
             return false;
     }
 
     protected override bool HasTailHit()
     {
+        if(tailHasHit)
+        {
+            // Go back to walking animations
+            parameters.creature.SetAnimatorTrigger(tailUnstuckTrigger);
+        }
+        else
+        {
+            // Trigger tail stuck animation
+            parameters.creature.SetAnimatorTrigger(tailStuckTrigger);
+        }
+
         return tailHasHit;
     }
 
@@ -108,10 +138,11 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
     public class ScorpionAttackParameters : AttackAbstractParameters
     {
         [Range(0.0f, 60.0f)]
-        public float attackCooldown;
+        public float attackCooldown = 1.0f;
         [Range(0.0f, 60.0f)]
-        public float tailChargeDuration;
+        public float tailChargeDuration = 2.0f;
         [Range(0.0f, 60.0f)]
-        public float tailStuckDuration;
+        public float tailStuckDuration = 2.0f;
+        public GameObject scorpionVenom;
     }
 }

@@ -47,7 +47,7 @@ public class EnemyGridObject : MoveableGridObject {
         base.Attack();
     }
 
-    public void AnimatorTrigger(string triggerName)
+    public void SetAnimatorTrigger(string triggerName)
     {
         animator.SetTrigger(triggerName);
     }
