@@ -840,12 +840,33 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011154219782, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000012914596990, guid: 1778a5d707148484ca0e76d93a32ba29,
         type: 2}
       propertyPath: levelToLoad
-      value: 4
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010241206292, guid: 1778a5d707148484ca0e76d93a32ba29,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bfb8369d0faf541d98a69b7c8f3b04bf,
+        type: 3}
+    - target: {fileID: 114000012914596990, guid: 1778a5d707148484ca0e76d93a32ba29,
+        type: 2}
+      propertyPath: spawnLocation.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012914596990, guid: 1778a5d707148484ca0e76d93a32ba29,
+        type: 2}
+      propertyPath: spawnLocation.y
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012914596990, guid: 1778a5d707148484ca0e76d93a32ba29,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
@@ -9882,6 +9903,23 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011154219782, guid: 1778a5d707148484ca0e76d93a32ba29,
     type: 2}
   m_PrefabInternal: {fileID: 164148939}
+--- !u!95 &1897905129
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897905128}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36de6ef489ed34835b241a004b03407d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1898639385
 Prefab:
   m_ObjectHideFlags: 0
