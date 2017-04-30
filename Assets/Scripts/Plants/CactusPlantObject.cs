@@ -37,7 +37,6 @@ public class CactusPlantObject : PlantGridObject {
         if (other.gameObject.GetComponent<Switch>())
         {
             other.gameObject.GetComponent<Switch>().TakeDamage(0);  //check how player switches the switch
-            Debug.Log("trying to switch the SWITCH");
             isAttacking = false;
         }
         if (other.gameObject.CompareTag("Enemy"))
