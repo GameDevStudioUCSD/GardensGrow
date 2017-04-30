@@ -4,6 +4,8 @@ using System.Collections;
 
 public class UIController : MonoBehaviour {
 
+    public const int totalHearts = 6;
+
     public UnityEngine.UI.Image[] uiPlants;
     public UnityEngine.UI.Image[] healthIcons;
     public UnityEngine.UI.Text[] uiPlantCounters;
@@ -87,7 +89,7 @@ public class UIController : MonoBehaviour {
     }
 
     public void UpdateHealth (int health) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < totalHearts; i++) {
             if ((i + 1) * 2 <= health) {
                 healthIcons[i].enabled = true;
                 healthIcons[i].sprite = fullHeart;

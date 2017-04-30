@@ -27,9 +27,8 @@ public class EnemyGridObject : MoveableGridObject {
 
     public override void Move(Globals.Direction direction)
     {
-        base.Move(direction);
-
         animator.SetInteger("Direction", (int)direction);
+        base.Move(direction);
     }
 
     public override void Attack()
@@ -46,6 +45,11 @@ public class EnemyGridObject : MoveableGridObject {
     {
         animator.SetTrigger(triggerName);
         base.Attack();
+    }
+
+    public void SetAnimatorTrigger(string triggerName)
+    {
+        animator.SetTrigger(triggerName);
     }
 
     protected override void Die()

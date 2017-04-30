@@ -17,15 +17,17 @@ public abstract class StatusEffect : MonoBehaviour {
     [Range(0.0f, 60.0f)]
     public float duration = 1.5f;
 
-    protected KillableGridObject target;
+    protected KillableGridObject effectCaster;
+    protected KillableGridObject affectedTarget;
 
     /// <summary>
     /// How the status effect should be applied.
     /// </summary>
     /// <param name="target">Victim of the StatusEffect.</param>
-    public virtual void ApplyEffect(KillableGridObject target)
+    public virtual void ApplyEffect(KillableGridObject caster, KillableGridObject target)
     {
-        this.target = target;
+        this.effectCaster = caster;
+        this.affectedTarget = target;
 
         // parent this object to the target
         this.transform.parent = target.transform;
