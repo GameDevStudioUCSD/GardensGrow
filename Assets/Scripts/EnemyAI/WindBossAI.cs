@@ -62,13 +62,13 @@ public class WindBossAI : KillableGridObject {
 		animator = this.gameObject.GetComponent<Animator>();
 		animator.SetInteger("State", 0);
 	}
-	
+
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
 
 		if (state == BossState.SpawningRocks) {
-			SpawnRocks();	
+			SpawnRocks();
 			state = BossState.SpawningMonsters;
 		}
 		if (state == BossState.SpawningMonsters) {
@@ -185,6 +185,7 @@ public class WindBossAI : KillableGridObject {
 
     protected override void Die() {
         portal.SetActive(true);
+        Globals.windBossBeaten = true;
         base.Die();
     }
 }

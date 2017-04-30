@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Boomerang : MonoBehaviour {
 
@@ -14,6 +15,11 @@ public class Boomerang : MonoBehaviour {
     private string roomId = null;
 
     public static string RoomId(Vector3 pos) {
+        /*cavedungeon boss must be scene 7 in build settings*/
+        if(Application.loadedLevel == 7)
+        {
+            return string.Format("cave", Application.loadedLevelName);
+        }
         int x = Mathf.RoundToInt(pos.x / 14.0f) * 14;
         int y = Mathf.RoundToInt(pos.y / 10.0f) * 10;
         return string.Format("{0}{1:D5}{2:D5}", Application.loadedLevelName, x, y);
