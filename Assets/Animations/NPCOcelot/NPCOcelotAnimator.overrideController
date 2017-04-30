@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: NPCOcelotAnimator
+  m_Controller: {fileID: 9100000, guid: b6f9895912f1bae45869e8df8d508780, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 00e807f773c52aa4680f6050dd6809ae, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eebe3b581da0247ce92ae03e2aa18341, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6cf45c4ab4398f54893183a5e1f6e6bc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fe7e567ccd9294d1e901254c54e64a54, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 65b0ff6425489a64ba7a8c7f6451d6b7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fbe3cf117bb3e4e198341fc2cfd1ffc8, type: 2}

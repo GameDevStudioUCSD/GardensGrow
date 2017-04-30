@@ -206,16 +206,14 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
-        if(x >= grid.GetLength(0) || y >= grid.GetLength(1))
-        {
-            // throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
+        if(x >= grid.GetLength(0) || y >= grid.GetLength(1)) {
             // Debug.LogError("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
-            return false;
+            return false; //position is out of bounds
         }
+        else if (grid[x, y] == null)
+            return false; //position is within bounds, but tile is null
         else
-        {
             return grid[x, y].isPatheable;
-        }
     }
 
     /// <summary>
