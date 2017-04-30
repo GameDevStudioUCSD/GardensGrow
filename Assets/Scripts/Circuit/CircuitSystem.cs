@@ -9,7 +9,7 @@ public class CircuitSystem : MonoBehaviour {
     private int numJunctions;
     private int litJunctions = 0;
     public bool isLit = false;
-    private int litFrame = 0;
+    public   int litFrame = 0;
     private List<CircuitJunction> junctions;
     private List<CircuitWire> wires;
     

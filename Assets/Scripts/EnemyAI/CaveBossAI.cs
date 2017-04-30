@@ -31,11 +31,18 @@ public class CaveBossAI : MonoBehaviour {
             CircuitSystem cs = other.gameObject.GetComponentInParent<CircuitSystem>();
             if (canAttack)
             {
+                //play attack animation
                 if (cs.isLit)
                 {
                     cs.isLit = false;
-                    //change litFrame 
-                    //make sure cs is TRUELY off
+                    LightPlantObject[] lightList = FindObjectsOfType<LightPlantObject>();
+                    foreach(LightPlantObject lp in lightList)
+                    {
+                        if (!lp.gameObject.GetComponent<LightSource>().belongsToRoom)
+                        {
+                            Destroy(lp.gameObject);
+                        }
+                    }
                 }
                 else
                 {
@@ -56,9 +63,10 @@ public class CaveBossAI : MonoBehaviour {
         {
             //play damaged animation
             BossHp--;
-            Debug.Log("got hit hp is " + BossHp);
+
             if (BossHp == 0)
             {
+                //play death animation
                 Destroy(this.gameObject);
             }   
         }
@@ -70,15 +78,22 @@ public class CaveBossAI : MonoBehaviour {
         foreach (CircuitSystem cs in circuitSystems)
         {
             cs.isLit = true;
-            //cs.ConnectJunction();
+            cs.ConnectJunction();
         }
         yield return new WaitForSeconds(attackSpan);
 
         foreach (CircuitSystem cs in circuitSystems)
         {
             cs.isLit = false;
-            cs.DisconnectJunction();
-            //make sure cs is REALLY off
+
+            LightPlantObject[] lightList = FindObjectsOfType<LightPlantObject>();
+            foreach (LightPlantObject lp in lightList)
+            {
+                if (!lp.gameObject.GetComponent<LightSource>().belongsToRoom)
+                {
+                    Destroy(lp.gameObject);
+                }
+            }
         }
     }
     IEnumerator AttackCD()
