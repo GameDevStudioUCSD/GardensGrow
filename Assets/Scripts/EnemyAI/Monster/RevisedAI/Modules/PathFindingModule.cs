@@ -55,6 +55,11 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         }
     }
 
+    public void RefreshPath()
+    {
+        pathNeedsReevaluation = true;
+    }
+
     // ================================================
     // | States
     // ================================================

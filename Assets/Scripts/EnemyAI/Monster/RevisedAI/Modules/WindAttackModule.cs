@@ -53,7 +53,7 @@ public class WindAttackModule : BasicAttackAbstractFSM {
 
                     // Apply status effect to targets
                     GameObject statusEffect = Instantiate(parameters.statusEffectPrefab);
-                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(target);
+                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(parameters.creature, target);
                 }
             }
         }

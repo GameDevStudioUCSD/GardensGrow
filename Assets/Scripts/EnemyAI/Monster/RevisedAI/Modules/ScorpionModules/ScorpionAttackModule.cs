@@ -67,7 +67,7 @@ public class ScorpionAttackModule : ScorpionAttackAbstractFSM {
 
                     // Apply status effect to targets
                     GameObject statusEffect = Instantiate(parameters.scorpionVenom);
-                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(target);
+                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(parameters.creature, target);
                 }
             }
         }

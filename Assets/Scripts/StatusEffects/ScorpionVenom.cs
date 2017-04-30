@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ScorpionVenom : StatusEffect {
 
-    [Header("Parameters")]
     [Range(0, 99)]
     public int damagePerTick;
     [Tooltip("Number of times the poison will apply damage over its duration.")]
@@ -32,7 +31,7 @@ public class ScorpionVenom : StatusEffect {
             yield return new WaitForSeconds(duration / (float)damageTicks);
 
             // damage
-            target.TakeDamage(damagePerTick);
+            affectedTarget.TakeDamage(damagePerTick);
 
             tickCount++;
         }
@@ -43,9 +42,9 @@ public class ScorpionVenom : StatusEffect {
     protected void PoisonHeartTint(Color tint)
     {
         // Reset heart tint
-        if (target is PlayerGridObject)
+        if (affectedTarget is PlayerGridObject)
         {
-            PlayerGridObject player = target as PlayerGridObject;
+            PlayerGridObject player = affectedTarget as PlayerGridObject;
 
             for (int i = 0; i < UIController.totalHearts; i++)
             {
