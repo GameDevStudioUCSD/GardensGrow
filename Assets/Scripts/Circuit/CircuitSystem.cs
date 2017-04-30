@@ -25,9 +25,9 @@ public class CircuitSystem : MonoBehaviour {
     //controls frame changes for every circuit wire in the system
     void Update() {
         if (isLit && litFrame == 0) SetFrame(1);
-        else if (isLit && litFrame == 1) SetFrame(2);
-        else if (!isLit && litFrame == 2) SetFrame(1);
-        else if (!isLit && litFrame == 1) SetFrame(0);
+        else if (isLit && litFrame == 1) SetFrame(2); //lit
+        else if (!isLit && litFrame == 2) SetFrame(1); //half lit
+        else if (!isLit && litFrame == 1) SetFrame(0); //not lit
     }
 
     //called when one of the junctions is filled by a light plant

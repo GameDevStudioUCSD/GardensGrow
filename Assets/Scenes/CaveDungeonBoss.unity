@@ -2451,14 +2451,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a488cdc296cc41459b95fb6ed2600c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveWait: 3
-  attackSpan: 2
+  BossHp: 10
   circuitSystems:
   - {fileID: 535624195}
   - {fileID: 1307361920}
   - {fileID: 521548553}
   - {fileID: 474834756}
-  attackCD: 5
+  canAttack: 1
+  stunned: 0
 --- !u!50 &71006324
 Rigidbody2D:
   serializedVersion: 2
