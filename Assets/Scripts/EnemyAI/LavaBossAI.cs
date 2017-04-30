@@ -11,8 +11,8 @@ public class LavaBossAI : KillableGridObject {
 	public Vector3[] boatLocations;
 	public GameObject boat;
 	public GameObject portal;
-	private List<Fireball> fireballs = new List<Fireball>(); 
-	public Fireball fireball; 
+	private List<Fireball> fireballs = new List<Fireball>();
+	public Fireball fireball;
 	//public BoxCollider2D collider;
 	//public SpriteRenderer sprite;
 
@@ -28,7 +28,7 @@ public class LavaBossAI : KillableGridObject {
 	private const int FIREBALL_MIN_INTERVAL = 10;
 	private const int FIREBALL_MAX_INTERVAL = 300;
 	private const float BOSS_TIMER_DURATION = 7f;
-    
+
 	// Use this for initialization
 	protected override void Start() {
 		base.Start();
@@ -54,7 +54,7 @@ public class LavaBossAI : KillableGridObject {
 				numSpawns += current.numSpawns();
 			}
 
-			// Prod behavior 
+			// Prod behavior
 			if (numSpawns == 0) {
 				state = BossState.StartEmerge;
 			}
@@ -202,7 +202,7 @@ public class LavaBossAI : KillableGridObject {
 			fireballs.Add(fireballObj);
 			//spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, 0.0f);
     		//GameObject enemyObj = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-		} 
+		}
 	}
 
 
@@ -233,6 +233,7 @@ public class LavaBossAI : KillableGridObject {
 
     protected override void Die() {
         portal.SetActive(true);
+        Globals.lavaBossBeaten = true;
     	base.Die();
     }
 

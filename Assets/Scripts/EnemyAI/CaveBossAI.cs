@@ -85,14 +85,15 @@ public class CaveBossAI : MonoBehaviour {
         foreach (CircuitSystem cs in circuitSystems)
         {
             cs.isLit = false;
+            cs.DisconnectJunction();   
+        }
 
-            LightPlantObject[] lightList = FindObjectsOfType<LightPlantObject>();
-            foreach (LightPlantObject lp in lightList)
+        LightPlantObject[] lightList = FindObjectsOfType<LightPlantObject>();
+        foreach (LightPlantObject lp in lightList)
+        {
+            if (!lp.gameObject.GetComponent<LightSource>().belongsToRoom)
             {
-                if (!lp.gameObject.GetComponent<LightSource>().belongsToRoom)
-                {
-                    Destroy(lp.gameObject);
-                }
+                Destroy(lp.gameObject);
             }
         }
     }
