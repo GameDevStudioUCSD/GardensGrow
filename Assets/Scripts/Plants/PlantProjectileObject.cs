@@ -61,9 +61,13 @@ public class PlantProjectileObject : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemySpawner")
         {
-            Destroy(this.gameObject);
-            enemy = other.gameObject.GetComponent<KillableGridObject>();
-            enemy.TakeDamage(damage);
+            KillableGridObject killable = other.GetComponent<KillableGridObject>();
+            if (!killable.isInvulnerable)
+            {
+                Destroy(this.gameObject);
+                enemy = other.gameObject.GetComponent<KillableGridObject>();
+                enemy.TakeDamage(damage);
+            }
         }
     }
 }
