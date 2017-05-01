@@ -55,6 +55,11 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         }
     }
 
+    public void RefreshPath()
+    {
+        pathNeedsReevaluation = true;
+    }
+
     // ================================================
     // | States
     // ================================================
@@ -101,6 +106,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         // Each step is a Move call
         stepsTaken = 0;
 
+        if (tilesMoved > path.Count) Debug.Log(tilesMoved + " > " + path.Count);
         nextTile = parameters.tileMap.NextTile(currentTile, path[tilesMoved]);
     }
 

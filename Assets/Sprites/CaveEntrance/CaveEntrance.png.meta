@@ -1,10 +1,5 @@
 fileFormatVersion: 2
 guid: 1de91774afa9c7f4492a30e53886e0b6
-<<<<<<< HEAD
-=======
-timeCreated: 1492295633
-licenseType: Free
->>>>>>> d7607e5ce0a8b0eda766a6ddfd6ce224fa2bcfcf
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -32,44 +27,25 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-<<<<<<< HEAD
-    filterMode: -1
-    aniso: -1
-    mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
-=======
     filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
->>>>>>> d7607e5ce0a8b0eda766a6ddfd6ce224fa2bcfcf
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-<<<<<<< HEAD
-  spriteMode: 0
-=======
   spriteMode: 1
->>>>>>> d7607e5ce0a8b0eda766a6ddfd6ce224fa2bcfcf
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-<<<<<<< HEAD
-  spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: -1
-=======
   spritePixelsToUnits: 32
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
->>>>>>> d7607e5ce0a8b0eda766a6ddfd6ce224fa2bcfcf
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
