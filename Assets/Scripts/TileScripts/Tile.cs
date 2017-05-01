@@ -93,15 +93,12 @@ public class Tile : MonoBehaviour {
                         isPatheable = false;
                         break;
                     }
-                    else
-                    {
-                        isPatheable = true;
-                        break;
-                    }
                 }
             }
         }
+    }
 
-
+    protected void OnEnable() {
+        SetPatheable();
     }
 }
