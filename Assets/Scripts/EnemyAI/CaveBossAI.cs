@@ -20,6 +20,22 @@ public class CaveBossAI : MonoBehaviour {
      * East Room: 10.937,0,0
      * West Room: -9.375,0,0
      */
+
+     /*
+      * Mechanics:
+	Boss can attack every 8 seconds
+		If reaches an off junction
+			Turn on all circuits to try to hit player for x seconds, then turn off all 
+            circuits and turn off all lightplants that u planted
+
+        Else if reaches an on junction
+	        Turn off all lightplants that u planted
+	
+    How to beat boss: 
+		Turn on a lightplant while the boss is standing a circuit while the boss’s  
+        attack is on cooldown, then the boss is stunned for x seconds, then in only this 
+        time frame can the boss be hittable by the boomerang
+       */
     void Start()
     {
         StartCoroutine(MovePattern());
