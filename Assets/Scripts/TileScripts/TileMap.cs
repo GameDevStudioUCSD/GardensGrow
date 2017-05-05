@@ -206,9 +206,12 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
-        if(grid[x, y] == null)
+        if (x >= grid.GetLength(0) || y >= grid.GetLength(1)) {
+            return false; //position is out of bounds
+        }
+        else if (grid[x, y] == null)
         {
-            return false;
+            return false; //position is within bounds, but tile is null
         }
         else
         {
