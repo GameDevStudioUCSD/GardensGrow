@@ -8,8 +8,6 @@ using System.Collections.Generic;
 /// It has the ability to pass the wind spinning status effect.
 /// </summary>
 
-// TODO: might be easier to generalize this and make any attack pass status effects
-
 public class WindAttackModule : BasicAttackAbstractFSM {
 
     public WindAttackParameters parameters;
@@ -55,7 +53,7 @@ public class WindAttackModule : BasicAttackAbstractFSM {
 
                     // Apply status effect to targets
                     GameObject statusEffect = Instantiate(parameters.statusEffectPrefab);
-                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(target);
+                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(parameters.creature, target);
                 }
             }
         }

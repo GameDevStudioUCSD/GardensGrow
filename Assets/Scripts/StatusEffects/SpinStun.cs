@@ -3,6 +3,10 @@ using System.Collections;
 
 public class SpinStun : StatusEffect {
 
+    [Tooltip("Each spin is actually a 90 degree turn in counter clockwise direction.")]
+    [Range(0, 99)]
+    public int numSpins = 4;
+
     protected Coroutine spinCoroutine;
 
     public override void StartEffect()
@@ -19,23 +23,23 @@ public class SpinStun : StatusEffect {
     private IEnumerator SpinTarget()
     {
         // Disable movement for player
-        if (target.tag == Globals.player_tag)
-            target.gameObject.GetComponent<PlayerGridObject>().canMove = false;
+        if (affectedTarget.tag == Globals.player_tag)
+            affectedTarget.gameObject.GetComponent<PlayerGridObject>().canMove = false;
 
         // Spin the target
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < numSpins; i++)
         {
             // If the target died mid spin, exit coroutine
-            if (target == null)
+            if (affectedTarget == null)
                 yield break;
 
-            target.transform.Rotate(new Vector3(0.0f, 0.0f, 90.0f));
-            yield return new WaitForSeconds(duration / 4.0f);
+            affectedTarget.transform.Rotate(new Vector3(0.0f, 0.0f, 90.0f));
+            yield return new WaitForSeconds(duration / (float)numSpins);
         }
 
         // Reenable movement for player
-        if (target.tag == Globals.player_tag)
-            target.gameObject.GetComponent<PlayerGridObject>().canMove = true;
+        if (affectedTarget.tag == Globals.player_tag)
+            affectedTarget.gameObject.GetComponent<PlayerGridObject>().canMove = true;
 
         EndEffect();
     }
