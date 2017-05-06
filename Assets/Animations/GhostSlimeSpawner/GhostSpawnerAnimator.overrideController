@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: GhostSpawnerAnimator
+  m_Controller: {fileID: 9100000, guid: 95af862c69f89384e9097564cc0a4d86, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b0e0423ab369e4d4aa9f19f8904f832d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e9fb842f8e16444219ee4eae89554c5c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 29a1e3917bdacc047bbc5cee076d99a1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5261a30f586cf423aa03cda35bd43573, type: 2}
