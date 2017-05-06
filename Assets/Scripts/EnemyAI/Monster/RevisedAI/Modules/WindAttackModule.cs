@@ -52,8 +52,7 @@ public class WindAttackModule : BasicAttackAbstractFSM {
                     target.TakeDamage(parameters.creature.damage);
 
                     // Apply status effect to targets
-                    GameObject statusEffect = Instantiate(parameters.statusEffectPrefab);
-                    statusEffect.GetComponent<StatusEffect>().ApplyEffect(parameters.creature, target);
+                    StatusEffect.ApplyStatusEffect(parameters.creature, target, parameters.spinStun);
                 }
             }
         }
@@ -79,6 +78,6 @@ public class WindAttackModule : BasicAttackAbstractFSM {
     {
         [Range(0.0f, 60.0f)]
         public float attackCooldown;
-        public GameObject statusEffectPrefab;
+        public GameObject spinStun;
     }
 }
