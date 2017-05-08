@@ -56,7 +56,7 @@ GameObject:
   - 50: {fileID: 50000013635959346}
   m_Layer: 0
   m_Name: Tentacle(Watermelon)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,8 +294,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d421435e616634eb440c666cb45142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 0
+  lootTable: {fileID: 0}
+  health: 20
+  damage: 1
+  bombable: 0
+  deathPanel: {fileID: 0}
+  southHitCollider: {fileID: 0}
+  westHitCollider: {fileID: 0}
+  northHitCollider: {fileID: 0}
+  eastHitCollider: {fileID: 0}
+  faction: 0
+  hpBarText: {fileID: 0}
+  audioSource: {fileID: 0}
+  attackSound: {fileID: 0}
+  hurtSound: {fileID: 0}
+  isAttacking: 0
+  isDying: 0
+  isInvulnerable: 0
   speed: 1
   damage: 1
+  tentacleNum: 0
 --- !u!212 &212000010003052356
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -326,7 +345,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 082752d04c0d1ef48bbeae72f795ec79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000010433060682
@@ -359,7 +378,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 082752d04c0d1ef48bbeae72f795ec79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000010753273528
@@ -392,7 +411,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 082752d04c0d1ef48bbeae72f795ec79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000011199315416
@@ -425,7 +444,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 082752d04c0d1ef48bbeae72f795ec79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000012112460730
@@ -458,7 +477,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 082752d04c0d1ef48bbeae72f795ec79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000013352933644
@@ -491,7 +510,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 082752d04c0d1ef48bbeae72f795ec79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000013584816686
@@ -524,6 +543,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 082752d04c0d1ef48bbeae72f795ec79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
