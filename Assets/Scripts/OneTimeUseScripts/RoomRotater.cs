@@ -15,10 +15,10 @@ public class RoomRotater : MonoBehaviour {
 	GameObject tempRoom1;
 	GameObject tempRoom2;
 
-	Vector3 moveRight = Vector3(14, 0, 0);
-	Vector3 moveDown = Vector3(0, -10, 0);
-	Vector3 moveLeft = Vector3(-14, 0, 0);
-	Vector3 moveUp = Vector3(0, 10, 0);
+	private Vector3 moveRight = new Vector3(14, 0, 0);
+	private Vector3 moveDown = new Vector3(0, -10, 0);
+	private Vector3 moveLeft = new Vector3(-14, 0, 0);
+	private Vector3 moveUp = new Vector3(0, 10, 0);
 
 	//Algorithm is basically a rotate clockwise, each room should be given a new name
 	void Toggle () {
