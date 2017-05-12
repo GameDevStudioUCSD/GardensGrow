@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour {
     public GameObject loadMenuUI;
     public GameObject dialogUI;
     public GameObject saveMenuUI;
+    public GameObject creditsUI;
     public GameObject deathPanelUI;
 
     public PlayerGridObject player;
@@ -187,6 +188,17 @@ public class UIController : MonoBehaviour {
         Application.LoadLevel(0);
     }
 
+    public void Credits()
+    {
+        mainMenuUI.SetActive(false);
+        creditsUI.SetActive(true);
+    }
+    
+    public void CreditsBack()
+    {
+        creditsUI.SetActive(false);
+        mainMenuUI.SetActive(true);
+    }
     public void Quit()
     {
         Application.Quit();
