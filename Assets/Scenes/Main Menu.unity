@@ -160,27 +160,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Hilary Ng
+  m_Text: 'Alisa Ren
 
     Delaney Carmen
 
     Gavin Badillo
 
-    Siddhant Srinivas
-
-    Kyle Henderson
-
-    Alisa Ren
-
-    Noel
-
-    Joung Hun Suk
-
-    Sharon Mo
+    Hilary Ng
 
     Jenna McCloskey
 
-    Justin'
+    Justin Liu
+
+    Joung Hun Suk
+
+    Kyle Henderson
+
+    Noel Nguyen
+
+    Sharon Mo
+
+    Siddhant Srinivas'
 --- !u!222 &121319154
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -336,7 +336,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Eric Morales
+  m_Text: 'Christopher Lew
+
+    Eric Morales'
 --- !u!222 &185084469
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -487,23 +489,25 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Boming Eric Cheng
-
-    Steven Lee
-
-    Daniel Griffiths
-
-    Andrew Nguyen
+  m_Text: 'Andrew Nguyen
 
     AhnQuan Nguyen
 
-    Tyler Bakke
+    Boming Eric Cheng
+
+    Daniel Griffiths
+
+    Frank Su
+
+    Steven Lee
+
+    Sammy Ma
 
     Sung Rim Huh
 
-    Yuamin Zhang
+    Tyler Bakke
 
-    Frank Su'
+    Yuamin Zhang'
 --- !u!222 &385932580
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -583,7 +587,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Geoffrey Voelker
 
-'
+    Michael Gonzalez'
 --- !u!222 &522290618
 CanvasRenderer:
   m_ObjectHideFlags: 0

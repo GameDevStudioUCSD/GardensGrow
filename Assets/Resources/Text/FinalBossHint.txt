@@ -1,0 +1,8 @@
+﻿Certain tentacles are allergic to certain plants! Memorize this!
+watermelon  red 
+turbine  green
+cactus  yellow
+bomb  pink
+mushroom  black
+boomerang  blue
+spinning  teal

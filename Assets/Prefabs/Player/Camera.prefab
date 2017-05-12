@@ -3655,6 +3655,7 @@ MonoBehaviour:
   loadMenuUI: {fileID: 0}
   dialogUI: {fileID: 1000011410173598}
   saveMenuUI: {fileID: 1000013046236096}
+  creditsUI: {fileID: 0}
   deathPanelUI: {fileID: 1000011825971178}
   player: {fileID: 0}
   seedPackets:
@@ -3663,9 +3664,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f8e229ebda17d3f4382a6e2c9550a3e5, type: 3}
   - {fileID: 21300000, guid: 0a38f73162691b847a440ecc50481dd1, type: 3}
   - {fileID: 21300000, guid: c6e8443a654814d61a61877c010d1b40, type: 3}
-  - {fileID: 21300000, guid: 226986e9cad46b644b02aa57abe3389f, type: 3}
+  - {fileID: 21300000, guid: 866cc79b620c945af98eeb47240b37a9, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 182900549230c0d4bac20a949d8452c7, type: 3}
   fullHeart: {fileID: 21300000, guid: 868643fb4ec264b4fad06f5444325ede, type: 3}
   brokenHeart: {fileID: 21300000, guid: 1d017f8f011e74bff868f0712c8e6a41, type: 3}
   paused: 0
