@@ -226,6 +226,7 @@ public class EnemySpawner : KillableGridObject
     // Disabling is when the active "check mark" in the editor is turned off
     public void OnDisable()
     {
+        KillSpawns();
     }
 
     private void ClearDeadSpawns()

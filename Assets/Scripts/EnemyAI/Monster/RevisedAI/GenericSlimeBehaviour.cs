@@ -35,7 +35,7 @@ public class GenericSlimeBehaviour : GenericMonsterBehaviour {
         else if (other.gameObject.GetComponent<GhostSlimeBehaviour>()) {
             ChangeType(ghostSlime);
         }
-        else if (other.gameObject.GetComponent<GenericMonsterBehaviour>()) {
+        else if (other.gameObject.GetComponent<GenericMonsterBehaviour>() && !other.gameObject.GetComponent<GenericSlimeBehaviour>()) {
             ChangeType(fireSlime);
         }
     }

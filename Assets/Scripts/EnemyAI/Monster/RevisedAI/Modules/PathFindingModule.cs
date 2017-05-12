@@ -91,6 +91,8 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
             path = astar.FindPath(currentTile, targetTile);
         }
 
+        if (path.Count == 0) pathIsFinished = true;
+
         // We have not moved any tiles
         tilesMoved = 0;
 

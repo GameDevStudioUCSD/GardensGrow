@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class Globals: MonoBehaviour {
 
-    // NOTE: saveNumbers already used for npc/signs: 0-20 (PLEASE UPDATE THIS LIST WHEN NEW SAVENUMBER IS USED)
+    // NOTE: saveNumbers already used for npc/signs: 0-21 (PLEASE UPDATE THIS LIST WHEN NEW SAVENUMBER IS USED)
     public const float pixelSize = 0.03125f;
     public enum Direction { North=0, South=1, East=2, West=3 };
     public enum Faction { Ally=0, Enemy=1};
     public static int npcNum = 0;
+
+    public static bool lavaBossBeaten = false;
+    public static bool windBossBeaten = false;
+    public static bool caveBossBeaten = false;
 
     public struct PlantData : IComparable <PlantData>{
     	public Vector3 PlantLocation;
@@ -89,7 +93,7 @@ public class Globals: MonoBehaviour {
             case Globals.Direction.North:
                 dirr = Vector2.up;
                 break;
-        }   
+        }
         return dirr;
     }
 
@@ -118,6 +122,11 @@ public class Globals: MonoBehaviour {
         PlayerPrefsX.SetVector3("respawn"+saveSlot, spawnLocation);
         PlayerPrefs.SetString("activeScene"+saveSlot, SceneManager.GetActiveScene().name);
         PlayerPrefs.SetInt("playerHealth"+saveSlot, player.health);
+
+        PlayerPrefsX.SetBool("lavaBossBeaten" + saveSlot, lavaBossBeaten);
+        PlayerPrefsX.SetBool("windBossBeaten" + saveSlot, windBossBeaten);
+        PlayerPrefsX.SetBool("caveBossBeaten" + saveSlot, caveBossBeaten);
+
         //Debug.Log("SAVING HEALTH AS " + player.health);
         PlayerPrefsX.SetIntArray("playerInventory"+saveSlot, inventory);
 
@@ -175,6 +184,10 @@ public class Globals: MonoBehaviour {
         spawnLocation = PlayerPrefsX.GetVector3("respawn"+loadSlot);
         playerHealth = PlayerPrefs.GetInt("playerHealth"+loadSlot);
         inventory = PlayerPrefsX.GetIntArray("playerInventory"+loadSlot);
+
+        PlayerPrefsX.GetBool("lavaBossBeaten" + loadSlot, lavaBossBeaten);
+        PlayerPrefsX.GetBool("windBossBeaten" + loadSlot, windBossBeaten);
+        PlayerPrefsX.GetBool("caveBossBeaten" + loadSlot, caveBossBeaten);
 
         Vector3[] tempPlantPositions = PlayerPrefsX.GetVector3Array("PlantPositions"+loadSlot);
         int[] tempPlantTypes = PlayerPrefsX.GetIntArray("PlantTypes"+loadSlot);

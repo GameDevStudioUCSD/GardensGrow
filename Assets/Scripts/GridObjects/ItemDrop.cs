@@ -45,7 +45,7 @@ public class ItemDrop : StaticGridObject {
 				controller.UpdateHealth(player.health);
 			}
             // Seeds are 0 - 7
-			else if (Globals.inventory[itemId] < 7) {
+			else if (Globals.inventory[itemId] < 9) {
 				Globals.inventory[itemId]++;
 				controller.UpdateUI();
 			}

@@ -168,6 +168,7 @@ GameObject:
   - 114: {fileID: 114000011493930808}
   - 95: {fileID: 95000011504949592}
   - 50: {fileID: 50000014156199076}
+  - 114: {fileID: 114000012143235524}
   m_Layer: 0
   m_Name: RollingBoulder
   m_TagString: Untagged
@@ -545,6 +546,7 @@ MonoBehaviour:
   health: 1
   damage: 1
   bombable: 1
+  deathPanel: {fileID: 0}
   southHitCollider: {fileID: 114000014123305608}
   westHitCollider: {fileID: 114000014061309656}
   northHitCollider: {fileID: 114000013223840376}
@@ -576,6 +578,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   other: {fileID: 0}
+--- !u!114 &114000012143235524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013294071346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7339698b807213b46bbdd8215b7abfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBarrier: 1
+  sprites: []
+  chosenSprite: {fileID: 0}
 --- !u!114 &114000012474165380
 MonoBehaviour:
   m_ObjectHideFlags: 1

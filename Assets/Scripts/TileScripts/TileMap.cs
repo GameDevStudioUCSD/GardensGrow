@@ -206,35 +206,17 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
-        if(grid[x, y] == null)
+        if (x >= grid.GetLength(0) || y >= grid.GetLength(1)) {
+            return false; //position is out of bounds
+        }
+        else if (grid[x, y] == null)
         {
-            return false;
+            return false; //position is within bounds, but tile is null
         }
         else
         {
             return grid[x, y].isPatheable;
         }
-
-        /*
-        if(x >= grid.GetLength(0) || y >= grid.GetLength(1))
-        {
-            // throw new System.Exception("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
-            // Debug.LogError("TileMap, IsPatheable(): could not find tile for vector: " + targetPosition + " at indices " + x + ", " + y);
-            return false;
-        }
-        else
-        {
-            try
-            {
-                return grid[x, y].isPatheable;
-            }
-            catch (NullReferenceException ex)
-            {
-                Debug.LogError("NullReference when trying to access tile at grid position (" + x + ", " + y + ")");
-                throw ex;
-            }
-        }
-        */
     }
 
     /// <summary>
@@ -251,10 +233,13 @@ public class TileMap : MonoBehaviour {
         int x = (int)Mathf.Round(relativePosition.x);
         int y = (int)Mathf.Round(relativePosition.y);
 
-        if (grid[x, y] == null)
+        if (x >= grid.GetLength(0) || y >= grid.GetLength(1)) {
+            return null; //position is out of bounds
+        }
+        else if (grid[x, y] == null)
         {
             //throw new System.Exception("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
-            return null;
+            return null; //position is within bounds, but tile is null
         }
         else
         {

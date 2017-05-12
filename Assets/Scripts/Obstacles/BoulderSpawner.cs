@@ -11,6 +11,7 @@ public class BoulderSpawner : MonoBehaviour {
     private RollingBoulder currentBoulder;
 
 	private int currentFrame;
+    private bool active = true;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,7 @@ public class BoulderSpawner : MonoBehaviour {
             currentBoulder.StartRolling(direction);
             currentBoulder = null;
         }
-        if (currentFrame > framesBetweenBoulders) {
+        if (active && currentFrame > framesBetweenBoulders) {
 			currentFrame = 0;
 			SummonBoulder();
 		}
@@ -33,4 +34,20 @@ public class BoulderSpawner : MonoBehaviour {
 	void SummonBoulder() {
 		currentBoulder = ((GameObject)Instantiate(boulder, this.gameObject.transform.position, Quaternion.identity)).GetComponent<RollingBoulder>();
 	}
+
+    //OnTrigger stuff makes it so boulders can't spawn on top of the player
+    void OnTriggerEnter2D(Collider2D other) {
+        PlayerGridObject player = other.GetComponent<PlayerGridObject>();
+        if (player) {
+            active = false;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        PlayerGridObject player = other.GetComponent<PlayerGridObject>();
+        if (player) {
+            currentFrame = framesBetweenBoulders - 20;
+            active = true;
+        }
+    }
 }

@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014170426628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -159,7 +159,7 @@ MonoBehaviour:
   isBarrier: 0
   itemId: 4
   clip: {fileID: 8300000, guid: 0affd501fe4bb46a6ba68ba032d47ee8, type: 3}
-  permanent: 0
+  permanent: 1
   lifeSpan: 500
 --- !u!212 &212000010251439130
 SpriteRenderer:

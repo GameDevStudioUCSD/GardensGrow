@@ -15,7 +15,7 @@ public class TerrainObject : StaticGridObject
     protected override void Start ()
     {
 		spriteRenderer = GetComponent<SpriteRenderer>();
-    	Randomize();
+    	//Randomize();
     	base.Start();
     }
 
