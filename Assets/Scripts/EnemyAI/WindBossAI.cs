@@ -104,10 +104,18 @@ public class WindBossAI : KillableGridObject {
 			}
 
             // TODO: these slimes need to have their targeting and tilemap setup
-            if (!spawnedMonster1)
+            if (!spawnedMonster1) {
                 spawnedMonster1 = (GameObject)Instantiate(spawnedMonster, new Vector3(-3, 0, 0), Quaternion.identity);
-            if (!spawnedMonster2)
+                PathFindingModule monsterPathFinding = spawnedMonster1.GetComponentInChildren<PathFindingModule>();
+                monsterPathFinding.parameters.tileMap = Globals.tileMap;
+                monsterPathFinding.parameters.target = Globals.player.gameObject;
+            }
+            if (!spawnedMonster2) {
                 spawnedMonster2 = (GameObject)Instantiate(spawnedMonster, new Vector3(3, 0, 0), Quaternion.identity);
+                PathFindingModule monsterPathFinding = spawnedMonster2.GetComponentInChildren<PathFindingModule>();
+                monsterPathFinding.parameters.tileMap = Globals.tileMap;
+                monsterPathFinding.parameters.target = Globals.player.gameObject;
+            }
 
 			this.transform.position = newPosition;
 		}

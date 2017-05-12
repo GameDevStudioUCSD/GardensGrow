@@ -79,7 +79,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         currentTile = startTile;
         targetTile = parameters.tileMap.GetNearestTile(parameters.target.transform.position);
 
-        if (startTile == targetTile)
+        if (!startTile || !targetTile || startTile == targetTile)
         {
             pathIsFinished = true;
         }
@@ -178,7 +178,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         targetTile = parameters.tileMap.GetNearestTile(parameters.target.transform.position);
 
         // The target is somewhere else, we need to find a new path to it
-        if (startTile != targetTile)
+        if (startTile && targetTile && startTile != targetTile)
             pathIsFinished = false;
     }
 
