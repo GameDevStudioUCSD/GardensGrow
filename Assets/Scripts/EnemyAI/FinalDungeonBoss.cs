@@ -6,6 +6,11 @@ public class FinalDungeonBoss : MonoBehaviour {
     //spawning information
     public GameObject[] tentacles;
 
+    /* HOW TO BEAT FINAL BOSS
+     * place certain plants to hit certain colored
+     * tentacles until boss' hp reaches 0
+     */
+
     /* Tentacle nums
      * 0    watermelon  red
      * 1    turbine     green

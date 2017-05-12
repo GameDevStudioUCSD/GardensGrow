@@ -33,17 +33,22 @@ public class Tentacle : KillableGridObject {
         /*player plants attack tentacle*/
 
 
-        if ((other.gameObject.GetComponent<PlantProjectileObject>() && tentacleNum == 0) || //watermelon
-            (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
-            (other.gameObject.GetComponent<CactusPlantObject>() && tentacleNum == 2) || //cactus
-            ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>())&& tentacleNum == 3) || //bomb
-            (other.gameObject.GetComponent<LightPlantObject>() && tentacleNum == 4) || //mushroom
-            ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
-            (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6))
+        if (boss.hp > 0)
         {
-            //play damaged animation
-            boss.touchedPlayer = true; //makes tentacles retract
-            boss.hp--;
+            if ((other.gameObject.GetComponent<PlantProjectileObject>() && tentacleNum == 0) || //watermelon
+                (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
+                (other.gameObject.GetComponent<CactusPlantObject>() && tentacleNum == 2) || //cactus
+                ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>()) && tentacleNum == 3) || //bomb
+                (other.gameObject.GetComponent<LightPlantObject>() && tentacleNum == 4) || //mushroom
+                ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
+                (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6))
+            {
+                //play damaged animation
+                boss.touchedPlayer = true; //makes tentacles retract
+                boss.hp--;
+
+                //do something when boss.hp == 0
+            }
         }
     }
     public void Move(Globals.Direction direction)
