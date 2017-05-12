@@ -13,31 +13,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: TailAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ChargeTail
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: TailStuck
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: TailUnstuck
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1255,13 +1255,13 @@ AnimatorStateMachine:
     m_Position: {x: 504, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000014136438042}
-    m_Position: {x: 324, y: 156, z: 0}
+    m_Position: {x: 324, y: 132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000012193785764}
     m_Position: {x: 108, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000010055039010}
-    m_Position: {x: 324, y: 336, z: 0}
+    m_Position: {x: 324, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013240080886}
     m_Position: {x: 48, y: -60, z: 0}

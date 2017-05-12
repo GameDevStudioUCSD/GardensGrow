@@ -21,11 +21,11 @@ public class ScorpionVenom : StatusEffect {
         ScorpionVenom previousScorpionVenom = affectedTarget.GetComponentInChildren<ScorpionVenom>();
         if(previousScorpionVenom)
         {
-            // Override the previous venom with new venom
+            // Get rid of the previous instance of scorpion venom
             previousScorpionVenom.EndEffect();
         }
 
-        // Apply normally
+        // Apply this status effect
         base.ApplyEffect();
     }
 

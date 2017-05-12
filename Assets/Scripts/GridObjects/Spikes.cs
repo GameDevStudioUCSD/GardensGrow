@@ -12,6 +12,8 @@ public class Spikes : TerrainObject {
     private Animator anim;
     private bool striked = false;
 
+    private Coroutine triggeredSpikeCoroutine;
+
 	public bool activeCollider;
 
 	// Use this for initialization
@@ -38,15 +40,21 @@ public class Spikes : TerrainObject {
     }
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
-            StartCoroutine(spikeUpWait(other));
+            triggeredSpikeCoroutine = StartCoroutine(spikeUpWait(other));
 		}
+        /*
         if (striked)
         {
             other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
         }
+        */
 	}
+    IEnumerator delayedSpikeTrap()
+    {
+        yield return new WaitForSeconds(spikeCD);
+    }
     IEnumerator spikeUpWait(Collider2D other)
-    { 
+    {
         PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 
         if (toggleable == false)
