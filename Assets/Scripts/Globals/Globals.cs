@@ -72,6 +72,7 @@ public class Globals: MonoBehaviour {
     public static TileMap tileMap;
     public static int playerHealth = 12;
 
+    public static string tile_map_tag = "TileMap";
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";
     public static string ground_layer = "Ground";

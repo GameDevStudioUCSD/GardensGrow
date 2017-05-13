@@ -36,6 +36,23 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     protected bool pathNeedsReevaluation;
     protected bool pathIsFinished;
 
+    public void Start()
+    {
+        // Try to recover from bad parameters
+        if(!parameters.tileMap)
+        {
+            // Find tile map
+            GameObject tileMapObject = GameObject.FindGameObjectWithTag(Globals.tile_map_tag);
+            parameters.tileMap = tileMapObject.GetComponent<TileMap>();
+        }
+
+        if(!parameters.target)
+        {
+            // Use player as default target
+            parameters.target = GameObject.FindGameObjectWithTag(Globals.player_tag);
+        }
+    }
+
     /// <summary>
     /// Draws a line to show the path the monster will take.
     /// Debug must be on to work.

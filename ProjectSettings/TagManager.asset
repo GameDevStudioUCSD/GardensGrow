@@ -21,6 +21,7 @@ TagManager:
   - Choppable
   - WindBoss
   - CaveBoss
+  - TileMap
   layers:
   - Default
   - TransparentFX
