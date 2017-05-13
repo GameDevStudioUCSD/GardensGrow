@@ -21,7 +21,7 @@ public class RoomRotater : MonoBehaviour {
 	private Vector3 moveUp = new Vector3(0, 10, 0);
 
 	//Algorithm is basically a rotate clockwise, each room should be given a new name
-	void Toggle () {
+	public void Toggle () {
 		tempRoom1 = NorthEastRoom;
 		NorthEastRoom = NorthRoom;
 		NorthEastRoom.transform.position += moveRight;
