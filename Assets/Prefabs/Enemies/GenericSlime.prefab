@@ -246,8 +246,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013150039388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35, y: -0.051, z: 0}
-  m_LocalScale: {x: 0.0625, y: 0.8, z: 1}
+  m_LocalPosition: {x: -0.405, y: -0.1, z: 0}
+  m_LocalScale: {x: 0.0625, y: 0.6, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011554435060}
@@ -259,8 +259,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013481216852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.46875, z: 0}
-  m_LocalScale: {x: 0.875, y: 0.0625, z: 1}
+  m_LocalPosition: {x: 0, y: 0.325, z: 0}
+  m_LocalScale: {x: 0.78, y: 0.0625, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011554435060}
@@ -272,8 +272,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013717351062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.265, y: -0.051, z: 0}
-  m_LocalScale: {x: 0.0625, y: 0.8, z: 1}
+  m_LocalPosition: {x: 0.445, y: -0.1, z: 0}
+  m_LocalScale: {x: 0.0625, y: 0.6, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011554435060}
@@ -374,8 +374,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013456516348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.46875, z: 0}
-  m_LocalScale: {x: 0.875, y: 0.0625, z: 1}
+  m_LocalPosition: {x: 0, y: -0.425, z: 0}
+  m_LocalScale: {x: 0.78, y: 0.0625, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011554435060}
@@ -491,9 +491,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.04, y: -0.05}
+  m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.8}
+  m_Size: {x: 0.78, y: 0.6}
 --- !u!61 &61000011048020242
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -505,9 +505,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.04, y: -0.05}
+  m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.8}
+  m_Size: {x: 0.78, y: 0.6}
 --- !u!61 &61000011529388628
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -519,9 +519,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.04, y: -0.05}
+  m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.8}
+  m_Size: {x: 0.78, y: 0.6}
 --- !u!61 &61000011926066962
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -533,9 +533,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.045, y: -0.2}
+  m_Offset: {x: 0.025, y: -0.2}
   serializedVersion: 2
-  m_Size: {x: 0.63, y: 1}
+  m_Size: {x: 1, y: 1}
 --- !u!61 &61000012623328442
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -547,9 +547,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.04, y: -0.05}
+  m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.8}
+  m_Size: {x: 0.78, y: 0.6}
 --- !u!61 &61000013654290592
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -561,9 +561,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.045, y: -1.4}
+  m_Offset: {x: 0.025, y: -1.4}
   serializedVersion: 2
-  m_Size: {x: 0.63, y: 1}
+  m_Size: {x: 1, y: 1}
 --- !u!61 &61000013840860406
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -589,7 +589,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.2}
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
 --- !u!82 &82000013060634786
