@@ -68,6 +68,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
             }
             if (movingDown)
             {
+                moveDistDown = (int)System.Math.Round(System.Math.Abs(this.transform.position.y - player.transform.position.y) / .0315) - 10;
                 Mover(Globals.Direction.South);
                 downCounter++;
 

@@ -840,7 +840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011154219782, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000012914596990, guid: 1778a5d707148484ca0e76d93a32ba29,
         type: 2}
@@ -5338,7 +5338,8 @@ MonoBehaviour:
   isInvulnerable: 0
   boulder: {fileID: 114000011493930808, guid: f01aa74be4b36ec46a9d7e03038d065d, type: 2}
   portal: {fileID: 1897905128}
-  spawnedMonster: {fileID: 0}
+  spawnedMonster: {fileID: 1000012166925212, guid: 3447de6128a194e1885687c5606395bb,
+    type: 2}
   idleFrames: 0
   inhalingFrames: 360
   blowingFrames: 300
