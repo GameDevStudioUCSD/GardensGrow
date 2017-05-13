@@ -34,7 +34,7 @@ public class KillableGridObject : RotateableGridObject {
 
     private int dyingFrame = 0;
     //do not change these without adjusting the animation timings
-    protected const int numDyingFrames = 11;
+    protected const int numDyingFrames = 9;
 
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     protected bool hasDied = false;
