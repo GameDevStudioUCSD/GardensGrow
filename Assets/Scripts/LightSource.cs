@@ -17,7 +17,7 @@ public class LightSource : MonoBehaviour {
 
     void OnDestroy()
     {
-        OnDisable();
+        //OnDisable();
     }
     public void OnDisable()
     {

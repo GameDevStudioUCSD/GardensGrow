@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class GhostSlimeBehaviour : GenericMonsterBehaviour {
 
     private CircleCollider2D lightRadius;
-    private int lightSources = 0;
+    private List<LightSource> lightSources = new List<LightSource>();
 
     protected override void Start() {
         base.Start();
@@ -13,20 +13,28 @@ public class GhostSlimeBehaviour : GenericMonsterBehaviour {
 
     protected override void Update() {
         base.Update();
-        if (lightSources > 0 && isInvulnerable) Lighten();
-        else if (lightSources <= 0 && !isInvulnerable) Darken();
+
+        foreach (LightSource light in lightSources) {
+            if (!light) {
+                lightSources.Remove(light);
+                break;
+            }
+        }
+
+        if (lightSources.Count > 0 && isInvulnerable) Lighten();
+        else if (lightSources.Count <= 0 && !isInvulnerable) Darken();
     }
 
     protected void OnTriggerEnter2D(Collider2D other) {
-        LightPlantObject lightPlant = other.GetComponent<LightPlantObject>();
-        NaturalLight naturalLight = other.GetComponent<NaturalLight>();
-        if (lightPlant || naturalLight) lightSources++;
+        LightSource light = other.GetComponent<LightSource>();
+        if (light) lightSources.Add(light);
     }
 
     protected void OnTriggerExit2D(Collider2D other) {
-        LightPlantObject lightPlant = other.GetComponent<LightPlantObject>();
-        NaturalLight naturalLight = other.GetComponent<NaturalLight>();
-        if (lightPlant || naturalLight) lightSources--;
+        LightSource light = other.GetComponent<LightSource>();
+        if (light) {
+            lightSources.Remove(light);
+        }
     }
 
     //Call this every time the Slime enters the light
