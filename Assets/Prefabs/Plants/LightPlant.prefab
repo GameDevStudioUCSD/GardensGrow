@@ -119,10 +119,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fcd695a6663f44fe2866ff1ace7fda99, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -193,7 +193,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -302,6 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   lightLevel: 3
+  belongsToRoom: 0
 --- !u!114 &114000013681007212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,8 +346,6 @@ MonoBehaviour:
   isAttacking: 0
   isDying: 0
   isInvulnerable: 0
-  radius: 3
-  lightLevel: 3
 --- !u!212 &212000013808263326
 SpriteRenderer:
   m_ObjectHideFlags: 1
