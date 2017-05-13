@@ -6,6 +6,14 @@ public class Tentacle : KillableGridObject {
     public float speed = 1.0f;
     public int damage = 1;
     public int tentacleNum;
+
+    //evil plants
+    public GameObject evilWatermelonPlant;
+
+    //instantiating stuff
+    private Quaternion spawnRotation = Quaternion.Euler(0, 0, 0f);
+    private Vector3 spawnPosition;
+
     FinalDungeonBoss boss;
 
     /* Tentacle nums
@@ -32,8 +40,7 @@ public class Tentacle : KillableGridObject {
 
         /*player plants attack tentacle*/
 
-
-        if (boss.hp > 0)
+        if (other.gameObject.GetComponent<PlantGridObject>())
         {
             if ((other.gameObject.GetComponent<PlantProjectileObject>() && tentacleNum == 0) || //watermelon
                 (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
@@ -41,15 +48,38 @@ public class Tentacle : KillableGridObject {
                 ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>()) && tentacleNum == 3) || //bomb
                 (other.gameObject.GetComponent<LightPlantObject>() && tentacleNum == 4) || //mushroom
                 ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
-                (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6))
+                (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6)) //spinning
             {
                 //play damaged animation
                 boss.touchedPlayer = true; //makes tentacles retract
                 boss.hp--;
 
-                //do something when boss.hp == 0
+                if(boss.hp == 0)
+                {    
+                    //play spawning boss sound
+                    //spawn boss to deplant in the middle of the screen
+                }
             }
+            else
+            {
+                //make other.gameObject.GetComponent<PlantGridObject>() evil then turn into a seed after x seconds
+                if (other.gameObject.GetComponent<WatermelonPlantObject>())
+                {
+                    if(!other.gameObject.GetComponent<WatermelonPlantObject>().evil)
+                    spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, 0f);
+                    Destroy(other.gameObject);
+                    StartCoroutine(spawnEvilPlant(evilWatermelonPlant));
+                }
+            }
+            
         }
+    }
+    IEnumerator spawnEvilPlant(GameObject other)
+    {
+        GameObject newEvilPlant = (GameObject) Instantiate(other, spawnPosition, spawnRotation);
+        yield return new WaitForSeconds(5.0f); //leaves evil plant spawnned for 5 seconds
+        Destroy(newEvilPlant.gameObject); //for some reason this doesn't work to destory evilPlant
+
     }
     public void Move(Globals.Direction direction)
     {

@@ -315,6 +315,8 @@ MonoBehaviour:
   speed: 1
   damage: 1
   tentacleNum: 0
+  evilWatermelonPlant: {fileID: 1000013356331344, guid: 0af9d5813c7b377498223975044014f0,
+    type: 2}
 --- !u!212 &212000010003052356
 SpriteRenderer:
   m_ObjectHideFlags: 1
