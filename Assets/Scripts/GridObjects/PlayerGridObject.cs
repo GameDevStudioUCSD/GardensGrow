@@ -113,7 +113,7 @@ public class PlayerGridObject : MoveableGridObject {
                 foreach (KillableGridObject target in killList)
                 {
                     MoveableGridObject moveable = target.GetComponent<MoveableGridObject>();
-                    if (moveable) {
+                    if (moveable && target.faction == Globals.Faction.Enemy) {
                         if (!(moveable.gameObject.GetComponent<BombObject>()) && !(moveable.gameObject.GetComponent<RollingBoulder>())) {
                             for (int i = 0; i < this.gameObject.GetComponent<PlayerGridObject>().knockBackPower; i++) {
                                 moveable.Move(this.gameObject.GetComponent<PlayerGridObject>().direction);
@@ -212,6 +212,10 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 //planting code
                 PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                if (plantNumber == 1) {
+                	TurbinePlantObject turbinePlant = (TurbinePlantObject)newPlant;
+                	turbinePlant.playSound();
+                }
                 newPlant.Rotate(direction);
                 Globals.inventory[plantNumber]--;
 

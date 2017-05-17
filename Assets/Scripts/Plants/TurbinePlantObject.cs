@@ -159,4 +159,10 @@ public class TurbinePlantObject : PlantGridObject
             }
         }
     }
+
+    public void playSound()
+    {
+		audioSource.clip = attackSound;
+        audioSource.Play();
+    }
 }
