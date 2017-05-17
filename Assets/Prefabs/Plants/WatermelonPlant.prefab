@@ -141,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011044718288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.893996, y: -1.7838688, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -454,6 +454,7 @@ MonoBehaviour:
   health: 5
   damage: 0
   bombable: 0
+  deathPanel: {fileID: 0}
   southHitCollider: {fileID: 0}
   westHitCollider: {fileID: 0}
   northHitCollider: {fileID: 0}

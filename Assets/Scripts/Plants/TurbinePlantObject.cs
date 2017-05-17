@@ -150,4 +150,10 @@ public class TurbinePlantObject : PlantGridObject
             StartCoroutine(killWindSlimeCD(other));
         }
     }
+
+    public void playSound()
+    {
+		audioSource.clip = attackSound;
+        audioSource.Play();
+    }
 }

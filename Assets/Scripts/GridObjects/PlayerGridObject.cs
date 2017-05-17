@@ -212,6 +212,10 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 //planting code
                 PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                if (plantNumber == 1) {
+                	TurbinePlantObject turbinePlant = (TurbinePlantObject)newPlant;
+                	turbinePlant.playSound();
+                }
                 newPlant.Rotate(direction);
                 Globals.inventory[plantNumber]--;
 
