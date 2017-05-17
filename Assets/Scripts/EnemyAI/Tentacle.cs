@@ -9,6 +9,9 @@ public class Tentacle : KillableGridObject {
 
     //evil plants
     public GameObject evilWatermelonPlant;
+    public GameObject evilTurbinePlant;
+    public GameObject evilCactusPlant;
+    public GameObject evilBoomerangPlant;
 
     //instantiating stuff
     private Quaternion spawnRotation = Quaternion.Euler(0, 0, 0f);
@@ -62,24 +65,43 @@ public class Tentacle : KillableGridObject {
             }
             else
             {
-                //make other.gameObject.GetComponent<PlantGridObject>() evil then turn into a seed after x seconds
+
+                spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, 0f);
                 if (other.gameObject.GetComponent<WatermelonPlantObject>())
                 {
-                    if(!other.gameObject.GetComponent<WatermelonPlantObject>().evil)
-                    spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, 0f);
-                    Destroy(other.gameObject);
-                    StartCoroutine(spawnEvilPlant(evilWatermelonPlant));
+                    if (!other.gameObject.GetComponent<WatermelonPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilWatermelonPlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if (other.gameObject.GetComponent<TurbinePlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<TurbinePlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilTurbinePlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if (other.gameObject.GetComponent<CactusPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<CactusPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilCactusPlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if(other.gameObject.GetComponent<BoomerangPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<BoomerangPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilBoomerangPlant, spawnPosition, spawnRotation);
+                    }
                 }
             }
             
         }
-    }
-    IEnumerator spawnEvilPlant(GameObject other)
-    {
-        GameObject newEvilPlant = (GameObject) Instantiate(other, spawnPosition, spawnRotation);
-        yield return new WaitForSeconds(5.0f); //leaves evil plant spawnned for 5 seconds
-        Destroy(newEvilPlant.gameObject); //for some reason this doesn't work to destory evilPlant
-
     }
     public void Move(Globals.Direction direction)
     {

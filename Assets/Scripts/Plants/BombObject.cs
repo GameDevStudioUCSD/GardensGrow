@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class BombObject : MoveableGridObject {
+
+    //for final boss
+    public bool evil = false;
+
     public int fuseFrames;
 
     private bool fuseLit = false;
@@ -84,7 +88,7 @@ public class BombObject : MoveableGridObject {
             audioSource.clip = attackSound;
             audioSource.Play();
         }
-
+        
         switch (direction) {
             case Globals.Direction.South:
                 killList = southHitCollider.GetKillList();
@@ -109,9 +113,6 @@ public class BombObject : MoveableGridObject {
 
         // Deal damage to all targets of the enemy faction
         foreach (KillableGridObject target in killList) {
-            if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
-                Debug.Log("SMACKING THE WATERMELOON");
-            }
             target.TakeBombDamage(damage);
         }
 

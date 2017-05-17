@@ -3,6 +3,9 @@ using System.Collections;
 
 public class BombPlantObject : PlantGridObject {
 
+    //for final boss
+    public bool evil = false;
+
 	public GameObject bombObject;
 	public int regrowFrames;
 

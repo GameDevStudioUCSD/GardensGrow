@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CactusPlantObject : PlantGridObject {
 
+    //for final boss
+    public bool evil = false;
     //public stuff
     public float punchAnimationWait;
     public float punchCoolDown;
@@ -39,14 +41,14 @@ public class CactusPlantObject : PlantGridObject {
             other.gameObject.GetComponent<Switch>().TakeDamage(0);  //check how player switches the switch
             isAttacking = false;
         }
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || (other.gameObject.CompareTag("Player")&&evil) )
         {
             StartCoroutine(punchAnimationWaiting(other, dir)); //changeable
         }
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner") || other.gameObject.GetComponent<Switch>())
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner") || other.gameObject.GetComponent<Switch>() || (other.gameObject.GetComponent<PlayerGridObject>() && evil))
         {
             if (isAttacking == false)
             {
@@ -85,7 +87,14 @@ public class CactusPlantObject : PlantGridObject {
     IEnumerator punchAnimationWaiting(Collider2D other, Globals.Direction dir)
     {
         yield return new WaitForSeconds(punchAnimationWait);
-        other.gameObject.GetComponent<EnemyGridObject>().TakeDamage(damage);
+        if (other.gameObject.GetComponent<EnemyGridObject>())
+        {
+            other.gameObject.GetComponent<EnemyGridObject>().TakeDamage(damage);
+        }
+        else if(other.gameObject.GetComponent<PlayerGridObject>() && evil)
+        {
+            other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(1);
+        }
         audioSource.clip = attackSound;
         audioSource.Play();
         for (int i = 0; i < knockBackPower; i++)

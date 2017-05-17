@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TurbinePlantObject : PlantGridObject
 {
+    //for final boss
+    public bool evil = false;
     //windSlime break into smaller ones variables
     public GameObject littleSlime;
     private Vector3 spawnPosition;
@@ -148,6 +150,13 @@ public class TurbinePlantObject : PlantGridObject
         if (other.gameObject.GetComponent<WindMonsterBehaviour>() && canKillWindSlime)
         {
             StartCoroutine(killWindSlimeCD(other));
+        }
+        if (evil)
+        {
+            if (other.gameObject.GetComponent<PlayerGridObject>())
+            {
+                other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(1);
+            }
         }
     }
 }
