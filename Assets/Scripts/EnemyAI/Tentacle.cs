@@ -6,6 +6,21 @@ public class Tentacle : KillableGridObject {
     public float speed = 1.0f;
     public int damage = 1;
     public int tentacleNum;
+
+    
+    //evil plants
+    public GameObject evilWatermelonPlant;
+    public GameObject evilTurbinePlant;
+    public GameObject evilCactusPlant;
+    public GameObject evilBoomerangPlant;
+    public GameObject evilBombPlant;
+    public GameObject evilLightPlant;
+    public GameObject evilSpinningPlant;
+
+    //instantiating stuff
+    private Quaternion spawnRotation = Quaternion.Euler(0, 0, 0f);
+    private Vector3 spawnPosition;
+
     FinalDungeonBoss boss;
 
     /* Tentacle nums
@@ -33,17 +48,105 @@ public class Tentacle : KillableGridObject {
         /*player plants attack tentacle*/
 
 
-        if ((other.gameObject.GetComponent<PlantProjectileObject>() && tentacleNum == 0) || //watermelon
-            (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
-            (other.gameObject.GetComponent<CactusPlantObject>() && tentacleNum == 2) || //cactus
-            ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>())&& tentacleNum == 3) || //bomb
-            (other.gameObject.GetComponent<LightPlantObject>() && tentacleNum == 4) || //mushroom
-            ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
-            (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6))
+        if (boss.hp == 0)
         {
-            //play damaged animation
-            boss.touchedPlayer = true; //makes tentacles retract
-            boss.hp--;
+            //instantiate boss weed seed
+        }
+
+        if (other.gameObject.GetComponent<PlantGridObject>() && boss.hp != 0)
+        {
+            if ((other.gameObject.GetComponent<PlantProjectileObject>() && tentacleNum == 0) || //watermelon
+                (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
+                (other.gameObject.GetComponent<CactusPlantObject>() && tentacleNum == 2) || //cactus
+                ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>()) && tentacleNum == 3) || //bomb
+                (other.gameObject.GetComponent<LightPlantObject>() && tentacleNum == 4) || //mushroom
+                ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
+                (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6)) //spinning
+            {
+                //play damaged animation
+                boss.touchedPlayer = true; //makes tentacles retract
+                boss.hp--;
+            }
+            else
+            {
+
+                spawnPosition = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, 0f);
+                if (other.gameObject.GetComponent<WatermelonPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<WatermelonPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilWatermelonPlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if (other.gameObject.GetComponent<TurbinePlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<TurbinePlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilTurbinePlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if (other.gameObject.GetComponent<CactusPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<CactusPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilCactusPlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if(other.gameObject.GetComponent<BoomerangPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<BoomerangPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilBoomerangPlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if(other.gameObject.GetComponent<BombPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<BombPlantObject>().evil)
+                    {
+                        if (other.gameObject.GetComponent<BombPlantObject>().bomb)
+                        {
+                            Destroy(other.gameObject.GetComponent<BombPlantObject>().bomb.gameObject);
+                        }
+                        Destroy(other.gameObject);
+                        Instantiate(evilBombPlant, spawnPosition, spawnRotation);
+                    }
+                    else
+                    {
+                        BombObject temp = other.gameObject.GetComponent<BombPlantObject>().bomb;
+                        if (temp)
+                        {
+                            temp.Roll(this.direction);
+                        }
+                    }
+                }
+                if (other.gameObject.GetComponent<LightPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<LightPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilLightPlant, spawnPosition, spawnRotation);
+                    }
+                    else
+                    {
+                        CircuitSystem cs = FindObjectOfType<CircuitSystem>();
+                        cs.isLit = true;
+                        cs.ConnectJunction();
+                    }
+                }
+                if (other.gameObject.GetComponent<SpinningPlant>())
+                {
+                    if (!other.gameObject.GetComponent<SpinningPlant>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilSpinningPlant, spawnPosition, spawnRotation);
+                    }
+                }
+            }
+            
         }
     }
     public void Move(Globals.Direction direction)

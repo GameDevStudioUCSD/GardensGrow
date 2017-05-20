@@ -3,6 +3,9 @@ using System.Collections;
 
 public class WatermelonPlantObject : PlantGridObject
 {
+    //for final boss
+    public bool evil = false;
+
     public GameObject bullet;
     private int counter;
     public int shotDelay;
@@ -64,6 +67,8 @@ public class WatermelonPlantObject : PlantGridObject
     private void Shooter()
     {
         bullet.GetComponent<PlantProjectileObject>().dir = direction;
+        bullet.GetComponent<PlantProjectileObject>().evil = evil;
+
 
         audioSource.clip = attackSound;
         audioSource.Play();
@@ -105,7 +110,7 @@ public class WatermelonPlantObject : PlantGridObject
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || (other.CompareTag("EnemySpawner"))) {
+        if ( ((other.CompareTag("Enemy") || (other.CompareTag("EnemySpawner"))) && !evil) || (evil && other.CompareTag("Player")) ) {
 
             KillableGridObject killable = other.GetComponent<KillableGridObject>();
             if (!killable.isInvulnerable) {
