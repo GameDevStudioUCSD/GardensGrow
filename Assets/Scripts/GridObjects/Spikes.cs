@@ -4,15 +4,18 @@ using System.Collections;
 public class Spikes : TerrainObject {
 	public int damage = 2;
     //public int framesPerHit = 50;
-    public float spikeCD;
+    public float spikeCD = 1.0f;
 
 	public bool toggleable = false;
 	public bool spikesUp = false;
+    // Should this spike block too
+	public bool activeCollider = false;
     
     private Animator anim;
     private bool striked = false;
 
-	public bool activeCollider;
+    private Coroutine triggeredSpikeCoroutine;
+
 
 	// Use this for initialization
 	protected override void Start () {
@@ -38,15 +41,20 @@ public class Spikes : TerrainObject {
     }
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
-            StartCoroutine(spikeUpWait(other));
-		}
+            triggeredSpikeCoroutine = StartCoroutine(spikeUpWait(other));
         if (striked)
         {
             other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);
         }
+		}
+
 	}
+    IEnumerator delayedSpikeTrap()
+    {
+        yield return new WaitForSeconds(spikeCD);
+    }
     IEnumerator spikeUpWait(Collider2D other)
-    { 
+    {
         PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 
         if (toggleable == false)

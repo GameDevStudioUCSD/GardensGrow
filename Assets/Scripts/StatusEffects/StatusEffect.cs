@@ -6,9 +6,6 @@ using System.Collections;
 /// This script should be applied to a prefab that will solely be used as a
 /// StatusEffect prefab.  This way the prefab can be attached to an entity.
 /// 
-/// A good example of how to start could be to keep the current apply function but
-/// on start run a coroutine that can call the end function when the duration is done.
-/// 
 /// Look at SpinStun for an example.
 /// </summary>
 public abstract class StatusEffect : MonoBehaviour {
@@ -21,16 +18,29 @@ public abstract class StatusEffect : MonoBehaviour {
     protected KillableGridObject affectedTarget;
 
     /// <summary>
-    /// How the status effect should be applied.
+    /// Create the status effect game object to apply onto the target
     /// </summary>
-    /// <param name="target">Victim of the StatusEffect.</param>
-    public virtual void ApplyEffect(KillableGridObject caster, KillableGridObject target)
+    public static void ApplyStatusEffect(KillableGridObject caster, KillableGridObject target, GameObject statusEffectPrefab)
     {
-        this.effectCaster = caster;
-        this.affectedTarget = target;
+        // Create status effect object instance to get the status effect component
+        GameObject statusEffectObject = (GameObject)Instantiate(statusEffectPrefab);
+        StatusEffect statusEffect = statusEffectObject.GetComponent<StatusEffect>();
 
-        // parent this object to the target
-        this.transform.parent = target.transform;
+        statusEffect.effectCaster = caster;
+        statusEffect.affectedTarget = target;
+
+        statusEffect.ApplyEffect();
+    }
+
+    /// <summary>
+    /// Parent the status effect object to the target and start effect.
+    /// 
+    /// This can also be used to specify what happens if
+    /// the target already has the status effect.
+    /// </summary>
+    public virtual void ApplyEffect()
+    {
+        this.transform.SetParent(affectedTarget.transform);
 
         StartEffect();
     }

@@ -19,7 +19,8 @@ public class OnTriggerEnterEvent : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        // Only works when player is triggering
+        if (collision.gameObject.tag != Globals.player_tag)
             return;
 
         callBacks.Invoke();

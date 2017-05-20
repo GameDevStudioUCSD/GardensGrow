@@ -16,6 +16,13 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
 
     public PathFindingParameters parameters;
 
+    // Keeps monster from pathfinding out of the room
+    public bool useRoomBoundary = false;
+
+    // Data for use with room boundary
+    protected Tile spawnedTile; // Tile this creature spawned on
+    protected Transform roomTransform; // Room this creature is bound to
+
     public bool debug = false;
 
     protected Transform creatureTransform = null;
@@ -36,6 +43,35 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     protected bool pathNeedsReevaluation;
     protected bool pathIsFinished;
 
+
+    public void Start()
+    {
+        astar = new AStar(parameters.tileMap);
+        creatureTransform = parameters.creature.transform;
+
+        if (useRoomBoundary)
+            SetUpRoomBoundary();
+
+        // Try to recover from bad parameters
+        if(!parameters.tileMap)
+        {
+            // Find tile map
+            GameObject tileMapObject = GameObject.FindGameObjectWithTag(Globals.tile_map_tag);
+            parameters.tileMap = tileMapObject.GetComponent<TileMap>();
+        }
+
+        if(!parameters.target)
+        {
+            // Use player as default target
+            parameters.target = GameObject.FindGameObjectWithTag(Globals.player_tag);
+        }
+    }
+
+    public void Update()
+    {
+
+    }
+
     /// <summary>
     /// Draws a line to show the path the monster will take.
     /// Debug must be on to work.
@@ -45,7 +81,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         if (!debug) return;
         if (!Application.isPlaying) return;
 
-        Vector2 startPoint = this.transform.position;
+        Vector2 startPoint = transform.position;
         for (int i = tilesMoved; i < path.Count; i++)
         {
             var v = path[i];
@@ -60,6 +96,53 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         pathNeedsReevaluation = true;
     }
 
+    protected void SetUpRoomBoundary()
+    {
+        spawnedTile = parameters.tileMap.GetNearestTile(creatureTransform.position);
+
+        Transform parentTransform = spawnedTile.transform.parent;
+        // Find room the creature should belong to
+        while(parentTransform != null)
+        {
+            if(parentTransform.CompareTag(Globals.room_tag))
+            {
+                roomTransform = parentTransform;
+                break;
+            }
+            
+            parentTransform = parentTransform.parent;
+        }
+
+        if (!roomTransform)
+            Debug.LogError("Room not found, room boundary will fail.");
+    }
+
+    protected bool IsInRoomBoundary(Vector2 targetPosition)
+    {
+        // A room has dimensions of 17 tiles across and 11 tiles high
+        // Do calculations from center tile of the room
+        float halfHorizontalLength = 8.5f, halfVerticalLength = 5.5f;
+
+        Vector2 roomCenter = roomTransform.position;
+
+        float boundRight = roomCenter.x + halfHorizontalLength;
+        float boundLeft = roomCenter.x - halfHorizontalLength;
+        float boundUp = roomCenter.y + halfVerticalLength;
+        float boundDown = roomCenter.y - halfVerticalLength;
+
+        // Check if the target is within the horizontal bounds
+        if(targetPosition.x <= boundRight && targetPosition.x >= boundLeft)
+        {
+            // Check if the target is within the vertical bounds
+            if(targetPosition.y <= boundUp && targetPosition.y >= boundDown)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // ================================================
     // | States
     // ================================================
@@ -70,14 +153,24 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     /// </summary>
     protected override void ExecuteActionFindPath()
     {
-        if (astar == null)
-            astar = new AStar(parameters.tileMap);
-        if (creatureTransform == null)
-            creatureTransform = parameters.creature.transform;
-
         startTile = parameters.tileMap.GetNearestTile(creatureTransform.position);
         currentTile = startTile;
-        targetTile = parameters.tileMap.GetNearestTile(parameters.target.transform.position);
+
+        // Check room bounds
+        if(useRoomBoundary)
+        {
+            if(IsInRoomBoundary(parameters.target.transform.position))
+            {
+                // Go to target like normal
+                targetTile = parameters.tileMap.GetNearestTile(parameters.target.transform.position);
+            }
+            else
+            {
+                // Target the spawned tile
+                targetTile = spawnedTile;
+            }
+        }
+
 
         if (!startTile || !targetTile || startTile == targetTile)
         {

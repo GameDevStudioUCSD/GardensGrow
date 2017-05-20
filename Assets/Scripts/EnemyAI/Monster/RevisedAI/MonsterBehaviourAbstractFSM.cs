@@ -23,11 +23,12 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
         base.Start();
 
         if (isDisabled)
-            Disable();
+            DisableAI();
         else
-            Enable();
+            StartAI();
     }
     private IEnumerator FSMThread( float delayRate ) {
+        yield return new WaitForEndOfFrame(); // Stops race conditions
         bool isRunning = true;
         while(isRunning) {
             yield return Step();
@@ -173,13 +174,13 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
 
     public void OnDisable()
     {
-        Disable();
+        DisableAI();
     }
 
     /// <summary>
     /// Stop the AI
     /// </summary>
-    public virtual void Disable()
+    public virtual void DisableAI()
     {
         isDisabled = true;
         state = State.Disabled;
@@ -192,7 +193,7 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
     /// <summary>
     /// Start the AI
     /// </summary>
-    public virtual void Enable()
+    public virtual void StartAI()
     {
         isDisabled = false;
         state = State.PathFinding;
