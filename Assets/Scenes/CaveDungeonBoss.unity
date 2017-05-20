@@ -2741,7 +2741,6 @@ GameObject:
   - 114: {fileID: 71006323}
   - 50: {fileID: 71006324}
   - 95: {fileID: 71006325}
-  - 111: {fileID: 71006326}
   m_Layer: 0
   m_Name: CaveDungeonBoss
   m_TagString: CaveBoss
@@ -2862,21 +2861,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &71006326
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 71006319}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: bc90cb57f8bc72a4ab5b7968be59fa38, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: bc90cb57f8bc72a4ab5b7968be59fa38, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!4 &71113971 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011229191376, guid: 8b5fc199d7f5d4ee88fdd5b6045b8475,
