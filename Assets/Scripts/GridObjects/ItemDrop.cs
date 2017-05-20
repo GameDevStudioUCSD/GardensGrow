@@ -32,6 +32,13 @@ public class ItemDrop : StaticGridObject {
             if (player == null) return; // Ignore the player's other colliders (hacky)
 			UIController controller = player.canvas;
 
+            //finalbossseed is 10
+            if(itemId == 10)
+            {
+                //not sure what's correct to write here
+                Globals.inventory[8]++;
+                controller.UpdateUI();
+            }
             // Key is 9
 			if (itemId == 9) {
 				Globals.numKeys++;
