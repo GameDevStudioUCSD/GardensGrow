@@ -715,7 +715,7 @@ MonoBehaviour:
   eastHitCollider: {fileID: 114000011925548660}
   faction: 0
   hpBarText: {fileID: 0}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 82000012154244790}
   attackSound: {fileID: 8300000, guid: 1d3b28e22cc5a44bab5d9144362d898c, type: 3}
   hurtSound: {fileID: 8300000, guid: 1d0b16d9c2a524ecea1fa166a3e2f46a, type: 3}
   isAttacking: 0
