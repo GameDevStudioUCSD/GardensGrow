@@ -3,11 +3,14 @@ using System.Collections;
 
 public class BombPlantObject : PlantGridObject {
 
+    //for final boss
+    public bool evil = false;
+
 	public GameObject bombObject;
 	public int regrowFrames;
 
 	private bool noBomb;
-	private BombObject bomb;
+	public BombObject bomb;
 	private int frames;
 
 	// Use this for initialization

@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: CaveDoor
+  m_Controller: {fileID: 9100000, guid: 3c98484e9a0fd4ecb8de2aa441aee042, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0fa5d21c1fce54db18bde57a7f45122b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7eaad883ca3c24c91afc60ee4a712cf3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74fa9808165e6417da1ded57696fe006, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e2d9f22c00ef941f2a82c2c58c064947, type: 2}

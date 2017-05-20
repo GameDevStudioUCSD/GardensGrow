@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TurbinePlantObject : PlantGridObject
 {
+    //for final boss
+    public bool evil = false;
     //windSlime break into smaller ones variables
     public GameObject littleSlime;
     private Vector3 spawnPosition;
@@ -149,5 +151,18 @@ public class TurbinePlantObject : PlantGridObject
         {
             StartCoroutine(killWindSlimeCD(other));
         }
+        if (evil)
+        {
+            if (other.gameObject.GetComponent<PlayerGridObject>())
+            {
+                other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(1);
+            }
+        }
+    }
+
+    public void playSound()
+    {
+		audioSource.clip = attackSound;
+        audioSource.Play();
     }
 }

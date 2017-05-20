@@ -3,6 +3,9 @@ using System.Collections;
 
 public class PlantProjectileObject : MonoBehaviour {
 
+    //for final boss
+    public bool evil = false;
+
     public float shotSpeed;
     public int shotRange;
     private int shotRangeCounter;
@@ -59,7 +62,7 @@ public class PlantProjectileObject : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemySpawner")
+        if ( ((other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemySpawner") && !evil) || (evil && other.gameObject.tag == "Player"))
         {
             KillableGridObject killable = other.GetComponent<KillableGridObject>();
             if (!killable.isInvulnerable)

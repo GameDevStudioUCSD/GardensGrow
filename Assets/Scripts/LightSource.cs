@@ -6,6 +6,7 @@ public class LightSource : MonoBehaviour {
     public int radius;
     public float lightLevel;
     public bool belongsToRoom = false;
+    private bool finished = false;
 
     public void OnEnable() {
         /*
@@ -21,7 +22,10 @@ public class LightSource : MonoBehaviour {
     }
     public void OnDisable()
     {
-        ChangeAdjacentLightLevel(-1.0f / lightLevel);
+        if (!finished) {
+            ChangeAdjacentLightLevel(-1.0f / lightLevel);
+            finished = true;
+        }
     }
 
     private IEnumerator LateInit() {

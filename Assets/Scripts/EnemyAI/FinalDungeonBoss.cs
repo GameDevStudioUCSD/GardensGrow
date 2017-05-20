@@ -6,6 +6,11 @@ public class FinalDungeonBoss : MonoBehaviour {
     //spawning information
     public GameObject[] tentacles;
 
+    /* HOW TO BEAT FINAL BOSS
+     * place certain plants to hit certain colored
+     * tentacles until boss' hp reaches 0
+     */
+
     /* Tentacle nums
      * 0    watermelon  red
      * 1    turbine     green
@@ -222,6 +227,8 @@ public class FinalDungeonBoss : MonoBehaviour {
                 {
                     currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouth, spawnRotationVertical);
                 }
+
+                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.North;
             }
             else if (currSituation == 1)
             {
@@ -235,6 +242,7 @@ public class FinalDungeonBoss : MonoBehaviour {
                 {
                     currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorth, spawnRotationVertical);
                 }
+                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.South;
             }
             else if (currSituation == 2)
             {
@@ -249,6 +257,7 @@ public class FinalDungeonBoss : MonoBehaviour {
                 {
                     currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEast, spawnRotationHorizontal);
                 }
+                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.West;
             }
             else if (currSituation == 3)
             {
@@ -262,6 +271,7 @@ public class FinalDungeonBoss : MonoBehaviour {
                 {
                     currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWest, spawnRotationHorizontal);
                 }
+                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.East;
             }
             currentTentacle.GetComponent<Tentacle>().speed = 3.0f;
             currentTentacle.GetComponent<Tentacle>().tentacleNum = currTentacleNum;

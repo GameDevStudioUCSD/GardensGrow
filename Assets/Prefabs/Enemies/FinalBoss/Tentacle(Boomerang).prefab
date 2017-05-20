@@ -186,8 +186,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011588444954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.53, y: 3.99, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.469241, y: 3.0571392, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -315,6 +315,20 @@ MonoBehaviour:
   speed: 1
   damage: 1
   tentacleNum: 0
+  evilWatermelonPlant: {fileID: 1000013356331344, guid: 0af9d5813c7b377498223975044014f0,
+    type: 2}
+  evilTurbinePlant: {fileID: 1000013476961560, guid: 1f36a423a3a265d4cbf22dcc577facff,
+    type: 2}
+  evilCactusPlant: {fileID: 1000014242151874, guid: c301583715abcf9408b346a30e625481,
+    type: 2}
+  evilBoomerangPlant: {fileID: 1000014166986534, guid: 6572ff034344bd348a57759e35237c1c,
+    type: 2}
+  evilBombPlant: {fileID: 1000012837682330, guid: ccb50e3753205d2438b275f3ad4992b6,
+    type: 2}
+  evilLightPlant: {fileID: 1000010275127104, guid: e94ac3aca3cef5c46914638058a11aec,
+    type: 2}
+  evilSpinningPlant: {fileID: 1000012311139908, guid: 481add8186582174bba5dc17ef426d0d,
+    type: 2}
 --- !u!212 &212000010877527978
 SpriteRenderer:
   m_ObjectHideFlags: 1
