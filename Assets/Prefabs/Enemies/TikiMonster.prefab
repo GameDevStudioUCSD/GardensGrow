@@ -38,11 +38,11 @@ GameObject:
   - 50: {fileID: 50000014059858994}
   - 61: {fileID: 61000012577241364}
   - 95: {fileID: 95000014090594884}
-  - 114: {fileID: 114000014264120936}
   - 111: {fileID: 111000012766512920}
   - 114: {fileID: 114000010661998058}
   - 114: {fileID: 114000010465182136}
   - 82: {fileID: 82000013978991450}
+  - 114: {fileID: 114000011274662154}
   m_Layer: 0
   m_Name: TikiMonster
   m_TagString: Enemy
@@ -525,6 +525,20 @@ MonoBehaviour:
   isShooter: 0
   shotDelay: 0
   laser: {fileID: 1000010390182822}
+--- !u!114 &114000011274662154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010961765512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7339698b807213b46bbdd8215b7abfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBarrier: 0
+  sprites: []
+  chosenSprite: {fileID: 0}
 --- !u!114 &114000011536166080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -577,20 +591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   other: {fileID: 0}
---- !u!114 &114000014264120936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010961765512}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423bc39aede7b964686ff9b612ee24d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumViewDistance: 5
-  lookDirection: {x: 0, y: 1, z: 0}
-  debugMode: 0
 --- !u!212 &212000010130523444
 SpriteRenderer:
   m_ObjectHideFlags: 1

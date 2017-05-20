@@ -62,7 +62,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         if (!debug) return;
         if (!Application.isPlaying) return;
 
-        Vector2 startPoint = this.transform.position;
+        Vector2 startPoint = transform.localPosition;
         for (int i = tilesMoved; i < path.Count; i++)
         {
             var v = path[i];
