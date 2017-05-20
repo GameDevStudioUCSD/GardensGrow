@@ -11,13 +11,46 @@ public class ItemDrop : StaticGridObject {
 	public bool permanent;
 	public int lifeSpan;
 
-	private int life;
+    private float x;
+    private float y;
+    private float z;
+    
+    private int life;
+
+    //save slot stuff
+    private bool pickedUp = false;
 
 	// Use this for initialization
 	protected override void Start () {
-		life = 0;
-	}
+        life = 0;
+    }
 	
+    void OnEnable()
+    {
+        PlayerGridObject p = FindObjectOfType<PlayerGridObject>();
+
+        if (!p.itemsRePickUp)
+        {
+            x = this.gameObject.transform.position.x;
+            y = this.gameObject.transform.position.y;
+            z = this.gameObject.transform.position.z;
+
+            pickedUp = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp);
+
+            if (pickedUp)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+    }
+    void OnDisable()
+    {
+
+        PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                  + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp);
+
+    }
 	// Update is called once per frame
 	void Update () {
 		life++;
@@ -28,6 +61,7 @@ public class ItemDrop : StaticGridObject {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
+            pickedUp = true;
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
             if (player == null) return; // Ignore the player's other colliders (hacky)
 			UIController controller = player.canvas;

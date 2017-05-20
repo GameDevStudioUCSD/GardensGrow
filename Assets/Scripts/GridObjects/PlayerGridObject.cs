@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
+
+    //for item save
+    public bool itemsRePickUp = true;
+
     public PlantGridObject[] plants;
     public UIController canvas;
     public float tempInvincibiltySeconds;
