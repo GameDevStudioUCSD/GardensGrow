@@ -41,14 +41,14 @@ public class CactusPlantObject : PlantGridObject {
             other.gameObject.GetComponent<Switch>().TakeDamage(0);  //check how player switches the switch
             isAttacking = false;
         }
-        if (other.gameObject.CompareTag("Enemy") || (other.gameObject.CompareTag("Player")&&evil) )
+        if ( (other.gameObject.CompareTag("Enemy") && !evil) || (other.gameObject.CompareTag("Player") && evil) )
         {
             StartCoroutine(punchAnimationWaiting(other, dir)); //changeable
         }
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner") || other.gameObject.GetComponent<Switch>() || (other.gameObject.GetComponent<PlayerGridObject>() && evil))
+        if ( ((other.CompareTag("Enemy") || other.CompareTag("EnemySpawner") || other.gameObject.GetComponent<Switch>()) && !evil) || (other.gameObject.GetComponent<PlayerGridObject>() && evil))
         {
             if (isAttacking == false)
             {
@@ -87,7 +87,7 @@ public class CactusPlantObject : PlantGridObject {
     IEnumerator punchAnimationWaiting(Collider2D other, Globals.Direction dir)
     {
         yield return new WaitForSeconds(punchAnimationWait);
-        if (other.gameObject.GetComponent<EnemyGridObject>())
+        if (other.gameObject.GetComponent<EnemyGridObject>() && !evil)
         {
             other.gameObject.GetComponent<EnemyGridObject>().TakeDamage(damage);
         }

@@ -323,6 +323,12 @@ MonoBehaviour:
     type: 2}
   evilBoomerangPlant: {fileID: 1000014166986534, guid: 6572ff034344bd348a57759e35237c1c,
     type: 2}
+  evilBombPlant: {fileID: 1000012837682330, guid: ccb50e3753205d2438b275f3ad4992b6,
+    type: 2}
+  evilLightPlant: {fileID: 1000010275127104, guid: e94ac3aca3cef5c46914638058a11aec,
+    type: 2}
+  evilSpinningPlant: {fileID: 1000012311139908, guid: 481add8186582174bba5dc17ef426d0d,
+    type: 2}
 --- !u!212 &212000010027452732
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -147,7 +147,10 @@ public class PlayerGridObject : MoveableGridObject {
                 BombObject bomb = target.GetComponent<BombObject>();
                 if (bomb)
                 {
-                    bomb.Roll(direction);
+                    if (!bomb.evil)
+                    {
+                        bomb.Roll(direction);
+                    }
                 }
                 //deplant code MOVED so deplanting is a different button
                 PlantGridObject plant = target.GetComponent<PlantGridObject>();

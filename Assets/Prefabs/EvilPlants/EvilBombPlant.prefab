@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012837682330
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   evil: 1
   bombObject: {fileID: 1000012912793192, guid: 61b720b07506b364dbcb580e2c141352, type: 2}
   regrowFrames: 150
+  bomb: {fileID: 0}
 --- !u!212 &212000013554108352
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -129,10 +129,10 @@ GameObject:
   - 4: {fileID: 4000010987646432}
   - 212: {fileID: 212000012113375912}
   - 61: {fileID: 61000012833609816}
-  - 50: {fileID: 50000014026282002}
   - 114: {fileID: 114000014027075202}
   - 114: {fileID: 114000012713502602}
   - 95: {fileID: 95000011114779430}
+  - 50: {fileID: 50000013125269162}
   m_Layer: 0
   m_Name: EvilBomb
   m_TagString: Platform
@@ -357,7 +357,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011255151872}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50000014026282002
+--- !u!50 &50000013125269162
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1

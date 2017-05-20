@@ -7,11 +7,15 @@ public class Tentacle : KillableGridObject {
     public int damage = 1;
     public int tentacleNum;
 
+    
     //evil plants
     public GameObject evilWatermelonPlant;
     public GameObject evilTurbinePlant;
     public GameObject evilCactusPlant;
     public GameObject evilBoomerangPlant;
+    public GameObject evilBombPlant;
+    public GameObject evilLightPlant;
+    public GameObject evilSpinningPlant;
 
     //instantiating stuff
     private Quaternion spawnRotation = Quaternion.Euler(0, 0, 0f);
@@ -43,7 +47,13 @@ public class Tentacle : KillableGridObject {
 
         /*player plants attack tentacle*/
 
-        if (other.gameObject.GetComponent<PlantGridObject>())
+
+        if (boss.hp == 0)
+        {
+            //instantiate boss weed seed
+        }
+
+        if (other.gameObject.GetComponent<PlantGridObject>() && boss.hp != 0)
         {
             if ((other.gameObject.GetComponent<PlantProjectileObject>() && tentacleNum == 0) || //watermelon
                 (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
@@ -56,12 +66,6 @@ public class Tentacle : KillableGridObject {
                 //play damaged animation
                 boss.touchedPlayer = true; //makes tentacles retract
                 boss.hp--;
-
-                if(boss.hp == 0)
-                {    
-                    //play spawning boss sound
-                    //spawn boss to deplant in the middle of the screen
-                }
             }
             else
             {
@@ -97,6 +101,48 @@ public class Tentacle : KillableGridObject {
                     {
                         Destroy(other.gameObject);
                         Instantiate(evilBoomerangPlant, spawnPosition, spawnRotation);
+                    }
+                }
+                if(other.gameObject.GetComponent<BombPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<BombPlantObject>().evil)
+                    {
+                        if (other.gameObject.GetComponent<BombPlantObject>().bomb)
+                        {
+                            Destroy(other.gameObject.GetComponent<BombPlantObject>().bomb.gameObject);
+                        }
+                        Destroy(other.gameObject);
+                        Instantiate(evilBombPlant, spawnPosition, spawnRotation);
+                    }
+                    else
+                    {
+                        BombObject temp = other.gameObject.GetComponent<BombPlantObject>().bomb;
+                        if (temp)
+                        {
+                            temp.Roll(this.direction);
+                        }
+                    }
+                }
+                if (other.gameObject.GetComponent<LightPlantObject>())
+                {
+                    if (!other.gameObject.GetComponent<LightPlantObject>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilLightPlant, spawnPosition, spawnRotation);
+                    }
+                    else
+                    {
+                        CircuitSystem cs = FindObjectOfType<CircuitSystem>();
+                        cs.isLit = true;
+                        cs.ConnectJunction();
+                    }
+                }
+                if (other.gameObject.GetComponent<SpinningPlant>())
+                {
+                    if (!other.gameObject.GetComponent<SpinningPlant>().evil)
+                    {
+                        Destroy(other.gameObject);
+                        Instantiate(evilSpinningPlant, spawnPosition, spawnRotation);
                     }
                 }
             }

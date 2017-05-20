@@ -3,6 +3,9 @@ using System.Collections;
 
 public class SpinningPlant : PlantGridObject {
 
+    //for final boss
+    public bool evil = false;
+
     public float rotationSpeed = 10;
     public int framesBetweenDamage = 60;
 

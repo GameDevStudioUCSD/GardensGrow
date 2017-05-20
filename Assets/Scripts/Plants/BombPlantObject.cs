@@ -10,7 +10,7 @@ public class BombPlantObject : PlantGridObject {
 	public int regrowFrames;
 
 	private bool noBomb;
-	private BombObject bomb;
+	public BombObject bomb;
 	private int frames;
 
 	// Use this for initialization
