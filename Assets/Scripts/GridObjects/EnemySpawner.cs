@@ -108,7 +108,7 @@ public class EnemySpawner : KillableGridObject
         monsterPathFinding.parameters.target = targetObj;
 
         // Activate monster
-        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().Enable();
+        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().StartAI();
     }
     
     public void SpawnAtOnce()

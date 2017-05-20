@@ -16,6 +16,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
 
     public PathFindingParameters parameters;
 
+    public bool useRoomBoundary = false;
     public bool debug = false;
 
     protected Transform creatureTransform = null;
@@ -36,8 +37,10 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     protected bool pathNeedsReevaluation;
     protected bool pathIsFinished;
 
+
     public void Start()
     {
+        Debug.Log("PathFinding: Start");
         // Try to recover from bad parameters
         if(!parameters.tileMap)
         {
@@ -51,6 +54,11 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
             // Use player as default target
             parameters.target = GameObject.FindGameObjectWithTag(Globals.player_tag);
         }
+
+        if (astar == null)
+            astar = new AStar(parameters.tileMap);
+        if (creatureTransform == null)
+            creatureTransform = parameters.creature.transform;
     }
 
     /// <summary>
@@ -87,10 +95,6 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     /// </summary>
     protected override void ExecuteActionFindPath()
     {
-        if (astar == null)
-            astar = new AStar(parameters.tileMap);
-        if (creatureTransform == null)
-            creatureTransform = parameters.creature.transform;
 
         startTile = parameters.tileMap.GetNearestTile(creatureTransform.position);
         currentTile = startTile;
