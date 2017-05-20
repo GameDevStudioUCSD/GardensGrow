@@ -29,7 +29,7 @@ GameObject:
   - 82: {fileID: 82000014108788520}
   - 114: {fileID: 114000010508208554}
   m_Layer: 0
-  m_Name: evilLightPlant
+  m_Name: EvilLightPlant
   m_TagString: Turbine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
