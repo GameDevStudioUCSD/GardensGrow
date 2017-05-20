@@ -13,6 +13,9 @@ public class CaveBossAI : MonoBehaviour {
     public bool canAttack = true;
     public bool stunned = false;
 
+    private Animator anim;
+
+
     /*BOSS MOVE PATTERN:
      * Middle:0,0,0
      * Top Room: 0,9.375,0
@@ -39,6 +42,7 @@ public class CaveBossAI : MonoBehaviour {
     void Start()
     {
         StartCoroutine(MovePattern());
+        anim = this.gameObject.GetComponent<Animator>();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -47,7 +51,7 @@ public class CaveBossAI : MonoBehaviour {
             CircuitSystem cs = other.gameObject.GetComponentInParent<CircuitSystem>();
             if (canAttack)
             {
-                //play attack animation
+                anim.SetInteger("AnimNum", 0);
                 if (cs.isLit)
                 {
                     cs.isLit = false;
@@ -67,26 +71,31 @@ public class CaveBossAI : MonoBehaviour {
                 StartCoroutine(AttackCD());
             }
             else
-            {
+            {   //boss can be damaged in this block
                 if (cs.isLit)
                 {
                     stunned = true;
+                    anim.SetInteger("AnimNum", 1);
                 }
             }
         }
 
         if (other.gameObject.GetComponent<Boomerang>() && stunned)
         {
-            //play damaged animation
             BossHp--;
-
+            StartCoroutine(damagedAnim());
             if (BossHp == 0)
             {
-                //play death animation
-                Destroy(this.gameObject);
+                StartCoroutine(deathAnim());
             }   
         }
         
+    }
+    IEnumerator damagedAnim()
+    {
+        anim.SetInteger("AnimNum", 3);
+        yield return new WaitForSeconds(1.0f);
+        anim.SetInteger("AnimNum", 1);
     }
     IEnumerator Attack()
     {
@@ -113,12 +122,19 @@ public class CaveBossAI : MonoBehaviour {
             }
         }
     }
+    IEnumerator deathAnim()
+    {
+        anim.SetInteger("AnimNum", 2);
+        yield return new WaitForSeconds(4.0f);
+        Destroy(this.gameObject);
+    }
     IEnumerator AttackCD()
     {
         canAttack = false;
         yield return new WaitForSeconds(attackCD);
         canAttack = true;
         stunned = false;
+        anim.SetInteger("AnimNum", 0);
     }
     IEnumerator MovePattern()
     {
