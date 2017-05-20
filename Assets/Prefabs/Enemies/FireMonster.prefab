@@ -751,7 +751,7 @@ MonoBehaviour:
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
     tilesUntilReevaluation: 5
-  useRoomBoundary: 1
+  useRoomBoundary: 0
   debug: 0
   path: 
 --- !u!114 &114000010819168714
