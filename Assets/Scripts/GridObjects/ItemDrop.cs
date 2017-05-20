@@ -27,27 +27,29 @@ public class ItemDrop : StaticGridObject {
 	
     void OnEnable()
     {
-        x = this.gameObject.transform.position.x;
-        y = this.gameObject.transform.position.y;
-        z = this.gameObject.transform.position.z;
-
-        pickedUp = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-            + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp);
-
-        if (pickedUp)
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
-    void OnDisable()
-    {
         PlayerGridObject p = FindObjectOfType<PlayerGridObject>();
 
         if (!p.itemsRePickUp)
         {
-            PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+            x = this.gameObject.transform.position.x;
+            y = this.gameObject.transform.position.y;
+            z = this.gameObject.transform.position.z;
+
+            pickedUp = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
                 + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp);
+
+            if (pickedUp)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
+    }
+    void OnDisable()
+    {
+
+        PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                  + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp);
+
     }
 	// Update is called once per frame
 	void Update () {
