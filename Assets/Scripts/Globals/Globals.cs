@@ -75,6 +75,7 @@ public class Globals: MonoBehaviour {
     public static string tile_map_tag = "TileMap";
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";
+    public static string room_tag = "Room";
     public static string ground_layer = "Ground";
 
     public static Vector2 DirectionToVector(Direction direction)
