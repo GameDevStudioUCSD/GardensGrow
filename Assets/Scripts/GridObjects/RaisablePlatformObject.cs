@@ -5,10 +5,11 @@ public class RaisablePlatformObject : MonoBehaviour {
 
 	bool raised = false;
 	public GameObject bossEntrance;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
-	
+		animator = GetComponent<Animator>();
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
@@ -33,6 +34,7 @@ public class RaisablePlatformObject : MonoBehaviour {
     	if (raised == false) {
     		raised = true;
     		bossEntrance.SetActive(true);
+    		animator.SetTrigger("RaisePlatform");
     	}
     	else {
     		raised = false;

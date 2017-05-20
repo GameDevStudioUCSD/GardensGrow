@@ -60,7 +60,7 @@ public class Globals: MonoBehaviour {
     }
 
     // Stuff That needs to be saved
-    public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();
+    public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();     
 
     public static int loadedSlot = -1;
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
@@ -153,6 +153,7 @@ public class Globals: MonoBehaviour {
         PlayerPrefsX.SetIntArray("PlantDirections"+saveSlot, tempPlantDirections);
 
         DialogueNPCTrigger[] npcList = FindObjectsOfType<DialogueNPCTrigger>();
+        
 
         foreach(DialogueNPCTrigger npc in npcList)
         {
