@@ -160,7 +160,8 @@ public class PlayerGridObject : MoveableGridObject {
                 PlantGridObject plant = target.GetComponent<PlantGridObject>();
                 if (plant)
                 {
-                    plant.TakeDamage(100);
+                	if (!plant.unharvestable)
+                    	plant.TakeDamage(100);
                 }
             }
         }
