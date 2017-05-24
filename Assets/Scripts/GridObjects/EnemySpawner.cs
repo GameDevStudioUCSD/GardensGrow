@@ -9,6 +9,7 @@ public class EnemySpawner : KillableGridObject
     public GameObject enemy;
     public TileMap tileMap;
     public GameObject targetObj;
+    public bool useRoomBoundary;
     public UnityEvent deathEvent;
     private Vector3 spawnPosition;
 
@@ -106,6 +107,7 @@ public class EnemySpawner : KillableGridObject
         PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
         monsterPathFinding.parameters.tileMap = tileMap;
         monsterPathFinding.parameters.target = targetObj;
+        monsterPathFinding.parameters.useRoomBoundary = useRoomBoundary;
 
         // Activate monster
         summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().StartAI();

@@ -16,9 +16,6 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
 
     public PathFindingParameters parameters;
 
-    // Keeps monster from pathfinding out of the room
-    public bool useRoomBoundary = false;
-
     // Data for use with room boundary
     protected Tile spawnedTile; // Tile this creature spawned on
     protected Transform roomTransform; // Room this creature is bound to
@@ -49,7 +46,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         astar = new AStar(parameters.tileMap);
         creatureTransform = parameters.creature.transform;
 
-        if (useRoomBoundary)
+        if (parameters.useRoomBoundary)
             SetUpRoomBoundary();
 
         // Try to recover from bad parameters
@@ -157,7 +154,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         currentTile = startTile;
 
         // Check room bounds
-        if(useRoomBoundary)
+        if(parameters.useRoomBoundary)
         {
             if(IsInRoomBoundary(parameters.target.transform.position))
             {
@@ -306,6 +303,9 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         public int stepAmount = 32;
         public float delayBetweenSteps = 0.03f;
         public float allowedStepOffset = 0.50f;
-        public int tilesUntilReevaluation = 5; 
+        public int tilesUntilReevaluation = 5;
+        // Keep monsters from pathing out of the room
+        // Monsters will return back to spawn area if they try to leave
+        public bool useRoomBoundary;
     }
 }

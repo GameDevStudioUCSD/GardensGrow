@@ -22,7 +22,6 @@ GameObject:
   - 212: {fileID: 212000013943575832}
   - 114: {fileID: 114000010082066544}
   - 61: {fileID: 61000012312081822}
-  - 114: {fileID: 114000010059909758}
   - 114: {fileID: 114000010020692208}
   m_Layer: 8
   m_Name: DesertTownWallLeftT
@@ -73,22 +72,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 59779c7a5625c4a98ae32f8e0ce86db7, type: 3}
   chosenSprite: {fileID: 21300000, guid: 59779c7a5625c4a98ae32f8e0ce86db7, type: 3}
---- !u!114 &114000010059909758
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010475969714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32550187db83bf542b41de28e0cf63bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmoColor: {r: 0, g: 0, b: 0, a: 1}
-  shouldDrawGizmos: 1
-  tileCollider: {fileID: 61000012312081822}
-  isPatheable: 1
-  gCost: 1
 --- !u!114 &114000010082066544
 MonoBehaviour:
   m_ObjectHideFlags: 1
