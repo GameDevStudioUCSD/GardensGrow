@@ -2294,6 +2294,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (72)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -2740,6 +2745,7 @@ GameObject:
   - 61: {fileID: 71006320}
   - 114: {fileID: 71006323}
   - 50: {fileID: 71006324}
+  - 95: {fileID: 71006325}
   m_Layer: 0
   m_Name: CaveDungeonBoss
   m_TagString: CaveBoss
@@ -2789,8 +2795,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6aeb3fde152347e69b42c1145273b91, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 9d4ecc9a7bdad39438e27a5ab73b6129, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2843,6 +2849,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &71006325
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71006319}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d11be501ef40d34f8c73433cd76fbec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &71113971 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011229191376, guid: 8b5fc199d7f5d4ee88fdd5b6045b8475,
@@ -3313,6 +3336,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -5496,6 +5524,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -6082,6 +6115,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -7071,6 +7109,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -9613,6 +9656,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -11144,7 +11192,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -11153,7 +11201,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -12513,7 +12561,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -12522,7 +12570,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -12924,6 +12972,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -13228,6 +13281,11 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -13360,6 +13418,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -13981,6 +14044,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (66)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -14638,6 +14706,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (70)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -15794,6 +15867,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -16443,7 +16521,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -16452,7 +16530,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -16772,6 +16850,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -16890,6 +16973,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -19948,6 +20036,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -21132,6 +21225,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -21300,7 +21398,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -21309,7 +21407,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -25445,6 +25543,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (64)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -27596,6 +27699,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -30345,7 +30453,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -30354,7 +30462,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -31068,6 +31176,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -31829,7 +31942,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -31838,7 +31951,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -32261,6 +32374,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -32481,6 +32599,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -32644,6 +32767,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -32988,6 +33116,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -33059,7 +33192,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -33068,7 +33201,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -33136,7 +33269,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -33145,7 +33278,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -36320,6 +36453,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -39197,6 +39335,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -39580,6 +39723,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -40049,6 +40197,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (69)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -42838,6 +42991,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -43290,6 +43448,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -46494,7 +46657,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -46813,6 +46976,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -46935,6 +47103,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -48923,6 +49096,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -50298,6 +50476,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -50726,6 +50909,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -52643,6 +52831,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -52862,6 +53055,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (62)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -57107,6 +57305,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -57229,6 +57432,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -57486,6 +57694,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -59218,7 +59431,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -59227,7 +59440,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -60779,7 +60992,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -60788,7 +61001,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -61869,6 +62082,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -62041,7 +62259,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -62166,6 +62384,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (71)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -63485,7 +63708,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -63494,7 +63717,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -64809,6 +65032,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -65335,6 +65563,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -68407,7 +68640,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -68416,7 +68649,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -72765,6 +72998,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -72831,6 +73069,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -73633,6 +73876,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (65)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -74245,7 +74493,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -74254,7 +74502,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -76076,6 +76324,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -76875,6 +77128,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (68)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -77801,6 +78059,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -78016,6 +78279,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -78969,6 +79237,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -79855,12 +80128,12 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -82058,11 +82331,16 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -83215,6 +83493,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -84852,6 +85135,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -85349,7 +85637,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -85358,7 +85646,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -88005,7 +88293,7 @@ Prefab:
     - target: {fileID: 212000010478447364, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
@@ -88014,7 +88302,7 @@ Prefab:
     - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -88860,6 +89148,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
@@ -90803,6 +91096,11 @@ Prefab:
       propertyPath: m_Name
       value: CaveWallHorizontal (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
   m_IsPrefabParent: 0
@@ -91085,6 +91383,11 @@ Prefab:
     - target: {fileID: 1000011215137434, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}
       propertyPath: m_Name
       value: CaveWallHorizontal (63)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011876985672, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24a3f2b94a2934b2c9a3ab3f2b34bea2, type: 2}

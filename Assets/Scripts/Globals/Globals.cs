@@ -60,7 +60,7 @@ public class Globals: MonoBehaviour {
     }
 
     // Stuff That needs to be saved
-    public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();
+    public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();     
 
     public static int loadedSlot = -1;
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
@@ -72,8 +72,10 @@ public class Globals: MonoBehaviour {
     public static TileMap tileMap;
     public static int playerHealth = 12;
 
+    public static string tile_map_tag = "TileMap";
     public static string ground_tag = "Ground";
     public static string player_tag = "Player";
+    public static string room_tag = "Room";
     public static string ground_layer = "Ground";
 
     public static Vector2 DirectionToVector(Direction direction)
@@ -151,6 +153,7 @@ public class Globals: MonoBehaviour {
         PlayerPrefsX.SetIntArray("PlantDirections"+saveSlot, tempPlantDirections);
 
         DialogueNPCTrigger[] npcList = FindObjectsOfType<DialogueNPCTrigger>();
+        
 
         foreach(DialogueNPCTrigger npc in npcList)
         {

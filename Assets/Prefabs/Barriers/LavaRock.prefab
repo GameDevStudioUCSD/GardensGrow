@@ -22,7 +22,6 @@ GameObject:
   - 212: {fileID: 212000014166724622}
   - 114: {fileID: 114000014092166940}
   - 61: {fileID: 61000010502741402}
-  - 114: {fileID: 114000013496554354}
   - 114: {fileID: 114000010174625898}
   m_Layer: 8
   m_Name: LavaRock
@@ -73,22 +72,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: b986c812de8a7499185c5fd0330f59f8, type: 3}
   chosenSprite: {fileID: 21300000, guid: b986c812de8a7499185c5fd0330f59f8, type: 3}
---- !u!114 &114000013496554354
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013203106572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32550187db83bf542b41de28e0cf63bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmoColor: {r: 0, g: 0, b: 0, a: 1}
-  shouldDrawGizmos: 1
-  tileCollider: {fileID: 61000010502741402}
-  isPatheable: 1
-  gCost: 1
 --- !u!114 &114000014092166940
 MonoBehaviour:
   m_ObjectHideFlags: 1

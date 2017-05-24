@@ -89,7 +89,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 61000010851598704}
   isPatheable: 1
   gCost: 1
 --- !u!114 &114000011834827308
@@ -103,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976e7bc01feef4d409da6016a532f1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBarrier: 1
+  isBarrier: 0
   sprites: []
   chosenSprite: {fileID: 0}
   damage: 2

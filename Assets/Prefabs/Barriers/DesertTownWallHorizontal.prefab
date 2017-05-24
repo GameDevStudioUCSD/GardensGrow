@@ -22,7 +22,6 @@ GameObject:
   - 212: {fileID: 212000011265733078}
   - 114: {fileID: 114000011926145736}
   - 61: {fileID: 61000011965281108}
-  - 114: {fileID: 114000011099514454}
   - 114: {fileID: 114000013592520338}
   m_Layer: 8
   m_Name: DesertTownWallHorizontal
@@ -58,22 +57,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!114 &114000011099514454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012344620028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32550187db83bf542b41de28e0cf63bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmoColor: {r: 0, g: 0, b: 0, a: 1}
-  shouldDrawGizmos: 1
-  tileCollider: {fileID: 61000011965281108}
-  isPatheable: 1
-  gCost: 1
 --- !u!114 &114000011926145736
 MonoBehaviour:
   m_ObjectHideFlags: 1

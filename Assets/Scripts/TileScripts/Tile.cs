@@ -7,9 +7,6 @@ public class Tile : MonoBehaviour {
     public Color gizmoColor = Color.yellow;
     public bool shouldDrawGizmos = true;
 
-    [ContextMenuItem("Get Collider", "GetCollider")]
-    public Collider2D tileCollider;
-
     [ContextMenuItem("Set Patheable", "SetPatheable")]
     public bool isPatheable;
 
@@ -52,17 +49,6 @@ public class Tile : MonoBehaviour {
     */
 
     /// <summary>
-    /// Automatically finds the Collider2D attached to this object and
-    /// sets the collider field.
-    /// 
-    /// To use right-click collider field and select "Get Collider"
-    /// </summary>
-    private void GetCollider()
-    {
-        tileCollider = GetComponent<Collider2D>();
-    }
-
-    /// <summary>
     /// Automatically detects if there is a barrier terrain object on this tile
     /// setting the isPatheable field accordingly.
     /// 
@@ -70,6 +56,15 @@ public class Tile : MonoBehaviour {
     /// </summary>
     private void SetPatheable()
     {
+        bool cleanUpCollider = false; // Checks to see if we should remove temporarily created collider
+        Collider2D tileCollider = GetComponent<Collider2D>();
+        if(tileCollider == null)
+        {
+            // Create a temporary collider to raycast from
+            cleanUpCollider = true;
+            tileCollider = gameObject.AddComponent<BoxCollider2D>();
+        }
+
         RaycastHit2D[] results = new RaycastHit2D[5];
 
         // Create raycast to see if there are any barriers on this tile
@@ -95,6 +90,12 @@ public class Tile : MonoBehaviour {
                     }
                 }
             }
+        }
+
+        if(cleanUpCollider)
+        {
+            // Clean up temporary collider
+            DestroyImmediate(tileCollider);
         }
     }
 

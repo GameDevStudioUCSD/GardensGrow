@@ -14,6 +14,21 @@ public class ScorpionVenom : StatusEffect {
 
     protected SpriteRenderer sprite;
 
+    // Allow reapplying of the venom, refresh tick count
+    public override void ApplyEffect()
+    {
+        // Check if the status effect already exists on the target
+        ScorpionVenom previousScorpionVenom = affectedTarget.GetComponentInChildren<ScorpionVenom>();
+        if(previousScorpionVenom)
+        {
+            // Get rid of the previous instance of scorpion venom
+            previousScorpionVenom.EndEffect();
+        }
+
+        // Apply this status effect
+        base.ApplyEffect();
+    }
+
     public override void StartEffect()
     {
         PoisonHeartTint(poisonedTint);
@@ -60,4 +75,5 @@ public class ScorpionVenom : StatusEffect {
 
         Destroy(this.gameObject);
     }
+
 }

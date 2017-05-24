@@ -65,7 +65,7 @@ public class SummoningModule : MonoBehaviour {
         spawnTimeReady = false;
 
         // Activate monster
-        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().Enable();
+        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().StartAI();
     }
 
     public bool CanSummon()

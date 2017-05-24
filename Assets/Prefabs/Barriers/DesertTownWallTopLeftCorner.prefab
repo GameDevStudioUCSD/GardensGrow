@@ -22,7 +22,6 @@ GameObject:
   - 212: {fileID: 212000014160070072}
   - 114: {fileID: 114000011766016134}
   - 61: {fileID: 61000012531000386}
-  - 114: {fileID: 114000013721695670}
   - 114: {fileID: 114000013841201652}
   m_Layer: 8
   m_Name: DesertTownWallTopLeftCorner
@@ -71,22 +70,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapValue: 1
   depth: 0
---- !u!114 &114000013721695670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011347987046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32550187db83bf542b41de28e0cf63bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmoColor: {r: 0, g: 0, b: 0, a: 1}
-  shouldDrawGizmos: 1
-  tileCollider: {fileID: 61000012531000386}
-  isPatheable: 1
-  gCost: 1
 --- !u!114 &114000013841201652
 MonoBehaviour:
   m_ObjectHideFlags: 1
