@@ -759,7 +759,7 @@ MonoBehaviour:
   entries:
   - item: {fileID: 1000014157247844, guid: 4a3f78087eb3946eeba5c3fdcf220c4c, type: 2}
     odds: 1
-  - item: {fileID: 0}
+  - item: {fileID: 1000013162848144, guid: e7775dac8b1f1954e818b9bd95668968, type: 2}
     odds: 9
 --- !u!114 &114000010937130416
 MonoBehaviour:
@@ -805,6 +805,7 @@ MonoBehaviour:
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
     tilesUntilReevaluation: 5
+  useRoomBoundary: 0
   debug: 1
   path: 
 --- !u!114 &114000012310027838
@@ -924,8 +925,7 @@ MonoBehaviour:
   parameters:
     creature: {fileID: 114000012310027838}
     attackCooldown: 1
-    statusEffectPrefab: {fileID: 1000012826803696, guid: 1f570dab275b6e84fbd0c3eee0e456a8,
-      type: 2}
+    spinStun: {fileID: 0}
 --- !u!114 &114000014152132420
 MonoBehaviour:
   m_ObjectHideFlags: 1

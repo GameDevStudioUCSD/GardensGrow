@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011975563728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -84,8 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBarrier: 1
   sprites:
-  - {fileID: 21300000, guid: 536ac2e164d244be1a57cb09cbfa7e45, type: 3}
-  chosenSprite: {fileID: 21300000, guid: 536ac2e164d244be1a57cb09cbfa7e45, type: 3}
+  - {fileID: 21300000, guid: 4fd4bcc8a96a6bb40b1b4340e5623398, type: 3}
+  chosenSprite: {fileID: 21300000, guid: 4fd4bcc8a96a6bb40b1b4340e5623398, type: 3}
 --- !u!114 &114000011852369662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 61000011024222568}
   isPatheable: 1
   gCost: 1
 --- !u!212 &212000013929677420
@@ -131,7 +130,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 536ac2e164d244be1a57cb09cbfa7e45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4fd4bcc8a96a6bb40b1b4340e5623398, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

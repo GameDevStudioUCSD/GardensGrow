@@ -733,6 +733,7 @@ MonoBehaviour:
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
     tilesUntilReevaluation: 5
+  useRoomBoundary: 0
   debug: 0
   path: 
 --- !u!114 &114000010912653222
@@ -867,9 +868,9 @@ MonoBehaviour:
   entries:
   - item: {fileID: 1000014157247844, guid: 4a3f78087eb3946eeba5c3fdcf220c4c, type: 2}
     odds: 1
-  - item: {fileID: 1000011400847876, guid: 96d4fd7d7f20049ee8dec44a444b7fdc, type: 2}
+  - item: {fileID: 1000011588403840, guid: d7cc7b39980de384e845093e0edc0d54, type: 2}
     odds: 1
-  - item: {fileID: 1000014250907170, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
+  - item: {fileID: 1000014170426628, guid: 1b62cccc72f3527408a3d7f5bed5d422, type: 2}
     odds: 1
 --- !u!114 &114000013391636796
 MonoBehaviour:
