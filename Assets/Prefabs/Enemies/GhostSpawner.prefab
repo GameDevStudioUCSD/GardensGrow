@@ -29,6 +29,7 @@ GameObject:
   - 114: {fileID: 114000011224767912}
   - 114: {fileID: 114000011484742096}
   - 114: {fileID: 114000010186969566}
+  - 114: {fileID: 114000012607306374}
   m_Layer: 0
   m_Name: GhostSpawner
   m_TagString: EnemySpawner
@@ -533,7 +534,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: bc90cb57f8bc72a4ab5b7968be59fa38, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &114000010186969566
@@ -746,6 +747,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   other: {fileID: 0}
+--- !u!114 &114000012607306374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010553077884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661d08758fa8f704da63a2ec28a39ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  spriteRenderer: {fileID: 212000012752729994}
 --- !u!114 &114000013960510270
 MonoBehaviour:
   m_ObjectHideFlags: 1
