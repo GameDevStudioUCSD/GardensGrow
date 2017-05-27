@@ -132,7 +132,7 @@ GameObject:
   - 4: {fileID: 4000012548976240}
   - 114: {fileID: 114000012166181188}
   m_Layer: 0
-  m_Name: GhostMonsterLoot
+  m_Name: GenericSlimeLoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -758,7 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  lootTable: {fileID: 0}
+  lootTable: {fileID: 114000012166181188}
   health: 5
   damage: 1
   bombable: 0
@@ -808,7 +808,7 @@ MonoBehaviour:
     odds: 1
   - item: {fileID: 1000011400847876, guid: 96d4fd7d7f20049ee8dec44a444b7fdc, type: 2}
     odds: 1
-  - item: {fileID: 1000014250907170, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
+  - item: {fileID: 1000014170426628, guid: 1b62cccc72f3527408a3d7f5bed5d422, type: 2}
     odds: 1
 --- !u!114 &114000012192317158
 MonoBehaviour:
@@ -830,6 +830,7 @@ MonoBehaviour:
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
     tilesUntilReevaluation: 5
+  useRoomBoundary: 0
   debug: 0
   path: 
 --- !u!114 &114000012263539688

@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Spike_Hit
+  m_Name: CaveDungeonBossFell
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,16 +19,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 4c22622ea8737f047bb3a18ab582f5a5, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: 4c22622ea8737f047bb3a18ab582f5a5, type: 3}
-    - time: 0.375
-      value: {fileID: 21300000, guid: 8559bda19c979644fb9e28f46f683ae2, type: 3}
+      value: {fileID: 21300000, guid: ddb0c6c787aa5314d8ae30ab597e4886, type: 3}
+    - time: 0.13333334
+      value: {fileID: 21300000, guid: ddb0c6c787aa5314d8ae30ab597e4886, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 8
+  m_SampleRate: 15
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -42,15 +40,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 4c22622ea8737f047bb3a18ab582f5a5, type: 3}
-    - {fileID: 21300000, guid: 4c22622ea8737f047bb3a18ab582f5a5, type: 3}
-    - {fileID: 21300000, guid: 8559bda19c979644fb9e28f46f683ae2, type: 3}
+    - {fileID: 21300000, guid: ddb0c6c787aa5314d8ae30ab597e4886, type: 3}
+    - {fileID: 21300000, guid: ddb0c6c787aa5314d8ae30ab597e4886, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.20000002
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

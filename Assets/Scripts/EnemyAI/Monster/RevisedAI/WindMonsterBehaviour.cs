@@ -14,13 +14,13 @@ public class WindMonsterBehaviour : MonsterBehaviourAbstractFSM {
     {
     }
 
-    public override void Enable()
+    public override void StartAI()
     {
         // Set up tilemap and targetting for any summons
         summonModule.parameters.tileMap = pathFindingModule.parameters.tileMap;
         summonModule.parameters.target = pathFindingModule.parameters.target;
 
-        base.Enable();
+        base.StartAI();
     }
 
     // ================================================

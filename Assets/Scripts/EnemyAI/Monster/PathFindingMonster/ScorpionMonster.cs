@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Obsolete("Use ScorpionMonsterBehaviour")]
 public class ScorpionMonster : PathFindingMonster {
     public int tailDamage = 4; //damage done by tail attack
     public int numClawAttacks = 2; //consecutive times scorpion uses claw attack before using tail attack

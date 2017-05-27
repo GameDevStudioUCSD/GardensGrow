@@ -48,5 +48,4 @@ public class SpinStun : StatusEffect {
     {
         Destroy(this.gameObject);
     }
-
 }

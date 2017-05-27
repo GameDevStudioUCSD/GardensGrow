@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Boomerang : MonoBehaviour {
 
+    //for final boss
+    public bool evil = false;
     public static Dictionary<string, List<Vector3>> plants = new Dictionary<string, List<Vector3>>();
 
     public int damage = 1;
@@ -67,6 +69,10 @@ public class Boomerang : MonoBehaviour {
         }
         if (other.gameObject.GetComponent<ItemDrop>() != null) {
             itemHeld.Add(other.gameObject);
+        }
+        if(evil && other.gameObject.GetComponent<PlayerGridObject>())
+        {
+            other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(1);
         }
     }
 

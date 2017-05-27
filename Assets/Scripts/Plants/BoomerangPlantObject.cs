@@ -6,6 +6,23 @@ public class BoomerangPlantObject : PlantGridObject {
 
     private string roomId = null;
 
+    //for final boss
+    public bool evil = false;
+
+    private Boomerang[] booms;
+    void Update()
+    {
+        if (evil)
+        {
+            booms = FindObjectsOfType<Boomerang>();
+
+            foreach(Boomerang b in booms)
+            {
+                b.evil = evil;
+            }
+
+        }
+    }
     void OnEnable() {
        
         roomId = Boomerang.RoomId(transform.position);

@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class PlayerGridObject : MoveableGridObject {
+
+    //for item save
+    public bool itemsRePickUp = true;
+
     public PlantGridObject[] plants;
     public UIController canvas;
     public float tempInvincibiltySeconds;
@@ -147,13 +151,17 @@ public class PlayerGridObject : MoveableGridObject {
                 BombObject bomb = target.GetComponent<BombObject>();
                 if (bomb)
                 {
-                    bomb.Roll(direction);
+                    if (!bomb.evil)
+                    {
+                        bomb.Roll(direction);
+                    }
                 }
                 //deplant code MOVED so deplanting is a different button
                 PlantGridObject plant = target.GetComponent<PlantGridObject>();
                 if (plant)
                 {
-                    plant.TakeDamage(100);
+                	if (!plant.unharvestable)
+                    	plant.TakeDamage(100);
                 }
             }
         }
@@ -212,6 +220,10 @@ public class PlayerGridObject : MoveableGridObject {
             {
                 //planting code
                 PlantGridObject newPlant = (PlantGridObject)Instantiate(plants[plantNumber], new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                if (plantNumber == 1) {
+                	TurbinePlantObject turbinePlant = (TurbinePlantObject)newPlant;
+                	turbinePlant.playSound();
+                }
                 newPlant.Rotate(direction);
                 Globals.inventory[plantNumber]--;
 

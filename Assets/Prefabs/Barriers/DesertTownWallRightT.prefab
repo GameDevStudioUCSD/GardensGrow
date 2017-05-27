@@ -22,7 +22,6 @@ GameObject:
   - 212: {fileID: 212000013395194346}
   - 114: {fileID: 114000012464929374}
   - 61: {fileID: 61000010584637018}
-  - 114: {fileID: 114000010219818924}
   - 114: {fileID: 114000010853918416}
   m_Layer: 8
   m_Name: DesertTownWallRightT
@@ -58,22 +57,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!114 &114000010219818924
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012476141102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32550187db83bf542b41de28e0cf63bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmoColor: {r: 0, g: 0, b: 0, a: 1}
-  shouldDrawGizmos: 1
-  tileCollider: {fileID: 61000010584637018}
-  isPatheable: 1
-  gCost: 1
 --- !u!114 &114000010853918416
 MonoBehaviour:
   m_ObjectHideFlags: 1

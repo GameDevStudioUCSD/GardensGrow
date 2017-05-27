@@ -15,6 +15,7 @@ public class EnemySpawner : KillableGridObject
     //Keep track of spawns
 
     [Header("Spawning Options")]
+    public bool useRoomBoundary;
     [Range(0.0f, 60.0f)]
     public float spawnDelay = 3.0f;
     [Range(0, 99)]
@@ -106,9 +107,10 @@ public class EnemySpawner : KillableGridObject
         PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
         monsterPathFinding.parameters.tileMap = tileMap;
         monsterPathFinding.parameters.target = targetObj;
+        monsterPathFinding.parameters.useRoomBoundary = useRoomBoundary;
 
         // Activate monster
-        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().Enable();
+        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().StartAI();
     }
     
     public void SpawnAtOnce()
