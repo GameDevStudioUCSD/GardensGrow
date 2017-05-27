@@ -25,14 +25,16 @@ public class BombObject : MoveableGridObject {
 
     // Update is called once per frame
     protected override void Update() {
-        if (fuseLit) {
-            frames++;
-            if (frames >= fuseFrames) {
-                Explode();
+        if (!Globals.canvas.dialogue) {
+            if (fuseLit) {
+                frames++;
+                if (frames >= fuseFrames) {
+                    Explode();
+                }
             }
-        }
-        if (isRolling) {
-            Move(rollDirection);
+            if (isRolling) {
+                Move(rollDirection);
+            }
         }
     }
 
@@ -124,7 +126,7 @@ public class BombObject : MoveableGridObject {
 
     //MoveableGridObject's Move(), plus stops rolling on obstacle collision and explodes on enemy collision
     public override void Move(Globals.Direction direction) {
-        if (!(Globals.player.canvas.paused)) {
+        if (!(Globals.player.canvas.dialogue)) {
             base.Move(direction);
             if (direction == Globals.Direction.North && northCollider.isTriggered && northCollider.other.GetComponent<WindBossAI>())
                 Explode();

@@ -9,7 +9,7 @@ public class WatermelonPlantObject : PlantGridObject
     public GameObject bullet;
     private int counter;
     public int shotDelay;
-    private bool triggered = false;
+    private KillableGridObject triggered;
     private UIController uic;
 
     public int changeDirectionWaitTime;
@@ -42,22 +42,21 @@ public class WatermelonPlantObject : PlantGridObject
     // Update is called once per frame
     protected override void Update()
     {
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-        if (triggered) {
-            if (!uic.paused)
-            {
-                if (counter > shotDelay)
-                {
-                    Shooter();
-                    counter = 0;
-                }
-                counter++;
+        if (!Globals.canvas.dialogue) {
+            if (health <= 0) {
+                Destroy(this.gameObject);
             }
+            if (triggered) {
+                if (!uic.dialogue) {
+                    if (counter > shotDelay) {
+                        Shooter();
+                        counter = 0;
+                    }
+                    counter++;
+                }
+            }
+            base.Update();
         }
-        base.Update();
     }
     IEnumerator changeDirectionWait()
     {
@@ -114,7 +113,7 @@ public class WatermelonPlantObject : PlantGridObject
 
             KillableGridObject killable = other.GetComponent<KillableGridObject>();
             if (!killable.isInvulnerable) {
-                triggered = true;
+                triggered = killable;
                 if (canChangeDir) {
                     if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>())) {
                         direction = Globals.Direction.South;
@@ -143,6 +142,6 @@ public class WatermelonPlantObject : PlantGridObject
 
     void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Enemy") || other.CompareTag("EnemySpawner"))
-            triggered = false;
+            triggered = null;
     }
 }
