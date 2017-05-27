@@ -68,7 +68,7 @@ public class Tile : MonoBehaviour {
         RaycastHit2D[] results = new RaycastHit2D[5];
 
         // Create raycast to see if there are any barriers on this tile
-        int numRayCollisions = tileCollider.Raycast(Vector2.right, results, 0.5f);
+        int numRayCollisions = tileCollider.Raycast(Vector2.right, results, 0.49f);
 
         //Debug.Log("Num col: " + numRayCollisions);
 

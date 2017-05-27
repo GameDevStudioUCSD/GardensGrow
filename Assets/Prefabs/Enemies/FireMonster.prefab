@@ -133,6 +133,7 @@ GameObject:
   - 111: {fileID: 111000011540558652}
   - 82: {fileID: 82000013216253526}
   - 114: {fileID: 114000011681865602}
+  - 114: {fileID: 114000013066903530}
   m_Layer: 0
   m_Name: FireMonster
   m_TagString: Enemy
@@ -751,7 +752,7 @@ MonoBehaviour:
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
     tilesUntilReevaluation: 5
-  useRoomBoundary: 0
+    useRoomBoundary: 0
   debug: 0
   path: 
 --- !u!114 &114000010819168714
@@ -854,6 +855,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df40761583f8024cbdc5454cdea7643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013066903530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013157515858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14cdaf4cf2608144d8c734ac4f657985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2
+  lightLevel: 1
+  belongsToRoom: 0
 --- !u!114 &114000013149671322
 MonoBehaviour:
   m_ObjectHideFlags: 1
