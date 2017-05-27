@@ -32,7 +32,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
     private int upCounter = 0;
     private int downCounter = 0;
 
-    private bool readAlready = false;
+    public bool readAlready = false;
 
     private GameObject dialogue;
     private Animator anim;

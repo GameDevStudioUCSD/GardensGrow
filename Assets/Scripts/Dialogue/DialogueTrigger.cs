@@ -20,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour {
     private bool isTalkingToPlayer = false;
     private GameObject dialogue;
 	private UIController canvas;
-    private bool readAlready = false;
+    public bool readAlready = false;
     
 	// Use this for initialization
 	void Start () {
