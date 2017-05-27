@@ -6,7 +6,7 @@ public class TileMap : MonoBehaviour {
 
     // The TileMap grid will be mapDimension by mapDimension in size
     public int mapDimensionX, mapDimensionY;
-    public PlayerGridObject player;
+    public GameObject player;
 
     // a grid to hold references to every Tile in the TileMap
     public Tile[,] grid;
@@ -37,7 +37,7 @@ public class TileMap : MonoBehaviour {
 			if (kvp.Key.PlantScene == Application.loadedLevelName) {
 				plantVector = kvp.Key.PlantLocation;
 				plantType = kvp.Value;
-				PlantGridObject newPlant = (PlantGridObject) Instantiate(player.plants[plantType], plantVector, Quaternion.identity);
+				PlantGridObject newPlant = (PlantGridObject) Instantiate(player.GetComponent<PlayerGridObject>().plants[plantType], plantVector, Quaternion.identity);
                 newPlant.Rotate(kvp.Key.PlantDirection);
 			}
 		}
