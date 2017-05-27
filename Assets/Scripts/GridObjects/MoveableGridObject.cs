@@ -19,7 +19,7 @@ public class MoveableGridObject : KillableGridObject {
 
 	// Direction: 0 = South, 1 = West, 2 = North, 3 = East
 	public virtual void Move(Globals.Direction direction) {
-        if (!isDying) {
+        if ((!Globals.canvas.dialogue || !Globals.player != this) && !isDying) {
 		    Rotate(direction);
             if (direction == Globals.Direction.South && !southCollider.isTriggered) {
 			    Vector3 position = this.transform.position;

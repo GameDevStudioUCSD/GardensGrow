@@ -35,26 +35,28 @@ public class Boomerang : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (nextPlant >= plants[roomId].Count) {
-            nextPlant = plants[roomId].Count - 1;
-        }
+        if (!Globals.canvas.dialogue) {
+            if (nextPlant >= plants[roomId].Count) {
+                nextPlant = plants[roomId].Count - 1;
+            }
 
-        if (Vector2.Distance(transform.position, plants[roomId][nextPlant]) <= speed) {
-            nextPlant = (nextPlant + 1) % plants[roomId].Count;
-        }
-        else {
-            Vector3 dt = (plants[roomId][nextPlant] - transform.position).normalized * speed;
-            dt /= Globals.pixelSize;
-            dt = new Vector3(Mathf.Round(dt.x), Mathf.Round(dt.y), 0);
-            dt *= Globals.pixelSize;
-            transform.position += dt;
-            for (int i = itemHeld.Count - 1; i >= 0; --i) {
-                // a GameObject is equal to null if it is destroyed
-                if (itemHeld[i] == null) {
-                    itemHeld.RemoveAt(i);
-                }
-                else {
-                    itemHeld[i].transform.position += dt;
+            if (Vector2.Distance(transform.position, plants[roomId][nextPlant]) <= speed) {
+                nextPlant = (nextPlant + 1) % plants[roomId].Count;
+            }
+            else {
+                Vector3 dt = (plants[roomId][nextPlant] - transform.position).normalized * speed;
+                dt /= Globals.pixelSize;
+                dt = new Vector3(Mathf.Round(dt.x), Mathf.Round(dt.y), 0);
+                dt *= Globals.pixelSize;
+                transform.position += dt;
+                for (int i = itemHeld.Count - 1; i >= 0; --i) {
+                    // a GameObject is equal to null if it is destroyed
+                    if (itemHeld[i] == null) {
+                        itemHeld.RemoveAt(i);
+                    }
+                    else {
+                        itemHeld[i].transform.position += dt;
+                    }
                 }
             }
         }

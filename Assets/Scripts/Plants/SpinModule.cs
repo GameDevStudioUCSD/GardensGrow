@@ -17,18 +17,20 @@ public class SpinModule : MonoBehaviour {
     }
 
     protected virtual void Update() {
-        frame++;
-        spinning.RemoveAll((GameObject target) => target == null);
-        foreach (GameObject spun in spinning) {
-            Quaternion rotation = spun.transform.rotation;
-            spun.transform.RotateAround(this.transform.position, Vector3.forward, rotationSpeed);
-            spun.transform.rotation = rotation;
-            if (frame >= framesBetweenDamage) {
-                KillableGridObject killable = spun.GetComponent<KillableGridObject>();
-                if (killable) killable.TakeDamage(damage);
+        if (!Globals.canvas.dialogue) {
+            frame++;
+            spinning.RemoveAll((GameObject target) => target == null);
+            foreach (GameObject spun in spinning) {
+                Quaternion rotation = spun.transform.rotation;
+                spun.transform.RotateAround(this.transform.position, Vector3.forward, rotationSpeed);
+                spun.transform.rotation = rotation;
+                if (frame >= framesBetweenDamage) {
+                    KillableGridObject killable = spun.GetComponent<KillableGridObject>();
+                    if (killable) killable.TakeDamage(damage);
+                }
             }
+            if (frame >= framesBetweenDamage) frame = 0;
         }
-        if (frame >= framesBetweenDamage) frame = 0;
     }
 
     protected void OnTriggerEnter2D(Collider2D other) {

@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour {
     public GameObject saveMenuUI;
     public GameObject creditsUI;
     public GameObject deathPanelUI;
+    public GameObject loadingScreenUI;
 
     public PlayerGridObject player;
 
@@ -28,6 +29,7 @@ public class UIController : MonoBehaviour {
     public Sprite brokenHeart;
 
     public bool paused;
+    public bool dialogue = false;
 
     // Use this for initialization
     void Start () {
@@ -122,6 +124,7 @@ public class UIController : MonoBehaviour {
     // Hides the plant UI when dialog is being said
     public void ShowDialog() {
         //player.GetComponent<Animator>().StartPlayback(); //don't know why start stops animations, but it does
+        dialogue = true;
         dialogUI.SetActive(true);
 
         for (int i = 0; i < 8; i++) {
@@ -134,6 +137,7 @@ public class UIController : MonoBehaviour {
     // Hides the dialog box and enables the plant UI again
     public void EndDialog() {
         //player.GetComponent<Animator>().StopPlayback(); //don't know why stop starts animations, but it does
+        dialogue = false;
         paused = false;
         dialogUI.SetActive(false);
 
@@ -206,6 +210,7 @@ public class UIController : MonoBehaviour {
     public void NewGame()
     {
         mainMenuUI.SetActive(false);
+        loadingScreenUI.SetActive(true);
         Application.LoadLevel(1);
 
     }

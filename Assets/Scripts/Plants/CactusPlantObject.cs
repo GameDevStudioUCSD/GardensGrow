@@ -48,37 +48,33 @@ public class CactusPlantObject : PlantGridObject {
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if ( ((other.CompareTag("Enemy") || other.CompareTag("EnemySpawner") || other.gameObject.GetComponent<Switch>()) && !evil) || (other.gameObject.GetComponent<PlayerGridObject>() && evil))
-        {
-            if (isAttacking == false)
-            {
-                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.South;
-                    isAttacking = true;
-                    Punch(other, Globals.Direction.South);
-                    anim.SetInteger("Direction", 2);
-                }
-                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.North;
-                    isAttacking = true;
-                    Punch(other, Globals.Direction.North);
-                    anim.SetInteger("Direction", 0);
-                }
-                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.East;
-                    isAttacking = true;
-                    Punch(other, Globals.Direction.East);
-                    anim.SetInteger("Direction", 1);
-                }
-                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.West;
-                    isAttacking = true;
-                    Punch(other, Globals.Direction.West);
-                    anim.SetInteger("Direction", 3);
+        if (!Globals.canvas.dialogue) {
+            if (((other.CompareTag("Enemy") || other.CompareTag("EnemySpawner") || other.gameObject.GetComponent<Switch>()) && !evil) || (other.gameObject.GetComponent<PlayerGridObject>() && evil)) {
+                if (isAttacking == false) {
+                    if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>())) {
+                        direction = Globals.Direction.South;
+                        isAttacking = true;
+                        Punch(other, Globals.Direction.South);
+                        anim.SetInteger("Direction", 2);
+                    }
+                    else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>())) {
+                        direction = Globals.Direction.North;
+                        isAttacking = true;
+                        Punch(other, Globals.Direction.North);
+                        anim.SetInteger("Direction", 0);
+                    }
+                    else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>())) {
+                        direction = Globals.Direction.East;
+                        isAttacking = true;
+                        Punch(other, Globals.Direction.East);
+                        anim.SetInteger("Direction", 1);
+                    }
+                    else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>())) {
+                        direction = Globals.Direction.West;
+                        isAttacking = true;
+                        Punch(other, Globals.Direction.West);
+                        anim.SetInteger("Direction", 3);
+                    }
                 }
             }
         }
