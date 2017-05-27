@@ -12,6 +12,7 @@ public class BoomerangPlantObject : PlantGridObject {
     private Boomerang[] booms;
     void Update()
     {
+        base.Update();
         if (evil)
         {
             booms = FindObjectsOfType<Boomerang>();
