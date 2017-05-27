@@ -3,8 +3,10 @@ using System.Collections;
 
 public class BossLockedDoor : MonoBehaviour {
 
+	public Sprite lava;
+	public Sprite wind;
+	public Sprite cave;
     public GameObject barrier;
-
     private Animator animator;
     private bool closed;
 
@@ -12,6 +14,17 @@ public class BossLockedDoor : MonoBehaviour {
     void Start () {
         closed = true;
         animator = GetComponent<Animator>();
+        SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();
+
+        if (Globals.caveBossBeaten) {
+        	renderer.sprite = lava;
+        }
+        else if (Globals.windBossBeaten) {
+        	renderer.sprite = wind;
+        }
+        else if (Globals.lavaBossBeaten) {
+        	renderer.sprite = cave;
+        }
     }
 
     void OpenDoor() {

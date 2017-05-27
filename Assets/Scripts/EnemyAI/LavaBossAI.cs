@@ -52,10 +52,11 @@ public class LavaBossAI : KillableGridObject {
 			for (int i = 0; i < 4; i++) {
 				current = spawners[i].GetComponent<EnemySpawner>();
 				numSpawns += current.numSpawns();
-			}
+            }
+            Debug.Log(numSpawns);
 
-			// Prod behavior
-			if (numSpawns == 0) {
+            // Prod behavior
+            if (numSpawns <= 0) {
 				state = BossState.StartEmerge;
 			}
 

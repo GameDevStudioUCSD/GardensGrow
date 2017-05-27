@@ -12,6 +12,7 @@ public class MainCamera : MonoBehaviour {
     public GameObject finalCreditsButton;
     public PlayerGridObject player;
 
+    private int speed = 1;
     //private bool paused = false;
     void Update()
     {
@@ -49,15 +50,16 @@ public class MainCamera : MonoBehaviour {
         tm.player = this.gameObject;
 
         EnemySpawner[] es = FindObjectsOfType<EnemySpawner>();
-
         foreach (EnemySpawner e in es) e.gameObject.SetActive(false);
 
         EnemyGridObject[] eo = FindObjectsOfType<EnemyGridObject>();
-
         foreach (EnemyGridObject e in eo) e.gameObject.SetActive(false);
 
-        HostileTerrainObject[] ho = FindObjectsOfType<HostileTerrainObject>();
+        DialogueNPCTrigger[] dnt = FindObjectsOfType<DialogueNPCTrigger>();
+        foreach (DialogueNPCTrigger d in dnt) d.gameObject.SetActive(false);
 
+        DialogueTrigger[] dt = FindObjectsOfType<DialogueTrigger>();
+        foreach (DialogueTrigger d in dt) d.gameObject.SetActive(false);
 
 
         player.gameObject.SetActive(false);
@@ -66,6 +68,7 @@ public class MainCamera : MonoBehaviour {
     }
     IEnumerator MoveCameraPath()
     {
+        speed = 2;
         for (int i = 0; i < 440; i++)
         {
             Move(Globals.Direction.East);
@@ -76,6 +79,76 @@ public class MainCamera : MonoBehaviour {
             Move(Globals.Direction.North);
             yield return new WaitForEndOfFrame();
         }
+        for (int i = 0; i < 230; i++)
+        {
+            Move(Globals.Direction.East);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 320; i++)
+        {
+            Move(Globals.Direction.South);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 230; i++)
+        {
+            Move(Globals.Direction.East);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 160; i++)
+        {
+            Move(Globals.Direction.North);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 225; i++)
+        {
+            Move(Globals.Direction.East);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 160; i++)
+        {
+            Move(Globals.Direction.North);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        speed = 5;
+
+        for (int i = 0; i < 64; i++)
+        {
+            Move(Globals.Direction.South);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 450; i++)
+        {
+            Move(Globals.Direction.West);
+            yield return new WaitForEndOfFrame();
+        }
+        speed = 2;
+        //start of exploration of world 2
+        for (int i = 0; i < 480; i++)
+        {
+            Move(Globals.Direction.North);
+            yield return new WaitForEndOfFrame();
+        }
+
+        for (int i = 0; i < 225; i++)
+        {
+            Move(Globals.Direction.East);
+            yield return new WaitForEndOfFrame();
+        }
+
+        for (int i = 0; i < 320; i++)
+        {
+            Move(Globals.Direction.North);
+            yield return new WaitForEndOfFrame();
+        }
+
+        for (int i = 0; i < 450; i++)
+        {
+            Move(Globals.Direction.West);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     void Move(Globals.Direction direction)
@@ -83,25 +156,25 @@ public class MainCamera : MonoBehaviour {
         if (direction == Globals.Direction.South)
         {
             Vector3 position = this.transform.position;
-            position.y -= 2*Globals.pixelSize;
+            position.y -= speed*Globals.pixelSize;
             this.transform.position = position;
         }
         else if (direction == Globals.Direction.West)
         {
             Vector3 position = this.transform.position;
-            position.x -= 2*Globals.pixelSize;
+            position.x -= speed*Globals.pixelSize;
             this.transform.position = position;
         }
         else if (direction == Globals.Direction.North)
         {
             Vector3 position = this.transform.position;
-            position.y += 2*Globals.pixelSize;
+            position.y += speed*Globals.pixelSize;
             this.transform.position = position;
         }
         else if (direction == Globals.Direction.East)
         {
             Vector3 position = this.transform.position;
-            position.x += 2*Globals.pixelSize;
+            position.x += speed*Globals.pixelSize;
             this.transform.position = position;
         }
     }

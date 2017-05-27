@@ -493,7 +493,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.78, y: 0.6}
+  m_Size: {x: 0.93, y: 0.74}
 --- !u!61 &61000011048020242
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -507,7 +507,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.78, y: 0.6}
+  m_Size: {x: 0.93, y: 0.74}
 --- !u!61 &61000011529388628
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -521,7 +521,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.78, y: 0.6}
+  m_Size: {x: 0.93, y: 0.74}
 --- !u!61 &61000011926066962
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -549,7 +549,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0.02, y: -0.1}
   serializedVersion: 2
-  m_Size: {x: 0.78, y: 0.6}
+  m_Size: {x: 0.93, y: 0.74}
 --- !u!61 &61000013654290592
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -830,7 +830,7 @@ MonoBehaviour:
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
     tilesUntilReevaluation: 5
-  useRoomBoundary: 0
+    useRoomBoundary: 0
   debug: 0
   path: 
 --- !u!114 &114000012263539688
