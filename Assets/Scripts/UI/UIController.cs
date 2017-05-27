@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour {
     public GameObject saveMenuUI;
     public GameObject creditsUI;
     public GameObject deathPanelUI;
+    public GameObject loadingScreenUI;
 
     public PlayerGridObject player;
 
@@ -209,6 +210,7 @@ public class UIController : MonoBehaviour {
     public void NewGame()
     {
         mainMenuUI.SetActive(false);
+        loadingScreenUI.SetActive(true);
         Application.LoadLevel(1);
 
     }

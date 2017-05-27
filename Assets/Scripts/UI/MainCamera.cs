@@ -39,4 +39,8 @@ public class MainCamera : MonoBehaviour {
 		}
     }
 
+    IEnumerable MoveCameraPath()
+    {
+        yield return new WaitForEndOfFrame(); 
+    }
 }
