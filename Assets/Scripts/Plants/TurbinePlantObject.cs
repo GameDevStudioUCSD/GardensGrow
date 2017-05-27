@@ -38,7 +38,7 @@ public class TurbinePlantObject : PlantGridObject
     // Update is called once per frame
 	protected override void Update()
     {
-        if (Globals.canvas.dialogue) {
+        if (!Globals.canvas.dialogue) {
             //the following if fixed a bug, plz don't remove it
             counter++;
             if (counter == 50) {
