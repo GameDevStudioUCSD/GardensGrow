@@ -19,7 +19,7 @@ public class RangedEnemyProjectile : MonoBehaviour {
 
     void Update()
     {
-        if (!uic.paused)
+        if (!uic.paused && !uic.dialogue)
         {
             if (shotRangeCounter < shotRange)
             {

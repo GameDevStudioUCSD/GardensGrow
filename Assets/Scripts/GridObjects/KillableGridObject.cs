@@ -143,53 +143,55 @@ public class KillableGridObject : RotateableGridObject {
         Die();
     }
     public virtual void Attack() {
-        hitSomething = false;
+        if (!Globals.canvas.dialogue) {
+            hitSomething = false;
 
-        if (audioSource != null) {
-            audioSource.clip = attackSound;
-            audioSource.Play();
-        }
-        switch (direction) {
-            case Globals.Direction.South:
-                killList = southHitCollider.GetKillList();
-                break;
-            case Globals.Direction.East:
-                killList = eastHitCollider.GetKillList();
-                break;
-            case Globals.Direction.North:
-                killList = northHitCollider.GetKillList();
-                break;
-            case Globals.Direction.West:
-                killList = westHitCollider.GetKillList();
-                break;
-        }
-
-        /*
-         * Clear all dead targets in killList.
-         * This uses lambda syntax: if a KillableGridObject in
-         * the list is null, then remove it.
-         */
-        killList.RemoveAll((KillableGridObject target) => target == null);
-
-        // Deal damage to all targets of the enemy faction
-        foreach (KillableGridObject target in killList) {
-            if (target.faction != this.faction) {
-                if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
-                    //note enemy kill plant doesn't work
-                }
-                hitSomething = true;
-                target.TakeDamage(damage);
+            if (audioSource != null) {
+                audioSource.clip = attackSound;
+                audioSource.Play();
             }
-            if (this.GetComponent<PlayerGridObject>()) {
-                BombObject bomb = target.GetComponent<BombObject>();
-                if (bomb) {
-                    bomb.Roll(direction);
+            switch (direction) {
+                case Globals.Direction.South:
+                    killList = southHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.East:
+                    killList = eastHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.North:
+                    killList = northHitCollider.GetKillList();
+                    break;
+                case Globals.Direction.West:
+                    killList = westHitCollider.GetKillList();
+                    break;
+            }
+
+            /*
+             * Clear all dead targets in killList.
+             * This uses lambda syntax: if a KillableGridObject in
+             * the list is null, then remove it.
+             */
+            killList.RemoveAll((KillableGridObject target) => target == null);
+
+            // Deal damage to all targets of the enemy faction
+            foreach (KillableGridObject target in killList) {
+                if (target.faction != this.faction) {
+                    if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
+                        //note enemy kill plant doesn't work
+                    }
+                    hitSomething = true;
+                    target.TakeDamage(damage);
                 }
-                //deplant code MOVED so deplanting is a different button
-                /*PlantGridObject plant = target.GetComponent<PlantGridObject>();
-                if (plant) {
-                    plant.TakeDamage(100);
-                }*/
+                if (this.GetComponent<PlayerGridObject>()) {
+                    BombObject bomb = target.GetComponent<BombObject>();
+                    if (bomb) {
+                        bomb.Roll(direction);
+                    }
+                    //deplant code MOVED so deplanting is a different button
+                    /*PlantGridObject plant = target.GetComponent<PlantGridObject>();
+                    if (plant) {
+                        plant.TakeDamage(100);
+                    }*/
+                }
             }
         }
     }

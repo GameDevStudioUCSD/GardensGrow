@@ -23,7 +23,7 @@ public class MeteorSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (triggered == true)
+		if (!Globals.canvas.dialogue && triggered == true)
 		{
 			currentFrame = (currentFrame + 1) % framesBetweenMeteors;
 			if (currentFrame == 0) {

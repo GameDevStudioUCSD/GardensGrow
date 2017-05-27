@@ -30,7 +30,7 @@ public class RangedEnemy : EnemyGridObject {
     }
     void LateUpdate()
     {
-        if (!uic.paused)
+        if (!uic.paused && !uic.dialogue)
         {
             if (isShooter)
             {
@@ -107,7 +107,7 @@ public class RangedEnemy : EnemyGridObject {
     //code for if wants to shoot in Player direction;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!uic.paused) {
+        if (!uic.paused && !uic.dialogue) {
             if (!isShooter)
             {
                 if (other.gameObject.tag == "Player")

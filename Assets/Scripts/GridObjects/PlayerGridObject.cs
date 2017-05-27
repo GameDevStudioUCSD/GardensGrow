@@ -46,6 +46,7 @@ public class PlayerGridObject : MoveableGridObject {
         animator = GetComponent<Animator>();
         dialogue = canvas.dialogUI;
         Globals.player = this;
+        Globals.canvas = canvas;
     }
 
     // Update is called once per frame
@@ -106,7 +107,7 @@ public class PlayerGridObject : MoveableGridObject {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!canvas.dialogue && Input.GetKeyDown(KeyCode.Space))
         {
             if (!isAttacking)
             {
@@ -127,7 +128,7 @@ public class PlayerGridObject : MoveableGridObject {
                 }
             }
         }
-        else if (Input.GetButtonDown("Deplant"))
+        else if (!canvas.dialogue && Input.GetButtonDown("Deplant"))
         {
             switch (direction) {
                 case Globals.Direction.South:
@@ -169,7 +170,7 @@ public class PlayerGridObject : MoveableGridObject {
         {
             for (int i = 0; i < 10; ++i)
             {
-                if (Input.GetKeyDown("" + i))
+                if (!canvas.dialogue && Input.GetKeyDown("" + i))
                     Plant(i - 1);
             }
         }

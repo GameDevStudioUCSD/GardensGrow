@@ -38,17 +38,17 @@ public class TurbinePlantObject : PlantGridObject
     // Update is called once per frame
 	protected override void Update()
     {
-        //the following if fixed a bug, plz don't remove it
-        counter++;
-        if (counter == 50)
-        {
-            setDirection();
+        if (Globals.canvas.dialogue) {
+            //the following if fixed a bug, plz don't remove it
+            counter++;
+            if (counter == 50) {
+                setDirection();
+            }
+            if (health <= 0) {
+                Destroy(this.gameObject);
+            }
+            base.Update();
         }
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-        base.Update();
 	}
 
 	public void setDirection ()

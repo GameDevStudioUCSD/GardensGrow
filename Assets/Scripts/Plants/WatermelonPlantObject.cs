@@ -42,22 +42,21 @@ public class WatermelonPlantObject : PlantGridObject
     // Update is called once per frame
     protected override void Update()
     {
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-        if (triggered) {
-            if (!uic.paused)
-            {
-                if (counter > shotDelay)
-                {
-                    Shooter();
-                    counter = 0;
-                }
-                counter++;
+        if (!Globals.canvas.dialogue) {
+            if (health <= 0) {
+                Destroy(this.gameObject);
             }
+            if (triggered) {
+                if (!uic.dialogue) {
+                    if (counter > shotDelay) {
+                        Shooter();
+                        counter = 0;
+                    }
+                    counter++;
+                }
+            }
+            base.Update();
         }
-        base.Update();
     }
     IEnumerator changeDirectionWait()
     {
