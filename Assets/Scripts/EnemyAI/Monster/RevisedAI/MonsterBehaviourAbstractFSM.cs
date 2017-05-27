@@ -31,10 +31,9 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
         yield return new WaitForEndOfFrame(); // Stops race conditions
         bool isRunning = true;
         while(isRunning) {
-            yield return Step();
+            if (!Globals.canvas.dialogue) yield return Step();
             yield return new WaitForSeconds(delayRate);
-            if (exceptionCount > shutDownFSMAfterNExceptions)
-            {
+            if (exceptionCount > shutDownFSMAfterNExceptions) {
                 Debug.LogError(this + " has exceeded the number of allowed exceptions! Shutting down.");
                 isRunning = false;
             }

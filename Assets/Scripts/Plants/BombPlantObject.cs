@@ -26,17 +26,19 @@ public class BombPlantObject : PlantGridObject {
 	
 	// Update is called once per frame
 	protected override void Update () {
-        base.Update();
-		if (noBomb) {
-			frames++;
-			if (frames >= regrowFrames) {
-				noBomb = false;
-				frames = 0;
-                GameObject newBomb = (GameObject)Instantiate(bombObject, this.gameObject.transform.position, Quaternion.identity);
-                bomb = newBomb.GetComponent<BombObject>();
-				bomb.setBombPlantObject(this);
-			}
-		}
+        if (!Globals.canvas.dialogue) {
+            base.Update();
+            if (noBomb) {
+                frames++;
+                if (frames >= regrowFrames) {
+                    noBomb = false;
+                    frames = 0;
+                    GameObject newBomb = (GameObject)Instantiate(bombObject, this.gameObject.transform.position, Quaternion.identity);
+                    bomb = newBomb.GetComponent<BombObject>();
+                    bomb.setBombPlantObject(this);
+                }
+            }
+        }
 	}
 
     public override bool TakeDamage(int damage) {

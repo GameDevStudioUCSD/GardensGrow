@@ -34,7 +34,7 @@ public class PlatformGridObject : MonoBehaviour {
         moveList.Add(this.gameObject);
     }
     void Update() {
-        if (!uic.paused) {
+        if (!uic.paused && !uic.dialogue) {
             if (pingPong) //includes miniBoss behavior
             {
                 delayCounter++;

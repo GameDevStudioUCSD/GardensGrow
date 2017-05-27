@@ -17,12 +17,14 @@ public class BubblePlant : PlantGridObject {
 	
 	// Update is called once per frame
 	protected override void Update () {
-        base.Update();
-	    if (!currentBubble) {
-            bubbleTimer -= 1;
-            if (bubbleTimer <= 0) {
-                currentBubble = (GameObject)Instantiate(bubble, transform.position, Quaternion.identity);
-                bubbleTimer = bubbleCooldownFrames;
+        if (!Globals.canvas.dialogue) {
+            base.Update();
+            if (!currentBubble) {
+                bubbleTimer -= 1;
+                if (bubbleTimer <= 0) {
+                    currentBubble = (GameObject)Instantiate(bubble, transform.position, Quaternion.identity);
+                    bubbleTimer = bubbleCooldownFrames;
+                }
             }
         }
 	}

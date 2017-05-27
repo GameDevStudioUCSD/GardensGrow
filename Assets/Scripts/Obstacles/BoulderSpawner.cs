@@ -17,18 +17,20 @@ public class BoulderSpawner : MonoBehaviour {
 	void Start () {
 		currentFrame = startFrame;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		currentFrame++;
-        if (currentBoulder) {
-            currentBoulder.StartRolling(direction);
-            currentBoulder = null;
+
+    // Update is called once per frame
+    void Update() {
+        if (!Globals.canvas.dialogue) {
+            currentFrame++;
+            if (currentBoulder) {
+                currentBoulder.StartRolling(direction);
+                currentBoulder = null;
+            }
+            if (active && currentFrame > framesBetweenBoulders) {
+                currentFrame = 0;
+                SummonBoulder();
+            }
         }
-        if (active && currentFrame > framesBetweenBoulders) {
-			currentFrame = 0;
-			SummonBoulder();
-		}
 	}
 
 	void SummonBoulder() {

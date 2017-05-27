@@ -23,14 +23,14 @@ public class PlantProjectileObject : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (shotRangeCounter < shotRange)
-        {
-            Mover(shotSpeed,dir);
-            shotRangeCounter++;
-        }
-        else if(this.gameObject != null)
-        {
-            Destroy(this.gameObject);
+        if (!Globals.canvas.dialogue) {
+            if (shotRangeCounter < shotRange) {
+                Mover(shotSpeed, dir);
+                shotRangeCounter++;
+            }
+            else if (this.gameObject != null) {
+                Destroy(this.gameObject);
+            }
         }
     }
     public void Mover(float shotSpeed, Globals.Direction dir)

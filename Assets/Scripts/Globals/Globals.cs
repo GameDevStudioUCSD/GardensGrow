@@ -69,6 +69,7 @@ public class Globals: MonoBehaviour {
 	public static Vector3 spawnLocation = new Vector3(0.0f, -2.0f, 0.0f);
 
     public static PlayerGridObject player;
+    public static UIController canvas;
     public static TileMap tileMap;
     public static int playerHealth = 12;
 
