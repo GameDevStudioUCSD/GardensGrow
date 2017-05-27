@@ -17,7 +17,11 @@ public class TileMap : MonoBehaviour {
 
     void Awake()
     {
-        grid = new Tile[mapDimensionX, mapDimensionY];
+        if(grid == null)
+            grid = new Tile[mapDimensionX, mapDimensionY];
+
+        if(nodeGrid == null)
+            nodeGrid = new Node[mapDimensionX, mapDimensionY];
     }
 
    //start happens 1st frame
@@ -54,11 +58,9 @@ public class TileMap : MonoBehaviour {
             // Tile's position with respect to the tilemap's position
             tilePosition -= this.transform.position;
 
-            //Debug.Log(tilePosition);
+            nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);
 
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
-
-            //nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);
         }
 
 	}	
@@ -112,9 +114,12 @@ public class TileMap : MonoBehaviour {
         }
 
         // TODO: we don't catch out of array index exceptions
-        Tile tile = grid[x, y];
+        // TODO: Testing node grid
+        // Tile tile = grid[x, y];
 
-        return new Node(tile, this);
+        Node node = nodeGrid[x, y];
+
+        return new Node(node);
     }
 
     /// <summary>
@@ -146,9 +151,9 @@ public class TileMap : MonoBehaviour {
         // Check to see if position is valid in grid
         if(IsPatheable(nextPosition))
         {
-            Tile nextTile = grid[(int)nextPosition.x, (int)nextPosition.y];
-            // Convert tile into Node
-            Node nextNode = new Node(nextTile, this, currentNode, direction);
+            Node tileNode = nodeGrid[(int)nextPosition.x, (int)nextPosition.y];
+            Node nextNode = new Node(tileNode, this, currentNode, direction);
+
             return nextNode;
         }
         else
@@ -198,6 +203,7 @@ public class TileMap : MonoBehaviour {
 
     /// <summary>
     /// Check if a position in the TileMap is patheable or not.
+    /// Underneath, this uses a node representation of the tile.
     /// </summary>
     /// <param name="targetPosition">The position of the Tile to check.</param>
     /// <returns>True if the Tile is patheable, false if Tile is not patheable or it does not exist.</returns>
@@ -206,16 +212,16 @@ public class TileMap : MonoBehaviour {
         int x = (int)targetPosition.x;
         int y = (int)targetPosition.y;
 
-        if (x >= grid.GetLength(0) || y >= grid.GetLength(1)) {
+        if (x >= nodeGrid.GetLength(0) || y >= nodeGrid.GetLength(1)) {
             return false; //position is out of bounds
         }
-        else if (grid[x, y] == null)
+        else if (nodeGrid[x, y] == null)
         {
             return false; //position is within bounds, but tile is null
         }
         else
         {
-            return grid[x, y].isPatheable;
+            return nodeGrid[x, y].isPatheable;
         }
     }
 
@@ -244,6 +250,28 @@ public class TileMap : MonoBehaviour {
         else
         {
             return grid[x, y];
+        }
+    }
+
+    public Node GetNearestNode(Vector2 worldPosition)
+    {
+        // Find the position relative to the tile map (Tiles are indexed by their positions relative to TileMap)
+        Vector2 relativePosition = worldPosition - (Vector2)this.transform.position;
+
+        int x = (int)Mathf.Round(relativePosition.x);
+        int y = (int)Mathf.Round(relativePosition.y);
+
+        if (x >= nodeGrid.GetLength(0) || y >= nodeGrid.GetLength(1)) {
+            return null; //position is out of bounds
+        }
+        else if (nodeGrid[x, y] == null)
+        {
+            //throw new System.Exception("TileMap, GetNearestTile(): could not find tile for world vector: " + worldPosition + " at indices " + x + ", " + y);
+            return null; //position is within bounds, but tile is null
+        }
+        else
+        {
+            return nodeGrid[x, y];
         }
     }
 

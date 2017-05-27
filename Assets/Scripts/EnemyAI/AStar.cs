@@ -13,13 +13,6 @@ public class AStar {
         this.tileMap = tileMap;
     }
 
-    public AStar(TileMap tileMap, Tile startTile, Tile targetTile)
-    {
-        this.tileMap = tileMap;
-        this.startTile = startTile;
-        this.targetTile = targetTile;
-    }
-
     public List<Globals.Direction> FindPath(Tile startTile, Tile targetTile)
     {
         return FindPath(new Node(startTile, tileMap), new Node(targetTile, tileMap));

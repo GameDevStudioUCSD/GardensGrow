@@ -33,6 +33,16 @@ public class Node {
         }
     }
 
+    // Instantiate new Node by copying an existing node
+    public Node(Node otherNode)
+    {
+        isPatheable = otherNode.isPatheable;
+        worldPosition = otherNode.worldPosition;
+        gridPosition = otherNode.gridPosition;
+        gCost = otherNode.gCost;
+        hCost = otherNode.hCost;
+    }
+
     public Node(Tile tile, TileMap tileMap, Node parent=null)
     {
         this.parent = parent;
@@ -54,22 +64,21 @@ public class Node {
         gCost = tile.gCost;
     }
 
-    public Node(Node other)
+    public Node(Node node, TileMap tileMap, Node parent, Globals.Direction directionTaken)
     {
-        parent = other.parent;
-        directionTaken = other.directionTaken;
+        this.parent = parent;
+        this.directionTaken = directionTaken;
 
-        isPatheable = other.isPatheable;
-        worldPosition = other.worldPosition;
-        gridPosition = other.gridPosition;
-        gCost = other.gCost;
-        hCost = other.hCost;
+        isPatheable = node.isPatheable;
+        worldPosition = node.worldPosition;
+        gridPosition = node.gridPosition;
+        gCost = node.gCost;
     }
 
     public override string ToString()
     {
         //return base.ToString();
-        string output = "Position: " + gridPosition + " gCost: " + gCost + " hCost: " + hCost;
+        string output = "Grid position: " + gridPosition + " World position: " + worldPosition + " gCost: " + gCost + " hCost: " + hCost;
 
         return output;
     }
