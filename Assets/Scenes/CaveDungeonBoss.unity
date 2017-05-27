@@ -1748,7 +1748,7 @@ MonoBehaviour:
   - {fileID: 535624195}
   - {fileID: 1307361920}
   - {fileID: 521548553}
-  - {fileID: 0}
+  - {fileID: 1961767910}
   canAttack: 1
   stunned: 0
 --- !u!50 &71006324
