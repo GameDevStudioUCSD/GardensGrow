@@ -85,7 +85,8 @@ public class KillableGridObject : RotateableGridObject {
             if (health <= 0 && hasDied == false) {
                 if (this.gameObject.GetComponent<PlayerGridObject>())
                 {
-                    StartCoroutine(screenBlackout());
+                    //StartCoroutine(screenBlackout());
+                    Die();
                     return true;
                 }
                 else

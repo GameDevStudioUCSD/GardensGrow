@@ -14,7 +14,7 @@ public class Spikes : TerrainObject {
     private Animator anim;
     private bool striked = false;
 
-    private Coroutine triggeredSpikeCoroutine;
+    //private Coroutine triggeredSpikeCoroutine;
 
 
 	// Use this for initialization
@@ -41,7 +41,7 @@ public class Spikes : TerrainObject {
     }
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
-            triggeredSpikeCoroutine = StartCoroutine(spikeUpWait(other));
+            /*triggeredSpikeCoroutine = */StartCoroutine(spikeUpWait(other));
         if (striked)
         {
             other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(damage);

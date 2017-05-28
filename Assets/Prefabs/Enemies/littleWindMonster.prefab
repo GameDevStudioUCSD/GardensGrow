@@ -506,7 +506,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.45}
+  m_Size: {x: 0.59, y: 0.59}
 --- !u!61 &61000011982398096
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -534,7 +534,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.45}
+  m_Size: {x: 0.59, y: 0.59}
 --- !u!61 &61000012558597010
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -548,7 +548,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.45}
+  m_Size: {x: 0.59, y: 0.59}
 --- !u!61 &61000012843931402
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -590,7 +590,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.45}
+  m_Size: {x: 0.59, y: 0.59}
 --- !u!82 &82000013466236834
 AudioSource:
   m_ObjectHideFlags: 1
@@ -776,6 +776,7 @@ MonoBehaviour:
     delayBetweenSteps: 0.03
     allowedStepOffset: 0.5
     tilesUntilReevaluation: 5
+    useRoomBoundary: 0
   debug: 0
   path: 
 --- !u!114 &114000012180825652

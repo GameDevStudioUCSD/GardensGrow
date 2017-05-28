@@ -14,8 +14,6 @@ public class PortalObject : RespawnLocation {
     public int levelToLoad;
     public bool lightSource = false;
 
-    public GameObject loadingScreen;
-
 	void OnTriggerEnter2D (Collider2D other) {
 
         if (other.gameObject.CompareTag("Player"))
@@ -23,7 +21,7 @@ public class PortalObject : RespawnLocation {
             base.updateSpawnLocation();
             if (!lightSource)
             {
-                loadingScreen.SetActive(true);
+                Globals.canvas.loadingScreenUI.SetActive(true);
                 Application.LoadLevel(levelToLoad);
             }
 

@@ -81,7 +81,7 @@ public abstract class MonsterBehaviourAbstractFSM: EnemyGridObject, IStateMachin
 
     public IEnumerator Step()
     {
-		State prevState = state;
+		//State prevState = state;
 		
         IEnumerator stateAction = null;
         try {

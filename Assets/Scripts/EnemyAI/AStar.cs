@@ -30,7 +30,7 @@ public class AStar {
         // Result list of moves needed to get from startNode to targetNode
         List<Globals.Direction> moves = new List<Globals.Direction>();
 
-        Vector2 startPosition = startNode.gridPosition;
+        //Vector2 startPosition = startNode.gridPosition;
         Vector2 targetPosition = targetNode.gridPosition;
 
         PriorityQueue<int, Vector2> frontier = new PriorityQueue<int, Vector2>();

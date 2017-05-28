@@ -30,6 +30,7 @@ public class DialogueTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!player) return; //fixes first frame error
         if (activeRegionTrigger.bounds.Contains(player.transform.position))
         {
             if (!isTalkingToPlayer)

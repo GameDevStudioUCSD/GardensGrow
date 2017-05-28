@@ -10,7 +10,7 @@ public class BoomerangPlantObject : PlantGridObject {
     public bool evil = false;
 
     private Boomerang[] booms;
-    void Update()
+    protected override void Update()
     {
         base.Update();
         if (evil)
