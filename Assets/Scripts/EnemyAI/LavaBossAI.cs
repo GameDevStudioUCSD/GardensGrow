@@ -53,7 +53,6 @@ public class LavaBossAI : KillableGridObject {
 				current = spawners[i].GetComponent<EnemySpawner>();
 				numSpawns += current.numSpawns();
             }
-            Debug.Log(numSpawns);
 
             // Prod behavior
             if (numSpawns <= 0) {
