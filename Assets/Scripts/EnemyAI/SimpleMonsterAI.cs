@@ -12,7 +12,7 @@ public class SimpleMonsterAI : MonoBehaviour {
     private Globals.Direction movementDirection;
     // searching how far from goal (heuristic) and how far from start (path cost)
 
-    bool flag = false;
+    //bool flag = false;
 
 	// Use this for initialization
 	void Start () {

@@ -46,8 +46,8 @@ public class POTAspectUtility : MonoBehaviour
 
     void UpdateCamera()
     {
-        float desiredAR = (float)AspectRatio[0] / AspectRatio[1];
-        float currentAR = (float)Screen.width / Screen.height;
+        //float desiredAR = (float)AspectRatio[0] / AspectRatio[1];
+        //float currentAR = (float)Screen.width / Screen.height;
 
         float multiplierW = (float)Screen.width / (AspectRatio[0] * PPU);
         float multiplierH = (float)Screen.height / (AspectRatio[1] * PPU);

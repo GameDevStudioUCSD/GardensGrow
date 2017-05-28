@@ -55,7 +55,7 @@ public class TileMap : MonoBehaviour {
             tilePosition -= this.transform.position;
 
             //Debug.Log(tilePosition);
-
+            
             grid[(int)tilePosition.x, (int)tilePosition.y] = tile;
 
             //nodeGrid[(int)tilePosition.x, (int)tilePosition.y] = new Node(tile, this);

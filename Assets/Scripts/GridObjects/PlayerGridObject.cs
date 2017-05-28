@@ -30,7 +30,7 @@ public class PlayerGridObject : MoveableGridObject {
 
     public int plantDelay;
 
-    private GameObject dialogue;
+    //private GameObject dialogue;
     private bool invincible;
     private int plantCooldown = 0;
     // Use this for initialization
@@ -44,7 +44,7 @@ public class PlayerGridObject : MoveableGridObject {
         anim = gameObject.GetComponent<Animation>();
         canMove = true;
         animator = GetComponent<Animator>();
-        dialogue = canvas.dialogUI;
+        //dialogue = canvas.dialogUI;
         Globals.player = this;
         Globals.canvas = canvas;
     }

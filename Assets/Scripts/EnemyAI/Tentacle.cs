@@ -4,7 +4,6 @@ using System.Collections;
 public class Tentacle : KillableGridObject {
 
     public float speed = 1.0f;
-    public int damage = 1;
     public int tentacleNum;
 
     
@@ -32,8 +31,9 @@ public class Tentacle : KillableGridObject {
      * 5    boomerang   blue
      * 6    spinning    teal
      */
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         boss = FindObjectOfType<FinalDungeonBoss>();
     }
     void OnTriggerEnter2D(Collider2D other)

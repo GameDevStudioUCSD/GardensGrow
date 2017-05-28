@@ -20,7 +20,7 @@ public class TurbinePlantObject : PlantGridObject
     public Collider2D eastCollider;
     public Collider2D westCollider;
 
-    private Collider2D directionalCollider;
+    //private Collider2D directionalCollider;
 
 	private Animator animator;
     private int counter = 0; 
@@ -59,28 +59,28 @@ public class TurbinePlantObject : PlantGridObject
 				eastCollider.enabled = false;
 				northCollider.enabled = true;
 				westCollider.enabled = false;
-				directionalCollider = northCollider;
+				//directionalCollider = northCollider;
 				break;
 			case Globals.Direction.South:
 				southCollider.enabled = true;
 				eastCollider.enabled = false;
 				northCollider.enabled = false;
 				westCollider.enabled = false;
-				directionalCollider = southCollider;
+				//directionalCollider = southCollider;
 				break;
 			case Globals.Direction.East:
 				southCollider.enabled = false;
 				eastCollider.enabled = true;
 				northCollider.enabled = false;
 				westCollider.enabled = false;
-				directionalCollider = eastCollider;
+				//directionalCollider = eastCollider;
 				break;
 			case Globals.Direction.West:
 				southCollider.enabled = false;
 				eastCollider.enabled = false;
 				northCollider.enabled = false;
 				westCollider.enabled = true;
-				directionalCollider = westCollider;
+				//directionalCollider = westCollider;
 				break;
 		}
 		animator.SetInteger ("Direction", (int)direction);	

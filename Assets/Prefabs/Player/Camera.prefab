@@ -4503,7 +4503,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0a38f73162691b847a440ecc50481dd1, type: 3}
   - {fileID: 21300000, guid: c6e8443a654814d61a61877c010d1b40, type: 3}
   - {fileID: 21300000, guid: 866cc79b620c945af98eeb47240b37a9, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 919a0805dbf58cb48a93d4bebf371ba9, type: 3}
   - {fileID: 21300000, guid: 182900549230c0d4bac20a949d8452c7, type: 3}
   fullHeart: {fileID: 21300000, guid: 868643fb4ec264b4fad06f5444325ede, type: 3}
   brokenHeart: {fileID: 21300000, guid: 1d017f8f011e74bff868f0712c8e6a41, type: 3}

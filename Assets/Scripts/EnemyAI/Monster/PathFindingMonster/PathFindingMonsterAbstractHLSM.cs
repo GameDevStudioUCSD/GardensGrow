@@ -70,7 +70,7 @@ public abstract class PathFindingMonsterAbstractFSM: EnemyGridObject, IStateMach
 
     public IEnumerator Step()
     {
-		State prevState = state;
+		//State prevState = state;
 		
         IEnumerator stateAction = null;
         try {
