@@ -61,7 +61,7 @@ public class MainCamera : MonoBehaviour {
         DialogueTrigger[] dt = FindObjectsOfType<DialogueTrigger>();
         foreach (DialogueTrigger d in dt) d.gameObject.SetActive(false);
 
-
+        //set health and iventory activefalse
         player.gameObject.SetActive(false);
         cutScene = true;
         StartCoroutine(MoveCameraPath());
