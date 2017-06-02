@@ -26,7 +26,6 @@ GameObject:
   - 61: {fileID: 61000010799608248}
   - 111: {fileID: 111000013801147346}
   - 82: {fileID: 82000013483984518}
-  - 114: {fileID: 114000011598496010}
   m_Layer: 0
   m_Name: BubblePlant
   m_TagString: Plant
@@ -288,37 +287,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114000011598496010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011627281200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192ed201a6ae3544caa77570f2f7c491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 0
-  lootTable: {fileID: 114000012847418276}
-  health: 20
-  damage: 5
-  bombable: 0
-  deathPanel: {fileID: 0}
-  southHitCollider: {fileID: 0}
-  westHitCollider: {fileID: 0}
-  northHitCollider: {fileID: 0}
-  eastHitCollider: {fileID: 0}
-  faction: 0
-  hpBarText: {fileID: 0}
-  audioSource: {fileID: 82000014058780230}
-  attackSound: {fileID: 0}
-  hurtSound: {fileID: 0}
-  isAttacking: 0
-  isDying: 0
-  isInvulnerable: 0
-  bubble: {fileID: 1000012805160130, guid: ee8ada84ef03a7e40b08085bb44c9d27, type: 2}
-  bubbleCooldownFrames: 750
 --- !u!114 &114000012847418276
 MonoBehaviour:
   m_ObjectHideFlags: 1
