@@ -25,7 +25,7 @@ public class EnemySpawner : KillableGridObject
     public bool canSpawn = true;
 
     private int currentSpawnCount = 0;
-    private List<GameObject> spawnedMonsters = new List<GameObject>();
+    public List<GameObject> spawnedMonsters = new List<GameObject>();
     private Animator spawnerAnimator;
     private Quaternion spawnRotation = Quaternion.identity;
     private PlayerGridObject player;
@@ -102,6 +102,7 @@ public class EnemySpawner : KillableGridObject
             currentSpawnCount++;
         }
         GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+        summonedMonster.GetComponent<GenericMonsterBehaviour>().spawner = this;
         spawnedMonsters.Add(summonedMonster);
 
         PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
