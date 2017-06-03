@@ -61,6 +61,13 @@ public class RoomRotater : MonoBehaviour {
 		NorthRoom.transform.position += moveRight;
 
 		foreach (PlantGridObject plant in FindObjectsOfType<PlantGridObject>()) {
+
+			BoomerangPlantObject bPlant = plant as BoomerangPlantObject;
+
+			if (bPlant != null) {
+				bPlant.RemoveSelfFromRoom();
+			}
+
 			if (
 				Mathf.Abs(plant.gameObject.transform.position.x - NorthEastRoom.transform.position.x) <= 7 &&
 				Mathf.Abs(plant.gameObject.transform.position.y - NorthEastRoom.transform.position.y) <= 5
@@ -108,6 +115,10 @@ public class RoomRotater : MonoBehaviour {
 				Mathf.Abs(plant.gameObject.transform.position.y - NorthRoom.transform.position.y) <= 5
 			) {
 				plant.gameObject.transform.position += moveRight;
+			}
+
+			if (bPlant != null) {
+				bPlant.AddSelfToRoom();
 			}
 		}
 
@@ -160,6 +171,10 @@ public class RoomRotater : MonoBehaviour {
 			) {
 				enemy.gameObject.transform.position += moveRight;
 			}
+		}
+
+		foreach (Boomerang b in FindObjectsOfType<Boomerang>()) {
+			b.UpdateRoomId();
 		}
 	}
 }
