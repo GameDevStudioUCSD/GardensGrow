@@ -74,7 +74,7 @@ public class BombObject : MoveableGridObject {
 
     //hiding KillableGridObject's method; bombs don't die
     public override bool TakeDamage(int damage) {
-        Explode();
+        if (isRolling) Explode();
         return false;
     }
 
