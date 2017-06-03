@@ -48,7 +48,6 @@ public class Boomerang : MonoBehaviour {
                 int currPlant = nextPlant;
                 nextPlant = (nextPlant + 1) % plants[roomId].Count;
                 if (currPlant != nextPlant) {
-                    Debug.Log("Play sound");
                     sfxThrow.Play();
                 }
             }
