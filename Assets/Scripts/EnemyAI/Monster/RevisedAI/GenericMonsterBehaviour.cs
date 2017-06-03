@@ -8,6 +8,7 @@ public class GenericMonsterBehaviour : MonsterBehaviourAbstractFSM {
     [Header("Behaviour Modules")]
     public PathFindingModule pathFindingModule;
     public AttackModule attackModule;
+    public EnemySpawner spawner;
 
     public override void Reset() { }
 

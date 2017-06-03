@@ -513,7 +513,7 @@ Animator:
   m_GameObject: {fileID: 1000010745413258}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 95af862c69f89384e9097564cc0a4d86, type: 2}
+  m_Controller: {fileID: 22100000, guid: 63550d94eb89e499f87c8f502b1fd814, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -749,10 +749,12 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  useRoomBoundary: 0
   spawnDelay: 2
   maxSpawns: 3
   spawnsOnce: 0
   canSpawn: 1
+  spawnedMonsters: []
   eastCollider: {fileID: 1000013225365150}
   westCollider: {fileID: 1000011153929262}
   northCollider: {fileID: 1000011243968514}
