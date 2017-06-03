@@ -103,6 +103,34 @@ public class KillableGridObject : RotateableGridObject {
         return false;
     }
 
+    public virtual bool TakeScriptedDamage(int damage) {
+        Animation animation = gameObject.GetComponent<Animation>();
+        if (animation) animation.Play("Damaged");
+
+        if (!bombable) {
+            health -= damage;
+
+            if (audioSource != null) {
+                audioSource.clip = hurtSound;
+                audioSource.Play();
+            }
+
+            if (health <= 0 && hasDied == false) {
+                if (this.gameObject.GetComponent<PlayerGridObject>()) {
+                    //StartCoroutine(screenBlackout());
+                    DieNoDrop();
+                    return true;
+                }
+                else {
+                    DieNoDrop();
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public virtual bool TakeBombDamage(int damage) {
         if (isInvulnerable) {
             return false;
@@ -138,6 +166,17 @@ public class KillableGridObject : RotateableGridObject {
 
         isDying = true;
     }
+
+    protected virtual void DieNoDrop() {
+
+        hasDied = true;
+        if (this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+        isDying = true;
+    }
+
     IEnumerator screenBlackout()
     {
         //replace the following with a transparent animation later
