@@ -29,6 +29,10 @@ public class LockedDoor : MonoBehaviour {
             {
                 CloseDoor();
             }
+            else
+            {
+                OpenDoor();
+            }
         }
     }
     void OnDisable()
