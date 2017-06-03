@@ -40,6 +40,10 @@ public class MainCamera : MonoBehaviour {
 
 			this.transform.position = currentPos;
 		}
+        else
+        {
+            finalCreditsButton.SetActive(true);
+        }
     }
 
     public void StartCutScene()
@@ -61,13 +65,14 @@ public class MainCamera : MonoBehaviour {
         DialogueTrigger[] dt = FindObjectsOfType<DialogueTrigger>();
         foreach (DialogueTrigger d in dt) d.gameObject.SetActive(false);
 
-
+        //set health and iventory activefalse
         player.gameObject.SetActive(false);
         cutScene = true;
         StartCoroutine(MoveCameraPath());
     }
     IEnumerator MoveCameraPath()
     {
+        finalCreditsButton.SetActive(false);
         speed = 2;
         for (int i = 0; i < 440; i++)
         {

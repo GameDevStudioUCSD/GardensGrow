@@ -6,10 +6,44 @@ public class LockedDoor : MonoBehaviour {
 	public bool unlockable;
 
 	private Animator animator;
-	private bool closed;
+    private bool closed = false;
 
-	// Use this for initialization
-	void Start () {
+    private float x;
+    private float y;
+    private float z;
+
+    void OnEnable()
+    {
+        PlayerGridObject p = FindObjectOfType<PlayerGridObject>();
+
+        if (!p.itemsRePickUp) //check in player to save door/item info or not
+        {
+            x = this.gameObject.transform.position.x;
+            y = this.gameObject.transform.position.y;
+            z = this.gameObject.transform.position.z;
+
+            closed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                + "pos x" + x + "pos y" + y + "pos z" + z, closed);
+
+            if (closed)
+            {
+                CloseDoor();
+            }
+            else
+            {
+                OpenDoor();
+            }
+        }
+    }
+    void OnDisable()
+    {
+
+        PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                  + "pos x" + x + "pos y" + y + "pos z" + z, closed); //TODO put false into here, and save before building the game
+
+    }
+    // Use this for initialization
+    void Start () {
 		closed = true;
 		animator = this.gameObject.GetComponent<Animator>();
 	}
