@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System;
 
 public class WindBossAI : KillableGridObject {
-	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
+	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing, Damaged };
 	public RollingBoulder boulder;
     public GameObject portal;
     public GameObject spawnedMonster;
     public int idleFrames = 300;
     public int inhalingFrames = 400;
     public int blowingFrames = 300;
+    public int damagedFrames = 30;
 
     private GameObject spawnedMonster1;
     private GameObject spawnedMonster2;
@@ -56,7 +57,7 @@ public class WindBossAI : KillableGridObject {
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
-		numRocks = 2;
+		numRocks = 5;
 		state = BossState.SpawningRocks;
 		direction = Globals.Direction.South;
 		animator = this.gameObject.GetComponent<Animator>();
@@ -151,6 +152,15 @@ public class WindBossAI : KillableGridObject {
 				state = BossState.SpawningRocks;
 			}
 		}
+        if (state == BossState.Damaged) {
+            framesInState++;
+            if (framesInState > damagedFrames) {
+                DestroyRocks();
+                framesInState = 0;
+                animator.SetInteger("State", 0);
+                state = BossState.SpawningRocks;
+            }
+        }
 	}
 
 	void SpawnRocks() {
@@ -193,5 +203,15 @@ public class WindBossAI : KillableGridObject {
         portal.SetActive(true);
         Globals.windBossBeaten = true;
         base.Die();
+    }
+
+    public override bool TakeBombDamage(int damage) {
+        if (!isInvulnerable) {
+            framesInState = 0;
+            animator.SetInteger("State", 0);
+            state = BossState.Damaged;
+            numRocks += 2;
+        }
+        return base.TakeBombDamage(damage);
     }
 }

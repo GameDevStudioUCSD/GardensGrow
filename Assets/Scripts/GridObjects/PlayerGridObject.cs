@@ -149,14 +149,6 @@ public class PlayerGridObject : MoveableGridObject {
             // Deal damage to all targets of the enemy faction
             foreach (KillableGridObject target in killList)
             {
-                BombObject bomb = target.GetComponent<BombObject>();
-                if (bomb)
-                {
-                    if (!bomb.evil)
-                    {
-                        bomb.Roll(direction);
-                    }
-                }
                 //deplant code MOVED so deplanting is a different button
                 PlantGridObject plant = target.GetComponent<PlantGridObject>();
                 if (plant)
@@ -258,6 +250,17 @@ public class PlayerGridObject : MoveableGridObject {
             return base.TakeDamage(damage);
         }
         return base.TakeDamage(0);
+    }
+    public override bool TakeBombDamage(int damage) {
+        if (damage >= 1) {
+            canvas.UpdateHealth(health - damage);
+        }
+        if (!invincible) {
+            invincible = true;
+            StartCoroutine(invicibilityWait());
+            return base.TakeBombDamage(damage);
+        }
+        return base.TakeBombDamage(0);
     }
     IEnumerator invicibilityWait()
     {
