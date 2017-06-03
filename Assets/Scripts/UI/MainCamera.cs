@@ -12,8 +12,20 @@ public class MainCamera : MonoBehaviour {
     public GameObject finalCreditsButton;
     public PlayerGridObject player;
 
+    private TileMap tm;
     private int speed = 1;
+
     //private bool paused = false;
+
+    private void Start()
+    {
+        tm = FindObjectOfType<TileMap>();
+        if (cutScene)
+        {
+            tm.debug = true;
+            finalCreditsButton.SetActive(true);
+        }
+    }
     void Update()
     {
         if (!lockCamera && !cutScene) {
@@ -40,18 +52,12 @@ public class MainCamera : MonoBehaviour {
 
 			this.transform.position = currentPos;
 		}
-        else
-        {
-            finalCreditsButton.SetActive(true);
-        }
     }
 
     public void StartCutScene()
     {
-        //finalCreditsButton.SetActive(false);
-        TileMap tm = FindObjectOfType<TileMap>();
-
         tm.player = this.gameObject;
+
 
         EnemySpawner[] es = FindObjectsOfType<EnemySpawner>();
         foreach (EnemySpawner e in es) e.gameObject.SetActive(false);
@@ -66,7 +72,6 @@ public class MainCamera : MonoBehaviour {
         foreach (DialogueTrigger d in dt) d.gameObject.SetActive(false);
 
         //set health and iventory activefalse
-        player.gameObject.SetActive(false);
         cutScene = true;
         StartCoroutine(MoveCameraPath());
     }
@@ -154,6 +159,47 @@ public class MainCamera : MonoBehaviour {
             Move(Globals.Direction.West);
             yield return new WaitForEndOfFrame();
         }
+
+        yield return new WaitForSeconds(1.0f);
+        //start traversing to world 3
+        this.gameObject.transform.position = new Vector3(0, 0, -2f);
+        for (int i = 0; i < 450; i++)
+        {
+            Move(Globals.Direction.West);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 160; i++)
+        {
+            Move(Globals.Direction.North);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 450; i++)
+        {
+            Move(Globals.Direction.West);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 320; i++)
+        {
+            Move(Globals.Direction.South);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 450; i++)
+        {
+            Move(Globals.Direction.East);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 160; i++)
+        {
+            Move(Globals.Direction.North);
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < 450; i++)
+        {
+            Move(Globals.Direction.East);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(1.0f);
+
     }
 
     void Move(Globals.Direction direction)
