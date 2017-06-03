@@ -16,8 +16,8 @@ public class EnemySpawner : KillableGridObject
 
     [Header("Spawning Options")]
     public bool useRoomBoundary;
-    [Range(0.0f, 60.0f)]
-    public float spawnDelay = 3.0f;
+    [Range(0, 300)]
+    public int spawnDelay = 60;
     [Range(0, 99)]
     public int maxSpawns;
     public bool spawnsOnce = false;
@@ -31,7 +31,7 @@ public class EnemySpawner : KillableGridObject
     private PlayerGridObject player;
 
     private bool coolingDown = true;
-    private float cooldownTimer = 0.0f;
+    private int cooldownTimer = 0;
     private int randInt;
 
     //bools for finding where spawner can spawn
@@ -55,14 +55,14 @@ public class EnemySpawner : KillableGridObject
 
     // Update is called once per frame
     protected override void Update() {
-        if(coolingDown)
+        if(coolingDown && currentSpawnCount < maxSpawns)
         {
-            cooldownTimer += Time.deltaTime;
+            cooldownTimer++;
 
-            if (cooldownTimer > spawnDelay)
+            if (cooldownTimer >= spawnDelay)
             {
                 coolingDown = false;
-                cooldownTimer = 0.0f;
+                cooldownTimer = 0;
             }
         }
 
@@ -112,6 +112,8 @@ public class EnemySpawner : KillableGridObject
 
         // Activate monster
         summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().StartAI();
+
+        coolingDown = true;
     }
     
     public void SpawnAtOnce()
@@ -209,7 +211,8 @@ public class EnemySpawner : KillableGridObject
     			spawnedMonsters.RemoveAt(i);
     		} else {
 				KillableGridObject spawn = obj.GetComponent<KillableGridObject>();
-    			spawn.TakeDamage(10000);
+                if (spawn.isInvulnerable) spawn.isInvulnerable = false;
+    			spawn.TakeScriptedDamage(10000);
 				spawnedMonsters.RemoveAt(i);
     		}
     	}
@@ -229,7 +232,7 @@ public class EnemySpawner : KillableGridObject
     // Disabling is when the active "check mark" in the editor is turned off
     public void OnDisable()
     {
-        KillSpawns();
+        if (!isDying) KillSpawns();
     }
 
     private void ClearDeadSpawns()
