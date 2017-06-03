@@ -12,6 +12,8 @@ public class Boomerang : MonoBehaviour {
     public int damage = 1;
     public float speed = 1.0f;
 
+    public AudioSource sfxThrow;
+
     private List<GameObject> itemHeld = new List<GameObject>();
     private int nextPlant = 0;
     private string roomId = null;
@@ -28,9 +30,7 @@ public class Boomerang : MonoBehaviour {
     }
 
     void OnEnable() {
-        transform.position = transform.parent.position;
-        roomId = RoomId(transform.parent.position);
-        nextPlant = 0;
+        UpdateRoomId();
     }
 
     // Update is called once per frame
@@ -41,7 +41,13 @@ public class Boomerang : MonoBehaviour {
             }
 
             if (Vector2.Distance(transform.position, plants[roomId][nextPlant]) <= speed) {
+                // This boomerang is close enough to the next plant; change the
+                // plant to go to
+                int currPlant = nextPlant;
                 nextPlant = (nextPlant + 1) % plants[roomId].Count;
+                if (currPlant != nextPlant) {
+                    sfxThrow.Play();
+                }
             }
             else {
                 Vector3 dt = (plants[roomId][nextPlant] - transform.position).normalized * speed;
@@ -82,5 +88,11 @@ public class Boomerang : MonoBehaviour {
         if (other.gameObject.GetComponent<ItemDrop>() != null) {
             itemHeld.Remove(other.gameObject);
         }
+    }
+
+    public void UpdateRoomId() {
+        transform.position = transform.parent.position;
+        roomId = RoomId(transform.parent.position);
+        nextPlant = 0;
     }
 }

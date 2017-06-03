@@ -10,6 +10,8 @@ public class PortalObject : RespawnLocation {
     // 5 = Wind Dungeon Boss
     // 6 = Cave Dungeon
     // 7 = Cave Dungeon Boss
+    // 8 = Vine Dungeon
+    // 9 = Vine Dungeon Boss
 
     public int levelToLoad;
     public bool lightSource = false;
