@@ -12,8 +12,14 @@ public class CutsceneTrigger : MonoBehaviour {
     public int saveNumber;
     private int loadedSlot = -1;
 
+    public bool conditionBeforeFirstBoss;
+    public bool conditionAfterFirstBoss;
+    public bool conditionAfterSecondBoss;
+    public bool conditionAfterThirdBoss;
+
     public bool playedAlready = false;
     private bool isPlaying = false;
+    private bool isEnding = false;
 
     public Vector3 playerPosition;
     public GameObject npc;
@@ -31,17 +37,20 @@ public class CutsceneTrigger : MonoBehaviour {
 
     // Use this for initialization
     protected void Start() {
-        if (playedAlready) Destroy(this.gameObject);
-        dialogue = Globals.canvas.dialogUI;
+        if (Globals.canvas) dialogue = Globals.canvas.dialogUI;
         loadedSlot = Globals.loadedSlot;
         if (loadedSlot != -1) playedAlready = PlayerPrefsX.GetBool("cutscene" + saveNumber + "save" + loadedSlot);
+        if (playedAlready) Destroy(this.gameObject);
+        if (!EvaluateCondition()) Destroy(this.gameObject);
     }
 
     // Update is called once per frame
     protected void Update() {
+        if (!dialogue)
+            dialogue = Globals.canvas.dialogUI;
+
         if (isPlaying) {
             if (pixelCounter >= 32) {
-                pixelCounter = 0;
                 directionCounter++;
 
                 if (directionCounter >= npcDirections.Count) {
@@ -51,8 +60,38 @@ public class CutsceneTrigger : MonoBehaviour {
                 }
 
                 else {
+                    pixelCounter = 0;
                     npc.GetComponent<Animator>().SetInteger("Direction", (int)npcDirections[directionCounter]);
                     currentDirection = npcDirections[directionCounter];
+                }
+            }
+
+            npcSpawned.GetComponent<MoveableGridObject>().Move(currentDirection);
+            pixelCounter++;
+        }
+
+        if (isEnding) {
+            if (pixelCounter >= 32) {
+                directionCounter--;
+
+                if (directionCounter < 0) {
+                    isEnding = false;
+                    playedAlready = true;
+                    saveBool(loadedSlot);
+                    Destroy(playerSpawned);
+                    Destroy(npcSpawned);
+                    Globals.player.gameObject.SetActive(true);
+                    Destroy(this.gameObject);
+                    return;
+                }
+
+                else {
+                    pixelCounter = 0;
+                    if (npcDirections[directionCounter] == Globals.Direction.North) currentDirection = Globals.Direction.South;
+                    else if (npcDirections[directionCounter] == Globals.Direction.South) currentDirection = Globals.Direction.North;
+                    else if (npcDirections[directionCounter] == Globals.Direction.East) currentDirection = Globals.Direction.West;
+                    else if (npcDirections[directionCounter] == Globals.Direction.West) currentDirection = Globals.Direction.East;
+                    npc.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
                 }
             }
 
@@ -82,15 +121,25 @@ public class CutsceneTrigger : MonoBehaviour {
     }
 
     public void FinishCutscene() {
-        playedAlready = true;
-        saveBool(loadedSlot);
-        Destroy(playerSpawned);
-        Destroy(npcSpawned);
-        Globals.player.gameObject.SetActive(true);
-        Destroy(this.gameObject);
+        isEnding = true;
     }
 
     public void saveBool(int saveSlot) {
         PlayerPrefsX.SetBool("cutscene" + saveNumber + "save" + saveSlot, playedAlready);
+    }
+
+    private bool EvaluateCondition() {
+        if (conditionAfterThirdBoss && Globals.caveBossBeaten)
+            return true;
+        else if (conditionAfterSecondBoss && Globals.windBossBeaten)
+            return true;
+        else if (conditionAfterFirstBoss && Globals.lavaBossBeaten)
+            return true;
+        else if (conditionBeforeFirstBoss && !Globals.lavaBossBeaten)
+            return true;
+        else if (!conditionBeforeFirstBoss && !conditionAfterFirstBoss && !conditionAfterSecondBoss && !conditionAfterThirdBoss)
+            return true;
+        else
+            return false;
     }
 }
