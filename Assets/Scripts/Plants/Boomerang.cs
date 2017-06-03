@@ -12,6 +12,8 @@ public class Boomerang : MonoBehaviour {
     public int damage = 1;
     public float speed = 1.0f;
 
+    public AudioSource sfxThrow;
+
     private List<GameObject> itemHeld = new List<GameObject>();
     private int nextPlant = 0;
     private string roomId = null;
@@ -41,7 +43,14 @@ public class Boomerang : MonoBehaviour {
             }
 
             if (Vector2.Distance(transform.position, plants[roomId][nextPlant]) <= speed) {
+                // This boomerang is close enough to the next plant; change the
+                // plant to go to
+                int currPlant = nextPlant;
                 nextPlant = (nextPlant + 1) % plants[roomId].Count;
+                if (currPlant != nextPlant) {
+                    Debug.Log("Play sound");
+                    sfxThrow.Play();
+                }
             }
             else {
                 Vector3 dt = (plants[roomId][nextPlant] - transform.position).normalized * speed;
