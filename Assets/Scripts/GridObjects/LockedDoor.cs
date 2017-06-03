@@ -27,7 +27,7 @@ public class LockedDoor : MonoBehaviour {
 
             if (closed)
             {
-                this.gameObject.SetActive(false);
+                CloseDoor();
             }
         }
     }

@@ -40,6 +40,10 @@ public class MainCamera : MonoBehaviour {
 
 			this.transform.position = currentPos;
 		}
+        else
+        {
+            finalCreditsButton.SetActive(true);
+        }
     }
 
     public void StartCutScene()
@@ -68,6 +72,7 @@ public class MainCamera : MonoBehaviour {
     }
     IEnumerator MoveCameraPath()
     {
+        finalCreditsButton.SetActive(false);
         speed = 2;
         for (int i = 0; i < 440; i++)
         {
