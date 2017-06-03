@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sprites/WillowTree.meta
 guid: 3cf538b94d9154d389f1aff48292d1c7
 folderAsset: yes
 timeCreated: 1496521586
+=======
+guid: 6e33744d3f3fd504aa9272bea7be1ed2
+folderAsset: yes
+timeCreated: 1496524273
+>>>>>>> aac4dfa15f710e17e885a4dadb7dd42c74133242:Assets/Sprites/WillowTree.meta
 licenseType: Free
 DefaultImporter:
   userData: 
