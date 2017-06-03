@@ -21,22 +21,22 @@ public class MoveableGridObject : KillableGridObject {
 	public virtual void Move(Globals.Direction direction) {
         if ((!Globals.canvas.dialogue || !Globals.player != this) && !isDying) {
 		    Rotate(direction);
-            if (direction == Globals.Direction.South && !southCollider.isTriggered) {
+            if (direction == Globals.Direction.South && (!southCollider || !southCollider.isTriggered)) {
 			    Vector3 position = this.transform.position;
                 position.y -= pixelSize;
                 this.transform.position = position;
             }
-		    else if (direction == Globals.Direction.West && !westCollider.isTriggered) {
+		    else if (direction == Globals.Direction.West && (!westCollider || !westCollider.isTriggered)) {
 			    Vector3 position = this.transform.position;
                 position.x -= pixelSize;
                 this.transform.position = position;
             }
-		    else if (direction == Globals.Direction.North && !northCollider.isTriggered) {
+		    else if (direction == Globals.Direction.North && (!northCollider || !northCollider.isTriggered)) {
 			    Vector3 position = this.transform.position;
                 position.y += pixelSize;
                 this.transform.position = position;
             }
-		    else if (direction == Globals.Direction.East && !eastCollider.isTriggered) {
+		    else if (direction == Globals.Direction.East && (!eastCollider || !eastCollider.isTriggered)) {
 			    Vector3 position = this.transform.position;
                 position.x += pixelSize;
                 this.transform.position = position;

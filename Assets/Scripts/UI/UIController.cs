@@ -31,6 +31,8 @@ public class UIController : MonoBehaviour {
     public bool paused;
     public bool dialogue = false;
 
+    private CutsceneTrigger cutsceneTrigger;
+
     // Use this for initialization
     void Start () {
         UpdateUI();
@@ -146,6 +148,24 @@ public class UIController : MonoBehaviour {
             uiPlantCounters[i].enabled = true;
             uiButtonCounter[i].enabled = true;
         }
+
+        if (cutsceneTrigger) {
+            cutsceneTrigger.FinishCutscene();
+            cutsceneTrigger = null;
+        }
+    }
+    
+    public void ShowDialog(CutsceneTrigger trigger) {
+        //player.GetComponent<Animator>().StartPlayback(); //don't know why start stops animations, but it does
+        dialogue = true;
+        dialogUI.SetActive(true);
+
+        for (int i = 0; i < 8; i++) {
+            uiPlants[i].enabled = false;
+            uiPlantCounters[i].enabled = false;
+            uiButtonCounter[i].enabled = false;
+        }
+        cutsceneTrigger = trigger;
     }
 
     public void ShowSaveMenu() {
