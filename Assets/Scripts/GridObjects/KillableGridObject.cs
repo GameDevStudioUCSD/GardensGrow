@@ -39,9 +39,12 @@ public class KillableGridObject : RotateableGridObject {
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     protected bool hasDied = false;
 
+    private SpriteRenderer renderer;
+
     // Use this for initialization
     protected override void Start() {
         base.Start();
+		renderer = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -100,6 +103,34 @@ public class KillableGridObject : RotateableGridObject {
         return false;
     }
 
+    public virtual bool TakeScriptedDamage(int damage) {
+        Animation animation = gameObject.GetComponent<Animation>();
+        if (animation) animation.Play("Damaged");
+
+        if (!bombable) {
+            health -= damage;
+
+            if (audioSource != null) {
+                audioSource.clip = hurtSound;
+                audioSource.Play();
+            }
+
+            if (health <= 0 && hasDied == false) {
+                if (this.gameObject.GetComponent<PlayerGridObject>()) {
+                    //StartCoroutine(screenBlackout());
+                    DieNoDrop();
+                    return true;
+                }
+                else {
+                    DieNoDrop();
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public virtual bool TakeBombDamage(int damage) {
         if (isInvulnerable) {
             return false;
@@ -135,6 +166,17 @@ public class KillableGridObject : RotateableGridObject {
 
         isDying = true;
     }
+
+    protected virtual void DieNoDrop() {
+
+        hasDied = true;
+        if (this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+        isDying = true;
+    }
+
     IEnumerator screenBlackout()
     {
         //replace the following with a transparent animation later
@@ -210,5 +252,15 @@ public class KillableGridObject : RotateableGridObject {
     public bool HitSomething()
     {
         return hitSomething;
+    }
+
+    protected void makeInvulnerable() {
+    	isInvulnerable = true;
+		renderer.color = new Color(0.5f, 0.5f, 0.5f);
+    }
+
+    protected void makeVulnerable() {
+    	isInvulnerable = false;
+		renderer.color = new Color(1.0f, 1.0f, 1.0f);
     }
 }

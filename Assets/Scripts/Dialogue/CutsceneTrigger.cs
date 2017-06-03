@@ -34,21 +34,19 @@ public class CutsceneTrigger : MonoBehaviour {
     private int pixelCounter = 32;
     private int directionCounter = -1;
     private Globals.Direction currentDirection;
-
-    // Use this for initialization
+    
     protected void Start() {
         if (Globals.canvas) dialogue = Globals.canvas.dialogUI;
         loadedSlot = Globals.loadedSlot;
         if (loadedSlot != -1) playedAlready = PlayerPrefsX.GetBool("cutscene" + saveNumber + "save" + loadedSlot);
-        if (playedAlready) Destroy(this.gameObject);
-        if (!EvaluateCondition()) Destroy(this.gameObject);
+        if (playedAlready) Destroy(this.gameObject); //cutscenes only play once
     }
-
-    // Update is called once per frame
+    
     protected void Update() {
         if (!dialogue)
             dialogue = Globals.canvas.dialogUI;
 
+        //NPC walking up to player before dialogue
         if (isPlaying) {
             if (pixelCounter >= 32) {
                 directionCounter++;
@@ -70,6 +68,7 @@ public class CutsceneTrigger : MonoBehaviour {
             pixelCounter++;
         }
 
+        //NPC walking away from player after dialogue
         if (isEnding) {
             if (pixelCounter >= 32) {
                 directionCounter--;
@@ -100,8 +99,9 @@ public class CutsceneTrigger : MonoBehaviour {
         }
     }
 
+    //Pause time, disable player, create cutscene player and npc, start walk up
     public void OnTriggerEnter2D(Collider2D other) {
-        if (!playedAlready && other.gameObject == Globals.player.gameObject) {
+        if (!playedAlready && other.gameObject == Globals.player.gameObject && EvaluateCondition()) {
             Globals.canvas.paused = true;
             playerSpawned = (GameObject)Instantiate(Globals.player.gameObject, playerPosition, Quaternion.identity);
             Destroy(playerSpawned.GetComponent<PlayerGridObject>());
@@ -114,12 +114,14 @@ public class CutsceneTrigger : MonoBehaviour {
         }
     }
 
+    //Start dialogue
     private void ShowDialog() {
         Globals.canvas.ShowDialog(this);
         dialogue.GetComponentInChildren<DialogueSystem>().textFile = Resources.Load<TextAsset>("Text/" + textFileName);
         dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
     }
 
+    //End dialogue, start walk away
     public void FinishCutscene() {
         isEnding = true;
     }
@@ -128,6 +130,7 @@ public class CutsceneTrigger : MonoBehaviour {
         PlayerPrefsX.SetBool("cutscene" + saveNumber + "save" + saveSlot, playedAlready);
     }
 
+    //Determines if cutscene will play based on conditions
     private bool EvaluateCondition() {
         if (conditionAfterThirdBoss && Globals.caveBossBeaten)
             return true;

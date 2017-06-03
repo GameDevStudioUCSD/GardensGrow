@@ -17,13 +17,13 @@ public class BossLockedDoor : MonoBehaviour {
         SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();
 
         if (Globals.caveBossBeaten) {
-        	renderer.sprite = lava;
+        	renderer.sprite = cave;
         }
         else if (Globals.windBossBeaten) {
         	renderer.sprite = wind;
         }
         else if (Globals.lavaBossBeaten) {
-        	renderer.sprite = cave;
+        	renderer.sprite = lava;
         }
     }
 

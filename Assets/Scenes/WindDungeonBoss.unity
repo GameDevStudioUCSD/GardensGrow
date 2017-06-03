@@ -5340,7 +5340,7 @@ MonoBehaviour:
   portal: {fileID: 1897905128}
   spawnedMonster: {fileID: 1000012166925212, guid: 3447de6128a194e1885687c5606395bb,
     type: 2}
-  idleFrames: 0
+  idleFrames: 300
   inhalingFrames: 400
   blowingFrames: 300
 --- !u!4 &1056494783
@@ -7778,7 +7778,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000014006778588, guid: e7775dac8b1f1954e818b9bd95668968, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4000014006778588, guid: e7775dac8b1f1954e818b9bd95668968, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8463,7 +8463,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011130031264, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011130031264, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
       propertyPath: m_LocalPosition.y
