@@ -39,9 +39,12 @@ public class KillableGridObject : RotateableGridObject {
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     protected bool hasDied = false;
 
+    private SpriteRenderer renderer;
+
     // Use this for initialization
     protected override void Start() {
         base.Start();
+		renderer = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -249,5 +252,15 @@ public class KillableGridObject : RotateableGridObject {
     public bool HitSomething()
     {
         return hitSomething;
+    }
+
+    protected void makeInvulnerable() {
+    	isInvulnerable = true;
+		renderer.color = new Color(0.5f, 0.5f, 0.5f);
+    }
+
+    protected void makeVulnerable() {
+    	isInvulnerable = false;
+		renderer.color = new Color(1.0f, 1.0f, 1.0f);
     }
 }

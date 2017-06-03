@@ -8,8 +8,8 @@ public class WindBossAI : KillableGridObject {
 	public RollingBoulder boulder;
     public GameObject portal;
     public GameObject spawnedMonster;
-    public int idleFrames = 0;
-    public int inhalingFrames = 360;
+    public int idleFrames = 300;
+    public int inhalingFrames = 400;
     public int blowingFrames = 300;
 
     private GameObject spawnedMonster1;
@@ -56,11 +56,12 @@ public class WindBossAI : KillableGridObject {
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
-		numRocks = 1;
+		numRocks = 2;
 		state = BossState.SpawningRocks;
 		direction = Globals.Direction.South;
 		animator = this.gameObject.GetComponent<Animator>();
 		animator.SetInteger("State", 0);
+		base.makeInvulnerable();
 	}
 
 	// Update is called once per frame
@@ -74,43 +75,37 @@ public class WindBossAI : KillableGridObject {
 		}
 		if (state == BossState.SpawningMonsters) {
 			animator.SetInteger("State", 0);
-			//Debug.Log("Spawning monsters");
-			state = BossState.Idle;
 			framesInState = 0;
 			int integerDirection = UnityEngine.Random.Range(0, 4);
 			int position;
 			Vector3 newPosition;
 			if (integerDirection == 0) {
 				direction = Globals.Direction.South;
-				Debug.Log("North");
 				position = UnityEngine.Random.Range(-4, 4);
 				newPosition = new Vector3(position, 4.5f, 0.0f);
-				animator.SetInteger("Direction", 1);
+				animator.SetInteger("Direction", 0);
 			}
 			else if (integerDirection == 1) {
-				Debug.Log("East");
 				direction = Globals.Direction.West;
 				position = UnityEngine.Random.Range(-3, 3);
 				newPosition = new Vector3(5.5f, position, 0.0f);
-				animator.SetInteger("Direction", 3);
+				animator.SetInteger("Direction", 2);
 			}
 			else if (integerDirection == 2) {
-				Debug.Log("South");
 				direction = Globals.Direction.North;
 				position = UnityEngine.Random.Range(-4, 4);
 				newPosition = new Vector3(position, -4.5f, 0.0f);
-				animator.SetInteger("Direction", 0);
+				animator.SetInteger("Direction", 1);
 			}
 			else {
-				Debug.Log("West");
 				direction = Globals.Direction.East;
 				position = UnityEngine.Random.Range(-3, 3);
 				newPosition = new Vector3(-5.5f, position, 0.0f);
-				animator.SetInteger("Direction", 2);
+				animator.SetInteger("Direction", 3);
 			}
 
             // TODO: these slimes need to have their targeting and tilemap setup
-            /*if (!spawnedMonster1) {
+            if (!spawnedMonster1) {
                 spawnedMonster1 = (GameObject)Instantiate(spawnedMonster, new Vector3(-3, 0, 0), Quaternion.identity);
                 PathFindingModule monsterPathFinding = spawnedMonster1.GetComponentInChildren<PathFindingModule>();
                 monsterPathFinding.parameters.tileMap = Globals.tileMap;
@@ -121,42 +116,39 @@ public class WindBossAI : KillableGridObject {
                 PathFindingModule monsterPathFinding = spawnedMonster2.GetComponentInChildren<PathFindingModule>();
                 monsterPathFinding.parameters.tileMap = Globals.tileMap;
                 monsterPathFinding.parameters.target = Globals.player.gameObject;
-            }*/
+            }
 
 			this.transform.position = newPosition;
+			state = BossState.Idle;
 		}
 		if (state == BossState.Idle) {
-			//Debug.Log("Idle");
 			framesInState++;
 			if (framesInState > idleFrames) {
-				state = BossState.Inhaling;
-				isInvulnerable = false;
+				//isInvulnerable = false;
+				base.makeVulnerable();
 				framesInState = 0;
 				animator.SetInteger("State", 1);
+				state = BossState.Inhaling;
 			}
 		}
 		if (state == BossState.Inhaling) {
-			//Debug.Log("Inhaling");
 			framesInState++;
 			if (framesInState > inhalingFrames) {
-				state = BossState.Blowing;
-				isInvulnerable = true;
+				//isInvulnerable = true;
+				base.makeInvulnerable();
 				framesInState = 0;
 				animator.SetInteger("State", 2);
+				state = BossState.Blowing;
 			}
 		}
 		if (state == BossState.Blowing) {
-			//Debug.Log("Blowing");
 			BlowRocks();
 			framesInState++;
-			if (framesInState == 1) {
-
-			}
 			if (framesInState > blowingFrames) {
 				DestroyRocks();
-				state = BossState.SpawningRocks;
 				framesInState = 0;
 				animator.SetInteger("State", 0);
+				state = BossState.SpawningRocks;
 			}
 		}
 	}
