@@ -59,5 +59,107 @@ public class RoomRotater : MonoBehaviour {
 		tempRoom2 = tempRoom1;
 		NorthRoom = tempRoom2;
 		NorthRoom.transform.position += moveRight;
+
+		foreach (PlantGridObject plant in FindObjectsOfType<PlantGridObject>()) {
+			if (
+				Mathf.Abs(plant.gameObject.transform.position.x - NorthEastRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - NorthEastRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveDown;
+			}
+			else if (
+				Mathf.Abs(plant.gameObject.transform.position.x - EastRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - EastRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveDown;
+			}
+			else if (
+				Mathf.Abs(plant.gameObject.transform.position.x - SouthEastRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - SouthEastRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveLeft;
+			}
+			else if (
+				Mathf.Abs(plant.gameObject.transform.position.x - SouthRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - SouthRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveLeft;
+			}
+			else if (
+				Mathf.Abs(plant.gameObject.transform.position.x - SouthWestRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - SouthWestRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveUp;
+			}
+			else if (
+				Mathf.Abs(plant.gameObject.transform.position.x - WestRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - WestRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveUp;
+			}
+			else if (
+				Mathf.Abs(plant.gameObject.transform.position.x - NorthWestRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - NorthWestRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveRight;
+			}
+			else if (
+				Mathf.Abs(plant.gameObject.transform.position.x - NorthRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(plant.gameObject.transform.position.y - NorthRoom.transform.position.y) <= 5
+			) {
+				plant.gameObject.transform.position += moveRight;
+			}
+		}
+
+		foreach (EnemyGridObject enemy in FindObjectsOfType<EnemyGridObject>()) {
+			if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - NorthEastRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - NorthEastRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveDown;
+			}
+			else if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - EastRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - EastRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveDown;
+			}
+			else if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - SouthEastRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - SouthEastRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveLeft;
+			}
+			else if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - SouthRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - SouthRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveLeft;
+			}
+			else if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - SouthWestRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - SouthWestRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveUp;
+			}
+			else if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - WestRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - WestRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveUp;
+			}
+			else if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - NorthWestRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - NorthWestRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveRight;
+			}
+			else if (
+				Mathf.Abs(enemy.gameObject.transform.position.x - NorthRoom.transform.position.x) <= 7 &&
+				Mathf.Abs(enemy.gameObject.transform.position.y - NorthRoom.transform.position.y) <= 5
+			) {
+				enemy.gameObject.transform.position += moveRight;
+			}
+		}
 	}
 }
