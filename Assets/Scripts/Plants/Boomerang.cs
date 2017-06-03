@@ -30,9 +30,7 @@ public class Boomerang : MonoBehaviour {
     }
 
     void OnEnable() {
-        transform.position = transform.parent.position;
-        roomId = RoomId(transform.parent.position);
-        nextPlant = 0;
+        UpdateRoomId();
     }
 
     // Update is called once per frame
@@ -48,7 +46,6 @@ public class Boomerang : MonoBehaviour {
                 int currPlant = nextPlant;
                 nextPlant = (nextPlant + 1) % plants[roomId].Count;
                 if (currPlant != nextPlant) {
-                    Debug.Log("Play sound");
                     sfxThrow.Play();
                 }
             }
@@ -91,5 +88,11 @@ public class Boomerang : MonoBehaviour {
         if (other.gameObject.GetComponent<ItemDrop>() != null) {
             itemHeld.Remove(other.gameObject);
         }
+    }
+
+    public void UpdateRoomId() {
+        transform.position = transform.parent.position;
+        roomId = RoomId(transform.parent.position);
+        nextPlant = 0;
     }
 }

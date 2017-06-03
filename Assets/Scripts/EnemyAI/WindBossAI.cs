@@ -56,7 +56,7 @@ public class WindBossAI : KillableGridObject {
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
-		numRocks = 5;
+		numRocks = 1;
 		state = BossState.SpawningRocks;
 		direction = Globals.Direction.South;
 		animator = this.gameObject.GetComponent<Animator>();
@@ -68,43 +68,49 @@ public class WindBossAI : KillableGridObject {
 		base.Update();
 
 		if (state == BossState.SpawningRocks) {
+			animator.SetInteger("State", 0);
 			SpawnRocks();
 			state = BossState.SpawningMonsters;
 		}
 		if (state == BossState.SpawningMonsters) {
-			Debug.Log("Spawning monsters");
+			animator.SetInteger("State", 0);
+			//Debug.Log("Spawning monsters");
 			state = BossState.Idle;
 			framesInState = 0;
 			int integerDirection = UnityEngine.Random.Range(0, 4);
 			int position;
 			Vector3 newPosition;
 			if (integerDirection == 0) {
-				direction = Globals.Direction.North;
+				direction = Globals.Direction.South;
+				Debug.Log("North");
 				position = UnityEngine.Random.Range(-4, 4);
-				newPosition = new Vector3(position, -4.5f, 0.0f);
+				newPosition = new Vector3(position, 4.5f, 0.0f);
 				animator.SetInteger("Direction", 1);
 			}
 			else if (integerDirection == 1) {
-				direction = Globals.Direction.East;
-				position = UnityEngine.Random.Range(-3, 3);
-				newPosition = new Vector3(-5.5f, position, 0.0f);
-				animator.SetInteger("Direction", 3);
-			}
-			else if (integerDirection == 2) {
-				direction = Globals.Direction.South;
-				position = UnityEngine.Random.Range(-4, 4);
-				newPosition = new Vector3(position, 4.5f, 0.0f);
-				animator.SetInteger("Direction", 0);
-			}
-			else {
+				Debug.Log("East");
 				direction = Globals.Direction.West;
 				position = UnityEngine.Random.Range(-3, 3);
 				newPosition = new Vector3(5.5f, position, 0.0f);
+				animator.SetInteger("Direction", 3);
+			}
+			else if (integerDirection == 2) {
+				Debug.Log("South");
+				direction = Globals.Direction.North;
+				position = UnityEngine.Random.Range(-4, 4);
+				newPosition = new Vector3(position, -4.5f, 0.0f);
+				animator.SetInteger("Direction", 0);
+			}
+			else {
+				Debug.Log("West");
+				direction = Globals.Direction.East;
+				position = UnityEngine.Random.Range(-3, 3);
+				newPosition = new Vector3(-5.5f, position, 0.0f);
 				animator.SetInteger("Direction", 2);
 			}
 
             // TODO: these slimes need to have their targeting and tilemap setup
-            if (!spawnedMonster1) {
+            /*if (!spawnedMonster1) {
                 spawnedMonster1 = (GameObject)Instantiate(spawnedMonster, new Vector3(-3, 0, 0), Quaternion.identity);
                 PathFindingModule monsterPathFinding = spawnedMonster1.GetComponentInChildren<PathFindingModule>();
                 monsterPathFinding.parameters.tileMap = Globals.tileMap;
@@ -115,12 +121,12 @@ public class WindBossAI : KillableGridObject {
                 PathFindingModule monsterPathFinding = spawnedMonster2.GetComponentInChildren<PathFindingModule>();
                 monsterPathFinding.parameters.tileMap = Globals.tileMap;
                 monsterPathFinding.parameters.target = Globals.player.gameObject;
-            }
+            }*/
 
 			this.transform.position = newPosition;
 		}
 		if (state == BossState.Idle) {
-			Debug.Log("Idle");
+			//Debug.Log("Idle");
 			framesInState++;
 			if (framesInState > idleFrames) {
 				state = BossState.Inhaling;
@@ -130,7 +136,7 @@ public class WindBossAI : KillableGridObject {
 			}
 		}
 		if (state == BossState.Inhaling) {
-			Debug.Log("Inhaling");
+			//Debug.Log("Inhaling");
 			framesInState++;
 			if (framesInState > inhalingFrames) {
 				state = BossState.Blowing;
@@ -140,7 +146,7 @@ public class WindBossAI : KillableGridObject {
 			}
 		}
 		if (state == BossState.Blowing) {
-			Debug.Log("Blowing");
+			//Debug.Log("Blowing");
 			BlowRocks();
 			framesInState++;
 			if (framesInState == 1) {
@@ -165,7 +171,7 @@ public class WindBossAI : KillableGridObject {
 				rocks.Add(newLocation, boulderObj);
 			}
 		}
-		numRocks+=2;
+		//numRocks+=2;
 	}
 
 	void BlowRocks() {
