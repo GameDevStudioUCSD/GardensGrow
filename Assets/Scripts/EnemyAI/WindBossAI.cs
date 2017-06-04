@@ -201,7 +201,6 @@ public class WindBossAI : KillableGridObject {
 
     protected override void Die() {
         emblem.SetActive(true);
-        Globals.windBossBeaten = true;
         base.Die();
     }
 
