@@ -6,7 +6,7 @@ using System;
 public class WindBossAI : KillableGridObject {
 	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing, Damaged };
 	public RollingBoulder boulder;
-    public GameObject portal;
+    public GameObject emblem;
     public GameObject spawnedMonster;
     public int idleFrames = 300;
     public int inhalingFrames = 400;
@@ -200,7 +200,7 @@ public class WindBossAI : KillableGridObject {
     }
 
     protected override void Die() {
-        portal.SetActive(true);
+        emblem.SetActive(true);
         Globals.windBossBeaten = true;
         base.Die();
     }

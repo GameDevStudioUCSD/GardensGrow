@@ -19019,7 +19019,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012338759146, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000012338759146, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_LocalPosition.z
@@ -19629,6 +19629,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &857126871 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010097023534, guid: d7d536481dfa846fd9724e781f523ff7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1504917315}
 --- !u!1 &860210048
 GameObject:
   m_ObjectHideFlags: 0
@@ -27671,7 +27676,7 @@ MonoBehaviour:
   - {x: 0, y: -4.5, z: 0}
   - {x: -6.5, y: 0, z: 0}
   boat: {fileID: 1000011677324500, guid: f6d5224e23532de4784df07f248aca7e, type: 2}
-  portal: {fileID: 1023638228}
+  emblem: {fileID: 857126871}
   fireball: {fileID: 114000013079232946, guid: bd41bc9a5a6c946e0918e3ec0bf50c9b, type: 2}
 --- !u!1 &1252395864
 GameObject:
@@ -32469,6 +32474,57 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &1504917315
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010097023534, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010840762746, guid: d7d536481dfa846fd9724e781f523ff7,
+        type: 2}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 1023638228}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1505088804
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class CaveBossAI : MonoBehaviour {
 
     public CircuitSystem[] circuitSystems;
 
+    public GameObject emblem;
+
     private float attackCD = 8.0f;   //boss waits x seconds before attacking again
 
     private bool canAttack = true;
@@ -102,6 +104,7 @@ public class CaveBossAI : MonoBehaviour {
     }
 
     IEnumerator DeathAnim() {
+    	emblem.SetActive(true);
         anim.SetInteger("AnimNum", 2);
         yield return new WaitForSeconds(4.0f);
         Destroy(this.gameObject);
