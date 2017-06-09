@@ -1926,7 +1926,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: -37.79999}
+  m_AnchoredPosition: {x: 1.5, y: -37}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &121319153
@@ -1970,19 +1970,17 @@ MonoBehaviour:
 
     Hilary Ng
 
-    Jenna McCloskey
-
-    Justin Liu
-
     Joung Hun Suk
 
-    Kyle Henderson
+    Justin Lieu
+
+    Kyle L. Henderson
 
     Noel Nguyen
 
     Sharon Mo
 
-    Siddhant Srinivas'
+    Siddarth Govindan'
 --- !u!222 &121319154
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3539,7 +3537,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: -30}
+  m_AnchoredPosition: {x: 1.5, y: -30}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &185084468
@@ -3575,7 +3573,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Christopher Lew
+  m_Text: 'Christopher Loree
 
     Eric Morales'
 --- !u!222 &185084469
@@ -7585,7 +7583,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: -37.79999}
+  m_AnchoredPosition: {x: 1.5, y: -37}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &385932579
@@ -7623,17 +7621,25 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Andrew Nguyen
 
-    AhnQuan Nguyen
-
-    Boming Eric Cheng
+    AnhQuan Nguyen
 
     Daniel Griffiths
 
+    Eric Boming Cheng
+
     Frank Su
 
-    Steven Lee
+    Guyue Zhou
 
-    Sammy Ma
+    Mark L. Zhao
+
+    Peter Vugia
+
+    Sammy Jing Ma
+
+    Sher Zahed
+
+    Steven Lee
 
     Sung Rim Huh
 
@@ -9814,7 +9820,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: -30}
+  m_AnchoredPosition: {x: 1.5, y: -30}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522290617
@@ -9850,9 +9856,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Geoffrey Voelker
-
-    Michael Gonzalez'
+  m_Text: Geoffrey Voelker
 --- !u!222 &522290618
 CanvasRenderer:
   m_ObjectHideFlags: 0

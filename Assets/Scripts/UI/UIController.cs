@@ -43,6 +43,20 @@ public class UIController : MonoBehaviour {
     }
 
     void Update() {
+		float yPos = ((player.transform.position.y + 5) % 10 + 10) % 10;
+		Image image;
+		if (yPos < 2) {
+			for (int i = 0; i < 8; i++) {
+				image = uiPlants[i].GetComponent<Image>();
+            	image.color = new Color(image.color.r, image.color.g, image.color.b, 0.2f);
+        	}
+		}
+		else {
+			for (int i = 0; i < 8; i++) {
+				image = uiPlants[i].GetComponent<Image>();
+            	image.color = new Color(image.color.r, image.color.g, image.color.b, 0.8f);
+        	}
+		}
 
         if (pauseUI != null)
         {

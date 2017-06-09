@@ -156,9 +156,6 @@ public class KillableGridObject : RotateableGridObject {
 
     protected virtual void Die() {
         hasDied = true;
-        if (this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
-            Application.LoadLevel(Application.loadedLevel);
-        }
 
         if (this.gameObject.tag == "Enemy" || this.gameObject.tag == "EnemySpawner" || this.gameObject.GetComponent<PlantGridObject>()) {
             SpawnItem();
