@@ -4,12 +4,17 @@ using System.Collections;
 public class WeedBoss : MonoBehaviour {
 
     private FinalDungeonBoss f;
+    private Animation anim;
 
-	// Use this for initialization
-	void Start () {
+    private bool canHit = true;
+
+    // Use this for initialization
+    void Start () {
         f = FindObjectOfType<FinalDungeonBoss>();
         f.spawnedMe = true;
-	}
+        anim = this.gameObject.GetComponent<Animation>();
+
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -17,10 +22,23 @@ public class WeedBoss : MonoBehaviour {
         {
             if (other.gameObject.GetComponent<PlayerGridObject>().isAttacking)
             {
-                f.hp--;
-                f.spawnedMe = false;
-                Destroy(this.gameObject);
+                if (canHit)
+                {
+                    StartCoroutine(hit());
+                    canHit = false;
+                }
             }
         }
+    }
+
+    IEnumerator hit()
+    {
+
+        f.hp--;
+        f.spawnedMe = false;
+        anim.Play("Damaged");
+
+        yield return new WaitForSeconds(.5f);
+        Destroy(this.gameObject);
     }
 }

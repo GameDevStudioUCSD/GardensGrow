@@ -64,10 +64,10 @@ public class FinalDungeonBoss : MonoBehaviour {
         {
             counter++;
             //under this condition pull tentacles back
-            if (counter > 150 || touchedPlayer) //2
+            if (counter > 250 || touchedPlayer) //2
             {
                 //destroy
-                if (counter > 200)
+                if (counter > 300)
                 {
                     Destroy(currentTentacle.gameObject);
                     if (currentTentacleLeft)

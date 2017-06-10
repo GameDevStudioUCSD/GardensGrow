@@ -59,7 +59,7 @@ public class Tentacle : KillableGridObject {
 
         if (other.gameObject.GetComponent<PlantGridObject>() && boss.hp != 0)
         {
-            if ((other.gameObject.GetComponent<WatermelonPlantObject>() && tentacleNum == 0) || //watermelon
+            if ( ((other.gameObject.GetComponent<WatermelonPlantObject>()||other.gameObject.GetComponent<PlantProjectileObject>()) && tentacleNum == 0) || //watermelon
                 (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
                 (other.gameObject.GetComponent<CactusPlantObject>() && tentacleNum == 2) || //cactus
                 ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>()) && tentacleNum == 3) || //bomb
@@ -67,7 +67,7 @@ public class Tentacle : KillableGridObject {
                 ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
                 (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6)) //spinning
             {
-                //play damaged animation
+                //play damaged animation for tentacle?
                 boss.touchedPlayer = true; //makes tentacles retract
                 if (!boss.spawnedMe)
                 {
