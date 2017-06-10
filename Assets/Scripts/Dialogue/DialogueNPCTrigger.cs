@@ -56,13 +56,13 @@ public class DialogueNPCTrigger : MoveableGridObject {
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
 
-		if (VolcanoBoss && !Globals.lavaBossBeaten) {
+		if (VolcanoBoss && Globals.lavaBossBeaten) {
 			textFileName = textFileNameAfterVolcano;
 		}
-		if (TornadoBoss && !Globals.windBossBeaten) {
+		if (TornadoBoss && Globals.windBossBeaten) {
 			textFileName = textFileNameAfterTornado;
 		}
-		if (JellyFishBoss && !Globals.caveBossBeaten) {
+		if (JellyFishBoss && Globals.caveBossBeaten) {
 			textFileName = textFileNameAfterJellyfish;
 		}
     }
