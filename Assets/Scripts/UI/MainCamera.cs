@@ -142,7 +142,7 @@ public class MainCamera : MonoBehaviour {
     {
         finalCreditsButton.SetActive(false);
         int dist;
-        speed = 1.36f;
+        speed = 1.399f;
         Globals.Direction left = Globals.Direction.West;
         Globals.Direction right = Globals.Direction.East;
         Globals.Direction down = Globals.Direction.South;
@@ -150,10 +150,10 @@ public class MainCamera : MonoBehaviour {
 
         for (int k = 0; k < dir.Length; k++)
         {
-            dist = 236; //reset
+            dist = 228; //reset
             if (dir[k] == Globals.Direction.East || dir[k] == Globals.Direction.West)
             {
-                dist = 332;
+                dist = 323;
             }
             for (int i = 0; i < dist; i++)
             {
@@ -176,10 +176,10 @@ public class MainCamera : MonoBehaviour {
 
         for (int k = 0; k < dir.Length; k++)
         {
-            dist = 236; //reset
+            dist = 228; //reset
             if (dir[k] == Globals.Direction.East || dir[k] == Globals.Direction.West)
             {
-                dist = 332;
+                dist = 323;
             }
             for (int i = 0; i < dist; i++)
             { 
@@ -194,17 +194,13 @@ public class MainCamera : MonoBehaviour {
     IEnumerator MoveCameraPath3(Globals.Direction[] dir)
     {
         int dist;
-        Globals.Direction left = Globals.Direction.West;
-        Globals.Direction right = Globals.Direction.East;
-        Globals.Direction down = Globals.Direction.South;
-        Globals.Direction up = Globals.Direction.North;
 
         for (int k = 0; k < dir.Length; k++)
         {
-            dist = 236; //reset
+            dist = 228; //reset
             if (dir[k] == Globals.Direction.East || dir[k] == Globals.Direction.West)
             {
-                dist = 332;
+                dist = 323;
             }
             for (int i = 0; i < dist; i++)
             {
