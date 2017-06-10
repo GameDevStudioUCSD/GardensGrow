@@ -77,6 +77,7 @@ public class CutsceneTrigger : MonoBehaviour {
                     isEnding = false;
                     playedAlready = true;
                     saveBool(loadedSlot);
+                    //commmented out destory player
                     Destroy(playerSpawned);
                     Destroy(npcSpawned);
                     Globals.player.gameObject.SetActive(true);

@@ -6,6 +6,7 @@ public class Tentacle : KillableGridObject {
     public float speed = 1.0f;
     public int tentacleNum;
 
+    public Globals.Direction realDir;
     
     //evil plants
     public GameObject evilWatermelonPlant;
@@ -58,7 +59,7 @@ public class Tentacle : KillableGridObject {
 
         if (other.gameObject.GetComponent<PlantGridObject>() && boss.hp != 0)
         {
-            if ((other.gameObject.GetComponent<WatermelonPlantObject>() && tentacleNum == 0) || //watermelon
+            if ( ((other.gameObject.GetComponent<WatermelonPlantObject>()||other.gameObject.GetComponent<PlantProjectileObject>()) && tentacleNum == 0) || //watermelon
                 (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
                 (other.gameObject.GetComponent<CactusPlantObject>() && tentacleNum == 2) || //cactus
                 ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>()) && tentacleNum == 3) || //bomb
@@ -66,10 +67,12 @@ public class Tentacle : KillableGridObject {
                 ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
                 (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6)) //spinning
             {
-                //play damaged animation
+                //play damaged animation for tentacle?
                 boss.touchedPlayer = true; //makes tentacles retract
-                Instantiate(weedBoss, new Vector3(Random.Range(-4.5f,4.5f),Random.Range(-3.5f,3.5f),0), spawnRotation);
-                boss.hp--;
+                if (!boss.spawnedMe)
+                {
+                    Instantiate(weedBoss, new Vector3(Random.Range(-4.5f, 4.5f), Random.Range(-3.5f, 3.5f), 0), spawnRotation);
+                }
             }
             else
             {
@@ -123,7 +126,7 @@ public class Tentacle : KillableGridObject {
                         BombObject temp = other.gameObject.GetComponent<BombPlantObject>().bomb;
                         if (temp)
                         {
-                            temp.Roll(this.direction);
+                            temp.Roll(realDir);
                         }
                     }
                 }

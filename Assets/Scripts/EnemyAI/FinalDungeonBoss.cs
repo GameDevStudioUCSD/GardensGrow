@@ -35,13 +35,13 @@ public class FinalDungeonBoss : MonoBehaviour {
     private Vector3 spawnPositionSouthLeft = new Vector3(-2.0f, -8.0f, 0.0f);
     private Vector3 spawnPositionSouthRight = new Vector3(2.0f, -8.0f, 0.0f);
 
-    private Vector3 spawnPositionEast = new Vector3(10.0f, 0.0f, 0.0f);
-    private Vector3 spawnPositionEastLeft = new Vector3(10.0f, -2.0f, 0.0f);
-    private Vector3 spawnPositionEastRight = new Vector3(10.0f, 2.0f, 0.0f);
+    private Vector3 spawnPositionEast = new Vector3(11.0f, 0.0f, 0.0f);
+    private Vector3 spawnPositionEastLeft = new Vector3(11.0f, -2.0f, 0.0f);
+    private Vector3 spawnPositionEastRight = new Vector3(11.0f, 2.0f, 0.0f);
 
-    private Vector3 spawnPositionWest = new Vector3(-10.0f, 0.0f, 0.0f);
-    private Vector3 spawnPositionWestLeft = new Vector3(-10.0f, -2.0f, 0.0f);
-    private Vector3 spawnPositionWestRight = new Vector3(-10.0f, 2.0f, 0.0f);
+    private Vector3 spawnPositionWest = new Vector3(-11.0f, 0.0f, 0.0f);
+    private Vector3 spawnPositionWestLeft = new Vector3(-11.0f, -2.0f, 0.0f);
+    private Vector3 spawnPositionWestRight = new Vector3(-11.0f, 2.0f, 0.0f);
 
     //booleans to control boss state
     public int hp = 15;
@@ -55,6 +55,8 @@ public class FinalDungeonBoss : MonoBehaviour {
     private bool spawnedActiveTentacle = false;
     private int counter = 0;
     public bool touchedPlayer = false;
+
+    public bool spawnedMe = false;
 	// Update is called once per frame
 	void Update () {
         //moves tentacle
@@ -62,10 +64,10 @@ public class FinalDungeonBoss : MonoBehaviour {
         {
             counter++;
             //under this condition pull tentacles back
-            if (counter > 150 || touchedPlayer) //2
+            if (counter > 250 || touchedPlayer) //2
             {
                 //destroy
-                if (counter > 200)
+                if (counter > 300)
                 {
                     Destroy(currentTentacle.gameObject);
                     if (currentTentacleLeft)
@@ -230,7 +232,7 @@ public class FinalDungeonBoss : MonoBehaviour {
                     currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouthRight, spawnRotationDown);
                 }
 
-                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.North;
+                currentTentacle.GetComponent<Tentacle>().realDir = Globals.Direction.North;
             }
             else if (currSituation == 1)
             {
@@ -240,7 +242,7 @@ public class FinalDungeonBoss : MonoBehaviour {
                     currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorthLeft, spawnRotationUp);
                     currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorthRight, spawnRotationUp);
                 }
-                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.South;
+                currentTentacle.GetComponent<Tentacle>().realDir = Globals.Direction.South;
             }
             else if (currSituation == 2)
             {
@@ -252,7 +254,7 @@ public class FinalDungeonBoss : MonoBehaviour {
                     currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEastRight, spawnRotationRight);
 
                 }
-                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.West;
+                currentTentacle.GetComponent<Tentacle>().realDir = Globals.Direction.West;
             }
             else if (currSituation == 3)
             {
@@ -263,7 +265,7 @@ public class FinalDungeonBoss : MonoBehaviour {
                     currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWestLeft, spawnRotationLeft);
                     currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWestRight, spawnRotationLeft);
                 }
-                currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.East;
+                currentTentacle.GetComponent<Tentacle>().realDir = Globals.Direction.East;
             }
             currentTentacle.GetComponent<Tentacle>().speed = 3.0f;
             currentTentacle.GetComponent<Tentacle>().tentacleNum = currTentacleNum;

@@ -162,7 +162,12 @@ public class KillableGridObject : RotateableGridObject {
         }
 
         Animator animator = this.gameObject.GetComponent<Animator>();
-        animator.SetTrigger("Death");
+        /*The following line was commented out becaused it caused a bug:
+         * It causes for bomb plants and bananarangs (both normal and evil) to be unplantable
+         * Suggestion: maybe make sure all killable objects have a SetTrigger("Death") before uncommenting the line
+         */
+        //animator.SetTrigger("Death");
+
 
         isDying = true;
     }
@@ -226,7 +231,8 @@ public class KillableGridObject : RotateableGridObject {
                 }
                 if (this.GetComponent<PlayerGridObject>()) {
                     BombObject bomb = target.GetComponent<BombObject>();
-                    if (bomb) {
+
+                    if (bomb && !bomb.evil) {
                         bomb.Roll(direction);
                     }
                     //deplant code MOVED so deplanting is a different button

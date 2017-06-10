@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012837682330
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   isAttacking: 0
   isDying: 0
   isInvulnerable: 0
+  unharvestable: 0
   evil: 1
   bombObject: {fileID: 1000012912793192, guid: 61b720b07506b364dbcb580e2c141352, type: 2}
   regrowFrames: 150
