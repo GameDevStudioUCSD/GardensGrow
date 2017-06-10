@@ -209,6 +209,8 @@ public class MainCamera : MonoBehaviour {
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        //after credits should change song and reload all things that were set inactive to make playable
     }
 
 

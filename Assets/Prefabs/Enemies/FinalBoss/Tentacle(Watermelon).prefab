@@ -137,6 +137,7 @@ MonoBehaviour:
     type: 2}
   evilSpinningPlant: {fileID: 1000012311139908, guid: 481add8186582174bba5dc17ef426d0d,
     type: 2}
+  weedBoss: {fileID: 1000011631268210, guid: ddccff97d423e1641a8c6dee781aebdd, type: 2}
 --- !u!212 &212000012790084642
 SpriteRenderer:
   m_ObjectHideFlags: 1

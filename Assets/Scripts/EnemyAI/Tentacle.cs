@@ -16,11 +16,13 @@ public class Tentacle : KillableGridObject {
     public GameObject evilLightPlant;
     public GameObject evilSpinningPlant;
 
+    public GameObject weedBoss;
+
     //instantiating stuff
     private Quaternion spawnRotation = Quaternion.Euler(0, 0, 0f);
     private Vector3 spawnPosition;
 
-    FinalDungeonBoss boss;
+    private FinalDungeonBoss boss;
 
     /* Tentacle nums
      * 0    watermelon  red
@@ -38,12 +40,13 @@ public class Tentacle : KillableGridObject {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        //doesn't damage the player
         /*tentacle attack player*/
-        if (other.gameObject.GetComponent<PlayerGridObject>())
+        /*if (other.gameObject.GetComponent<PlayerGridObject>())
         {
             other.gameObject.GetComponent<PlayerGridObject>().TakeDamage(1);
             boss.touchedPlayer = true;
-        }
+        }*/
 
         /*player plants attack tentacle*/
 
@@ -55,7 +58,7 @@ public class Tentacle : KillableGridObject {
 
         if (other.gameObject.GetComponent<PlantGridObject>() && boss.hp != 0)
         {
-            if ((other.gameObject.GetComponent<PlantProjectileObject>() && tentacleNum == 0) || //watermelon
+            if ((other.gameObject.GetComponent<WatermelonPlantObject>() && tentacleNum == 0) || //watermelon
                 (other.gameObject.GetComponent<TurbinePlantObject>() && tentacleNum == 1) || //turbine
                 (other.gameObject.GetComponent<CactusPlantObject>() && tentacleNum == 2) || //cactus
                 ((other.gameObject.GetComponent<BombPlantObject>() || other.gameObject.GetComponent<BombObject>()) && tentacleNum == 3) || //bomb
@@ -65,6 +68,7 @@ public class Tentacle : KillableGridObject {
             {
                 //play damaged animation
                 boss.touchedPlayer = true; //makes tentacles retract
+                Instantiate(weedBoss, new Vector3(Random.Range(-4.5f,4.5f),Random.Range(-3.5f,3.5f),0), spawnRotation);
                 boss.hp--;
             }
             else

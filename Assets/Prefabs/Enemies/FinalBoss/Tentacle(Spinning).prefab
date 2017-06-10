@@ -104,7 +104,6 @@ MonoBehaviour:
   isDying: 0
   isInvulnerable: 0
   speed: 1
-  damage: 1
   tentacleNum: 0
   evilWatermelonPlant: {fileID: 1000013356331344, guid: 0af9d5813c7b377498223975044014f0,
     type: 2}
@@ -120,6 +119,7 @@ MonoBehaviour:
     type: 2}
   evilSpinningPlant: {fileID: 1000012311139908, guid: 481add8186582174bba5dc17ef426d0d,
     type: 2}
+  weedBoss: {fileID: 1000011631268210, guid: ddccff97d423e1641a8c6dee781aebdd, type: 2}
 --- !u!212 &212000013410307342
 SpriteRenderer:
   m_ObjectHideFlags: 1
