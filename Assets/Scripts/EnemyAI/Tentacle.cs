@@ -6,6 +6,7 @@ public class Tentacle : KillableGridObject {
     public float speed = 1.0f;
     public int tentacleNum;
 
+    public Globals.Direction realDir;
     
     //evil plants
     public GameObject evilWatermelonPlant;
@@ -68,8 +69,10 @@ public class Tentacle : KillableGridObject {
             {
                 //play damaged animation
                 boss.touchedPlayer = true; //makes tentacles retract
-                Instantiate(weedBoss, new Vector3(Random.Range(-4.5f,4.5f),Random.Range(-3.5f,3.5f),0), spawnRotation);
-                boss.hp--;
+                if (!boss.spawnedMe)
+                {
+                    Instantiate(weedBoss, new Vector3(Random.Range(-4.5f, 4.5f), Random.Range(-3.5f, 3.5f), 0), spawnRotation);
+                }
             }
             else
             {
@@ -123,7 +126,7 @@ public class Tentacle : KillableGridObject {
                         BombObject temp = other.gameObject.GetComponent<BombPlantObject>().bomb;
                         if (temp)
                         {
-                            temp.Roll(this.direction);
+                            temp.Roll(realDir);
                         }
                     }
                 }
