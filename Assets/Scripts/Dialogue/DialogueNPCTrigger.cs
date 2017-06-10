@@ -7,6 +7,15 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	public string textFileName;
 	public Collider2D activeRegionPreTrigger;
     public GameObject exclamationMark;
+
+	public bool VolcanoBoss;
+	public bool TornadoBoss;
+	public bool JellyFishBoss;
+
+	public string textFileNameAfterVolcano;
+	public string textFileNameAfterTornado;
+	public string textFileNameAfterJellyfish;
+
     
    /*NOTE: Ever time you place a new sign or npc make sure to change the saveNumber
     *      in the inspector to a number not yet used (check the top of globals.cs 
@@ -47,6 +56,15 @@ public class DialogueNPCTrigger : MoveableGridObject {
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
 
+		if (VolcanoBoss && !Globals.lavaBossBeaten) {
+			textFileName = textFileNameAfterVolcano;
+		}
+		if (TornadoBoss && !Globals.windBossBeaten) {
+			textFileName = textFileNameAfterTornado;
+		}
+		if (JellyFishBoss && !Globals.caveBossBeaten) {
+			textFileName = textFileNameAfterJellyfish;
+		}
     }
     // Update is called once per frame
     protected override void Update () {
