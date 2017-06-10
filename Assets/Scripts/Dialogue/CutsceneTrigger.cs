@@ -106,7 +106,7 @@ public class CutsceneTrigger : MonoBehaviour {
         if (!playedAlready && other.gameObject == Globals.player.gameObject && EvaluateCondition()) {
             Globals.canvas.paused = true;
             playerSpawned = (GameObject)Instantiate(Globals.player.gameObject, playerPosition, Quaternion.identity);
-            Destroy(playerSpawned.GetComponent<PlayerGridObject>().gameObject); //this line was wrong
+            //Destroy(playerSpawned.GetComponent<PlayerGridObject>().gameObject);
             npcSpawned = (GameObject)Instantiate(npc, npcStartPosition, Quaternion.identity);
             DialogueNPCTrigger npcTrigger = npcSpawned.GetComponent<DialogueNPCTrigger>();
             if (npcTrigger) Destroy(npcTrigger);
