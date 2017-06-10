@@ -14,7 +14,7 @@ public class MainCamera : MonoBehaviour {
     public PlayerGridObject player;
 
     private TileMap tm;
-    private int speed = 1;
+    private float speed = 1;
 
     //credits stuff
     public Text title;
@@ -47,6 +47,7 @@ public class MainCamera : MonoBehaviour {
 
         if (cutScene)
         {
+            this.gameObject.transform.position = new Vector3(0, -20, -2);
             tm.debug = true;
             creditsUI.SetActive(true);
             healthUI.SetActive(false);
@@ -112,6 +113,9 @@ public class MainCamera : MonoBehaviour {
         EnemySpawner[] es = FindObjectsOfType<EnemySpawner>();
         foreach (EnemySpawner e in es) e.gameObject.SetActive(false);
 
+        PlantGridObject[] pl = FindObjectsOfType<PlantGridObject>();
+        foreach (PlantGridObject p in pl) p.gameObject.SetActive(false);
+
         EnemyGridObject[] eo = FindObjectsOfType<EnemyGridObject>();
         foreach (EnemyGridObject e in eo) e.gameObject.SetActive(false);
 
@@ -123,140 +127,94 @@ public class MainCamera : MonoBehaviour {
 
         //set health and iventory activefalse
         cutScene = true;
-        StartCoroutine(MoveCameraPath());
+
+        Globals.Direction left = Globals.Direction.West;
+        Globals.Direction right = Globals.Direction.East;
+        Globals.Direction down = Globals.Direction.South;
+        Globals.Direction up = Globals.Direction.North;
+
+        Globals.Direction[] dirs = { up, up, right, right, up, right, down, down, right, up, right, right, left, up};
+        StartCoroutine(MoveCameraPath1(dirs));
         StartCoroutine(changeNames());
     }
-    IEnumerator MoveCameraPath()
+
+    IEnumerator MoveCameraPath1(Globals.Direction[] dir)
     {
         finalCreditsButton.SetActive(false);
-        speed = 2;
-        for (int i = 0; i < 440; i++)
-        {
-            Move(Globals.Direction.East);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 160; i++)
-        {
-            Move(Globals.Direction.North);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 230; i++)
-        {
-            Move(Globals.Direction.East);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 320; i++)
-        {
-            Move(Globals.Direction.South);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 230; i++)
-        {
-            Move(Globals.Direction.East);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 160; i++)
-        {
-            Move(Globals.Direction.North);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 225; i++)
-        {
-            Move(Globals.Direction.East);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 160; i++)
-        {
-            Move(Globals.Direction.North);
-            yield return new WaitForEndOfFrame();
-        }
+        int dist;
+        speed = 1.36f;
+        Globals.Direction left = Globals.Direction.West;
+        Globals.Direction right = Globals.Direction.East;
+        Globals.Direction down = Globals.Direction.South;
+        Globals.Direction up = Globals.Direction.North;
 
-        yield return new WaitForSeconds(1.0f);
+        for (int k = 0; k < dir.Length; k++)
+        {
+            dist = 236; //reset
+            if (dir[k] == Globals.Direction.East || dir[k] == Globals.Direction.West)
+            {
+                dist = 332;
+            }
+            for (int i = 0; i < dist; i++)
+            {
+                this.Move(dir[k]);
+                yield return new WaitForEndOfFrame();
+            }
 
-        speed = 5;
+        }
+        Globals.Direction[] dirs = {up, up, up, right, up, up, left, up, down, left};
+        this.gameObject.transform.position = new Vector3(0, 0, -2f); //back to beginning
+        StartCoroutine(MoveCameraPath2(dirs));
+    }
+    IEnumerator MoveCameraPath2(Globals.Direction[] dir)
+    {
+        int dist;
+        Globals.Direction left = Globals.Direction.West;
+        Globals.Direction right = Globals.Direction.East;
+        Globals.Direction down = Globals.Direction.South;
+        Globals.Direction up = Globals.Direction.North;
 
-        for (int i = 0; i < 64; i++)
+        for (int k = 0; k < dir.Length; k++)
         {
-            Move(Globals.Direction.South);
-            yield return new WaitForEndOfFrame();
+            dist = 236; //reset
+            if (dir[k] == Globals.Direction.East || dir[k] == Globals.Direction.West)
+            {
+                dist = 332;
+            }
+            for (int i = 0; i < dist; i++)
+            { 
+                this.Move(dir[k]);
+                yield return new WaitForEndOfFrame();
+            }
         }
-        for (int i = 0; i < 450; i++)
-        {
-            Move(Globals.Direction.West);
-            yield return new WaitForEndOfFrame();
-        }
-        speed = 2;
-        //start of exploration of world 2
-        for (int i = 0; i < 480; i++)
-        {
-            Move(Globals.Direction.North);
-            yield return new WaitForEndOfFrame();
-        }
+        Globals.Direction[] dirs = {left, left, up, left, left, down, down, right, right, up, right, right};
+        this.gameObject.transform.position = new Vector3(0, 0, -2f); //back to beginning
+        StartCoroutine(MoveCameraPath3(dirs));
+    }
+    IEnumerator MoveCameraPath3(Globals.Direction[] dir)
+    {
+        int dist;
+        Globals.Direction left = Globals.Direction.West;
+        Globals.Direction right = Globals.Direction.East;
+        Globals.Direction down = Globals.Direction.South;
+        Globals.Direction up = Globals.Direction.North;
 
-        for (int i = 0; i < 225; i++)
+        for (int k = 0; k < dir.Length; k++)
         {
-            Move(Globals.Direction.East);
-            yield return new WaitForEndOfFrame();
-        }
+            dist = 236; //reset
+            if (dir[k] == Globals.Direction.East || dir[k] == Globals.Direction.West)
+            {
+                dist = 332;
+            }
+            for (int i = 0; i < dist; i++)
+            {
 
-        for (int i = 0; i < 320; i++)
-        {
-            Move(Globals.Direction.North);
-            yield return new WaitForEndOfFrame();
-        }
-
-        for (int i = 0; i < 450; i++)
-        {
-            Move(Globals.Direction.West);
-            yield return new WaitForEndOfFrame();
-        }
-
-        yield return new WaitForSeconds(1.0f);
-        //start traversing to world 3
-        this.gameObject.transform.position = new Vector3(0, 0, -2f);
-        for (int i = 0; i < 450; i++)
-        {
-            Move(Globals.Direction.West);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 160; i++)
-        {
-            Move(Globals.Direction.North);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 450; i++)
-        {
-            Move(Globals.Direction.West);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 320; i++)
-        {
-            Move(Globals.Direction.South);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 450; i++)
-        {
-            Move(Globals.Direction.East);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 160; i++)
-        {
-            Move(Globals.Direction.North);
-            yield return new WaitForEndOfFrame();
-        }
-        for (int i = 0; i < 450; i++)
-        {
-            Move(Globals.Direction.East);
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitForSeconds(1.0f);
-        //traverse world 4
-        for (int i = 0; i < 320; i++)
-        {
-            Move(Globals.Direction.South);
-            yield return new WaitForEndOfFrame();
+                this.Move(dir[k]);
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
+
 
     void Move(Globals.Direction direction)
     {
