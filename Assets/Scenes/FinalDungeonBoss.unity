@@ -1776,6 +1776,7 @@ MonoBehaviour:
   - {fileID: 1000010031407448, guid: 06a56d0f9c06a664e8929fdddf3fdf3e, type: 2}
   hp: 15
   touchedPlayer: 0
+  spawnedMe: 0
 --- !u!4 &175707458
 Transform:
   m_ObjectHideFlags: 0
@@ -15189,12 +15190,12 @@ Prefab:
     - target: {fileID: 224000010193204698, guid: ddccff97d423e1641a8c6dee781aebdd,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 4.41
+      value: 3.36
       objectReference: {fileID: 0}
     - target: {fileID: 224000010193204698, guid: ddccff97d423e1641a8c6dee781aebdd,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -3.59
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 224000010193204698, guid: ddccff97d423e1641a8c6dee781aebdd,
         type: 2}
