@@ -22,6 +22,7 @@ TagManager:
   - WindBoss
   - CaveBoss
   - TileMap
+  - Junction
   layers:
   - Default
   - TransparentFX
