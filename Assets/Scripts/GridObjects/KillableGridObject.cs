@@ -161,6 +161,9 @@ public class KillableGridObject : RotateableGridObject {
             SpawnItem();
         }
 
+        Animator animator = this.gameObject.GetComponent<Animator>();
+        animator.SetTrigger("Death");
+
         isDying = true;
     }
 
