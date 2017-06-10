@@ -23,6 +23,7 @@ GameObject:
   - 61: {fileID: 61000011100255436}
   - 212: {fileID: 212000012427446212}
   - 95: {fileID: 95000010482049240}
+  - 82: {fileID: 82000010171107692}
   m_Layer: 0
   m_Name: Boomerang
   m_TagString: Untagged
@@ -152,6 +153,80 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.7}
+--- !u!82 &82000010171107692
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011566705184}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 49a4866f5e5b0b543afe17f91eea6642, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82000012222194214
 AudioSource:
   m_ObjectHideFlags: 1
@@ -272,6 +347,8 @@ MonoBehaviour:
   isAttacking: 0
   isDying: 0
   isInvulnerable: 0
+  unharvestable: 0
+  evil: 0
 --- !u!114 &114000011237106092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,8 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c963d540d869fbc469a1c91b1b2a720b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  evil: 0
   damage: 1
   speed: 0.05
+  sfxThrow: {fileID: 82000010171107692}
 --- !u!212 &212000012427446212
 SpriteRenderer:
   m_ObjectHideFlags: 1

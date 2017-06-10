@@ -10,6 +10,7 @@ public class ItemDrop : StaticGridObject {
 	public AudioClip clip;
 	public bool permanent;
 	public int lifeSpan;
+	public GameObject portal;
 
     private float x;
     private float y;
@@ -48,7 +49,7 @@ public class ItemDrop : StaticGridObject {
     {
 
         PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp);
+                  + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp); //TODO put false into here, and save before building the game
 
     }
 	// Update is called once per frame
@@ -66,15 +67,23 @@ public class ItemDrop : StaticGridObject {
             if (player == null) return; // Ignore the player's other colliders (hacky)
 			UIController controller = player.canvas;
 
-            //finalbossseed is 10
-            if(itemId == 10)
+			if(itemId == 12)
             {
-                //not sure what's correct to write here
-                Globals.inventory[8]++;
-                controller.UpdateUI();
+				Globals.caveBossBeaten = true;
+				portal.SetActive(true);
+            }
+			else if(itemId == 11)
+            {
+				Globals.windBossBeaten = true;
+				portal.SetActive(true);
+            }
+            else if(itemId == 10)
+            {
+				Globals.lavaBossBeaten = true;
+				portal.SetActive(true);
             }
             // Key is 9
-			if (itemId == 9) {
+			else if (itemId == 9) {
 				Globals.numKeys++;
 				controller.UpdateUI();
 			}

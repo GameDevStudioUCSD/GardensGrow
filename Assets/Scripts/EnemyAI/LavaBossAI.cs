@@ -10,7 +10,7 @@ public class LavaBossAI : KillableGridObject {
 	public GameObject[] spawners;
 	public Vector3[] boatLocations;
 	public GameObject boat;
-	public GameObject portal;
+	public GameObject emblem;
 	private List<Fireball> fireballs = new List<Fireball>();
 	public Fireball fireball;
 	//public BoxCollider2D collider;
@@ -52,10 +52,10 @@ public class LavaBossAI : KillableGridObject {
 			for (int i = 0; i < 4; i++) {
 				current = spawners[i].GetComponent<EnemySpawner>();
 				numSpawns += current.numSpawns();
-			}
+            }
 
-			// Prod behavior
-			if (numSpawns == 0) {
+            // Prod behavior
+            if (numSpawns <= 0) {
 				state = BossState.StartEmerge;
 			}
 
@@ -232,7 +232,7 @@ public class LavaBossAI : KillableGridObject {
     }
 
     protected override void Die() {
-        portal.SetActive(true);
+        emblem.SetActive(true);
         Globals.lavaBossBeaten = true;
     	base.Die();
     }

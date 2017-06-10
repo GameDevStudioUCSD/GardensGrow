@@ -31,6 +31,8 @@ public class UIController : MonoBehaviour {
     public bool paused;
     public bool dialogue = false;
 
+    private CutsceneTrigger cutsceneTrigger;
+
     // Use this for initialization
     void Start () {
         UpdateUI();
@@ -41,6 +43,20 @@ public class UIController : MonoBehaviour {
     }
 
     void Update() {
+		float yPos = ((player.transform.position.y + 5) % 10 + 10) % 10;
+		Image image;
+		if (yPos < 2) {
+			for (int i = 0; i < 8; i++) {
+				image = uiPlants[i].GetComponent<Image>();
+            	image.color = new Color(image.color.r, image.color.g, image.color.b, 0.2f);
+        	}
+		}
+		else {
+			for (int i = 0; i < 8; i++) {
+				image = uiPlants[i].GetComponent<Image>();
+            	image.color = new Color(image.color.r, image.color.g, image.color.b, 0.8f);
+        	}
+		}
 
         if (pauseUI != null)
         {
@@ -146,6 +162,24 @@ public class UIController : MonoBehaviour {
             uiPlantCounters[i].enabled = true;
             uiButtonCounter[i].enabled = true;
         }
+
+        if (cutsceneTrigger) {
+            cutsceneTrigger.FinishCutscene();
+            cutsceneTrigger = null;
+        }
+    }
+    
+    public void ShowDialog(CutsceneTrigger trigger) {
+        //player.GetComponent<Animator>().StartPlayback(); //don't know why start stops animations, but it does
+        dialogue = true;
+        dialogUI.SetActive(true);
+
+        for (int i = 0; i < 8; i++) {
+            uiPlants[i].enabled = false;
+            uiPlantCounters[i].enabled = false;
+            uiButtonCounter[i].enabled = false;
+        }
+        cutsceneTrigger = trigger;
     }
 
     public void ShowSaveMenu() {

@@ -46,6 +46,10 @@ public class GenericSlimeBehaviour : GenericMonsterBehaviour {
         replacement.GetComponent<KillableGridObject>().health = this.health;
         replacement.GetComponentInChildren<PathFindingModule>().parameters.tileMap = pathFindingModule.parameters.tileMap;
         replacement.GetComponentInChildren<PathFindingModule>().parameters.target = pathFindingModule.parameters.target;
+        if (spawner) {
+            spawner.spawnedMonsters.Add(replacement);
+            spawner.spawnedMonsters.Remove(this.gameObject);
+        }
         Destroy(this.gameObject);
     }
 }

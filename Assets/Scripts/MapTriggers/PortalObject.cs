@@ -10,11 +10,11 @@ public class PortalObject : RespawnLocation {
     // 5 = Wind Dungeon Boss
     // 6 = Cave Dungeon
     // 7 = Cave Dungeon Boss
+    // 8 = Vine Dungeon
+    // 9 = Vine Dungeon Boss
 
     public int levelToLoad;
     public bool lightSource = false;
-
-    public GameObject loadingScreen;
 
 	void OnTriggerEnter2D (Collider2D other) {
 
@@ -23,7 +23,7 @@ public class PortalObject : RespawnLocation {
             base.updateSpawnLocation();
             if (!lightSource)
             {
-                loadingScreen.SetActive(true);
+                Globals.canvas.loadingScreenUI.SetActive(true);
                 Application.LoadLevel(levelToLoad);
             }
 

@@ -20,25 +20,28 @@ public class FinalDungeonBoss : MonoBehaviour {
      * 5    boomerang   blue
      * 6    spinning    teal
      */
-    private Quaternion spawnRotationHorizontal= Quaternion.Euler(0, 0, 90.0f);
-    private Quaternion spawnRotationVertical = Quaternion.Euler(0, 0, 0f);
+    private Quaternion spawnRotationLeft = Quaternion.Euler(0, 0, 270f);
+    private Quaternion spawnRotationRight = Quaternion.Euler(0, 0, 90f);
+    private Quaternion spawnRotationUp = Quaternion.Euler(0, 0, 180f);
+    private Quaternion spawnRotationDown = Quaternion.Euler(0, 0, 0f);
+
 
     //spawning locations
-    private Vector3 spawnPositionNorth = new Vector3(0.0f, 10.0f, 0.0f);
-    private Vector3 spawnPositionNorthLeft = new Vector3(-2.0f, 10.0f, 0.0f);
-    private Vector3 spawnPositionNorthRight = new Vector3(2.0f, 10.0f, 0.0f);
+    private Vector3 spawnPositionNorth = new Vector3(0.0f, 8.0f, 0.0f);
+    private Vector3 spawnPositionNorthLeft = new Vector3(-2.0f, 8.0f, 0.0f);
+    private Vector3 spawnPositionNorthRight = new Vector3(2.0f, 8.0f, 0.0f);
 
     private Vector3 spawnPositionSouth = new Vector3(0.0f, -8.0f, 0.0f);
     private Vector3 spawnPositionSouthLeft = new Vector3(-2.0f, -8.0f, 0.0f);
     private Vector3 spawnPositionSouthRight = new Vector3(2.0f, -8.0f, 0.0f);
 
-    private Vector3 spawnPositionEast = new Vector3(8.0f, -2.0f, 0.0f);
-    private Vector3 spawnPositionEastLeft = new Vector3(8.0f, -4.0f, 0.0f);
-    private Vector3 spawnPositionEastRight = new Vector3(8.0f, 0.0f, 0.0f);
+    private Vector3 spawnPositionEast = new Vector3(10.0f, 0.0f, 0.0f);
+    private Vector3 spawnPositionEastLeft = new Vector3(10.0f, -2.0f, 0.0f);
+    private Vector3 spawnPositionEastRight = new Vector3(10.0f, 2.0f, 0.0f);
 
-    private Vector3 spawnPositionWest = new Vector3(-15.0f, -2.0f, 0.0f);
-    private Vector3 spawnPositionWestLeft = new Vector3(-15.0f, -4.0f, 0.0f);
-    private Vector3 spawnPositionWestRight = new Vector3(-15.0f, 0.0f, 0.0f);
+    private Vector3 spawnPositionWest = new Vector3(-10.0f, 0.0f, 0.0f);
+    private Vector3 spawnPositionWestLeft = new Vector3(-10.0f, -2.0f, 0.0f);
+    private Vector3 spawnPositionWestRight = new Vector3(-10.0f, 2.0f, 0.0f);
 
     //booleans to control boss state
     public int hp = 15;
@@ -54,13 +57,15 @@ public class FinalDungeonBoss : MonoBehaviour {
     public bool touchedPlayer = false;
 	// Update is called once per frame
 	void Update () {
-
+        //moves tentacle
         if (spawnedActiveTentacle)
         {
             counter++;
-            if (counter > 170 || touchedPlayer) //2
+            //under this condition pull tentacles back
+            if (counter > 150 || touchedPlayer) //2
             {
-                if (counter > 250)
+                //destroy
+                if (counter > 200)
                 {
                     Destroy(currentTentacle.gameObject);
                     if (currentTentacleLeft)
@@ -142,7 +147,8 @@ public class FinalDungeonBoss : MonoBehaviour {
                 }
 
             }
-            else if (!touchedPlayer && counter < 70) //tentacles are moving out
+            //move forward until the following conditions are false
+            else if (!touchedPlayer && counter < 50) //tentacles are moving out
             {
                 if (currSituation == 0)
                 {
@@ -217,64 +223,54 @@ public class FinalDungeonBoss : MonoBehaviour {
 
             if (currSituation == 0)
             {
+                currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouth, spawnRotationDown);
                 if (hp < 11)
                 {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouth, spawnRotationVertical);
-                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouthLeft, spawnRotationVertical);
-                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouthRight, spawnRotationVertical);
-                }
-                else
-                {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouth, spawnRotationVertical);
+                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouthLeft, spawnRotationDown);
+                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionSouthRight, spawnRotationDown);
                 }
 
                 currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.North;
             }
             else if (currSituation == 1)
             {
+                currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorth, spawnRotationUp);
                 if (hp < 11)
                 {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorth, spawnRotationVertical);
-                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorthLeft, spawnRotationVertical);
-                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorthRight, spawnRotationVertical);
-                }
-                else
-                {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorth, spawnRotationVertical);
+                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorthLeft, spawnRotationUp);
+                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionNorthRight, spawnRotationUp);
                 }
                 currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.South;
             }
             else if (currSituation == 2)
             {
+                currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEast, spawnRotationRight);
                 if (hp < 11)
                 {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEast, spawnRotationHorizontal);
-                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEastLeft, spawnRotationHorizontal);
-                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEastRight, spawnRotationHorizontal);
+                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEast, spawnRotationRight);
+                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEastLeft, spawnRotationRight);
+                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEastRight, spawnRotationRight);
 
-                }
-                else
-                {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionEast, spawnRotationHorizontal);
                 }
                 currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.West;
             }
             else if (currSituation == 3)
             {
+                currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWest, spawnRotationLeft);
                 if (hp < 11)
                 {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWest, spawnRotationHorizontal);
-                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWestLeft, spawnRotationHorizontal);
-                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWestRight, spawnRotationHorizontal);
-                }
-                else
-                {
-                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWest, spawnRotationHorizontal);
+                    currentTentacle = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWest, spawnRotationLeft);
+                    currentTentacleLeft = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWestLeft, spawnRotationLeft);
+                    currentTentacleRight = (GameObject)Instantiate(tentacles[currTentacleNum], spawnPositionWestRight, spawnRotationLeft);
                 }
                 currentTentacle.GetComponent<Tentacle>().direction = Globals.Direction.East;
             }
             currentTentacle.GetComponent<Tentacle>().speed = 3.0f;
             currentTentacle.GetComponent<Tentacle>().tentacleNum = currTentacleNum;
+
+            StartCoroutine(Rotate());
+
+
 
             if (currentTentacleLeft)
             {
@@ -291,4 +287,24 @@ public class FinalDungeonBoss : MonoBehaviour {
 
         }
 	}
+
+    IEnumerator Rotate()
+    {
+        int i = 0;
+        while (currentTentacle)
+        {
+            if (i % 7 == 0)
+            {
+                currentTentacle.transform.Rotate(new Vector3(0, 180f, 0));
+                if (hp < 11)
+                {
+                    currentTentacleLeft.transform.Rotate(new Vector3(0, 180f, 0));
+                    currentTentacleRight.transform.Rotate(new Vector3(0, 180f, 0));
+                }
+
+            }
+            yield return new WaitForEndOfFrame();
+            i++;
+        }
+    }
 }

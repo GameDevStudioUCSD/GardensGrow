@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System;
 
 public class WindBossAI : KillableGridObject {
-	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing };
+	public enum BossState { SpawningRocks, SpawningMonsters, Idle, Inhaling, Blowing, Damaged };
 	public RollingBoulder boulder;
-    public GameObject portal;
+    public GameObject emblem;
     public GameObject spawnedMonster;
-    public int idleFrames = 0;
-    public int inhalingFrames = 360;
+    public int idleFrames = 300;
+    public int inhalingFrames = 400;
     public int blowingFrames = 300;
+    public int damagedFrames = 30;
 
     private GameObject spawnedMonster1;
     private GameObject spawnedMonster2;
@@ -61,6 +62,7 @@ public class WindBossAI : KillableGridObject {
 		direction = Globals.Direction.South;
 		animator = this.gameObject.GetComponent<Animator>();
 		animator.SetInteger("State", 0);
+		base.makeInvulnerable();
 	}
 
 	// Update is called once per frame
@@ -68,39 +70,39 @@ public class WindBossAI : KillableGridObject {
 		base.Update();
 
 		if (state == BossState.SpawningRocks) {
+			animator.SetInteger("State", 0);
 			SpawnRocks();
 			state = BossState.SpawningMonsters;
 		}
 		if (state == BossState.SpawningMonsters) {
-			Debug.Log("Spawning monsters");
-			state = BossState.Idle;
+			animator.SetInteger("State", 0);
 			framesInState = 0;
 			int integerDirection = UnityEngine.Random.Range(0, 4);
 			int position;
 			Vector3 newPosition;
 			if (integerDirection == 0) {
-				direction = Globals.Direction.North;
-				position = UnityEngine.Random.Range(-4, 4);
-				newPosition = new Vector3(position, -4.5f, 0.0f);
-				animator.SetInteger("Direction", 1);
-			}
-			else if (integerDirection == 1) {
-				direction = Globals.Direction.East;
-				position = UnityEngine.Random.Range(-3, 3);
-				newPosition = new Vector3(-5.5f, position, 0.0f);
-				animator.SetInteger("Direction", 3);
-			}
-			else if (integerDirection == 2) {
 				direction = Globals.Direction.South;
 				position = UnityEngine.Random.Range(-4, 4);
 				newPosition = new Vector3(position, 4.5f, 0.0f);
 				animator.SetInteger("Direction", 0);
 			}
-			else {
+			else if (integerDirection == 1) {
 				direction = Globals.Direction.West;
 				position = UnityEngine.Random.Range(-3, 3);
 				newPosition = new Vector3(5.5f, position, 0.0f);
 				animator.SetInteger("Direction", 2);
+			}
+			else if (integerDirection == 2) {
+				direction = Globals.Direction.North;
+				position = UnityEngine.Random.Range(-4, 4);
+				newPosition = new Vector3(position, -4.5f, 0.0f);
+				animator.SetInteger("Direction", 1);
+			}
+			else {
+				direction = Globals.Direction.East;
+				position = UnityEngine.Random.Range(-3, 3);
+				newPosition = new Vector3(-5.5f, position, 0.0f);
+				animator.SetInteger("Direction", 3);
 			}
 
             // TODO: these slimes need to have their targeting and tilemap setup
@@ -118,41 +120,47 @@ public class WindBossAI : KillableGridObject {
             }
 
 			this.transform.position = newPosition;
+			state = BossState.Idle;
 		}
 		if (state == BossState.Idle) {
-			Debug.Log("Idle");
 			framesInState++;
 			if (framesInState > idleFrames) {
-				state = BossState.Inhaling;
-				isInvulnerable = false;
+				//isInvulnerable = false;
+				base.makeVulnerable();
 				framesInState = 0;
 				animator.SetInteger("State", 1);
+				state = BossState.Inhaling;
 			}
 		}
 		if (state == BossState.Inhaling) {
-			Debug.Log("Inhaling");
 			framesInState++;
 			if (framesInState > inhalingFrames) {
-				state = BossState.Blowing;
-				isInvulnerable = true;
+				//isInvulnerable = true;
+				base.makeInvulnerable();
 				framesInState = 0;
 				animator.SetInteger("State", 2);
+				state = BossState.Blowing;
 			}
 		}
 		if (state == BossState.Blowing) {
-			Debug.Log("Blowing");
 			BlowRocks();
 			framesInState++;
-			if (framesInState == 1) {
-
-			}
 			if (framesInState > blowingFrames) {
 				DestroyRocks();
-				state = BossState.SpawningRocks;
 				framesInState = 0;
 				animator.SetInteger("State", 0);
+				state = BossState.SpawningRocks;
 			}
 		}
+        if (state == BossState.Damaged) {
+            framesInState++;
+            if (framesInState > damagedFrames) {
+                DestroyRocks();
+                framesInState = 0;
+                animator.SetInteger("State", 0);
+                state = BossState.SpawningRocks;
+            }
+        }
 	}
 
 	void SpawnRocks() {
@@ -165,7 +173,7 @@ public class WindBossAI : KillableGridObject {
 				rocks.Add(newLocation, boulderObj);
 			}
 		}
-		numRocks+=2;
+		//numRocks+=2;
 	}
 
 	void BlowRocks() {
@@ -192,8 +200,17 @@ public class WindBossAI : KillableGridObject {
     }
 
     protected override void Die() {
-        portal.SetActive(true);
-        Globals.windBossBeaten = true;
+        emblem.SetActive(true);
         base.Die();
+    }
+
+    public override bool TakeBombDamage(int damage) {
+        if (!isInvulnerable) {
+            framesInState = 0;
+            animator.SetInteger("State", 0);
+            state = BossState.Damaged;
+            numRocks += 2;
+        }
+        return base.TakeBombDamage(damage);
     }
 }

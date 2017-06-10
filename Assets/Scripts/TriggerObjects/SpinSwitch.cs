@@ -9,26 +9,21 @@ public class SpinSwitch : MonoBehaviour {
     public bool timed = false;
     public int timeout = 0;
 
-    public Sprite switchUnpowered;
-    public Sprite switchPowered;
-
     private int timer = 0;
     private bool pressed;
-    private new SpriteRenderer renderer;
 
     private SpinningPlant spinner;
+    private Animator animator;
 
     // Use this for initialization
     protected virtual void Start() {
         pressed = false;
-        //animator = this.gameObject.GetComponent<Animator>();
-        renderer = this.gameObject.GetComponent<SpriteRenderer>();
+        animator = this.gameObject.GetComponent<Animator>();
     }
 
     protected virtual void Update() {
         if (pressed && !timed && !spinner) {
             unpressEvent.Invoke();
-            renderer.sprite = switchUnpowered;
             pressed = false;
         }
 
@@ -37,7 +32,6 @@ public class SpinSwitch : MonoBehaviour {
             if (timer <= 0) {
                 if (spinner) spinner.TakeDamage(100);
                 unpressEvent.Invoke();
-                renderer.sprite = switchUnpowered;
                 pressed = false;
             }
         }
@@ -49,8 +43,8 @@ public class SpinSwitch : MonoBehaviour {
             spinner = spinningPlant;
             if (!pressed) {
                 pressEvent.Invoke();
-                renderer.sprite = switchPowered;
                 pressed = true;
+                animator.SetTrigger("Trigger");
                 if (timed) timer = timeout;
             }
             else if (timed) {

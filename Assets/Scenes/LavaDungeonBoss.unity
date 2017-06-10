@@ -177,7 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 3923614}
   isPatheable: 1
   gCost: 1
 --- !u!61 &3923614
@@ -328,7 +327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 7481839}
   isPatheable: 1
   gCost: 1
 --- !u!61 &7481839
@@ -480,7 +478,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 7630119}
   isPatheable: 1
   gCost: 1
 --- !u!61 &7630119
@@ -630,7 +627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 10158583}
   isPatheable: 1
   gCost: 1
 --- !u!61 &10158583
@@ -781,7 +777,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 25670200}
   isPatheable: 1
   gCost: 1
 --- !u!61 &25670200
@@ -932,7 +927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 38429621}
   isPatheable: 1
   gCost: 1
 --- !u!61 &38429621
@@ -1085,7 +1079,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 45515170}
   isPatheable: 1
   gCost: 1
 --- !u!61 &45515170
@@ -1235,7 +1228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 47025971}
   isPatheable: 1
   gCost: 1
 --- !u!61 &47025971
@@ -1387,7 +1379,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 50065701}
   isPatheable: 1
   gCost: 1
 --- !u!61 &50065701
@@ -1539,7 +1530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 51447779}
   isPatheable: 1
   gCost: 1
 --- !u!61 &51447779
@@ -1690,7 +1680,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 51518937}
   isPatheable: 1
   gCost: 1
 --- !u!61 &51518937
@@ -1840,7 +1829,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 58414419}
   isPatheable: 1
   gCost: 1
 --- !u!61 &58414419
@@ -1990,7 +1978,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 64821670}
   isPatheable: 1
   gCost: 1
 --- !u!61 &64821670
@@ -2140,7 +2127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 69017414}
   isPatheable: 1
   gCost: 1
 --- !u!61 &69017414
@@ -2290,7 +2276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 85934332}
   isPatheable: 1
   gCost: 1
 --- !u!61 &85934332
@@ -2442,7 +2427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 97803265}
   isPatheable: 1
   gCost: 1
 --- !u!61 &97803265
@@ -2593,7 +2577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 106027603}
   isPatheable: 1
   gCost: 1
 --- !u!61 &106027603
@@ -2743,7 +2726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 107560463}
   isPatheable: 1
   gCost: 1
 --- !u!61 &107560463
@@ -2895,7 +2877,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 112918107}
   isPatheable: 1
   gCost: 1
 --- !u!61 &112918107
@@ -3047,7 +3028,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 115926499}
   isPatheable: 1
   gCost: 1
 --- !u!61 &115926499
@@ -3262,7 +3242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 133914158}
   isPatheable: 1
   gCost: 1
 --- !u!61 &133914158
@@ -3412,7 +3391,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 153673806}
   isPatheable: 1
   gCost: 1
 --- !u!61 &153673806
@@ -3564,7 +3542,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 155402099}
   isPatheable: 1
   gCost: 1
 --- !u!61 &155402099
@@ -3759,7 +3736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 161001477}
   isPatheable: 1
   gCost: 1
 --- !u!61 &161001477
@@ -3915,7 +3891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 163874708}
   isPatheable: 1
   gCost: 1
 --- !u!61 &163874708
@@ -4065,7 +4040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 169515729}
   isPatheable: 1
   gCost: 1
 --- !u!61 &169515729
@@ -4216,7 +4190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 177218205}
   isPatheable: 1
   gCost: 1
 --- !u!61 &177218205
@@ -4407,7 +4380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 187072739}
   isPatheable: 1
   gCost: 1
 --- !u!61 &187072739
@@ -4667,7 +4639,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 199472964}
   isPatheable: 1
   gCost: 1
 --- !u!61 &199472964
@@ -4880,7 +4851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 202160509}
   isPatheable: 1
   gCost: 1
 --- !u!61 &202160509
@@ -5093,7 +5063,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 206888795}
   isPatheable: 1
   gCost: 1
 --- !u!61 &206888795
@@ -5243,7 +5212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 214749463}
   isPatheable: 1
   gCost: 1
 --- !u!61 &214749463
@@ -5458,7 +5426,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 229735939}
   isPatheable: 1
   gCost: 1
 --- !u!61 &229735939
@@ -5623,7 +5590,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011437069676, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1000010271383466, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_Name
@@ -5663,8 +5630,13 @@ Prefab:
         type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 1000012495327228, guid: 776ce1901591c4b4c9482e23e64f3a9e,
+      objectReference: {fileID: 1000013157515858, guid: 5dcdff7770814dd4c9f88be5f022467e,
         type: 2}
+    - target: {fileID: 114000012355484728, guid: b9c4001436e1b6f429b170960a2b965d,
+        type: 2}
+      propertyPath: canSpawn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
   m_IsPrefabParent: 0
@@ -5754,7 +5726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 244782429}
   isPatheable: 1
   gCost: 1
 --- !u!61 &244782429
@@ -5905,7 +5876,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 249964373}
   isPatheable: 1
   gCost: 1
 --- !u!61 &249964373
@@ -6058,7 +6028,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 250226365}
   isPatheable: 1
   gCost: 1
 --- !u!61 &250226365
@@ -6210,7 +6179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 255873448}
   isPatheable: 1
   gCost: 1
 --- !u!61 &255873448
@@ -6361,7 +6329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 262801633}
   isPatheable: 1
   gCost: 1
 --- !u!61 &262801633
@@ -6512,7 +6479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 269183455}
   isPatheable: 1
   gCost: 1
 --- !u!61 &269183455
@@ -6664,7 +6630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 270549415}
   isPatheable: 1
   gCost: 1
 --- !u!61 &270549415
@@ -6817,7 +6782,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 274056976}
   isPatheable: 1
   gCost: 1
 --- !u!61 &274056976
@@ -7089,7 +7053,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011437069676, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1000010271383466, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_Name
@@ -7129,8 +7093,13 @@ Prefab:
         type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 1000012495327228, guid: 776ce1901591c4b4c9482e23e64f3a9e,
+      objectReference: {fileID: 1000013157515858, guid: 5dcdff7770814dd4c9f88be5f022467e,
         type: 2}
+    - target: {fileID: 114000012355484728, guid: b9c4001436e1b6f429b170960a2b965d,
+        type: 2}
+      propertyPath: canSpawn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
   m_IsPrefabParent: 0
@@ -7219,7 +7188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 298426856}
   isPatheable: 1
   gCost: 1
 --- !u!61 &298426856
@@ -7370,7 +7338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 306684340}
   isPatheable: 1
   gCost: 1
 --- !u!61 &306684340
@@ -7582,7 +7549,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 316492172}
   isPatheable: 1
   gCost: 1
 --- !u!61 &316492172
@@ -7735,7 +7701,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 319208946}
   isPatheable: 1
   gCost: 1
 --- !u!61 &319208946
@@ -8010,7 +7975,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 351038260}
   isPatheable: 1
   gCost: 1
 --- !u!61 &351038260
@@ -8223,7 +8187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 356321163}
   isPatheable: 1
   gCost: 1
 --- !u!61 &356321163
@@ -8375,7 +8338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 366153211}
   isPatheable: 1
   gCost: 1
 --- !u!61 &366153211
@@ -8589,7 +8551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 380787484}
   isPatheable: 1
   gCost: 1
 --- !u!61 &380787484
@@ -8780,7 +8741,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 399541999}
   isPatheable: 1
   gCost: 1
 --- !u!61 &399541999
@@ -8931,7 +8891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 403332680}
   isPatheable: 1
   gCost: 1
 --- !u!61 &403332680
@@ -9145,7 +9104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 411686835}
   isPatheable: 1
   gCost: 1
 --- !u!61 &411686835
@@ -9297,7 +9255,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 413147602}
   isPatheable: 1
   gCost: 1
 --- !u!61 &413147602
@@ -9429,7 +9386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012852559604, guid: 70023a78fa8c8564a9d050dbb18d7e7e, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114000010477163858, guid: 70023a78fa8c8564a9d050dbb18d7e7e,
         type: 2}
@@ -9445,7 +9402,7 @@ Prefab:
         type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 730109382}
+      objectReference: {fileID: 730109383}
     - target: {fileID: 82000012114072124, guid: 70023a78fa8c8564a9d050dbb18d7e7e,
         type: 2}
       propertyPath: m_audioClip
@@ -9569,7 +9526,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011130031264, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1000014250907170, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
       propertyPath: m_Name
@@ -9664,7 +9621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 426224453}
   isPatheable: 1
   gCost: 1
 --- !u!61 &426224453
@@ -9814,7 +9770,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 429418185}
   isPatheable: 1
   gCost: 1
 --- !u!61 &429418185
@@ -9964,7 +9919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 437264625}
   isPatheable: 1
   gCost: 1
 --- !u!61 &437264625
@@ -10116,7 +10070,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 439254620}
   isPatheable: 1
   gCost: 1
 --- !u!61 &439254620
@@ -10267,7 +10220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 442239087}
   isPatheable: 1
   gCost: 1
 --- !u!61 &442239087
@@ -10417,7 +10369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 448566678}
   isPatheable: 1
   gCost: 1
 --- !u!61 &448566678
@@ -10631,7 +10582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 464023908}
   isPatheable: 1
   gCost: 1
 --- !u!61 &464023908
@@ -10783,7 +10733,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 466398529}
   isPatheable: 1
   gCost: 1
 --- !u!61 &466398529
@@ -10934,7 +10883,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 473318834}
   isPatheable: 1
   gCost: 1
 --- !u!61 &473318834
@@ -11086,7 +11034,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 476639722}
   isPatheable: 1
   gCost: 1
 --- !u!61 &476639722
@@ -11238,7 +11185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 477552064}
   isPatheable: 1
   gCost: 1
 --- !u!61 &477552064
@@ -11390,7 +11336,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 480012393}
   isPatheable: 1
   gCost: 1
 --- !u!61 &480012393
@@ -11541,7 +11486,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 480269159}
   isPatheable: 1
   gCost: 1
 --- !u!61 &480269159
@@ -11693,7 +11637,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 480798846}
   isPatheable: 1
   gCost: 1
 --- !u!61 &480798846
@@ -11844,7 +11787,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 481554369}
   isPatheable: 1
   gCost: 1
 --- !u!61 &481554369
@@ -11994,7 +11936,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 484301125}
   isPatheable: 1
   gCost: 1
 --- !u!61 &484301125
@@ -12146,7 +12087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 486472110}
   isPatheable: 1
   gCost: 1
 --- !u!61 &486472110
@@ -12297,7 +12237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 498918243}
   isPatheable: 1
   gCost: 1
 --- !u!61 &498918243
@@ -12509,7 +12448,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 502304779}
   isPatheable: 1
   gCost: 1
 --- !u!61 &502304779
@@ -12662,7 +12600,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 504726630}
   isPatheable: 1
   gCost: 1
 --- !u!61 &504726630
@@ -12812,7 +12749,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 505557702}
   isPatheable: 1
   gCost: 1
 --- !u!61 &505557702
@@ -12915,7 +12851,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011437069676, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1000010271383466, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_IsActive
@@ -12955,8 +12891,13 @@ Prefab:
         type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 1000012495327228, guid: 776ce1901591c4b4c9482e23e64f3a9e,
+      objectReference: {fileID: 1000013157515858, guid: 5dcdff7770814dd4c9f88be5f022467e,
         type: 2}
+    - target: {fileID: 114000012355484728, guid: b9c4001436e1b6f429b170960a2b965d,
+        type: 2}
+      propertyPath: canSpawn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
   m_IsPrefabParent: 0
@@ -13044,7 +12985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 532730371}
   isPatheable: 1
   gCost: 1
 --- !u!61 &532730371
@@ -13234,7 +13174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 537906863}
   isPatheable: 1
   gCost: 1
 --- !u!61 &537906863
@@ -13385,7 +13324,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 560906325}
   isPatheable: 1
   gCost: 1
 --- !u!61 &560906325
@@ -13598,7 +13536,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 570369603}
   isPatheable: 1
   gCost: 1
 --- !u!61 &570369603
@@ -13750,7 +13687,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 584992882}
   isPatheable: 1
   gCost: 1
 --- !u!61 &584992882
@@ -13900,7 +13836,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 606844774}
   isPatheable: 1
   gCost: 1
 --- !u!61 &606844774
@@ -14050,7 +13985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 607964157}
   isPatheable: 1
   gCost: 1
 --- !u!61 &607964157
@@ -14207,7 +14141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 617650632}
   isPatheable: 1
   gCost: 1
 --- !u!61 &617650632
@@ -14359,7 +14292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 624629066}
   isPatheable: 1
   gCost: 1
 --- !u!61 &624629066
@@ -14512,7 +14444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 628856408}
   isPatheable: 1
   gCost: 1
 --- !u!61 &628856408
@@ -14703,7 +14634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 632042286}
   isPatheable: 1
   gCost: 1
 --- !u!61 &632042286
@@ -14916,7 +14846,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 658293815}
   isPatheable: 1
   gCost: 1
 --- !u!61 &658293815
@@ -15107,7 +15036,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 667953829}
   isPatheable: 1
   gCost: 1
 --- !u!61 &667953829
@@ -15259,7 +15187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 668519792}
   isPatheable: 1
   gCost: 1
 --- !u!61 &668519792
@@ -15410,7 +15337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 670146620}
   isPatheable: 1
   gCost: 1
 --- !u!61 &670146620
@@ -15600,7 +15526,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 672019158}
   isPatheable: 1
   gCost: 1
 --- !u!61 &672019158
@@ -15750,7 +15675,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 673498908}
   isPatheable: 1
   gCost: 1
 --- !u!61 &673498908
@@ -15900,7 +15824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 676798383}
   isPatheable: 1
   gCost: 1
 --- !u!61 &676798383
@@ -16051,7 +15974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 689359316}
   isPatheable: 1
   gCost: 1
 --- !u!61 &689359316
@@ -16203,7 +16125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 690406417}
   isPatheable: 1
   gCost: 1
 --- !u!61 &690406417
@@ -16353,7 +16274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 690828622}
   isPatheable: 1
   gCost: 1
 --- !u!61 &690828622
@@ -16505,7 +16425,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 692615170}
   isPatheable: 1
   gCost: 1
 --- !u!61 &692615170
@@ -16657,7 +16576,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 693526429}
   isPatheable: 1
   gCost: 1
 --- !u!61 &693526429
@@ -16810,7 +16728,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 695614360}
   isPatheable: 1
   gCost: 1
 --- !u!61 &695614360
@@ -16961,7 +16878,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 710421535}
   isPatheable: 1
   gCost: 1
 --- !u!61 &710421535
@@ -17113,7 +17029,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 716965229}
   isPatheable: 1
   gCost: 1
 --- !u!61 &716965229
@@ -17266,7 +17181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 726712207}
   isPatheable: 1
   gCost: 1
 --- !u!61 &726712207
@@ -17369,7 +17283,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010304366098, guid: 1bc5912b478f8f04aa01db53e5d5da10, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000012658303356, guid: 1bc5912b478f8f04aa01db53e5d5da10,
         type: 2}
@@ -17483,7 +17397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 736443994}
   isPatheable: 1
   gCost: 1
 --- !u!61 &736443994
@@ -17635,7 +17548,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 737093663}
   isPatheable: 1
   gCost: 1
 --- !u!61 &737093663
@@ -17787,7 +17699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 737476695}
   isPatheable: 1
   gCost: 1
 --- !u!61 &737476695
@@ -17938,7 +17849,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 759978146}
   isPatheable: 1
   gCost: 1
 --- !u!61 &759978146
@@ -18130,7 +18040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 770911668}
   isPatheable: 1
   gCost: 1
 --- !u!61 &770911668
@@ -18283,7 +18192,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 784870247}
   isPatheable: 1
   gCost: 1
 --- !u!61 &784870247
@@ -18434,7 +18342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 787923168}
   isPatheable: 1
   gCost: 1
 --- !u!61 &787923168
@@ -18584,7 +18491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 790509918}
   isPatheable: 1
   gCost: 1
 --- !u!61 &790509918
@@ -18735,7 +18641,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 796640912}
   isPatheable: 1
   gCost: 1
 --- !u!61 &796640912
@@ -18887,7 +18792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 797202015}
   isPatheable: 1
   gCost: 1
 --- !u!61 &797202015
@@ -19037,7 +18941,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 811558094}
   isPatheable: 1
   gCost: 1
 --- !u!61 &811558094
@@ -19116,7 +19019,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012338759146, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000012338759146, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_LocalPosition.z
@@ -19140,7 +19043,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012338759146, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1000011154219782, guid: 1778a5d707148484ca0e76d93a32ba29, type: 2}
       propertyPath: m_IsActive
@@ -19296,7 +19199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 842438584}
   isPatheable: 1
   gCost: 1
 --- !u!61 &842438584
@@ -19449,7 +19351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 844067073}
   isPatheable: 1
   gCost: 1
 --- !u!61 &844067073
@@ -19663,7 +19564,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 855577877}
   isPatheable: 1
   gCost: 1
 --- !u!61 &855577877
@@ -19729,6 +19629,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &857126871 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010097023534, guid: d7d536481dfa846fd9724e781f523ff7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1504917315}
 --- !u!1 &860210048
 GameObject:
   m_ObjectHideFlags: 0
@@ -19814,7 +19719,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 860210053}
   isPatheable: 1
   gCost: 1
 --- !u!61 &860210053
@@ -19965,7 +19869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 861153170}
   isPatheable: 1
   gCost: 1
 --- !u!61 &861153170
@@ -20117,7 +20020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 869672663}
   isPatheable: 1
   gCost: 1
 --- !u!61 &869672663
@@ -20331,7 +20233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 899350326}
   isPatheable: 1
   gCost: 1
 --- !u!61 &899350326
@@ -20544,7 +20445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 902231836}
   isPatheable: 1
   gCost: 1
 --- !u!61 &902231836
@@ -20696,7 +20596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 902481700}
   isPatheable: 1
   gCost: 1
 --- !u!61 &902481700
@@ -20848,7 +20747,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 905966656}
   isPatheable: 1
   gCost: 1
 --- !u!61 &905966656
@@ -21000,7 +20898,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 915195085}
   isPatheable: 1
   gCost: 1
 --- !u!61 &915195085
@@ -21214,7 +21111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 921037593}
   isPatheable: 1
   gCost: 1
 --- !u!61 &921037593
@@ -21366,7 +21262,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 923907337}
   isPatheable: 1
   gCost: 1
 --- !u!61 &923907337
@@ -21518,7 +21413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 927781174}
   isPatheable: 1
   gCost: 1
 --- !u!61 &927781174
@@ -21668,7 +21562,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 929928816}
   isPatheable: 1
   gCost: 1
 --- !u!61 &929928816
@@ -21818,7 +21711,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 930421259}
   isPatheable: 1
   gCost: 1
 --- !u!61 &930421259
@@ -21968,7 +21860,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 939551436}
   isPatheable: 1
   gCost: 1
 --- !u!61 &939551436
@@ -22120,7 +22011,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 945097028}
   isPatheable: 1
   gCost: 1
 --- !u!61 &945097028
@@ -22272,7 +22162,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 956409950}
   isPatheable: 1
   gCost: 1
 --- !u!61 &956409950
@@ -22424,7 +22313,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 957058438}
   isPatheable: 1
   gCost: 1
 --- !u!61 &957058438
@@ -22575,7 +22463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 978213236}
   isPatheable: 1
   gCost: 1
 --- !u!61 &978213236
@@ -22727,7 +22614,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 984469601}
   isPatheable: 1
   gCost: 1
 --- !u!61 &984469601
@@ -22880,7 +22766,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 987637921}
   isPatheable: 1
   gCost: 1
 --- !u!61 &987637921
@@ -23033,7 +22918,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 989714072}
   isPatheable: 1
   gCost: 1
 --- !u!61 &989714072
@@ -23185,7 +23069,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 990225102}
   isPatheable: 1
   gCost: 1
 --- !u!61 &990225102
@@ -23336,7 +23219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1005161716}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1005161716
@@ -23486,7 +23368,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1017087112}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1017087112
@@ -23638,7 +23519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1018588852}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1018588852
@@ -23788,7 +23668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1021279916}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1021279916
@@ -23940,7 +23819,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1022090967}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1022090967
@@ -24090,7 +23968,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1023087947}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1023087947
@@ -24388,7 +24265,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1035192100}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1035192100
@@ -24541,7 +24417,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1052959141}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1052959141
@@ -24694,7 +24569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1060780758}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1060780758
@@ -24846,7 +24720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1062638140}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1062638140
@@ -24996,7 +24869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1064311644}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1064311644
@@ -25148,7 +25020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1065922153}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1065922153
@@ -25298,7 +25169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1069031860}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1069031860
@@ -25449,7 +25319,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1092337630}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1092337630
@@ -25600,7 +25469,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1101162036}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1101162036
@@ -25752,7 +25620,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1114122110}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1114122110
@@ -26008,7 +25875,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1122077731}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1122077731
@@ -26158,7 +26024,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1133133529}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1133133529
@@ -26349,7 +26214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1164246106}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1164246106
@@ -26545,7 +26409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1178779310}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1178779310
@@ -26697,7 +26560,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1186655611}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1186655611
@@ -26849,7 +26711,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1193303745}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1193303745
@@ -27002,7 +26863,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1200554212}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1200554212
@@ -27153,7 +27013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1230173351}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1230173351
@@ -27306,7 +27165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1231164461}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1231164461
@@ -27456,7 +27314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1233426412}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1233426412
@@ -27621,109 +27478,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012048845280, guid: 7ad1e773134444df784a5197e0843dea, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000014005437230, guid: 7ad1e773134444df784a5197e0843dea,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 730109382}
-    - target: {fileID: 1000011212008206, guid: 7ad1e773134444df784a5197e0843dea, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014005437230, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: lockCamera
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010891316114, guid: 7ad1e773134444df784a5197e0843dea, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013820539432, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: pauseUI
-      value: 
-      objectReference: {fileID: 1237986172}
     - target: {fileID: 114000013820539432, guid: 7ad1e773134444df784a5197e0843dea,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 730109382}
-    - target: {fileID: 114000013124675136, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 609482967}
-    - target: {fileID: 114000013124675136, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Pause
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013316099494, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 609482967}
-    - target: {fileID: 114000013316099494, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014220298324, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 609482967}
-    - target: {fileID: 114000014220298324, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010899433620, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 609482967}
-    - target: {fileID: 114000010899433620, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Restart
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012134659238, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 609482967}
-    - target: {fileID: 114000012134659238, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Resume
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013840986886, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 609482967}
-    - target: {fileID: 114000013840986886, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Save
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013820539432, guid: 7ad1e773134444df784a5197e0843dea,
-        type: 2}
-      propertyPath: dialogUI
-      value: 
-      objectReference: {fileID: 1237986173}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ad1e773134444df784a5197e0843dea, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1237986172 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013046236096, guid: 7ad1e773134444df784a5197e0843dea,
-    type: 2}
-  m_PrefabInternal: {fileID: 1237986171}
 --- !u!1 &1237986173 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011410173598, guid: 7ad1e773134444df784a5197e0843dea,
@@ -27795,7 +27564,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
 --- !u!95 &1251315190
 Animator:
   serializedVersion: 3
@@ -27907,7 +27676,7 @@ MonoBehaviour:
   - {x: 0, y: -4.5, z: 0}
   - {x: -6.5, y: 0, z: 0}
   boat: {fileID: 1000011677324500, guid: f6d5224e23532de4784df07f248aca7e, type: 2}
-  portal: {fileID: 1023638228}
+  emblem: {fileID: 857126871}
   fireball: {fileID: 114000013079232946, guid: bd41bc9a5a6c946e0918e3ec0bf50c9b, type: 2}
 --- !u!1 &1252395864
 GameObject:
@@ -27995,7 +27764,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1252395869}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1252395869
@@ -28148,7 +27916,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1253303953}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1253303953
@@ -28298,7 +28065,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1254131686}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1254131686
@@ -28450,7 +28216,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1264599514}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1264599514
@@ -28600,7 +28365,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1267260130}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1267260130
@@ -28753,7 +28517,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1281903023}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1281903023
@@ -28905,7 +28668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1291048291}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1291048291
@@ -29055,7 +28817,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1301824532}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1301824532
@@ -29207,7 +28968,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1303260497}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1303260497
@@ -29358,7 +29118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1304677887}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1304677887
@@ -29508,7 +29267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1316959459}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1316959459
@@ -29722,7 +29480,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1324874637}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1324874637
@@ -29873,7 +29630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1334419823}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1334419823
@@ -30024,7 +29780,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1342477148}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1342477148
@@ -30176,7 +29931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1345609066}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1345609066
@@ -30327,7 +30081,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1357306649}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1357306649
@@ -30601,7 +30354,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1378252001}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1378252001
@@ -30793,7 +30545,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1398283129}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1398283129
@@ -30945,7 +30696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1406031180}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1406031180
@@ -31163,7 +30913,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1426381412}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1426381412
@@ -31313,7 +31062,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1428000908}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1428000908
@@ -31466,7 +31214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1441387827}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1441387827
@@ -31658,7 +31405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1454336694}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1454336694
@@ -31808,7 +31554,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1456132004}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1456132004
@@ -31959,7 +31704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1458488964}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1458488964
@@ -32150,7 +31894,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1463128639}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1463128639
@@ -32303,7 +32046,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1467478500}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1467478500
@@ -32453,7 +32195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1475861585}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1475861585
@@ -32606,7 +32347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1478844330}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1478844330
@@ -32734,6 +32474,57 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &1504917315
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012960388752, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010097023534, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010840762746, guid: d7d536481dfa846fd9724e781f523ff7,
+        type: 2}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 1023638228}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d7d536481dfa846fd9724e781f523ff7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1505088804
 GameObject:
   m_ObjectHideFlags: 0
@@ -32818,7 +32609,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1505088809}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1505088809
@@ -32971,7 +32761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1517763120}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1517763120
@@ -33123,7 +32912,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1520061431}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1520061431
@@ -33337,7 +33125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1534852844}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1534852844
@@ -33551,7 +33338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1541836332}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1541836332
@@ -33704,7 +33490,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1551890552}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1551890552
@@ -33855,7 +33640,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1563520818}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1563520818
@@ -33958,7 +33742,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011437069676, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1000010271383466, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
       propertyPath: m_Name
@@ -33998,8 +33782,13 @@ Prefab:
         type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 1000012495327228, guid: 776ce1901591c4b4c9482e23e64f3a9e,
+      objectReference: {fileID: 1000013157515858, guid: 5dcdff7770814dd4c9f88be5f022467e,
         type: 2}
+    - target: {fileID: 114000012355484728, guid: b9c4001436e1b6f429b170960a2b965d,
+        type: 2}
+      propertyPath: canSpawn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9c4001436e1b6f429b170960a2b965d, type: 2}
   m_IsPrefabParent: 0
@@ -34089,7 +33878,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1577366312}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1577366312
@@ -34240,7 +34028,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1585624500}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1585624500
@@ -34392,7 +34179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1585877592}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1585877592
@@ -34542,7 +34328,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1586570318}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1586570318
@@ -34694,7 +34479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1586646746}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1586646746
@@ -34884,7 +34668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1594291407}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1594291407
@@ -35073,7 +34856,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
 --- !u!1 &1613602596
 GameObject:
   m_ObjectHideFlags: 0
@@ -35158,7 +34941,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1613602601}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1613602601
@@ -35308,7 +35090,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1627953585}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1627953585
@@ -35458,7 +35239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1645619705}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1645619705
@@ -35610,7 +35390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1651024344}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1651024344
@@ -35800,7 +35579,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1673676932}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1673676932
@@ -36013,7 +35791,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1687238497}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1687238497
@@ -36169,7 +35946,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1692170261}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1692170261
@@ -36320,7 +36096,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1719970322}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1719970322
@@ -36533,7 +36308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1731622703}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1731622703
@@ -36725,7 +36499,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1770481683}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1770481683
@@ -36916,7 +36689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1774983218}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1774983218
@@ -37068,7 +36840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1781445216}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1781445216
@@ -37219,7 +36990,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1784689028}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1784689028
@@ -37372,7 +37142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1789361188}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1789361188
@@ -37562,7 +37331,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1809323520}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1809323520
@@ -37714,7 +37482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1818482476}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1818482476
@@ -37866,7 +37633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1823908509}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1823908509
@@ -38017,7 +37783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1839062626}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1839062626
@@ -38169,7 +37934,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1841555256}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1841555256
@@ -38322,7 +38086,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1847933497}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1847933497
@@ -38512,7 +38275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1862642436}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1862642436
@@ -38665,7 +38427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1871522356}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1871522356
@@ -38815,7 +38576,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1872053106}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1872053106
@@ -38966,7 +38726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1875442563}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1875442563
@@ -39116,7 +38875,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1880821704}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1880821704
@@ -39266,7 +39024,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1903781559}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1903781559
@@ -39433,7 +39190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1903890181}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1903890181
@@ -39586,7 +39342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1905070350}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1905070350
@@ -39739,7 +39494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1911108106}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1911108106
@@ -40054,7 +39808,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1937630726}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1937630726
@@ -40207,7 +39960,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1944020912}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1944020912
@@ -40358,7 +40110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1944987492}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1944987492
@@ -40508,7 +40259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1947596187}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1947596187
@@ -40661,7 +40411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1953317228}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1953317228
@@ -40813,7 +40562,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1967203750}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1967203750
@@ -40966,7 +40714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1971709874}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1971709874
@@ -41162,7 +40909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1977976620}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1977976620
@@ -41313,7 +41059,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1982276763}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1982276763
@@ -41464,7 +41209,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1986667682}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1986667682
@@ -41616,7 +41360,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1986771737}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1986771737
@@ -41767,7 +41510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1989248808}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1989248808
@@ -41870,7 +41612,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011130031264, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb5b744004e24380b4860e9603fd5c3, type: 2}
@@ -41962,7 +41704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1995839464}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1995839464
@@ -42176,7 +41917,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1998116412}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1998116412
@@ -42329,7 +42069,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 1999761301}
   isPatheable: 1
   gCost: 1
 --- !u!61 &1999761301
@@ -42481,7 +42220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2002574863}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2002574863
@@ -42633,7 +42371,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2014614072}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2014614072
@@ -42783,7 +42520,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2017304277}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2017304277
@@ -42933,7 +42669,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2029948258}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2029948258
@@ -43084,7 +42819,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2037388963}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2037388963
@@ -43237,7 +42971,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2045236134}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2045236134
@@ -43450,7 +43183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2070964848}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2070964848
@@ -43640,7 +43372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2103701913}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2103701913
@@ -43792,7 +43523,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2104171951}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2104171951
@@ -43943,7 +43673,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2112183648}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2112183648
@@ -44093,7 +43822,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2116162514}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2116162514
@@ -44244,7 +43972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   shouldDrawGizmos: 1
-  tileCollider: {fileID: 2140399045}
   isPatheable: 1
   gCost: 1
 --- !u!61 &2140399045
