@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MainCamera : MonoBehaviour {
@@ -15,16 +16,63 @@ public class MainCamera : MonoBehaviour {
     private TileMap tm;
     private int speed = 1;
 
+    //credits stuff
+    public Text title;
+    public Text person;
+    public GameObject creditsUI;
+    public GameObject healthUI;
+    public GameObject inventoryUI;
+    public GameObject numbers;
+    public GameObject pauseButton;
+
+    private AudioSource musicSource;
+    public AudioClip song;
+
+    private string[] titles = {"-Artist-", "-Game Developer-", "-Game Developer-", "-Lead Sound Designer-", "-Game Developer-", "-Artist-",
+                               "-Lead Game Designer and Developer-", "-Music Composer-", "-Game Developer-", "-Artist-",
+                               "-Special Thanks To-", "-Game Developer-", "-Lead Artist and Art Director-", "-Artist-", "-Artist-",
+                               "-Artist-", "-Artist-", "-Game Developer-", "-Game Developer-", "-Artist-", "-Game Developer-", "-Game Tester-", "-Artist-",
+                               "-Game Developer-", "-Artist-", "-Lead AI Developer-", "-Game Developer-", "-Level Designer-", "-Game Developer-"};
+    private string[] persons = { "Alisa Ren", "Andrew Nguyen", "Anhquan Nguyen", "Christopher Loree", "Daniel Griffiths",
+                                 "Delaney Carmen", "Eric Boming Cheng", "Erick Morales", "Frank Su", "Gavin Badillo",
+                                 "Geoff Voelker", "Guyue Zhou", "Hilary Hg", "Jeremy Raab", "Joung Hun Suk", "Justin Lieu",
+                                 "Kyle Lokken Henderson", "Mark Longsheng Zhao", "Michael Phalen", "Noel Nguyen", "Peter Vugia",
+                                 "Sammy Jing Ma", "Sharon Mo", "Sher Zahed", "Siddarth Govindan", "Steven Lee",
+                                 "Sung Rim Huh", "Tyler Bakke", "Yuanmin Zhang"};
     //private bool paused = false;
 
     private void Start()
     {
         tm = FindObjectOfType<TileMap>();
+
         if (cutScene)
         {
             tm.debug = true;
-            finalCreditsButton.SetActive(true);
+            creditsUI.SetActive(true);
+            healthUI.SetActive(false);
+            inventoryUI.SetActive(false);
+            numbers.SetActive(false);
+            pauseButton.SetActive(false);
+            
         }
+    }
+    IEnumerator changeNames()
+    {
+        yield return new WaitForSeconds(5.13f);
+
+        for(int i=0; i<persons.Length; i++)
+        {
+            title.text = titles[i];
+            person.text = persons[i];
+            yield return new WaitForSeconds(5.13f); // for 28 names in 159s
+        }
+
+        title.gameObject.SetActive(false);
+        person.text = "GardensGrow";
+
+        yield return new WaitForSeconds(10.26f);
+        creditsUI.SetActive(false);
+        
     }
     void Update()
     {
@@ -57,7 +105,9 @@ public class MainCamera : MonoBehaviour {
     public void StartCutScene()
     {
         tm.player = this.gameObject;
-
+        musicSource = tm.GetComponent<AudioSource>();
+        musicSource.clip = song;
+        musicSource.Play();
 
         EnemySpawner[] es = FindObjectsOfType<EnemySpawner>();
         foreach (EnemySpawner e in es) e.gameObject.SetActive(false);
@@ -74,6 +124,7 @@ public class MainCamera : MonoBehaviour {
         //set health and iventory activefalse
         cutScene = true;
         StartCoroutine(MoveCameraPath());
+        StartCoroutine(changeNames());
     }
     IEnumerator MoveCameraPath()
     {
