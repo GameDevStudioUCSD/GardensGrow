@@ -199,7 +199,12 @@ public class MainCamera : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForSeconds(1.0f);
-
+        //traverse world 4
+        for (int i = 0; i < 320; i++)
+        {
+            Move(Globals.Direction.South);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     void Move(Globals.Direction direction)
