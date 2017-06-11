@@ -19,7 +19,7 @@ public class AttackCollider : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(!other.isTrigger || other.GetComponent<PlantGridObject>())
+        if(!other.isTrigger || other.GetComponent<PlantGridObject>() || other.CompareTag("CaveBoss"))
         {
             KillableGridObject killable = other.GetComponent<KillableGridObject>();
             if(killable)
@@ -31,7 +31,7 @@ public class AttackCollider : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if(!other.isTrigger || other.GetComponent<PlantGridObject>())
+        if(!other.isTrigger || other.GetComponent<PlantGridObject>() || other.CompareTag("CaveBoss"))
         {
             KillableGridObject killable = other.GetComponent<KillableGridObject>();
             if(killable && killList.Contains(killable))

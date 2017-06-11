@@ -39,7 +39,7 @@ public class KillableGridObject : RotateableGridObject {
     // Prevents "Die" function from being called more than once if something is taking continuous damage
     protected bool hasDied = false;
 
-    private SpriteRenderer renderer;
+    protected SpriteRenderer renderer;
 
     // Use this for initialization
     protected override void Start() {

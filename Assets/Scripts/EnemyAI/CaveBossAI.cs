@@ -1,278 +1,157 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class CaveBossAI : MonoBehaviour {
+public class CaveBossAI : KillableGridObject {
 
-    public int BossHp = 10;
+    private enum State {
+        MOVING,
+        ATTACKING,
+        STUNNED,
+        ANGRY,
+    }
 
-    public CircuitSystem[] circuitSystems;
+    public List<Transform> junctions;
 
     public GameObject emblem;
 
-    private float attackCD = 8.0f;   //boss waits x seconds before attacking again
+    public int stunDuration;
+    public int stunImmuneDuration;
+    public int attackDuration;
 
-    private bool canAttack = true;
-    private bool stunned = false;
-    private bool attacking = false;
+    public float speed;
 
-    private float attackDuration = 2.0f; //boss lights up ALL circuits for x seconds
-    private float stunDuration = 3.0f;
+    private int timeRemaining;
+    private int toJunction;
+    private State state;
+    private int prevHealth;
 
     private Animator anim;
 
+    protected override void Start() {
+        base.Start();
 
-    /*BOSS MOVE PATTERN:
-     * Middle:0,0,0
-     * Top Room: 0,9.375,0
-     * Bottom Room: 0,-9.375,0
-     * East Room: 10.937,0,0
-     * West Room: -9.375,0,0
-     */
+        state = State.MOVING;
+        toJunction = GetNewTargetJunction();
+        prevHealth = health;
 
-     /*
-      * Mechanics:
-    Boss can attack every 8 seconds
-        If reaches an off junction
-            Turn on all circuits to try to hit player for x seconds, then turn off all
-            circuits and turn off all lightplants that u planted
-
-        Else if reaches an on junction
-            Turn off all lightplants that u planted
-
-    How to beat boss:
-        Turn on a lightplant while the boss is standing a circuit while the boss’s
-        attack is on cooldown, then the boss is stunned for x seconds, then in only this
-        time frame can the boss be hittable by the boomerang
-       */
-    void Start() {
-        StartCoroutine(MovePattern());
-        anim = this.gameObject.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.GetComponentInParent<CircuitSystem>() != null) {
-            if (canAttack) {
-                anim.SetInteger("AnimNum", 0);
-                StartCoroutine(Attack());
-                StartCoroutine(AttackCD());
-            }
+    protected override void Update() {
+        base.Update();
+
+        if (timeRemaining > 0) {
+            --timeRemaining;
         }
 
-        if (other.gameObject.GetComponent<Boomerang>() != null) {
-            if (stunned) {
-                BossHp--;
-                StartCoroutine(DamagedAnim());
-                if (BossHp == 0) {
-                    StartCoroutine(DeathAnim());
+        Vector3 dt;
+
+        switch (state) {
+            case State.MOVING:
+                if (Vector2.Distance(transform.position, junctions[toJunction].transform.position) <= speed * 2) {
+                    toJunction = GetNewTargetJunction();
+                    state = State.ATTACKING;
+                    timeRemaining = attackDuration;
                 }
-            }
-            else {
-                stunned = true;
-                StartCoroutine(StopStun());
-            }
+
+                dt = (junctions[toJunction].position - transform.position).normalized * speed;
+                dt /= Globals.pixelSize;
+                dt = new Vector3(Mathf.Round(dt.x), Mathf.Round(dt.y), 0);
+                dt *= Globals.pixelSize;
+                transform.position += dt;
+                break;
+
+            case State.ATTACKING:
+                if (timeRemaining <= 0) {
+                    state = State.MOVING;
+                }
+                break;
+
+            case State.STUNNED:
+                if (health != prevHealth || timeRemaining <= 0) {
+                    prevHealth = health;
+                    anim.SetTrigger("Hurt");
+                    state = State.ANGRY;
+                    timeRemaining = stunImmuneDuration;
+                }
+                break;
+
+            case State.ANGRY:
+                if (Vector2.Distance(transform.position, junctions[toJunction].transform.position) <= speed * 2) {
+                    toJunction = GetNewTargetJunction();
+                }
+
+                dt = (junctions[toJunction].transform.position - transform.position).normalized * speed * 2;
+                dt /= Globals.pixelSize;
+                dt = new Vector3(Mathf.Round(dt.x), Mathf.Round(dt.y), 0);
+                dt *= Globals.pixelSize;
+                transform.position += dt;
+
+                if (timeRemaining <= 0) {
+                    state = State.MOVING;
+                }
+                break;
+
+            default:
+                Debug.LogError("CaveBossAI: Unknown state");
+                break;
         }
     }
 
-    IEnumerator DamagedAnim() {
-        anim.SetInteger("AnimNum", 3);
-        yield return new WaitForSeconds(1.0f);
-        anim.SetInteger("AnimNum", 1);
-    }
-
-    IEnumerator Attack() {
-        //play attack animation
-        foreach (CircuitSystem cs in circuitSystems)
-        {
-            cs.isLit = true;
-            cs.ConnectJunction();
+    public override bool TakeDamage(int damage) {
+        if (state != State.STUNNED) {
+            return false;
         }
-        attacking = true;
 
-        yield return new WaitForSeconds(attackDuration);
+        base.health -= damage;
 
-        foreach (CircuitSystem cs in circuitSystems)
-        {
-            cs.isLit = false;
-            cs.DisconnectJunction();
+        if (health <= 0) {
+            emblem.SetActive(true);
+            anim.SetTrigger("Death");
+            Die();
         }
-        attacking = false;
+
+        return true;
     }
 
-    IEnumerator StopStun() {
-        yield return new WaitForSeconds(stunDuration);
-        stunned = false;
-    }
-
-    IEnumerator DeathAnim() {
-    	emblem.SetActive(true);
-        anim.SetInteger("AnimNum", 2);
-        yield return new WaitForSeconds(4.0f);
-        Destroy(this.gameObject);
-    }
-
-    IEnumerator AttackCD() {
-        canAttack = false;
-        yield return new WaitForSeconds(attackCD);
-        canAttack = true;
-        anim.SetInteger("AnimNum", 0);
-    }
-
-    IEnumerator MovePattern() {
-        while (true) {
-            int i;
-
-            // Moves from top to right
-            for (i = 0; i < 160; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.South);
-                }
-                yield return new WaitForEndOfFrame();
+    public void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Junction")) {
+            CircuitJunction junction = collision.gameObject.GetComponent<CircuitJunction>();
+            if (junction != null) {
+                junction.system.ConnectJunction();
             }
-            for (i = 0; i < 128; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.East);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 64; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.South);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-
-            // Moves from right to bottom
-            for (i = 0; i < 128; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.South);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 128; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.West);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 32; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.South);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-
-            // Moves from bottom to left
-            for (i = 0; i < 64; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.West);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 64; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.North);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 64; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.West);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 64; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.North);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-
-            // Move left to top
-            for (i = 0; i < 288; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.North);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 128; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.East);
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            for (i = 0; i < 64; i++) {
-                if (attacking || stunned) {
-                    --i;
-                }
-                else {
-                    Move(Globals.Direction.South);
-                }
-                yield return new WaitForEndOfFrame();
+        }
+        else if (collision.gameObject.GetComponent<Boomerang>() != null) {
+            if (state != State.ANGRY) {
+                state = State.STUNNED;
+                timeRemaining = stunDuration;
             }
         }
     }
 
-    void Move(Globals.Direction direction)
-    {
-        if (direction == Globals.Direction.South)
-        {
-            Vector3 position = this.transform.position;
-            position.y -= Globals.pixelSize;
-            this.transform.position = position;
+    public void OnTriggerStay2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            PlayerGridObject player = collision.GetComponent<PlayerGridObject>();
+            if (player != null) {
+                player.TakeDamage(base.damage);
+            }
         }
-        else if (direction == Globals.Direction.West)
-        {
-            Vector3 position = this.transform.position;
-            position.x -= Globals.pixelSize;
-            this.transform.position = position;
+    }
+
+    public void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Junction")) {
+            CircuitJunction junction = collision.gameObject.GetComponent<CircuitJunction>();
+            junction.system.DisconnectJunction();
         }
-        else if (direction == Globals.Direction.North)
-        {
-            Vector3 position = this.transform.position;
-            position.y += Globals.pixelSize;
-            this.transform.position = position;
+    }
+
+    private int GetNewTargetJunction() {
+        int nextJunction;
+        do {
+            nextJunction = Mathf.FloorToInt(junctions.Count * Random.Range(0.0f, 0.999999999f));
         }
-        else if (direction == Globals.Direction.East)
-        {
-            Vector3 position = this.transform.position;
-            position.x += Globals.pixelSize;
-            this.transform.position = position;
-        }
+        while (nextJunction == toJunction);
+        return nextJunction;
     }
 }
