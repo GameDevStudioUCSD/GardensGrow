@@ -115,7 +115,14 @@ public class BombObject : MoveableGridObject {
 
         // Deal damage to all targets of the enemy faction
         foreach (KillableGridObject target in killList) {
-            target.TakeBombDamage(damage);
+            if (target.GetComponent<PlayerGridObject>())
+            {
+                target.TakeBombDamagePlayer(damage);
+            }
+            else
+            {
+                target.TakeBombDamage(damage);
+            }
         }
 
     }

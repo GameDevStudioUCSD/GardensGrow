@@ -154,6 +154,33 @@ public class KillableGridObject : RotateableGridObject {
         return false;
     }
 
+    public virtual bool TakeBombDamagePlayer(int damage)
+    {
+        if (isInvulnerable)
+        {
+            return false;
+        }
+
+        Animation animation = gameObject.GetComponent<Animation>();
+        if (animation) animation.Play("Damaged");
+
+        health -= damage;
+
+        if (audioSource != null)
+        {
+            audioSource.clip = hurtSound;
+            audioSource.Play();
+        }
+
+        if (health <= 0 && hasDied == false)
+        {
+            DieNoDrop();
+            return true;
+        }
+
+        return false;
+    }
+
     protected virtual void Die() {
         hasDied = true;
 
