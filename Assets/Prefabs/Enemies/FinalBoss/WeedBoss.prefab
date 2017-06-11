@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe04d8a0cd8b5ea4b9ec875556c03a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  willowSeed: {fileID: 1000011546927280, guid: 60fec54131f104aab88780591c8b6f1b, type: 2}
 --- !u!212 &212000010499039420
 SpriteRenderer:
   m_ObjectHideFlags: 1

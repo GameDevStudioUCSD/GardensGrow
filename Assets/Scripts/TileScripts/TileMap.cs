@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 
 public class TileMap : MonoBehaviour {
-
+    
     // The TileMap grid will be mapDimension by mapDimension in size
     public int mapDimensionX, mapDimensionY;
     public GameObject player;

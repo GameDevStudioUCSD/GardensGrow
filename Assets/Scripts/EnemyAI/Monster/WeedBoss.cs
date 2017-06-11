@@ -6,6 +6,9 @@ public class WeedBoss : MonoBehaviour {
     private FinalDungeonBoss f;
     private Animation anim;
 
+    public GameObject willowSeed;
+
+    private Quaternion spawnRotation = Quaternion.Euler(0, 0, 0f);
     private bool canHit = true;
 
     // Use this for initialization
@@ -13,7 +16,6 @@ public class WeedBoss : MonoBehaviour {
         f = FindObjectOfType<FinalDungeonBoss>();
         f.spawnedMe = true;
         anim = this.gameObject.GetComponent<Animation>();
-
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -38,6 +40,10 @@ public class WeedBoss : MonoBehaviour {
         f.spawnedMe = false;
         anim.Play("Damaged");
 
+        if(f.hp == 0)
+        {
+            Instantiate(willowSeed, this.gameObject.transform.position, spawnRotation);
+        }
         yield return new WaitForSeconds(.5f);
         Destroy(this.gameObject);
     }

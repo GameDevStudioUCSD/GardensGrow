@@ -89,7 +89,7 @@ public class KillableGridObject : RotateableGridObject {
                 if (this.gameObject.GetComponent<PlayerGridObject>())
                 {
                     //StartCoroutine(screenBlackout());
-                    Die();
+                    DieNoDrop();
                     return true;
                 }
                 else
@@ -185,10 +185,10 @@ public class KillableGridObject : RotateableGridObject {
     IEnumerator screenBlackout()
     {
         //replace the following with a transparent animation later
-        //deathPanel.SetActive(true);
-        yield return new WaitForSeconds(1);
-        //deathPanel.SetActive(false);
-        Die();
+        deathPanel.SetActive(true);
+        yield return new WaitForFixedUpdate();
+        deathPanel.SetActive(false);
+        //Die();
     }
     public virtual void Attack() {
         if (!Globals.canvas.dialogue) {

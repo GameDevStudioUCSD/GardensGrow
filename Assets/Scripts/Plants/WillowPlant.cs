@@ -4,17 +4,15 @@ using System.Collections;
 public class WillowPlant : PlantGridObject {
 
 	private int counter;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void FixedUpdate() {
+        PlayerGridObject p = FindObjectOfType<PlayerGridObject>();
+
 		counter++;
-		if (counter >= 200) {
-			Debug.Log("Counter reached");
-			Application.LoadLevel(0);
+		if (counter >= 100) {
+            Globals.startCredits = true;
+            p.deathPanel.SetActive(true);
+			Application.LoadLevel(1);
 		}
 	}
 }

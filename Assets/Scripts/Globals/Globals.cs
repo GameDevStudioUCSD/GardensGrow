@@ -12,6 +12,8 @@ public class Globals: MonoBehaviour {
     public enum Faction { Ally=0, Enemy=1};
     public static int npcNum = 0;
 
+    public static bool startCredits = false;
+
     public static bool lavaBossBeaten = false;
     public static bool windBossBeaten = false;
     public static bool caveBossBeaten = false;

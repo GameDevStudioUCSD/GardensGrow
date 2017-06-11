@@ -24,6 +24,7 @@ public class MainCamera : MonoBehaviour {
     public GameObject inventoryUI;
     public GameObject numbers;
     public GameObject pauseButton;
+    public GameObject plantCounter;
 
     private AudioSource musicSource;
     public AudioClip song;
@@ -45,6 +46,11 @@ public class MainCamera : MonoBehaviour {
     {
         tm = FindObjectOfType<TileMap>();
 
+        if(Globals.startCredits == true)
+        {
+            cutScene = true;
+        }
+
         if (cutScene)
         {
             this.gameObject.transform.position = new Vector3(0, -20, -2);
@@ -54,6 +60,9 @@ public class MainCamera : MonoBehaviour {
             inventoryUI.SetActive(false);
             numbers.SetActive(false);
             pauseButton.SetActive(false);
+            plantCounter.SetActive(false);
+
+            Globals.startCredits = false;
             
         }
     }
