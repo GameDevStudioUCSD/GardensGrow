@@ -14,7 +14,6 @@ public class Switch : KillableGridObject {
 
     private int timer = 0;
     private bool pressed;
-    private new SpriteRenderer renderer;
 
     // Use this for initialization
     protected override void Start() {

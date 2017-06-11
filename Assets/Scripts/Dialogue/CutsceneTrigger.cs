@@ -34,14 +34,14 @@ public class CutsceneTrigger : MonoBehaviour {
     private int pixelCounter = 32;
     private int directionCounter = -1;
     private Globals.Direction currentDirection;
-    
+
     protected void Start() {
         if (Globals.canvas) dialogue = Globals.canvas.dialogUI;
         loadedSlot = Globals.loadedSlot;
         if (loadedSlot != -1) playedAlready = PlayerPrefsX.GetBool("cutscene" + saveNumber + "save" + loadedSlot);
         if (playedAlready) Destroy(this.gameObject); //cutscenes only play once
     }
-    
+
     protected void Update() {
         if (!dialogue)
             dialogue = Globals.canvas.dialogUI;
@@ -53,14 +53,26 @@ public class CutsceneTrigger : MonoBehaviour {
 
                 if (directionCounter >= npcDirections.Count) {
                     isPlaying = false;
+                    npcSpawned.GetComponent<Animator>().SetInteger("Direction", 0);
                     ShowDialog();
                     return;
                 }
 
                 else {
                     pixelCounter = 0;
-                    npc.GetComponent<Animator>().SetInteger("Direction", (int)npcDirections[directionCounter]);
                     currentDirection = npcDirections[directionCounter];
+                    //npcSpawned.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
+                    switch (currentDirection) {
+                        case Globals.Direction.South:
+                            npcSpawned.GetComponent<Animator>().SetInteger("Direction", 1);
+                            break;
+                        case Globals.Direction.North:
+                            npcSpawned.GetComponent<Animator>().SetInteger("Direction", 2);
+                            break;
+                        default:
+                            npcSpawned.GetComponent<Animator>().SetInteger("Direction", 0);
+                            break;
+                    }
                 }
             }
 
@@ -91,7 +103,18 @@ public class CutsceneTrigger : MonoBehaviour {
                     else if (npcDirections[directionCounter] == Globals.Direction.South) currentDirection = Globals.Direction.North;
                     else if (npcDirections[directionCounter] == Globals.Direction.East) currentDirection = Globals.Direction.West;
                     else if (npcDirections[directionCounter] == Globals.Direction.West) currentDirection = Globals.Direction.East;
-                    npc.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
+                    //npcSpawned.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
+                    switch (currentDirection) {
+                        case Globals.Direction.South:
+                            npcSpawned.GetComponent<Animator>().SetInteger("Direction", 1);
+                            break;
+                        case Globals.Direction.North:
+                            npcSpawned.GetComponent<Animator>().SetInteger("Direction", 2);
+                            break;
+                        default:
+                            npcSpawned.GetComponent<Animator>().SetInteger("Direction", 0);
+                            break;
+                    }
                 }
             }
 
@@ -110,6 +133,7 @@ public class CutsceneTrigger : MonoBehaviour {
             DialogueNPCTrigger npcTrigger = npcSpawned.GetComponent<DialogueNPCTrigger>();
             if (npcTrigger) Destroy(npcTrigger);
             npcSpawned.AddComponent<MoveableGridObject>();
+            npcSpawned.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
             Globals.player.gameObject.SetActive(false);
             isPlaying = true;
         }
