@@ -13,6 +13,8 @@ public class LavaBossAI : KillableGridObject {
 	public GameObject emblem;
 	private List<Fireball> fireballs = new List<Fireball>();
 	public Fireball fireball;
+
+    private PlayerGridObject p;
 	//public BoxCollider2D collider;
 	//public SpriteRenderer sprite;
 
@@ -34,6 +36,7 @@ public class LavaBossAI : KillableGridObject {
 		base.Start();
 		currentSpawnerIndex = -1; // so boss randomly spawns in any corner
 		state = BossState.StartEmerge;
+        p = FindObjectOfType<PlayerGridObject>();
 		//state = BossState.Dormant;
 		//SpawnEnemies();
 	}
@@ -224,7 +227,10 @@ public class LavaBossAI : KillableGridObject {
     		state == BossState.Enraged)
     	{
         	bool ret = base.TakeDamage(dmg);
-			Hide();
+
+            //resets player position after hitting the boss w/ platform
+            p.gameObject.transform.position = Globals.spawnLocation;
+            Hide();
 			return ret;
         }
 
