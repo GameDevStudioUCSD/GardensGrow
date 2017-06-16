@@ -40,9 +40,11 @@ public class KillableGridObject : RotateableGridObject {
     protected bool hasDied = false;
 
     protected SpriteRenderer renderer;
+    private TileMap tm = null;
 
     // Use this for initialization
     protected override void Start() {
+        tm = FindObjectOfType<TileMap>();
         base.Start();
 		renderer = this.GetComponent<SpriteRenderer>();
     }
@@ -51,7 +53,7 @@ public class KillableGridObject : RotateableGridObject {
     protected override void Update() {
         if (isDying) {
             dyingFrame++;
-            if (dyingFrame >= numDyingFrames)
+            if (dyingFrame >= numDyingFrames && !this.gameObject.GetComponent<PlayerGridObject>())
             {
                Destroy(this.gameObject);   
             }
@@ -88,7 +90,6 @@ public class KillableGridObject : RotateableGridObject {
             if (health <= 0 && hasDied == false) {
                 if (this.gameObject.GetComponent<PlayerGridObject>())
                 {
-                    //StartCoroutine(screenBlackout());
                     DieNoDrop();
                     return true;
                 }
@@ -117,7 +118,6 @@ public class KillableGridObject : RotateableGridObject {
 
             if (health <= 0 && hasDied == false) {
                 if (this.gameObject.GetComponent<PlayerGridObject>()) {
-                    //StartCoroutine(screenBlackout());
                     DieNoDrop();
                     return true;
                 }
@@ -198,24 +198,40 @@ public class KillableGridObject : RotateableGridObject {
 
         isDying = true;
     }
+    public IEnumerator screenBlackout(PlayerGridObject player)
+    {
+        //reset the player
+        player.canMove = false;
+        Globals.playerHealth = 12;
+        player.health = Globals.playerHealth;
+        player.canvas.UpdateHealth(Globals.playerHealth);
 
-    protected virtual void DieNoDrop() {
+        //transitioning
+        deathPanel.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        //Application.LoadLevel(Application.loadedLevel);
 
-        hasDied = true;
-        if (this.gameObject.tag == "Player" || this.gameObject.tag == "Building") {
-            Application.LoadLevel(Application.loadedLevel);
+
+        player.gameObject.transform.position = Globals.spawnLocation;
+        deathPanel.SetActive(false);
+        player.canMove = true;
+
+    }
+    protected virtual void DieNoDrop()
+    {
+        if (this.gameObject.tag == "Building")
+        {
+            hasDied = true;
+            isDying = true;
         }
 
-        isDying = true;
-    }
+        if (this.gameObject.tag == "Player")
+        {
+            StartCoroutine(screenBlackout(this.gameObject.GetComponent<PlayerGridObject>()));
+        }
+        //Application.LoadLevel(Application.loadedLevel);
 
-    IEnumerator screenBlackout()
-    {
-        //replace the following with a transparent animation later
-        deathPanel.SetActive(true);
-        yield return new WaitForFixedUpdate();
-        deathPanel.SetActive(false);
-        //Die();
+
     }
     public virtual void Attack() {
         if (!Globals.canvas.dialogue) {

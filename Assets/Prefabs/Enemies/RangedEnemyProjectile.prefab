@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 20
-  Damage: 10
+  Damage: 2
   shotRange: 1000
   dir: 3
 --- !u!212 &212000010862263882

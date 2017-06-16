@@ -65,7 +65,7 @@ public class RangedEnemy : EnemyGridObject {
         }
         else if (direction == Globals.Direction.West)
         {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x-.22f, this.gameObject.transform.position.y-.1f, 0.0f);
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x-.22f, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(projectile, spawnPosition, spawnRotation);
             animator.SetInteger("Direction", 1);
@@ -79,7 +79,7 @@ public class RangedEnemy : EnemyGridObject {
         }
         else if (direction == Globals.Direction.East)
         {
-            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x+.23f, this.gameObject.transform.position.y-.11f, 0.0f);
+            Vector3 spawnPosition = new Vector3(this.gameObject.transform.position.x+.23f, this.gameObject.transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.Euler(0, 0, 180f);
             Instantiate(projectile, spawnPosition, spawnRotation);
             animator.SetInteger("Direction", 2);

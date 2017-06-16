@@ -101,17 +101,23 @@ public class EnemySpawner : KillableGridObject
             spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 1, 0.0f);
             currentSpawnCount++;
         }
-        GameObject summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-        summonedMonster.GetComponent<GenericMonsterBehaviour>().spawner = this;
-        spawnedMonsters.Add(summonedMonster);
 
-        PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
-        monsterPathFinding.parameters.tileMap = tileMap;
-        monsterPathFinding.parameters.target = targetObj;
-        monsterPathFinding.parameters.useRoomBoundary = useRoomBoundary;
+        GameObject summonedMonster = null;
+        //null check
+        if (enemy)
+        {
+            summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
+            summonedMonster.GetComponent<GenericMonsterBehaviour>().spawner = this;
+            spawnedMonsters.Add(summonedMonster);
 
-        // Activate monster
-        summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().StartAI();
+            PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();
+            monsterPathFinding.parameters.tileMap = tileMap;
+            monsterPathFinding.parameters.target = targetObj;
+            monsterPathFinding.parameters.useRoomBoundary = useRoomBoundary;
+
+            // Activate monster
+            summonedMonster.GetComponent<MonsterBehaviourAbstractFSM>().StartAI();
+        }
 
         coolingDown = true;
     }

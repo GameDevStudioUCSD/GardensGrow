@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HostileTerrainObject : TerrainObject {
     private UIController canvas;
-    public int damage = 12;
+    //public int damage = 12;
 
 	public bool activeCollider;
     private GameObject deathPanel;
@@ -27,19 +27,18 @@ public class HostileTerrainObject : TerrainObject {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			if (player.onPlatform == false) {
-				player.TakeDamage(damage);
+				//player.TakeDamage(damage);
                 //player.gameObject.transform.position = Globals.spawnLocation;
-
-                player.canMove = false;
+               
                 StartCoroutine(screenBlackout());
 			}
 		}
         RollingBoulder boulder = other.GetComponent<RollingBoulder>();
         if (boulder) boulder.StartCrumbling();
 	}
-    IEnumerator screenBlackout()
+    public IEnumerator screenBlackout()
     {
-        //replace the following with a transparent animation later
+        player.canMove = false;
         deathPanel.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         player.gameObject.transform.position = Globals.spawnLocation;

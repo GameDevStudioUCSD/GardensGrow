@@ -112,28 +112,38 @@ public class WatermelonPlantObject : PlantGridObject
         if ( ((other.CompareTag("Enemy") || (other.CompareTag("EnemySpawner"))) && !evil) || (evil && other.CompareTag("Player")) ) {
 
             KillableGridObject killable = other.GetComponent<KillableGridObject>();
-            if (!killable.isInvulnerable) {
-                triggered = killable;
-                if (canChangeDir) {
-                    if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>())) {
-                        direction = Globals.Direction.South;
-                        canChangeDir = false;
-                        StartCoroutine(changeDirectionWait());
-                    }
-                    else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>())) {
-                        direction = Globals.Direction.North;
-                        canChangeDir = false;
-                        StartCoroutine(changeDirectionWait());
-                    }
-                    else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>())) {
-                        direction = Globals.Direction.East;
-                        canChangeDir = false;
-                        StartCoroutine(changeDirectionWait());
-                    }
-                    else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>())) {
-                        direction = Globals.Direction.West;
-                        canChangeDir = false;
-                        StartCoroutine(changeDirectionWait());
+            //null check
+            if (killable)
+            {
+                if (!killable.isInvulnerable)
+                {
+                    triggered = killable;
+                    if (canChangeDir)
+                    {
+                        if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
+                        {
+                            direction = Globals.Direction.South;
+                            canChangeDir = false;
+                            StartCoroutine(changeDirectionWait());
+                        }
+                        else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
+                        {
+                            direction = Globals.Direction.North;
+                            canChangeDir = false;
+                            StartCoroutine(changeDirectionWait());
+                        }
+                        else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
+                        {
+                            direction = Globals.Direction.East;
+                            canChangeDir = false;
+                            StartCoroutine(changeDirectionWait());
+                        }
+                        else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
+                        {
+                            direction = Globals.Direction.West;
+                            canChangeDir = false;
+                            StartCoroutine(changeDirectionWait());
+                        }
                     }
                 }
             }
