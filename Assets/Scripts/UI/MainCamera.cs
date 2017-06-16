@@ -28,6 +28,13 @@ public class MainCamera : MonoBehaviour {
 
     private AudioSource musicSource;
     public AudioClip song;
+    public AudioClip regSong;
+
+    private EnemySpawner[] es;
+    private PlantGridObject[] pl;
+    private EnemyGridObject[] eo;
+    private DialogueNPCTrigger[] dnt;
+    private DialogueTrigger[] dt;
 
     private string[] titles = {"-Artist-", "-Game Developer-", "-Game Developer-", "-Lead Sound Designer-", "-Game Developer-", "-Artist-",
                                "-Lead Game Designer and Developer-", "-Music Composer-", "-Game Developer-", "-Artist-",
@@ -40,7 +47,36 @@ public class MainCamera : MonoBehaviour {
                                  "Kyle Lokken Henderson", "Mark Longsheng Zhao", "Michael Phalen", "Noel Nguyen", "Peter Vugia",
                                  "Sammy Jing Ma", "Sharon Mo", "Sher Zahed", "Siddarth Govindan", "Steven Lee",
                                  "Sung Rim Huh", "Tyler Bakke", "Yuanmin Zhang"};
-    //private bool paused = false;
+
+    private void ChangeToNormal()
+    {
+        cutScene = false;
+        tm.debug = false;
+        creditsUI.SetActive(false);
+        healthUI.SetActive(true);
+        inventoryUI.SetActive(true);
+        numbers.SetActive(true);
+        pauseButton.SetActive(true);
+        plantCounter.SetActive(true);
+
+        player.gameObject.SetActive(true);
+
+        tm.player = player.gameObject;
+
+        musicSource.clip = regSong;
+        musicSource.Play();
+
+        foreach (EnemySpawner e in es) e.gameObject.SetActive(true);
+
+        foreach (PlantGridObject p in pl) p.gameObject.SetActive(true);
+
+        foreach (EnemyGridObject e in eo) e.gameObject.SetActive(true);
+
+        foreach (DialogueNPCTrigger d in dnt) d.gameObject.SetActive(true);
+
+        foreach (DialogueTrigger d in dt) d.gameObject.SetActive(true);
+
+    }
 
     private void Start()
     {
@@ -80,9 +116,10 @@ public class MainCamera : MonoBehaviour {
         title.gameObject.SetActive(false);
         person.text = "GardensGrow";
 
-        yield return new WaitForSeconds(10.26f);
+        yield return new WaitForSeconds(6.26f);
         creditsUI.SetActive(false);
-        
+        ChangeToNormal();
+
     }
     void Update()
     {
@@ -119,22 +156,23 @@ public class MainCamera : MonoBehaviour {
         musicSource.clip = song;
         musicSource.Play();
 
-        EnemySpawner[] es = FindObjectsOfType<EnemySpawner>();
+        player.gameObject.SetActive(false);
+
+        es = FindObjectsOfType<EnemySpawner>();
         foreach (EnemySpawner e in es) e.gameObject.SetActive(false);
 
-        PlantGridObject[] pl = FindObjectsOfType<PlantGridObject>();
+        pl = FindObjectsOfType<PlantGridObject>();
         foreach (PlantGridObject p in pl) p.gameObject.SetActive(false);
 
-        EnemyGridObject[] eo = FindObjectsOfType<EnemyGridObject>();
+        eo = FindObjectsOfType<EnemyGridObject>();
         foreach (EnemyGridObject e in eo) e.gameObject.SetActive(false);
 
-        DialogueNPCTrigger[] dnt = FindObjectsOfType<DialogueNPCTrigger>();
+        dnt = FindObjectsOfType<DialogueNPCTrigger>();
         foreach (DialogueNPCTrigger d in dnt) d.gameObject.SetActive(false);
 
-        DialogueTrigger[] dt = FindObjectsOfType<DialogueTrigger>();
+        dt = FindObjectsOfType<DialogueTrigger>();
         foreach (DialogueTrigger d in dt) d.gameObject.SetActive(false);
 
-        //set health and iventory activefalse
         cutScene = true;
 
         Globals.Direction left = Globals.Direction.West;
@@ -219,8 +257,6 @@ public class MainCamera : MonoBehaviour {
                 yield return new WaitForFixedUpdate();
             }
         }
-
-        //after credits should change song and reload all things that were set inactive to make playable
     }
 
 
