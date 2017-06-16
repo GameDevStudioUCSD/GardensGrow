@@ -42763,6 +42763,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012658303356, guid: 1bc5912b478f8f04aa01db53e5d5da10,
+        type: 2}
+      propertyPath: deathPanel
+      value: 
+      objectReference: {fileID: 2136448655}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bc5912b478f8f04aa01db53e5d5da10, type: 2}
   m_IsPrefabParent: 0
@@ -44132,6 +44137,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2136448653}
   m_Script: {fileID: 11500000, guid: ebbf556679cba454cbf56db4d5ea7475, type: 3}
+--- !u!1 &2136448655 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012028076586, guid: 7ad1e773134444df784a5197e0843dea,
+    type: 2}
+  m_PrefabInternal: {fileID: 2136448653}
 --- !u!1001 &2139174313
 Prefab:
   m_ObjectHideFlags: 0

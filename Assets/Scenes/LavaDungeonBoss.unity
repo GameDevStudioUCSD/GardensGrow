@@ -161,7 +161,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &3923613
 MonoBehaviour:
@@ -462,7 +461,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &7630118
 MonoBehaviour:
@@ -1063,7 +1061,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &45515169
 MonoBehaviour:
@@ -1363,7 +1360,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &50065700
 MonoBehaviour:
@@ -1514,7 +1510,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &51447778
 MonoBehaviour:
@@ -2411,7 +2406,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &97803264
 MonoBehaviour:
@@ -2861,7 +2855,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &112918106
 MonoBehaviour:
@@ -3012,7 +3005,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &115926498
 MonoBehaviour:
@@ -3226,7 +3218,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &133914157
 MonoBehaviour:
@@ -3526,7 +3517,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &155402098
 MonoBehaviour:
@@ -4623,7 +4613,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &199472963
 MonoBehaviour:
@@ -5410,7 +5399,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &229735938
 MonoBehaviour:
@@ -5710,7 +5698,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &244782428
 MonoBehaviour:
@@ -6012,7 +5999,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &250226364
 MonoBehaviour:
@@ -6163,7 +6149,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &255873447
 MonoBehaviour:
@@ -6614,7 +6599,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &270549414
 MonoBehaviour:
@@ -6766,7 +6750,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &274056975
 MonoBehaviour:
@@ -7685,7 +7668,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &319208945
 MonoBehaviour:
@@ -8322,7 +8304,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &366153210
 MonoBehaviour:
@@ -8535,7 +8516,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &380787483
 MonoBehaviour:
@@ -8725,7 +8705,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &399541998
 MonoBehaviour:
@@ -9088,7 +9067,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &411686834
 MonoBehaviour:
@@ -9239,7 +9217,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &413147601
 MonoBehaviour:
@@ -9605,7 +9582,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &426224452
 MonoBehaviour:
@@ -10054,7 +10030,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &439254619
 MonoBehaviour:
@@ -10566,7 +10541,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &464023907
 MonoBehaviour:
@@ -10717,7 +10691,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &466398528
 MonoBehaviour:
@@ -11018,7 +10991,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &476639721
 MonoBehaviour:
@@ -11169,7 +11141,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &477552063
 MonoBehaviour:
@@ -11320,7 +11291,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &480012392
 MonoBehaviour:
@@ -11621,7 +11591,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &480798845
 MonoBehaviour:
@@ -12071,7 +12040,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &486472109
 MonoBehaviour:
@@ -12584,7 +12552,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &504726629
 MonoBehaviour:
@@ -13671,7 +13638,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &584992881
 MonoBehaviour:
@@ -14276,7 +14242,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &624629065
 MonoBehaviour:
@@ -14428,7 +14393,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &628856407
 MonoBehaviour:
@@ -14618,7 +14582,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &632042285
 MonoBehaviour:
@@ -15020,7 +14983,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &667953828
 MonoBehaviour:
@@ -15171,7 +15133,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &668519791
 MonoBehaviour:
@@ -16109,7 +16070,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &690406416
 MonoBehaviour:
@@ -16409,7 +16369,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &692615169
 MonoBehaviour:
@@ -16560,7 +16519,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &693526428
 MonoBehaviour:
@@ -16712,7 +16670,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &695614359
 MonoBehaviour:
@@ -17013,7 +16970,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &716965228
 MonoBehaviour:
@@ -17165,7 +17121,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &726712206
 MonoBehaviour:
@@ -17299,6 +17254,11 @@ Prefab:
       propertyPath: dialogue
       value: 
       objectReference: {fileID: 1237986173}
+    - target: {fileID: 114000012658303356, guid: 1bc5912b478f8f04aa01db53e5d5da10,
+        type: 2}
+      propertyPath: deathPanel
+      value: 
+      objectReference: {fileID: 1237986172}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bc5912b478f8f04aa01db53e5d5da10, type: 2}
   m_IsPrefabParent: 0
@@ -17532,7 +17492,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &737093662
 MonoBehaviour:
@@ -17683,7 +17642,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &737476694
 MonoBehaviour:
@@ -18176,7 +18134,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &784870246
 MonoBehaviour:
@@ -18776,7 +18733,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &797202014
 MonoBehaviour:
@@ -19183,7 +19139,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &842438583
 MonoBehaviour:
@@ -19335,7 +19290,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &844067072
 MonoBehaviour:
@@ -19548,7 +19502,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &855577876
 MonoBehaviour:
@@ -20004,7 +19957,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &869672662
 MonoBehaviour:
@@ -20217,7 +20169,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &899350325
 MonoBehaviour:
@@ -20580,7 +20531,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &902481699
 MonoBehaviour:
@@ -20731,7 +20681,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &905966655
 MonoBehaviour:
@@ -20882,7 +20831,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &915195084
 MonoBehaviour:
@@ -21095,7 +21043,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &921037592
 MonoBehaviour:
@@ -21246,7 +21193,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &923907336
 MonoBehaviour:
@@ -21397,7 +21343,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &927781173
 MonoBehaviour:
@@ -21995,7 +21940,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &945097027
 MonoBehaviour:
@@ -22146,7 +22090,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &956409949
 MonoBehaviour:
@@ -22297,7 +22240,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &957058437
 MonoBehaviour:
@@ -22598,7 +22540,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &984469600
 MonoBehaviour:
@@ -22750,7 +22691,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &987637920
 MonoBehaviour:
@@ -22902,7 +22842,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &989714071
 MonoBehaviour:
@@ -23053,7 +22992,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &990225101
 MonoBehaviour:
@@ -23503,7 +23441,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1018588851
 MonoBehaviour:
@@ -23803,7 +23740,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1022090966
 MonoBehaviour:
@@ -24249,7 +24185,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1035192099
 MonoBehaviour:
@@ -24401,7 +24336,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1052959140
 MonoBehaviour:
@@ -24553,7 +24487,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1060780757
 MonoBehaviour:
@@ -24704,7 +24637,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1062638139
 MonoBehaviour:
@@ -25004,7 +24936,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1065922152
 MonoBehaviour:
@@ -25604,7 +25535,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1114122109
 MonoBehaviour:
@@ -25859,7 +25789,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1122077730
 MonoBehaviour:
@@ -26198,7 +26127,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1164246105
 MonoBehaviour:
@@ -26544,7 +26472,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1186655610
 MonoBehaviour:
@@ -26695,7 +26622,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1193303744
 MonoBehaviour:
@@ -26847,7 +26773,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1200554211
 MonoBehaviour:
@@ -27149,7 +27074,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1231164460
 MonoBehaviour:
@@ -27493,6 +27417,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ad1e773134444df784a5197e0843dea, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1237986172 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012028076586, guid: 7ad1e773134444df784a5197e0843dea,
+    type: 2}
+  m_PrefabInternal: {fileID: 1237986171}
 --- !u!1 &1237986173 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011410173598, guid: 7ad1e773134444df784a5197e0843dea,
@@ -27748,7 +27677,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1252395868
 MonoBehaviour:
@@ -27900,7 +27828,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1253303952
 MonoBehaviour:
@@ -28200,7 +28127,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1264599513
 MonoBehaviour:
@@ -28501,7 +28427,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1281903022
 MonoBehaviour:
@@ -28652,7 +28577,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1291048290
 MonoBehaviour:
@@ -28952,7 +28876,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1303260496
 MonoBehaviour:
@@ -29464,7 +29387,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1324874636
 MonoBehaviour:
@@ -29915,7 +29837,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1345609065
 MonoBehaviour:
@@ -30680,7 +30601,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1406031179
 MonoBehaviour:
@@ -31198,7 +31118,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1441387826
 MonoBehaviour:
@@ -31878,7 +31797,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1463128638
 MonoBehaviour:
@@ -32030,7 +31948,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1467478499
 MonoBehaviour:
@@ -32331,7 +32248,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1478844329
 MonoBehaviour:
@@ -32745,7 +32661,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1517763119
 MonoBehaviour:
@@ -32896,7 +32811,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1520061430
 MonoBehaviour:
@@ -33109,7 +33023,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1534852843
 MonoBehaviour:
@@ -33322,7 +33235,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1541836331
 MonoBehaviour:
@@ -33474,7 +33386,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1551890551
 MonoBehaviour:
@@ -33862,7 +33773,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1577366311
 MonoBehaviour:
@@ -34163,7 +34073,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1585877591
 MonoBehaviour:
@@ -34463,7 +34372,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1586646745
 MonoBehaviour:
@@ -35374,7 +35282,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1651024343
 MonoBehaviour:
@@ -36483,7 +36390,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1770481682
 MonoBehaviour:
@@ -36673,7 +36579,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1774983217
 MonoBehaviour:
@@ -36824,7 +36729,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1781445215
 MonoBehaviour:
@@ -37126,7 +37030,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1789361187
 MonoBehaviour:
@@ -37466,7 +37369,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1818482475
 MonoBehaviour:
@@ -37617,7 +37519,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1823908508
 MonoBehaviour:
@@ -37918,7 +37819,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1841555255
 MonoBehaviour:
@@ -38070,7 +37970,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1847933496
 MonoBehaviour:
@@ -38411,7 +38310,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1871522355
 MonoBehaviour:
@@ -39326,7 +39224,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1905070349
 MonoBehaviour:
@@ -39478,7 +39375,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1911108105
 MonoBehaviour:
@@ -39944,7 +39840,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1944020911
 MonoBehaviour:
@@ -40395,7 +40290,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1953317227
 MonoBehaviour:
@@ -40546,7 +40440,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1967203749
 MonoBehaviour:
@@ -40698,7 +40591,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1971709873
 MonoBehaviour:
@@ -41344,7 +41236,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1986771736
 MonoBehaviour:
@@ -41688,7 +41579,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1995839463
 MonoBehaviour:
@@ -41901,7 +41791,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1998116411
 MonoBehaviour:
@@ -42053,7 +41942,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &1999761300
 MonoBehaviour:
@@ -42204,7 +42092,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &2002574862
 MonoBehaviour:
@@ -42355,7 +42242,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &2014614071
 MonoBehaviour:
@@ -42955,7 +42841,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &2045236133
 MonoBehaviour:
@@ -43507,7 +43392,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
   chosenSprite: {fileID: 21300000, guid: 772a74088f4aa4b99b9ab040541cb495, type: 3}
-  damage: 1
   activeCollider: 1
 --- !u!114 &2104171950
 MonoBehaviour:
