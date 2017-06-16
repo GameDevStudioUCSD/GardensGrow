@@ -39,7 +39,11 @@ public class Node {
 
         isPatheable = tile.isPatheable;
         worldPosition = tile.transform.position;
-        gridPosition = tile.transform.position - tileMap.transform.position;
+        //nullcheck
+        if (tile && tileMap)
+        {
+            gridPosition = tile.transform.position - tileMap.transform.position;
+        }
         gCost = tile.gCost;
     }
 

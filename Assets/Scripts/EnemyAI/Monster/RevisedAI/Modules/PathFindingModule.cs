@@ -120,7 +120,13 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
         // Do calculations from center tile of the room
         float halfHorizontalLength = 8.5f, halfVerticalLength = 5.5f;
 
-        Vector2 roomCenter = roomTransform.position;
+
+        Vector2 roomCenter = this.gameObject.transform.position;
+        //null check
+        if (roomTransform)
+        {
+            roomCenter = roomTransform.position;
+        }
 
         float boundRight = roomCenter.x + halfHorizontalLength;
         float boundLeft = roomCenter.x - halfHorizontalLength;

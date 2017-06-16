@@ -107,7 +107,16 @@ public class EnemySpawner : KillableGridObject
         if (enemy)
         {
             summonedMonster = (GameObject)Instantiate(enemy, spawnPosition, spawnRotation);
-            summonedMonster.GetComponent<GenericMonsterBehaviour>().spawner = this;
+
+            //null check
+            if (summonedMonster && this)
+            {
+                if (summonedMonster.GetComponent<GenericMonsterBehaviour>())
+                {
+                    summonedMonster.GetComponent<GenericMonsterBehaviour>().spawner = this;
+                }
+            }
+
             spawnedMonsters.Add(summonedMonster);
 
             PathFindingModule monsterPathFinding = summonedMonster.GetComponentInChildren<PathFindingModule>();

@@ -54,7 +54,11 @@ public class ItemDrop : StaticGridObject {
     }
 	// Update is called once per frame
 	void Update () {
-		if (!Globals.canvas.dialogue) life++;
+        //null check
+        if (Globals.canvas)
+        {
+            if (!Globals.canvas.dialogue) life++;
+        }
 		if (permanent == false && life > lifeSpan) {
 			Destroy(this.gameObject);
 		}

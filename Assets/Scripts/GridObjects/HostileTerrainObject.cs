@@ -40,6 +40,10 @@ public class HostileTerrainObject : TerrainObject {
     {
         player.canMove = false;
         deathPanel.SetActive(true);
+        Globals.playerHealth = 12;
+        player.health = 12;
+        player.canvas.UpdateHealth(Globals.playerHealth);
+
         yield return new WaitForSeconds(0.5f);
         player.gameObject.transform.position = Globals.spawnLocation;
         deathPanel.SetActive(false);

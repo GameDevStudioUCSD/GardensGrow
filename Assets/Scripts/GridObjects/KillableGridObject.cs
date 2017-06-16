@@ -48,7 +48,7 @@ public class KillableGridObject : RotateableGridObject {
 		renderer = this.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+    //  is called once per frame
     protected override void Update() {
         if (isDying) {
             dyingFrame++;
@@ -70,23 +70,30 @@ public class KillableGridObject : RotateableGridObject {
     }
 
     // returns true if the attack kills the object
-    public virtual bool TakeDamage(int damage) {
-        if (isInvulnerable) {
+    public virtual bool TakeDamage(int damage)
+    {
+        if (isInvulnerable)
+        {
             return false;
         }
 
-        if (!bombable) {
+        if (!bombable)
+        {
             Animation animation = gameObject.GetComponent<Animation>();
             if (animation) animation.Play("Damaged");
 
+
             health -= damage;
 
-            if (audioSource != null) {
+
+            if (audioSource != null)
+            {
                 audioSource.clip = hurtSound;
                 audioSource.Play();
             }
 
-            if (health <= 0 && hasDied == false) {
+            if (health <= 0 && hasDied == false)
+            {
                 if (this.gameObject.GetComponent<PlayerGridObject>())
                 {
                     DieNoDrop();

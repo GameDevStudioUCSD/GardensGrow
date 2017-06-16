@@ -31,7 +31,7 @@ public class PlayerGridObject : MoveableGridObject {
     public int plantDelay;
 
     //private GameObject dialogue;
-    private bool invincible;
+    public bool invincible = false;
     private int plantCooldown = 0;
 
     protected override void Start () {
@@ -243,17 +243,17 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
-        if (damage >= 1)
-        {
-            canvas.UpdateHealth(health - damage);
-        }
-        if (!invincible)
+        /*if (!invincible)
         {
             invincible = true;
             StartCoroutine(invicibilityWait());
             return base.TakeDamage(damage);
         }
-        return base.TakeDamage(0);
+        else if (damage >= 1)
+        {*/
+            canvas.UpdateHealth(health - damage);
+        //}
+        return base.TakeDamage(damage);
     }
     public override bool TakeBombDamage(int damage) {
         if (damage >= 1) {

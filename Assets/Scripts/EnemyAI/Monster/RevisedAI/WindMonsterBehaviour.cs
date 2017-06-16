@@ -9,6 +9,7 @@ public class WindMonsterBehaviour : MonsterBehaviourAbstractFSM {
     public PathFindingModule pathFindingModule;
     public WindAttackModule attackModule;
     public SummoningModule summonModule;
+    public EnemySpawner spawner;
 
     public override void Reset()
     {

@@ -55,7 +55,11 @@ public class LockedDoor : MonoBehaviour {
 	}
 
 	void CloseDoor() {
-		animator.SetTrigger("Close");
+        //null check
+        if (animator)
+        {
+            animator.SetTrigger("Close");
+        }
 		barrier.gameObject.SetActive(true);
 		closed = true;
 	}
