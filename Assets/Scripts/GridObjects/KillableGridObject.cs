@@ -44,7 +44,6 @@ public class KillableGridObject : RotateableGridObject {
 
     // Use this for initialization
     protected override void Start() {
-        tm = FindObjectOfType<TileMap>();
         base.Start();
 		renderer = this.GetComponent<SpriteRenderer>();
     }
@@ -227,6 +226,10 @@ public class KillableGridObject : RotateableGridObject {
 
         if (this.gameObject.tag == "Player")
         {
+            if (!tm)
+            {
+                tm = FindObjectOfType<TileMap>();
+            }
             StartCoroutine(screenBlackout(this.gameObject.GetComponent<PlayerGridObject>()));
         }
         //Application.LoadLevel(Application.loadedLevel);
