@@ -26,6 +26,7 @@ public class DialogueTrigger : MonoBehaviour {
 	void Start () {
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
+        readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
     }
 	
 	// Update is called once per frame

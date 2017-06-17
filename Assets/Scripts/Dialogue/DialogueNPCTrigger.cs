@@ -65,6 +65,8 @@ public class DialogueNPCTrigger : MoveableGridObject {
 		if (JellyFishBoss && Globals.caveBossBeaten) {
 			textFileName = textFileNameAfterJellyfish;
 		}
+
+        readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
     }
     // Update is called once per frame
     protected override void Update () {
@@ -136,7 +138,12 @@ public class DialogueNPCTrigger : MoveableGridObject {
             dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
         }
     }
-
+    public void OnDisable()
+    {
+        PlayerPrefsX.SetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot, readAlready);
+    }
+    
+    //maybe deprecate
     public void saveBool(int saveSlot)
     {
         PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
@@ -147,7 +154,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
 
         if(loadedSlot != -1)
         {
-            readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "save" + loadedSlot);
+            readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
         }
 
         if (readAlready)

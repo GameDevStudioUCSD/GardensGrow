@@ -25,3 +25,5 @@ EditorBuildSettings:
     path: Assets/Scenes/CaveDungeonBoss.unity
   - enabled: 1
     path: Assets/Scenes/VineDungeon.unity
+  - enabled: 1
+    path: Assets/Scenes/VineDungeonBoss.unity
