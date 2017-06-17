@@ -43,7 +43,12 @@ public class UIController : MonoBehaviour {
     }
 
     void Update() {
-		float yPos = ((player.transform.position.y + 5) % 10 + 10) % 10;
+        float yPos = 0f;
+        //null check
+        if (player)
+        {
+            yPos = ((player.transform.position.y + 5) % 10 + 10) % 10;
+        }
 		Image image;
 		if (yPos < 2) {
 			for (int i = 0; i < 8; i++) {

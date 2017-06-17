@@ -210,6 +210,9 @@ public class WindBossAI : KillableGridObject {
             animator.SetInteger("State", 0);
             state = BossState.Damaged;
             numRocks += 2;
+
+            Animation animation = gameObject.GetComponent<Animation>();
+            if (animation) animation.Play("Damaged");
         }
         return base.TakeBombDamage(damage);
     }

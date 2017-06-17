@@ -60,6 +60,12 @@ public class DialogueTrigger : MonoBehaviour {
         }
     }
 
+    public void OnDisable()
+    {
+        PlayerPrefsX.SetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot, readAlready);
+    }
+
+    //maybe deprecate
     public void saveBool(int saveSlot)
     {
         PlayerPrefsX.SetBool("sign" + saveNumber + "save" + saveSlot, readAlready);
@@ -70,7 +76,7 @@ public class DialogueTrigger : MonoBehaviour {
 
         if (loadedSlot != -1)
         {
-            readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "save" + loadedSlot);
+            readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
         }
 
         if (readAlready)

@@ -34,12 +34,19 @@ public class PlayerGridObject : MoveableGridObject {
     public bool invincible = false;
     private int plantCooldown = 0;
 
-    protected override void Start () {
+    protected override void Start()
+    {
         base.Start();
 
         canvas.UpdateHealth(Globals.playerHealth);  //update players health from load/Globals
 
-        this.gameObject.transform.position = Globals.spawnLocation;
+        //this.gameObject.transform.position = Globals.spawnLocation;
+
+        //the following is used to test
+        for (int i = 0; i < Globals.unlockedSeeds.Length; i++)
+        {
+            Globals.unlockedSeeds[i] = true;
+        }
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;

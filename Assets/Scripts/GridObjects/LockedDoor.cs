@@ -39,17 +39,26 @@ public class LockedDoor : MonoBehaviour {
     {
 
         PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z, closed); //TODO: put false into here, and save before building the game
+                  + "pos x" + x + "pos y" + y + "pos z" + z, false); //TODO: put false into here, and save before building the game
 
     }
     // Use this for initialization
     void Start () {
-		closed = true;
+        //used to deterministically save and load the closed bool
+        x = this.gameObject.transform.position.x;
+        y = this.gameObject.transform.position.y;
+        z = this.gameObject.transform.position.z;
+
+        closed = true;
 		animator = this.gameObject.GetComponent<Animator>();
 	}
 
 	void OpenDoor() {
-		animator.SetTrigger("Open");
+        //null check
+        if (animator)
+        {
+            animator.SetTrigger("Open");
+        }
 		barrier.gameObject.SetActive(false);
 		closed = false;
 	}

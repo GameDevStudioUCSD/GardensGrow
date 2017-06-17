@@ -40,7 +40,11 @@ public abstract class StatusEffect : MonoBehaviour {
     /// </summary>
     public virtual void ApplyEffect()
     {
-        this.transform.SetParent(affectedTarget.transform);
+        //null check
+        if (this.transform)
+        {
+            this.transform.SetParent(affectedTarget.transform);
+        }
 
         StartEffect();
     }

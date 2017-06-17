@@ -5351,6 +5351,7 @@ GameObject:
   - 61: {fileID: 1056494785}
   - 212: {fileID: 1056494784}
   - 95: {fileID: 1056494786}
+  - 111: {fileID: 1056494787}
   m_Layer: 0
   m_Name: WindBoss
   m_TagString: Untagged
@@ -5472,6 +5473,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &1056494787
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1056494781}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bc90cb57f8bc72a4ab5b7968be59fa38, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bc90cb57f8bc72a4ab5b7968be59fa38, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1058381804
 GameObject:
   m_ObjectHideFlags: 0
