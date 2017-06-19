@@ -9,7 +9,7 @@ public class WillowPlant : PlantGridObject {
         PlayerGridObject p = FindObjectOfType<PlayerGridObject>();
 
 		counter++;
-		if (counter >= 100) {
+		if (counter >= 200) {
             Globals.startCredits = true;
             p.deathPanel.SetActive(true);
 			Application.LoadLevel(1);

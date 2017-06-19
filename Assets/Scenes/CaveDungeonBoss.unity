@@ -42768,6 +42768,11 @@ Prefab:
       propertyPath: deathPanel
       value: 
       objectReference: {fileID: 2136448655}
+    - target: {fileID: 114000012658303356, guid: 1bc5912b478f8f04aa01db53e5d5da10,
+        type: 2}
+      propertyPath: itemsRePickUp
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bc5912b478f8f04aa01db53e5d5da10, type: 2}
   m_IsPrefabParent: 0

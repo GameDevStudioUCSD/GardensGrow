@@ -30,6 +30,7 @@ public class LightLevel : MonoBehaviour {
         if (level > 1.0f) clamped = 1.0f;
         else if (level < 0.0f) clamped = 0.0f;
 
-        spriteRenderer.color = new Color(clamped, clamped, clamped);
+        //null check
+        if (spriteRenderer) spriteRenderer.color = new Color(clamped, clamped, clamped);
     }
 }

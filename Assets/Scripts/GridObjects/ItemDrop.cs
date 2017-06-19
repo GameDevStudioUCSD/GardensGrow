@@ -49,7 +49,7 @@ public class ItemDrop : StaticGridObject {
     {
 
         PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z, false); //TODO: put false into here, and save before building the game
+                  + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp); //TODO: put false into here, and save before building the game
 
     }
 	// Update is called once per frame
