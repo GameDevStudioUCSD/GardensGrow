@@ -250,17 +250,26 @@ public class PlayerGridObject : MoveableGridObject {
 
     public override bool TakeDamage(int damage)
     {
-        /*if (!invincible)
+        if (!invincible)
         {
             invincible = true;
+
+            Animation animation = gameObject.GetComponent<Animation>();
+
+            if (audioSource != null )
+            {
+                audioSource.clip = hurtSound;
+                audioSource.Play();
+
+                if (animation) animation.Play("Damaged");
+            }
+            canvas.UpdateHealth(health - damage);
+
             StartCoroutine(invicibilityWait());
             return base.TakeDamage(damage);
         }
-        else if (damage >= 1)
-        {*/
-            canvas.UpdateHealth(health - damage);
-        //}
-        return base.TakeDamage(damage);
+
+        return base.TakeDamage(0);
     }
     public override bool TakeBombDamage(int damage) {
         if (damage >= 1) {

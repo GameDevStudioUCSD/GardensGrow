@@ -13,7 +13,12 @@ public class LightLevel : MonoBehaviour {
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-        spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f);
+
+        //null check
+        if (spriteRenderer)
+        {
+            spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f);
+        }
     }
 
     public virtual void ChangeLightLevel(float amount) {

@@ -22,9 +22,10 @@ GameObject:
   - 222: {fileID: 222000014040179664}
   - 212: {fileID: 212000010499039420}
   - 50: {fileID: 50000010516654210}
-  - 61: {fileID: 61000010778846092}
   - 114: {fileID: 114000011540763180}
   - 111: {fileID: 111000014250052566}
+  - 95: {fileID: 95000011455521580}
+  - 61: {fileID: 61000010378205492}
   m_Layer: 0
   m_Name: WeedBoss
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61000010778846092
+--- !u!61 &61000010378205492
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -60,9 +61,26 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15506744}
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 4, y: 3.689865}
+--- !u!95 &95000011455521580
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631268210}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e0ed7efd3da80e44b6beb58c850e4ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!111 &111000014250052566
 Animation:
   m_ObjectHideFlags: 1
@@ -119,7 +137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9d4ecc9a7bdad39438e27a5ab73b6129, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d374b65d17e23434f9d110e4d2b52ff3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
