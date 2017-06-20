@@ -37,7 +37,7 @@ public class ItemDrop : StaticGridObject {
             z = this.gameObject.transform.position.z;
 
             pickedUp = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp);
+                + "pos x" + x + "pos y" + y + "pos z" + z + "item");
 
             if (pickedUp)
             {
@@ -49,7 +49,7 @@ public class ItemDrop : StaticGridObject {
     {
 
         PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z, pickedUp); //TODO: put false into here, and save before building the game
+                  + "pos x" + x + "pos y" + y + "pos z" + z + "item", pickedUp); //TODO: put false into here, and save before building the game
 
     }
 	// Update is called once per frame

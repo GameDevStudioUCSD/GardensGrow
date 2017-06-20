@@ -17,6 +17,11 @@ public class RangedEnemy : EnemyGridObject {
     //private int shotRangeCounter = 0;
     public GameObject laser;
 
+    //for save state
+    private bool destroyed = false;
+    private float x;
+    private float y;
+    private float z;
 
     protected override void Start()
     {
@@ -51,6 +56,36 @@ public class RangedEnemy : EnemyGridObject {
                 Destroy(this.gameObject);
             }
         }
+    }
+    void OnEnable()
+    {
+        x = this.gameObject.transform.position.x;
+        y = this.gameObject.transform.position.y;
+        z = this.gameObject.transform.position.z;
+
+        destroyed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+            + "pos x" + x + "pos y" + y + "pos z" + z + "rangedenemy");
+
+        if (destroyed)
+        {
+            gameObject.SetActive(false);
+        }
+        /*else
+        {
+            gameObject.SetActive(true);
+        }*/
+
+    }
+    private void OnDestroy()
+    {
+        destroyed = true;
+    }
+    void OnDisable()
+    {
+
+        PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                  + "pos x" + x + "pos y" + y + "pos z" + z + "rangedenemy", destroyed); //TODO: put false into here, and save before building the game
+
     }
     private void Shooter()
     {
@@ -87,23 +122,6 @@ public class RangedEnemy : EnemyGridObject {
 
         //animatorator.Stop();
     }
-    /*
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (!shootsIndefinitely)
-        {
-            if (other.CompareTag("Player"))
-            {
-                //Shooter() is being called, check
-                if (counter > shotDelay)
-                {
-                    Shooter();
-                    counter = 0;
-                }
-                counter++;
-            }
-        }
-    }*/
     //code for if wants to shoot in Player direction;
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -136,30 +154,5 @@ public class RangedEnemy : EnemyGridObject {
                 }
             }
         }
-
-        /**
-        if (!shootsIndefinitely)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-
-                if (other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.South;
-                }
-                else if (other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.North;
-                }
-                else if (other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.East;
-                }
-                else if (other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
-                {
-                    direction = Globals.Direction.West;
-                }
-            }
-        }*/
     }
 }

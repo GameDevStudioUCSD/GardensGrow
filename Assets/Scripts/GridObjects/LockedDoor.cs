@@ -23,7 +23,7 @@ public class LockedDoor : MonoBehaviour {
             z = this.gameObject.transform.position.z;
 
             closed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                + "pos x" + x + "pos y" + y + "pos z" + z, closed);
+                + "pos x" + x + "pos y" + y + "pos z" + z + "door");
 
             if (closed)
             {
@@ -39,7 +39,7 @@ public class LockedDoor : MonoBehaviour {
     {
 
         PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z, closed); //TODO: put false into here, and save before building the game
+                  + "pos x" + x + "pos y" + y + "pos z" + z + "door", closed); //TODO: put false into here, and save before building the game
 
     }
     // Use this for initialization
