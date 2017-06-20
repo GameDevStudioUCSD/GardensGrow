@@ -13,8 +13,6 @@ public class BombPlantObject : PlantGridObject {
 	public BombObject bomb;
 	private int frames;
 
-    private int dyingFrame = 0;
-
 	// Use this for initialization
 	protected override void Start ()
     {

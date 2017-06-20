@@ -32,7 +32,7 @@ public class KillableGridObject : RotateableGridObject {
     protected List<KillableGridObject> killList;
     protected bool hitSomething;
 
-    private int dyingFrame = 0;
+    protected int dyingFrame = 0;
     //do not change these without adjusting the animation timings
     protected const int numDyingFrames = 9;
 
@@ -208,9 +208,8 @@ public class KillableGridObject : RotateableGridObject {
     {
         //reset the player
         player.canMove = false;
-        Globals.playerHealth = 12;
-        player.health = Globals.playerHealth;
-        player.canvas.UpdateHealth(Globals.playerHealth);
+        Globals.player.health = 12;
+        player.canvas.UpdateHealth(Globals.player.health);
 
         //transitioning
         deathPanel.SetActive(true);

@@ -73,7 +73,6 @@ public class Globals: MonoBehaviour {
     public static PlayerGridObject player;
     public static UIController canvas;
     public static TileMap tileMap;
-    public static int playerHealth = 12;
 
     public static string tile_map_tag = "TileMap";
     public static string ground_tag = "Ground";
@@ -188,7 +187,7 @@ public class Globals: MonoBehaviour {
 
         //change update player next respawn
         spawnLocation = PlayerPrefsX.GetVector3("respawn"+loadSlot);
-        playerHealth = PlayerPrefs.GetInt("playerHealth"+loadSlot);
+        Globals.player.health = PlayerPrefs.GetInt("playerHealth"+loadSlot);
         inventory = PlayerPrefsX.GetIntArray("playerInventory"+loadSlot);
 
         PlayerPrefsX.GetBool("lavaBossBeaten" + loadSlot, lavaBossBeaten);
