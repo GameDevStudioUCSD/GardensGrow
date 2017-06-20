@@ -145,7 +145,8 @@ public class PlatformGridObject : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (!pingPong && col.gameObject.CompareTag("Turbine")) {
+        if (!pingPong && col.gameObject.CompareTag("Turbine") && !col.gameObject.GetComponent<TurbinePlantObject>().onPlatform) {
+            col.gameObject.GetComponent<TurbinePlantObject>().onPlatform = true; //makes sure turbine can only be on one platform
             if (!turbineMove) {
                 if (col.gameObject.GetComponentInParent<TurbinePlantObject>().direction == Globals.Direction.West) {
                     direction = Globals.Direction.East;

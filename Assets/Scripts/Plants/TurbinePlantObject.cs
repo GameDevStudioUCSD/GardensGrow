@@ -14,6 +14,7 @@ public class TurbinePlantObject : PlantGridObject
     public float speed;
     private float moveNum;
     private MoveableGridObject enemy;
+    public bool onPlatform = false;
 
     public Collider2D southCollider;
     public Collider2D northCollider;

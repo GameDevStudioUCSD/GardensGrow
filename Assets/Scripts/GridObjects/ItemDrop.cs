@@ -39,7 +39,7 @@ public class ItemDrop : StaticGridObject {
             pickedUp = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
                 + "pos x" + x + "pos y" + y + "pos z" + z + "item");
 
-            if (pickedUp)
+            if (Globals.loadedSlot != -1 && pickedUp)
             {
                 this.gameObject.SetActive(false);
             }
