@@ -54,7 +54,15 @@ public class KillableGridObject : RotateableGridObject {
             dyingFrame++;
             if (dyingFrame >= numDyingFrames && !this.gameObject.GetComponent<PlayerGridObject>())
             {
-               Destroy(this.gameObject);   
+                if (this.gameObject.GetComponent<RangedEnemy>())
+                {
+                    this.gameObject.GetComponent<RangedEnemy>().destroyed = true;
+                    this.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                } 
             }
         }
 

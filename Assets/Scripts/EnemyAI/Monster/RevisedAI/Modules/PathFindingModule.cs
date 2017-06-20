@@ -97,7 +97,12 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     {
         spawnedTile = parameters.tileMap.GetNearestTile(creatureTransform.position);
 
-        Transform parentTransform = spawnedTile.transform.parent;
+        Transform parentTransform = null;
+
+        if (spawnedTile)
+        {
+            parentTransform = spawnedTile.transform.parent;
+        }
         // Find room the creature should belong to
         while(parentTransform != null)
         {
