@@ -16,7 +16,7 @@ public class RaisablePlatformObject : MonoBehaviour {
 		if (raised == true) {
 			if (col.gameObject.CompareTag("Player")) {
 	            PlayerGridObject player = col.GetComponent<PlayerGridObject>();
-	            player.onPlatform = true;
+	            player.platforms++;
 	        }
         }
     }
@@ -25,7 +25,7 @@ public class RaisablePlatformObject : MonoBehaviour {
 		if (raised == true) {
 			if (col.gameObject.CompareTag("Player")) {
 	            PlayerGridObject player = col.GetComponent<PlayerGridObject>();
-	            player.onPlatform = false;
+	            player.platforms--;
 	        }
         }
     }

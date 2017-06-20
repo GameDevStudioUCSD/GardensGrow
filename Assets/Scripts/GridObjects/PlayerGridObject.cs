@@ -26,7 +26,7 @@ public class PlayerGridObject : MoveableGridObject {
     public AudioClip invalidPlacement;
 
     //Used to determine if player should or shouldn't take damage when on a platform with lava
-    public bool onPlatform;
+    public int platforms;
 
     public int plantDelay;
 

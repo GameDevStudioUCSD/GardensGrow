@@ -59,7 +59,7 @@ public class Spikes : TerrainObject {
 
         if (toggleable == false)
         {
-           if (player.onPlatform == false && !striked)
+           if (player.platforms == 0 && !striked)
            {
                 yield return new WaitForSeconds(spikeCD);
                 if (other.IsTouching(this.gameObject.GetComponent<Collider2D>()))

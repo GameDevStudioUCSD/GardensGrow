@@ -96,7 +96,7 @@ public class TurbinePlantObject : PlantGridObject
         }
         if (other.gameObject.CompareTag("Player")) {
         	PlayerGridObject player = other.GetComponent<PlayerGridObject>();
-        	if (!player.onPlatform) {
+        	if (player.platforms > 0) {
         		player.Move(direction);
         	}
         }

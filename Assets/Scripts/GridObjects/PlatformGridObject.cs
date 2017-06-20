@@ -139,8 +139,8 @@ public class PlatformGridObject : MonoBehaviour {
         if (col.gameObject.CompareTag("Player")) {
             hasPlayer = false;
             PlayerGridObject player = col.GetComponent<PlayerGridObject>();
-            player.onPlatform = false;
             moveList.Remove(col.gameObject);
+            player.platforms--;
         }
     }
 
@@ -168,7 +168,7 @@ public class PlatformGridObject : MonoBehaviour {
         if (col.gameObject.CompareTag("Player")) {
             moveList.Add(col.gameObject);
             PlayerGridObject player = col.GetComponent<PlayerGridObject>();
-            player.onPlatform = true;
+            player.platforms++;
             hasPlayer = true;
         }
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner")) {
@@ -222,7 +222,7 @@ public class PlatformGridObject : MonoBehaviour {
             }
             if (moveList[i].CompareTag("Player")) {
                 PlayerGridObject player = moveList[i].GetComponent<PlayerGridObject>();
-                player.onPlatform = false;
+                player.platforms--;
             }
         }
 
