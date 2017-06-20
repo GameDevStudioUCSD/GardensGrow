@@ -5,6 +5,8 @@ public class RollingBoulder : MoveableGridObject {
 
     public bool isRolling = false;
     public bool isCrumbling = false;
+    public int maxFrames = 1800;
+    private int currentFrame = 0;
 	private Animator animator;
 
 	// Use this for initialization
@@ -26,7 +28,9 @@ public class RollingBoulder : MoveableGridObject {
             else if (direction == Globals.Direction.East && eastCollider.isTriggered) StartCrumbling();
             else if (direction == Globals.Direction.West && westCollider.isTriggered) StartCrumbling();
         }
-	}
+        currentFrame++;
+        if (currentFrame >= maxFrames) StartCrumbling();
+    }
 
     public override void Move(Globals.Direction direction) {
         if (isRolling) {
