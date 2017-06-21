@@ -43,7 +43,6 @@ public class FireWallObject : StaticGridObject {
     }
     void OnDisable()
     {
-
         PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
                   + "pos x" + x + "pos y" + y + "pos z" + z + "firewall", destroyed); //TODO: put false into here, and save before building the game
 

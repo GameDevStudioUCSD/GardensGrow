@@ -66,10 +66,19 @@ public class TileMap : MonoBehaviour {
 	void Update () {
 		for (int i = 0; i < rooms.Length; i++) {
             const float ROOM_X_DIST = 15, ROOM_Y_DIST = 11, DIS_MULTI = 1.5f;
-			float xDist = player.transform.position.x - rooms[i].transform.position.x;
-			float yDist = player.transform.position.y - rooms[i].transform.position.y;
 
-            if(Math.Abs(xDist) >= ROOM_X_DIST * DIS_MULTI || 
+            //initialized
+            float xDist = 0f;
+            float yDist = 0f;
+
+            //null check
+            if (player)
+            {
+                xDist = player.transform.position.x - rooms[i].transform.position.x;
+                yDist = player.transform.position.y - rooms[i].transform.position.y;
+            }
+            
+            if (Math.Abs(xDist) >= ROOM_X_DIST * DIS_MULTI || 
                Math.Abs(yDist) >= ROOM_Y_DIST * DIS_MULTI) {
                 rooms[i].SetActive(debug);
             }

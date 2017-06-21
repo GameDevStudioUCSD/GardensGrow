@@ -135,12 +135,19 @@ public class PlatformGridObject : MonoBehaviour {
             }
         }
     }
-    void OnTriggerExit2D(Collider2D col) {
-        if (col.gameObject.CompareTag("Player")) {
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
             hasPlayer = false;
             PlayerGridObject player = col.GetComponent<PlayerGridObject>();
             player.onPlatform = false;
             moveList.Remove(col.gameObject);
+        }
+        if (col.gameObject.GetComponent<TurbinePlantObject>())
+        {
+            hasTurbine = false;
+            turbineMove = false;
         }
     }
 
@@ -171,6 +178,11 @@ public class PlatformGridObject : MonoBehaviour {
             hasPlayer = true;
         }
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner")) {
+            //there's a bug where the platform is stuck in the middle of lava if it hits a firemonster
+            if (col.gameObject.GetComponent<GenericMonsterBehaviour>())
+            {
+                return;
+            }
             KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
             enemy.TakeDamage(damage);
         }

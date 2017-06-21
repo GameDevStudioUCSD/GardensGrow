@@ -8,7 +8,6 @@ public class DialogueTrigger : MonoBehaviour {
      *      for saveNumbers that's already been used)
      */
     public int saveNumber;
-    private int loadedSlot = -1;
 
     public string textFileName;
 	public Collider2D activeRegionTrigger;
@@ -64,21 +63,17 @@ public class DialogueTrigger : MonoBehaviour {
     public void OnDisable()
     {
         PlayerPrefsX.SetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot, readAlready);
+        //TODO:: when build replace readAlready w/ false and vice versa
     }
 
     //maybe deprecate
     public void saveBool(int saveSlot)
     {
-        PlayerPrefsX.SetBool("sign" + saveNumber + "save" + saveSlot, readAlready);
+        //PlayerPrefsX.SetBool("sign" + saveNumber + "save" + saveSlot, readAlready);
     }
     public void OnEnable()
     {
-        loadedSlot = Globals.loadedSlot;
-
-        if (loadedSlot != -1)
-        {
-            readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
-        }
+        readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
 
         if (readAlready)
         {

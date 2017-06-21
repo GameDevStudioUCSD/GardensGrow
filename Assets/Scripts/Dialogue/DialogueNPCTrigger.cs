@@ -22,7 +22,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
     *      for saveNumbers that's already been used)
     */
     public int saveNumber;
-    private int loadedSlot = -1;
+    //private int loadedSlot = -1;
 
     //moving stuff
 	private PlayerGridObject player;
@@ -65,7 +65,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
 		if (JellyFishBoss && Globals.caveBossBeaten) {
 			textFileName = textFileNameAfterJellyfish;
 		}
-
+        
         readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
     }
     // Update is called once per frame
@@ -141,21 +141,17 @@ public class DialogueNPCTrigger : MoveableGridObject {
     public void OnDisable()
     {
         PlayerPrefsX.SetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot, readAlready);
+        //TODO:: when build replace readAlready w/ false and vice versa
     }
     
     //maybe deprecate
     public void saveBool(int saveSlot)
     {
-        PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
+        //PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
     }
     public void OnEnable()
     {
-        loadedSlot = Globals.loadedSlot;
-
-        if(loadedSlot != -1)
-        {
-            readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
-        }
+        readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
 
         if (readAlready)
         {
