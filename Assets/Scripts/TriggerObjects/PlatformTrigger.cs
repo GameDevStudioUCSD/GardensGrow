@@ -25,14 +25,14 @@ public class PlatformTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if ((!other.isTrigger || other.CompareTag("Ground")) && !other.CompareTag("Lava") && !other.CompareTag("Player") && other.isActiveAndEnabled)
+        if ((!other.isTrigger || other.CompareTag("Ground")) && !other.gameObject.CompareTag("Enemy") && !other.CompareTag("Lava") && !other.CompareTag("Player") && other.isActiveAndEnabled)
         {
             nonLavaObjects++;
         }
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnemySpawner"))
         {
             KillableGridObject enemy = other.GetComponentInParent<KillableGridObject>();
-            killList.Add(enemy);
+            //killList.Add(enemy);
             enemy.TakeDamage(GetComponentInParent<PlatformGridObject>().damage);
         }
     }

@@ -27,6 +27,7 @@ public class PlatformGridObject : MonoBehaviour {
     private bool turbineMove = false;
     private List<GameObject> moveList = new List<GameObject>();
 
+    private PlantGridObject plant;
     // Use this for initialization
     void Start() {
         uic = FindObjectOfType<UIController>();
@@ -149,6 +150,11 @@ public class PlatformGridObject : MonoBehaviour {
             hasTurbine = false;
             turbineMove = false;
         }
+        if(!hasPlayer && hasTurbine)
+        {
+            plant.TakeDamage(100);
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -167,6 +173,8 @@ public class PlatformGridObject : MonoBehaviour {
                     direction = Globals.Direction.North;
                 }
             }
+            plant = col.gameObject.GetComponent<PlantGridObject>();
+
             moveList.Add(col.gameObject);
             hasTurbine = true;
             turbineMove = true;
@@ -179,10 +187,10 @@ public class PlatformGridObject : MonoBehaviour {
         }
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner")) {
             //there's a bug where the platform is stuck in the middle of lava if it hits a firemonster
-            if (col.gameObject.GetComponent<GenericMonsterBehaviour>())
+            /*if (col.gameObject.GetComponent<GenericMonsterBehaviour>())
             {
                 return;
-            }
+            }*/
             KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
             enemy.TakeDamage(damage);
         }

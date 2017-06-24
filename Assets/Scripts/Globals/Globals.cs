@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Globals: MonoBehaviour {
 
-    // NOTE: saveNumbers already used for npc/signs: 0-21 (PLEASE UPDATE THIS LIST WHEN NEW SAVENUMBER IS USED)
     public const float pixelSize = 0.03125f;
     public enum Direction { North=0, South=1, East=2, West=3 };
     public enum Faction { Ally=0, Enemy=1};
@@ -64,7 +63,7 @@ public class Globals: MonoBehaviour {
     // Stuff That needs to be saved
     public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();
 
-    public static int loadedSlot = -1;
+    public static int loadedSlot = 1;
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
 	public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
 	public static int numKeys = 0;
