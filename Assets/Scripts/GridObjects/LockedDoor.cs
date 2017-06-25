@@ -6,7 +6,7 @@ public class LockedDoor : MonoBehaviour {
 	public bool unlockable;
 
 	private Animator animator;
-    private bool closed = false;
+    private bool closed = true;
 
     private float x;
     private float y;
@@ -16,30 +16,41 @@ public class LockedDoor : MonoBehaviour {
     {
         PlayerGridObject p = FindObjectOfType<PlayerGridObject>();
 
-        if (!p.itemsRePickUp) //check in player to save door/item info or not
+        //makes sure we have an animator
+        if (!animator)
         {
-            x = this.gameObject.transform.position.x;
-            y = this.gameObject.transform.position.y;
-            z = this.gameObject.transform.position.z;
-
-            closed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                + "pos x" + x + "pos y" + y + "pos z" + z + "door");
-
-            if (closed)
-            {
-                CloseDoor();
-            }
-            else
-            {
-                OpenDoor();
-            }
+            animator = this.gameObject.GetComponent<Animator>();
         }
+
+        x = this.gameObject.transform.position.x;
+        y = this.gameObject.transform.position.y;
+        z = this.gameObject.transform.position.z;
+
+        closed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+            + "pos x" + x + "pos y" + y + "pos z" + z + "door");
+
+        if (closed)
+        {
+            CloseDoor();
+        }
+        else
+        {
+            OpenDoor();
+        }
+
     }
     void OnDisable()
     {
-
-        PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z + "door", closed); //TODO: put false into here, and save before building the game
+        if (Globals.restartSaveState)
+        {
+            PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+             + "pos x" + x + "pos y" + y + "pos z" + z + "door", false);
+        }
+        else
+        {
+            PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+          + "pos x" + x + "pos y" + y + "pos z" + z + "door", closed);
+        }
 
     }
     // Use this for initialization
@@ -49,7 +60,7 @@ public class LockedDoor : MonoBehaviour {
         y = this.gameObject.transform.position.y;
         z = this.gameObject.transform.position.z;
 
-        closed = true;
+        //closed = true;
 		animator = this.gameObject.GetComponent<Animator>();
 	}
 

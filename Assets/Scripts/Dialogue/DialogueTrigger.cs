@@ -67,8 +67,14 @@ public class DialogueTrigger : MonoBehaviour {
 
     public void OnDisable()
     {
-        PlayerPrefsX.SetBool("sign" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, readAlready);
-        //TODO:: when build replace readAlready w/ false and vice versa
+        if (Globals.restartSaveState)
+        {
+            PlayerPrefsX.SetBool("sign" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, false);
+        }
+        else
+        {
+            PlayerPrefsX.SetBool("sign" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, readAlready);
+        }
     }
 
     //maybe deprecate

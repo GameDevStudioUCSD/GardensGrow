@@ -80,7 +80,7 @@ public class KillableGridObject : RotateableGridObject {
     // returns true if the attack kills the object
     public virtual bool TakeDamage(int damage)
     {
-        if (isInvulnerable)
+        if (isInvulnerable || this.gameObject.GetComponent<CaveBossAI>())
         {
             return false;
         }

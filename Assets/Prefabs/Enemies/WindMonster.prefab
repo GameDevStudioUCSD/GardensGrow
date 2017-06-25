@@ -760,7 +760,7 @@ MonoBehaviour:
   - item: {fileID: 1000014157247844, guid: 4a3f78087eb3946eeba5c3fdcf220c4c, type: 2}
     odds: 1
   - item: {fileID: 1000013162848144, guid: e7775dac8b1f1954e818b9bd95668968, type: 2}
-    odds: 9
+    odds: 16
   - item: {fileID: 1000010765727278, guid: a96a89eae9def6c49805e250e6a5fd08, type: 2}
     odds: 9
 --- !u!114 &114000010937130416
@@ -851,6 +851,7 @@ MonoBehaviour:
   pathFindingModule: {fileID: 114000011623130300}
   attackModule: {fileID: 114000014017438476}
   summonModule: {fileID: 114000010008486226}
+  spawner: {fileID: 0}
 --- !u!114 &114000012675797342
 MonoBehaviour:
   m_ObjectHideFlags: 1
