@@ -44,7 +44,7 @@ public class LockedDoor : MonoBehaviour {
         if (Globals.restartSaveState)
         {
             PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-             + "pos x" + x + "pos y" + y + "pos z" + z + "door", false);
+             + "pos x" + x + "pos y" + y + "pos z" + z + "door", true);
         }
         else
         {

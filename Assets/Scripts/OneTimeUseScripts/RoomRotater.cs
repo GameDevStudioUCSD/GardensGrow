@@ -173,7 +173,7 @@ public class RoomRotater : MonoBehaviour {
 			}
 		}
 
-		foreach (Boomerang b in FindObjectsOfType<Boomerang>()) {
+        foreach (Boomerang b in FindObjectsOfType<Boomerang>()) {
 			b.UpdateRoomId();
 		}
 	}

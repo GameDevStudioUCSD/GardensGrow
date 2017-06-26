@@ -80,7 +80,7 @@ public class KillableGridObject : RotateableGridObject {
     // returns true if the attack kills the object
     public virtual bool TakeDamage(int damage)
     {
-        if (isInvulnerable || this.gameObject.GetComponent<CaveBossAI>())
+        if (isInvulnerable)
         {
             return false;
         }
@@ -284,9 +284,6 @@ public class KillableGridObject : RotateableGridObject {
             // Deal damage to all targets of the enemy faction
             foreach (KillableGridObject target in killList) {
                 if (target.faction != this.faction) {
-                    if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
-                        //note enemy kill plant doesn't work
-                    }
                     hitSomething = true;
                     target.TakeDamage(damage);
                 }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Globals: MonoBehaviour {
 
     //should be false in final build
-    public static bool restartSaveState = true;
+    public static bool restartSaveState = false;
 
     public const float pixelSize = 0.03125f;
     public enum Direction { North=0, South=1, East=2, West=3 };

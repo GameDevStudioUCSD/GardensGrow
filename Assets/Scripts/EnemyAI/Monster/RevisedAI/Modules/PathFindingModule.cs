@@ -50,23 +50,18 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
             SetUpRoomBoundary();
 
         // Try to recover from bad parameters
-        if(!parameters.tileMap)
+        if (!parameters.tileMap)
         {
             // Find tile map
             GameObject tileMapObject = GameObject.FindGameObjectWithTag(Globals.tile_map_tag);
             parameters.tileMap = tileMapObject.GetComponent<TileMap>();
         }
 
-        if(!parameters.target)
+        if (!parameters.target)
         {
             // Use player as default target
             parameters.target = GameObject.FindGameObjectWithTag(Globals.player_tag);
         }
-    }
-
-    public void Update()
-    {
-
     }
 
     /// <summary>
