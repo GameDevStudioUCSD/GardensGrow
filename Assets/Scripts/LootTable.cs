@@ -44,9 +44,9 @@ public class LootTable : MonoBehaviour
 
                 // Check if the item is a seed packet that is unlocked
                 ItemDrop itemScript = entry.item.GetComponent<ItemDrop>();
-                //if(Globals.unlockedSeeds[itemScript.itemId] == true)
+                if(Globals.unlockedSeeds[itemScript.itemId] == true)
                     return entry.item;
-                //else
+                else
                     return null;
             }
         }
