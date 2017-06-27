@@ -121,7 +121,10 @@ public class BombObject : MoveableGridObject {
             }
             else
             {
-                target.TakeBombDamage(damage);
+                if (!target.gameObject.GetComponent<CaveBossAI>())
+                {
+                    target.TakeBombDamage(damage);
+                }
             }
         }
 

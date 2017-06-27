@@ -200,6 +200,11 @@ public class WindBossAI : KillableGridObject {
     }
 
     protected override void Die() {
+
+        foreach(RollingBoulder rb in FindObjectsOfType<RollingBoulder>())
+        {
+            rb.gameObject.SetActive(false);
+        }
         emblem.SetActive(true);
         base.Die();
     }
