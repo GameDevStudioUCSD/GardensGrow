@@ -94,6 +94,7 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
 
         Transform parentTransform = null;
 
+        //null check
         if (spawnedTile)
         {
             parentTransform = spawnedTile.transform.parent;
