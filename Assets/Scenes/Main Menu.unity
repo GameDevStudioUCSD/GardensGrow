@@ -29398,6 +29398,29 @@ Prefab:
       propertyPath: loadingScreenUI
       value: 
       objectReference: {fileID: 1086002459}
+    - target: {fileID: 1000010865760516, guid: 48c4e34c7308d4c2fb853fdca8dc8afe, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013431831784, guid: 48c4e34c7308d4c2fb853fdca8dc8afe,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -19
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012128412030, guid: 48c4e34c7308d4c2fb853fdca8dc8afe,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -64
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011559812836, guid: 48c4e34c7308d4c2fb853fdca8dc8afe,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -109
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010579547222, guid: 48c4e34c7308d4c2fb853fdca8dc8afe, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48c4e34c7308d4c2fb853fdca8dc8afe, type: 2}
   m_IsPrefabParent: 0

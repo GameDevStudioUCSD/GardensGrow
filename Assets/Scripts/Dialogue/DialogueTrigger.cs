@@ -3,12 +3,16 @@ using System.Collections;
 
 public class DialogueTrigger : MonoBehaviour {
 
+    //deprecate below save mehtod
     /*NOTE: Ever time you place a new sign or npc make sure to change the saveNumber
      *      in the inspector to a number not yet used (check the top of globals.cs 
      *      for saveNumbers that's already been used)
      */
-    public int saveNumber;
-    private int loadedSlot = -1;
+    //public int saveNumber;
+
+    private float x;
+    private float y;
+    private float z;
 
     public string textFileName;
 	public Collider2D activeRegionTrigger;
@@ -26,7 +30,7 @@ public class DialogueTrigger : MonoBehaviour {
 	void Start () {
 		canvas = FindObjectOfType<UIController>();
 		dialogue = canvas.dialogUI;
-        readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
+        //readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
     }
 	
 	// Update is called once per frame
@@ -63,22 +67,28 @@ public class DialogueTrigger : MonoBehaviour {
 
     public void OnDisable()
     {
-        PlayerPrefsX.SetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot, readAlready);
+        if (Globals.restartSaveState)
+        {
+            PlayerPrefsX.SetBool("sign" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, false);
+        }
+        else
+        {
+            PlayerPrefsX.SetBool("sign" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, readAlready);
+        }
     }
 
     //maybe deprecate
     public void saveBool(int saveSlot)
     {
-        PlayerPrefsX.SetBool("sign" + saveNumber + "save" + saveSlot, readAlready);
+        //PlayerPrefsX.SetBool("sign" + saveNumber + "save" + saveSlot, readAlready);
     }
     public void OnEnable()
     {
-        loadedSlot = Globals.loadedSlot;
+        x = gameObject.transform.position.x;
+        y = gameObject.transform.position.y;
+        z = gameObject.transform.position.z;
 
-        if (loadedSlot != -1)
-        {
-            readAlready = PlayerPrefsX.GetBool("sign" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
-        }
+        readAlready = PlayerPrefsX.GetBool("sign" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z);
 
         if (readAlready)
         {

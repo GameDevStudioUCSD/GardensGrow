@@ -146,8 +146,9 @@ MonoBehaviour:
   isBarrier: 0
   itemId: 0
   clip: {fileID: 8300000, guid: 0affd501fe4bb46a6ba68ba032d47ee8, type: 3}
-  permanent: 0
+  permanent: 1
   lifeSpan: 500
+  portal: {fileID: 0}
 --- !u!114 &114000014038585516
 MonoBehaviour:
   m_ObjectHideFlags: 1

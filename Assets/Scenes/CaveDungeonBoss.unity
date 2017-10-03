@@ -1722,6 +1722,7 @@ GameObject:
   - 114: {fileID: 71006323}
   - 50: {fileID: 71006324}
   - 95: {fileID: 71006325}
+  - 111: {fileID: 71006326}
   m_Layer: 0
   m_Name: CaveDungeonBoss
   m_TagString: CaveBoss
@@ -1810,7 +1811,7 @@ MonoBehaviour:
   westHitCollider: {fileID: 0}
   northHitCollider: {fileID: 0}
   eastHitCollider: {fileID: 0}
-  faction: 0
+  faction: 1
   hpBarText: {fileID: 0}
   audioSource: {fileID: 0}
   attackSound: {fileID: 0}
@@ -1864,6 +1865,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &71006326
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71006319}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bc90cb57f8bc72a4ab5b7968be59fa38, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bc90cb57f8bc72a4ab5b7968be59fa38, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &73485907
 Prefab:
   m_ObjectHideFlags: 0
@@ -26509,6 +26525,57 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011229191376, guid: 8b5fc199d7f5d4ee88fdd5b6045b8475,
     type: 2}
   m_PrefabInternal: {fileID: 1262194836}
+--- !u!1001 &1264748010
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013809516338, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011745459094, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6190c0b44cc4a41b386f10c3d2ba5b50, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1264748011 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011745459094, guid: 6190c0b44cc4a41b386f10c3d2ba5b50,
+    type: 2}
+  m_PrefabInternal: {fileID: 1264748010}
 --- !u!1001 &1265279738
 Prefab:
   m_ObjectHideFlags: 0
@@ -38664,7 +38731,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012104021018, guid: 17a22e192ccbb487c9021528c24d4546, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4000012104021018, guid: 17a22e192ccbb487c9021528c24d4546, type: 2}
       propertyPath: m_LocalPosition.z
@@ -38699,6 +38766,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012869983774, guid: 17a22e192ccbb487c9021528c24d4546,
+        type: 2}
+      propertyPath: LastKey
+      value: 
+      objectReference: {fileID: 1264748011}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17a22e192ccbb487c9021528c24d4546, type: 2}
   m_IsPrefabParent: 0

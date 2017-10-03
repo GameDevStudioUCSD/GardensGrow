@@ -17,16 +17,21 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	public string textFileNameAfterJellyfish;
 
     
+    //this method of saving is deprecated
    /*NOTE: Ever time you place a new sign or npc make sure to change the saveNumber
     *      in the inspector to a number not yet used (check the top of globals.cs 
     *      for saveNumbers that's already been used)
     */
-    public int saveNumber;
-    private int loadedSlot = -1;
+    //public int saveNumber;
+    //private int loadedSlot = -1;
 
     //moving stuff
 	private PlayerGridObject player;
     private Vector3 originalPosition;
+
+    private float x;
+    private float y;
+    private float z;
 
     private bool isTalkingToPlayer = false;
 
@@ -65,8 +70,8 @@ public class DialogueNPCTrigger : MoveableGridObject {
 		if (JellyFishBoss && Globals.caveBossBeaten) {
 			textFileName = textFileNameAfterJellyfish;
 		}
-
-        readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
+        
+        //readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
     }
     // Update is called once per frame
     protected override void Update () {
@@ -140,22 +145,28 @@ public class DialogueNPCTrigger : MoveableGridObject {
     }
     public void OnDisable()
     {
-        PlayerPrefsX.SetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot, readAlready);
+        if (Globals.restartSaveState)
+        {
+            PlayerPrefsX.SetBool("npc" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, false);
+        }
+        else
+        {
+            PlayerPrefsX.SetBool("npc" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, readAlready);
+        }
     }
     
     //maybe deprecate
     public void saveBool(int saveSlot)
     {
-        PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
+        //PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
     }
     public void OnEnable()
     {
-        loadedSlot = Globals.loadedSlot;
+        x = gameObject.transform.position.x;
+        y = gameObject.transform.position.y;
+        z = gameObject.transform.position.z;
 
-        if(loadedSlot != -1)
-        {
-            readAlready = PlayerPrefsX.GetBool("npc" + saveNumber + "lvl" + Application.loadedLevel + "slot" + Globals.loadedSlot);
-        }
+        readAlready = PlayerPrefsX.GetBool("npc" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z);
 
         if (readAlready)
         {

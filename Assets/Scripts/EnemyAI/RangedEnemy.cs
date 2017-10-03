@@ -18,7 +18,7 @@ public class RangedEnemy : EnemyGridObject {
     public GameObject laser;
 
     //for save state
-    private bool destroyed = false;
+    public bool destroyed = false;
     private float x;
     private float y;
     private float z;
@@ -48,12 +48,16 @@ public class RangedEnemy : EnemyGridObject {
 
                 if (health <= 0)
                 {
-                    Destroy(this.gameObject);
+                    gameObject.SetActive(false);
+                    destroyed = true;
+                    //Destroy(this.gameObject);
                 }
             }
             if (health <= 0)
             {
-                Destroy(this.gameObject);
+                gameObject.SetActive(false);
+                destroyed = true;
+                //Destroy(this.gameObject);
             }
         }
     }
@@ -63,8 +67,8 @@ public class RangedEnemy : EnemyGridObject {
         y = this.gameObject.transform.position.y;
         z = this.gameObject.transform.position.z;
 
-        destroyed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-            + "pos x" + x + "pos y" + y + "pos z" + z + "rangedenemy");
+        //destroyed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+          //  + "pos x" + x + "pos y" + y + "pos z" + z + "tiki");
 
         if (destroyed)
         {
@@ -76,15 +80,16 @@ public class RangedEnemy : EnemyGridObject {
         }*/
 
     }
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         destroyed = true;
-    }
+        OnDisable();
+    }*/
     void OnDisable()
     {
 
         PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z + "rangedenemy", destroyed); //TODO: put false into here, and save before building the game
+                  + "pos x" + x + "pos y" + y + "pos z" + z + "tiki", destroyed); //TODO: put false into here, and save before building the game
 
     }
     private void Shooter()

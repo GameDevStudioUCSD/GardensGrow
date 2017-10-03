@@ -50,23 +50,18 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
             SetUpRoomBoundary();
 
         // Try to recover from bad parameters
-        if(!parameters.tileMap)
+        if (!parameters.tileMap)
         {
             // Find tile map
             GameObject tileMapObject = GameObject.FindGameObjectWithTag(Globals.tile_map_tag);
             parameters.tileMap = tileMapObject.GetComponent<TileMap>();
         }
 
-        if(!parameters.target)
+        if (!parameters.target)
         {
             // Use player as default target
             parameters.target = GameObject.FindGameObjectWithTag(Globals.player_tag);
         }
-    }
-
-    public void Update()
-    {
-
     }
 
     /// <summary>
@@ -97,7 +92,13 @@ public class PathFindingModule : PathFindingBehaviourAbstractFSM {
     {
         spawnedTile = parameters.tileMap.GetNearestTile(creatureTransform.position);
 
-        Transform parentTransform = spawnedTile.transform.parent;
+        Transform parentTransform = null;
+
+        //null check
+        if (spawnedTile)
+        {
+            parentTransform = spawnedTile.transform.parent;
+        }
         // Find room the creature should belong to
         while(parentTransform != null)
         {

@@ -11,6 +11,7 @@ public class ItemDrop : StaticGridObject {
 	public bool permanent;
 	public int lifeSpan;
 	public GameObject portal;
+    //public GameObject LastKey;
 
     private float x;
     private float y;
@@ -47,9 +48,16 @@ public class ItemDrop : StaticGridObject {
     }
     void OnDisable()
     {
-
-        PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-                  + "pos x" + x + "pos y" + y + "pos z" + z + "item", pickedUp); //TODO: put false into here, and save before building the game
+        if (Globals.restartSaveState)
+        {
+            PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                  + "pos x" + x + "pos y" + y + "pos z" + z + "item", false);
+        }
+        else
+        {
+            PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+                  + "pos x" + x + "pos y" + y + "pos z" + z + "item", pickedUp);
+        }
 
     }
 	// Update is called once per frame

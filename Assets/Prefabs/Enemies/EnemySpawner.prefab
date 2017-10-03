@@ -56,7 +56,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011437069676}
   - 212: {fileID: 212000010347979544}
-  - 114: {fileID: 114000013858119510}
   - 50: {fileID: 50000011790379912}
   - 61: {fileID: 61000010327193372}
   - 95: {fileID: 95000013798600042}
@@ -64,7 +63,7 @@ GameObject:
   - 111: {fileID: 111000010640560258}
   - 114: {fileID: 114000012048135876}
   - 114: {fileID: 114000011859388140}
-  - 114: {fileID: 114000010923541818}
+  - 114: {fileID: 114000011853841198}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: EnemySpawner
@@ -226,7 +225,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010271383466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -536,20 +535,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114000010923541818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010271383466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7339698b807213b46bbdd8215b7abfec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBarrier: 1
-  sprites: []
-  chosenSprite: {fileID: 0}
 --- !u!114 &114000011088871322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -576,6 +561,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   other: {fileID: 0}
+--- !u!114 &114000011853841198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010271383466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7339698b807213b46bbdd8215b7abfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBarrier: 1
+  sprites: []
+  chosenSprite: {fileID: 0}
 --- !u!114 &114000011859388140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -684,12 +683,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: Repair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  useRoomBoundary: 1
   spawnDelay: 2
   maxSpawns: 3
   spawnsOnce: 0
   canSpawn: 1
+  spawnedMonsters: []
   eastCollider: {fileID: 1000012251863756}
   westCollider: {fileID: 1000013062898962}
   northCollider: {fileID: 1000012687312004}
@@ -746,17 +758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   other: {fileID: 0}
---- !u!114 &114000013858119510
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010271383466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d589af94db58497798ac778296e2907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000014103289002
 MonoBehaviour:
   m_ObjectHideFlags: 1

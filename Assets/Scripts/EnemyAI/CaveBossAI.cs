@@ -21,6 +21,7 @@ public class CaveBossAI : KillableGridObject {
 
     public float speed;
 
+    private bool helper = false;
     private int timeRemaining;
     private int toJunction;
     private State state;
@@ -49,6 +50,11 @@ public class CaveBossAI : KillableGridObject {
 
         switch (state) {
             case State.MOVING:
+                if (!helper)
+                {
+                    anim.SetTrigger("Idle");
+                    helper = true;
+                }
                 if (Vector2.Distance(transform.position, junctions[toJunction].transform.position) <= speed * 2) {
                     toJunction = GetNewTargetJunction();
                     state = State.ATTACKING;
@@ -63,21 +69,38 @@ public class CaveBossAI : KillableGridObject {
                 break;
 
             case State.ATTACKING:
+                if (!helper)
+                {
+                    anim.SetTrigger("Idle");
+                    helper = true;
+                }
                 if (timeRemaining <= 0) {
                     state = State.MOVING;
+                    helper = false;
                 }
                 break;
 
             case State.STUNNED:
+                if (!helper)
+                {
+                    anim.SetTrigger("Hurt");
+                    helper = true;
+                }
+                //until out of time or got attacked by player
                 if (health != prevHealth || timeRemaining <= 0) {
                     prevHealth = health;
-                    anim.SetTrigger("Hurt");
                     state = State.ANGRY;
                     timeRemaining = stunImmuneDuration;
+                    helper = false;
                 }
                 break;
 
             case State.ANGRY:
+                if (!helper)
+                {
+                    anim.SetTrigger("Idle");
+                    helper = true;
+                }
                 if (Vector2.Distance(transform.position, junctions[toJunction].transform.position) <= speed * 2) {
                     toJunction = GetNewTargetJunction();
                 }
@@ -90,11 +113,11 @@ public class CaveBossAI : KillableGridObject {
 
                 if (timeRemaining <= 0) {
                     state = State.MOVING;
+                    helper = false;
                 }
                 break;
 
             default:
-                Debug.LogError("CaveBossAI: Unknown state");
                 break;
         }
     }
@@ -103,16 +126,20 @@ public class CaveBossAI : KillableGridObject {
         if (state != State.STUNNED) {
             return false;
         }
-
         base.health -= damage;
 
         if (health <= 0) {
-            emblem.SetActive(true);
             anim.SetTrigger("Death");
-            Die();
+            StartCoroutine(waitForDeathAnim());
         }
-
         return true;
+    }
+
+    IEnumerator waitForDeathAnim()
+    {
+        yield return new WaitForSeconds(1);
+        emblem.SetActive(true);
+        Die();
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
@@ -122,8 +149,9 @@ public class CaveBossAI : KillableGridObject {
                 junction.system.ConnectJunction();
             }
         }
-        else if (collision.gameObject.GetComponent<Boomerang>() != null) {
+        else if (collision.gameObject.GetComponent<Boomerang>()) {
             if (state != State.ANGRY) {
+                helper = false;
                 state = State.STUNNED;
                 timeRemaining = stunDuration;
             }

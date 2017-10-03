@@ -54,7 +54,15 @@ public class KillableGridObject : RotateableGridObject {
             dyingFrame++;
             if (dyingFrame >= numDyingFrames && !this.gameObject.GetComponent<PlayerGridObject>())
             {
-               Destroy(this.gameObject);   
+                if (this.gameObject.GetComponent<RangedEnemy>())
+                {
+                    this.gameObject.GetComponent<RangedEnemy>().destroyed = true;
+                    this.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                } 
             }
         }
 
@@ -275,9 +283,6 @@ public class KillableGridObject : RotateableGridObject {
             // Deal damage to all targets of the enemy faction
             foreach (KillableGridObject target in killList) {
                 if (target.faction != this.faction) {
-                    if (this.gameObject.CompareTag("Enemy") && target.gameObject.GetComponent<WatermelonPlantObject>()) {
-                        //note enemy kill plant doesn't work
-                    }
                     hitSomething = true;
                     target.TakeDamage(damage);
                 }

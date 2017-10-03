@@ -27,6 +27,7 @@ public class PlatformGridObject : MonoBehaviour {
     private bool turbineMove = false;
     private List<GameObject> moveList = new List<GameObject>();
 
+    private PlantGridObject plant;
     // Use this for initialization
     void Start() {
         uic = FindObjectOfType<UIController>();
@@ -135,13 +136,25 @@ public class PlatformGridObject : MonoBehaviour {
             }
         }
     }
-    void OnTriggerExit2D(Collider2D col) {
-        if (col.gameObject.CompareTag("Player")) {
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
             hasPlayer = false;
             PlayerGridObject player = col.GetComponent<PlayerGridObject>();
             moveList.Remove(col.gameObject);
             player.platforms--;
         }
+        if (col.gameObject.GetComponent<TurbinePlantObject>())
+        {
+            hasTurbine = false;
+            turbineMove = false;
+        }
+        if(!hasPlayer && hasTurbine)
+        {
+            plant.TakeDamage(100);
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -161,6 +174,8 @@ public class PlatformGridObject : MonoBehaviour {
                     direction = Globals.Direction.North;
                 }
             }
+            plant = col.gameObject.GetComponent<PlantGridObject>();
+
             moveList.Add(col.gameObject);
             hasTurbine = true;
             turbineMove = true;
@@ -172,6 +187,11 @@ public class PlatformGridObject : MonoBehaviour {
             hasPlayer = true;
         }
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner")) {
+            //there's a bug where the platform is stuck in the middle of lava if it hits a firemonster
+            /*if (col.gameObject.GetComponent<GenericMonsterBehaviour>())
+            {
+                return;
+            }*/
             KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
             enemy.TakeDamage(damage);
         }

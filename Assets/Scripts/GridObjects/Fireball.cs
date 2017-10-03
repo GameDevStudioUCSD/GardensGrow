@@ -19,9 +19,11 @@ public class Fireball : StaticGridObject
 	public GameObject ball;
 
 	private PlayerGridObject player;
+    private UIController uic;
 	private int fallFrames;
 
 	protected override void Start() {
+        uic = FindObjectOfType<UIController>();
 		fallingSpeed = Random.Range(FALLING_SPEED_MIN, FALLING_SPEED_MAX) / FALLING_SPEED_INCR;
 		state = FireballState.PreFalling;
 		fallFrames = 0;
@@ -32,34 +34,45 @@ public class Fireball : StaticGridObject
 
 	// Update is called once per frame
 	void Update() {
-		if (state == FireballState.PreFalling) {
-			if (fallFrames >= preFallTime) {
-				state = FireballState.Falling;
-			}
-			else {
-				fallFrames++;
-			}
-		}
-		if (state == FireballState.Fallen) {
-			if (player)
-				player.TakeDamage(5);
-			Destroy(gameObject);
+        if (!uic.paused)
+        {
+            if (state == FireballState.PreFalling)
+            {
+                if (fallFrames >= preFallTime)
+                {
+                    state = FireballState.Falling;
+                }
+                else
+                {
+                    fallFrames++;
+                }
+            }
+            if (state == FireballState.Fallen)
+            {
+                if (player)
+                    player.TakeDamage(5);
+                Destroy(gameObject);
 
-			return;
-		}
+                return;
+            }
 
-		if (state == FireballState.Falling) {
-			ball.SetActive(true);
-			if (Mathf.Abs(ball.transform.position.y - transform.position.y) > eps) {
-				Vector3 newPosition = ball.transform.position;
-				newPosition.y -= fallingSpeed;
-				ball.transform.position = newPosition;
-			} else {
-				ball.transform.position = transform.position;
+            if (state == FireballState.Falling)
+            {
+                ball.SetActive(true);
+                if (Mathf.Abs(ball.transform.position.y - transform.position.y) > eps)
+                {
+                    Vector3 newPosition = ball.transform.position;
+                    newPosition.y -= fallingSpeed;
+                    ball.transform.position = newPosition;
+                }
+                else
+                {
+                    ball.transform.position = transform.position;
 
-				state = FireballState.Fallen;
-			}
-		}
+                    state = FireballState.Fallen;
+                }
+            }
+        }
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
