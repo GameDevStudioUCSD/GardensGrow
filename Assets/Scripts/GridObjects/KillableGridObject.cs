@@ -99,6 +99,9 @@ public class KillableGridObject : RotateableGridObject {
 
                 if (animation) animation.Play("Damaged");
             }
+            else if (animation && !this.gameObject.GetComponent<PlayerGridObject>()) {
+                animation.Play("Damaged");
+            }
 
             if (health <= 0 && hasDied == false)
             {

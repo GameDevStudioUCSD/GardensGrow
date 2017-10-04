@@ -251,6 +251,7 @@ public class UIController : MonoBehaviour {
         Globals.spawnLocation = new Vector3(0, -2f, 0);
         mainMenuUI.SetActive(false);
         loadingScreenUI.SetActive(true);
+        Globals.loadedSlot = 4;
         Application.LoadLevel(1);
 
     }

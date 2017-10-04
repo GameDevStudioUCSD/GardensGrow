@@ -66,7 +66,7 @@ public class Globals: MonoBehaviour {
     // Stuff That needs to be saved
     public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();
 
-    public static int loadedSlot = 1;
+    public static int loadedSlot = 4;
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
 	public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
 	public static int numKeys = 0;
