@@ -61,7 +61,7 @@ public class CutsceneTrigger : MonoBehaviour {
                 else {
                     pixelCounter = 0;
                     currentDirection = npcDirections[directionCounter];
-                    //npcSpawned.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
+                    npcSpawned.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
                     switch (currentDirection) {
                         case Globals.Direction.South:
                             npcSpawned.GetComponent<Animator>().SetInteger("Direction", 1);
@@ -89,9 +89,8 @@ public class CutsceneTrigger : MonoBehaviour {
                     isEnding = false;
                     playedAlready = true;
                     saveBool(loadedSlot);
-                    //commmented out destory player
 
-                    //Destroy(playerSpawned);
+                    Destroy(playerSpawned);
                     Destroy(npcSpawned);
                     Globals.player.gameObject.SetActive(true);
                     Destroy(this.gameObject);
@@ -104,7 +103,7 @@ public class CutsceneTrigger : MonoBehaviour {
                     else if (npcDirections[directionCounter] == Globals.Direction.South) currentDirection = Globals.Direction.North;
                     else if (npcDirections[directionCounter] == Globals.Direction.East) currentDirection = Globals.Direction.West;
                     else if (npcDirections[directionCounter] == Globals.Direction.West) currentDirection = Globals.Direction.East;
-                    //npcSpawned.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
+                    npcSpawned.GetComponent<Animator>().SetInteger("Direction", (int)currentDirection);
                     switch (currentDirection) {
                         case Globals.Direction.South:
                             npcSpawned.GetComponent<Animator>().SetInteger("Direction", 1);
@@ -126,13 +125,16 @@ public class CutsceneTrigger : MonoBehaviour {
 
     //Pause time, disable player, create cutscene player and npc, start walk up
     public void OnTriggerEnter2D(Collider2D other) {
-        if (!playedAlready && other.gameObject == Globals.player.gameObject && EvaluateCondition()) {
+        if (!playedAlready && !isPlaying && other.gameObject == Globals.player.gameObject && EvaluateCondition()) {
             Globals.canvas.paused = true;
             playerSpawned = (GameObject)Instantiate(Globals.player.gameObject, playerPosition, Quaternion.identity);
-            //Destroy(playerSpawned.GetComponent<PlayerGridObject>().gameObject);
+            Destroy(playerSpawned.GetComponent<PlayerGridObject>());
             npcSpawned = (GameObject)Instantiate(npc, npcStartPosition, Quaternion.identity);
             DialogueNPCTrigger npcTrigger = npcSpawned.GetComponent<DialogueNPCTrigger>();
-            if (npcTrigger) Destroy(npcTrigger);
+            if (npcTrigger) {
+                if (npcTrigger.exclamationMark) Destroy(npcTrigger.exclamationMark);
+                Destroy(npcTrigger);
+            }
             npcSpawned.AddComponent<MoveableGridObject>();
             npcSpawned.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
             Globals.player.gameObject.SetActive(false);

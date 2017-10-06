@@ -252,6 +252,7 @@ public class UIController : MonoBehaviour {
         mainMenuUI.SetActive(false);
         loadingScreenUI.SetActive(true);
         Globals.loadedSlot = 4;
+        PlayerPrefs.DeleteAll();
         Application.LoadLevel(1);
 
     }
