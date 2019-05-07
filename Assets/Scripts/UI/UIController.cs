@@ -6,7 +6,7 @@ public class UIController : MonoBehaviour {
 
     public const int totalHearts = 6;
 
-    public UnityEngine.UI.Image[] uiPlants;
+    public UnityEngine.UI.Image[] uiPlants = new UnityEngine.UI.Image[8];
     public UnityEngine.UI.Image[] healthIcons;
     public UnityEngine.UI.Text[] uiPlantCounters;
     public UnityEngine.UI.Text[] uiButtonCounter;

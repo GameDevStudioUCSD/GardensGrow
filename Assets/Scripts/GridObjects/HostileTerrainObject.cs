@@ -26,7 +26,7 @@ public class HostileTerrainObject : TerrainObject {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
-			if (player.platforms == 0) {
+			if (player.platforms <= 0) {
 				//player.TakeDamage(damage);
                 //player.gameObject.transform.position = Globals.spawnLocation;
                

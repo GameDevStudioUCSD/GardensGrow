@@ -24,7 +24,7 @@ public class EnemySpawner : KillableGridObject
     [Tooltip("Should the spawner start spawning from start?")]
     public bool canSpawn = true;
 
-    private int currentSpawnCount = 0;
+    public int currentSpawnCount = 0;
     public List<GameObject> spawnedMonsters = new List<GameObject>();
     private Animator spawnerAnimator;
     private Quaternion spawnRotation = Quaternion.identity;
@@ -217,21 +217,15 @@ public class EnemySpawner : KillableGridObject
     }
 
     public void KillSpawns() {
-    	int i = 0;
 
-    	while (i < spawnedMonsters.Count) {
+        for (int i = 0; i<spawnedMonsters.Count; i++){
+            if (spawnedMonsters[i] == null) continue;
     		GameObject obj = spawnedMonsters[i];
-
-    		if (obj == null) {
-    			spawnedMonsters.RemoveAt(i);
-    		} else {
-				KillableGridObject spawn = obj.GetComponent<KillableGridObject>();
-                if (spawn.isInvulnerable) spawn.isInvulnerable = false;
-    			spawn.TakeScriptedDamage(10000);
-				spawnedMonsters.RemoveAt(i);
-    		}
+            
+		    KillableGridObject spawn = obj.GetComponent<KillableGridObject>();
+            Destroy(spawn.gameObject);
     	}
-
+        spawnedMonsters.Clear();
     	currentSpawnCount = 0;
     }
 

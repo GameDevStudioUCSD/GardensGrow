@@ -70,6 +70,7 @@ public class WatermelonPlantObject : PlantGridObject
 
 
         audioSource.clip = attackSound;
+   
         audioSource.Play();
         if (direction == Globals.Direction.North)
         {

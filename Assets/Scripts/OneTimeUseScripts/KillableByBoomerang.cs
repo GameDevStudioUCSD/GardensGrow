@@ -8,7 +8,6 @@ public class KillableByBoomerang : MonoBehaviour {
     {
         if (other.gameObject.GetComponent<Boomerang>() && this != null)
         {
-            Debug.Log("have the boomerang 3");
             Destroy(this.gameObject);
         }
     }
@@ -16,7 +15,6 @@ public class KillableByBoomerang : MonoBehaviour {
     {
         if (other.gameObject.GetComponent<Boomerang>())
         {
-            Debug.Log("have the boomerang 1");
             Destroy(this.gameObject);
         }
     }
@@ -24,7 +22,6 @@ public class KillableByBoomerang : MonoBehaviour {
     {
         if (other.gameObject.GetComponent<Boomerang>())
         {
-            Debug.Log("have the boomerang 2");
             Destroy(this.gameObject);
         }
     }

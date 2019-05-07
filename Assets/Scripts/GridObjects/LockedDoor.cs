@@ -6,7 +6,7 @@ public class LockedDoor : MonoBehaviour {
 	public bool unlockable;
 
 	private Animator animator;
-    private bool closed = true;
+    private bool opened = false;
 
     private float x;
     private float y;
@@ -26,32 +26,23 @@ public class LockedDoor : MonoBehaviour {
         y = this.gameObject.transform.position.y;
         z = this.gameObject.transform.position.z;
 
-        closed = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+        opened = PlayerPrefsX.GetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
             + "pos x" + x + "pos y" + y + "pos z" + z + "door");
 
-        if (closed)
+        if (opened)
         {
-            CloseDoor();
+            OpenDoor();
         }
         else
         {
-            OpenDoor();
+            CloseDoor();
         }
 
     }
     void OnDisable()
     {
-        if (Globals.restartSaveState)
-        {
-            PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-             + "pos x" + x + "pos y" + y + "pos z" + z + "door", true);
-        }
-        else
-        {
-            PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
-          + "pos x" + x + "pos y" + y + "pos z" + z + "door", closed);
-        }
-
+        PlayerPrefsX.SetBool("scene" + Application.loadedLevel + "loadedSlot" + Globals.loadedSlot
+          + "pos x" + x + "pos y" + y + "pos z" + z + "door", opened);
     }
     // Use this for initialization
     void Start () {
@@ -71,7 +62,7 @@ public class LockedDoor : MonoBehaviour {
             animator.SetTrigger("Open");
         }
 		barrier.gameObject.SetActive(false);
-		closed = false;
+        opened = true;
 	}
 
 	void CloseDoor() {
@@ -81,7 +72,7 @@ public class LockedDoor : MonoBehaviour {
             animator.SetTrigger("Close");
         }
 		barrier.gameObject.SetActive(true);
-		closed = true;
+        opened = false;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -103,11 +94,11 @@ public class LockedDoor : MonoBehaviour {
 	}
 
 	public void Toggle() {
-		if (closed) {
-			OpenDoor();
+		if (opened) {
+			CloseDoor();
 		}
 		else {
-			CloseDoor();
+			OpenDoor();
 		}
 	}
 }

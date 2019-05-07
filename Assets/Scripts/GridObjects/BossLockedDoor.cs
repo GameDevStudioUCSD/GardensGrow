@@ -8,11 +8,11 @@ public class BossLockedDoor : MonoBehaviour {
 	public Sprite cave;
     public GameObject barrier;
     private Animator animator;
-    private bool closed;
+    public bool opened;
 
     // Use this for initialization
     void Start () {
-        closed = true;
+        opened = false;
         animator = GetComponent<Animator>();
         SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();
 
@@ -30,29 +30,29 @@ public class BossLockedDoor : MonoBehaviour {
     void OpenDoor() {
         animator.SetTrigger("Open");
         barrier.gameObject.SetActive(false);
-        closed = false;
+        opened = true;
     }
 
     void CloseDoor() {
         animator.SetTrigger("Close");
         barrier.gameObject.SetActive(true);
-        closed = true;
+        opened = false;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player") {
             if (Globals.lavaBossBeaten && Globals.windBossBeaten && Globals.caveBossBeaten) {
-                OpenDoor();
+                if(!opened) OpenDoor();
             }
         }
     }
 
     public void Toggle() {
-        if (closed) {
-            OpenDoor();
+        if (opened) {
+            CloseDoor();
         }
         else {
-            CloseDoor();
+            OpenDoor();
         }
     }
 }

@@ -14,10 +14,10 @@ public class RangedEnemyProjectile : MonoBehaviour {
     void Start()
     {
         uic = FindObjectOfType<UIController>();
-     
+        StartCoroutine(Mover());
     }
 
-    void Update()
+    /*void Update()
     {
         if (!uic.paused && !uic.dialogue)
         {
@@ -31,32 +31,37 @@ public class RangedEnemyProjectile : MonoBehaviour {
                 Destroy(this.gameObject);
             }
         }
-    }
-    public void Mover(float shotSpeed, Globals.Direction dir)
+    }*/
+    IEnumerator Mover()
     {
-        if (dir == Globals.Direction.South)
+        while (true)
         {
-            Vector3 position = this.transform.position;
-            position.y -= Globals.pixelSize;
-            this.transform.position = position;
-        }
-        else if (dir == Globals.Direction.West)
-        {
-            Vector3 position = this.transform.position;
-            position.x -= Globals.pixelSize;
-            this.transform.position = position;
-        }
-        else if (dir == Globals.Direction.North)
-        {
-            Vector3 position = this.transform.position;
-            position.y += Globals.pixelSize;
-            this.transform.position = position;
-        }
-        else if (dir == Globals.Direction.East)
-        {
-            Vector3 position = this.transform.position;
-            position.x += Globals.pixelSize;
-            this.transform.position = position;
+            if (dir == Globals.Direction.South)
+            {
+                Vector3 position = this.transform.position;
+                position.y -= Globals.pixelSize;
+                this.transform.position = position;
+            }
+            else if (dir == Globals.Direction.West)
+            {
+                Vector3 position = this.transform.position;
+                position.x -= Globals.pixelSize;
+                this.transform.position = position;
+            }
+            else if (dir == Globals.Direction.North)
+            {
+                Vector3 position = this.transform.position;
+                position.y += Globals.pixelSize;
+                this.transform.position = position;
+            }
+            else if (dir == Globals.Direction.East)
+            {
+                Vector3 position = this.transform.position;
+                position.x += Globals.pixelSize;
+                this.transform.position = position;
+            }
+
+            yield return new WaitForSeconds(shotSpeed);
         }
     }
     void OnTriggerEnter2D(Collider2D col)

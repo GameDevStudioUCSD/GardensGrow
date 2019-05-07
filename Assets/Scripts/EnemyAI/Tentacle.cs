@@ -18,6 +18,7 @@ public class Tentacle : KillableGridObject {
     public GameObject evilSpinningPlant;
 
     public GameObject weedBoss;
+    public Animation anim;
 
     //instantiating stuff
     private Quaternion spawnRotation = Quaternion.Euler(0, 0, 0f);
@@ -38,6 +39,8 @@ public class Tentacle : KillableGridObject {
     {
         base.Start();
         boss = FindObjectOfType<FinalDungeonBoss>();
+        anim = gameObject.GetComponent<Animation>();
+
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -52,11 +55,6 @@ public class Tentacle : KillableGridObject {
         /*player plants attack tentacle*/
 
 
-        if (boss.hp == 0)
-        {
-            //instantiate boss weed seed
-        }
-
         if (other.gameObject.GetComponent<PlantGridObject>() && boss.hp != 0)
         {
             if ( ((other.gameObject.GetComponent<WatermelonPlantObject>()||other.gameObject.GetComponent<PlantProjectileObject>()) && tentacleNum == 0) || //watermelon
@@ -67,6 +65,8 @@ public class Tentacle : KillableGridObject {
                 ((other.gameObject.GetComponent<BoomerangPlantObject>() || other.gameObject.GetComponent<Boomerang>()) && tentacleNum == 5) ||//boomerang
                 (other.gameObject.GetComponent<SpinningPlant>() && tentacleNum == 6)) //spinning
             {
+                if (anim) anim.Play("Damaged");
+
                 //play damaged animation for tentacle?
                 boss.touchedPlayer = true; //makes tentacles retract
                 if (!boss.spawnedMe)

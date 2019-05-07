@@ -37,7 +37,7 @@ public class TurbinePlantObject : PlantGridObject
     }
 
     // Update is called once per frame
-	protected override void Update()
+	/*protected override void Update()
     {
         if (!Globals.canvas.dialogue) {
             //the following if fixed a bug, plz don't remove it
@@ -50,36 +50,29 @@ public class TurbinePlantObject : PlantGridObject
             }
             base.Update();
         }
-	}
+	}*/
 
 	public void setDirection ()
 	{
-		switch (this.direction) {
+        southCollider.enabled = false;
+        eastCollider.enabled = false;
+        northCollider.enabled = false;
+        westCollider.enabled = false;
+
+        switch (this.direction) {
 			case Globals.Direction.North:
-				southCollider.enabled = false;
-				eastCollider.enabled = false;
 				northCollider.enabled = true;
-				westCollider.enabled = false;
 				//directionalCollider = northCollider;
 				break;
 			case Globals.Direction.South:
 				southCollider.enabled = true;
-				eastCollider.enabled = false;
-				northCollider.enabled = false;
-				westCollider.enabled = false;
 				//directionalCollider = southCollider;
 				break;
 			case Globals.Direction.East:
-				southCollider.enabled = false;
 				eastCollider.enabled = true;
-				northCollider.enabled = false;
-				westCollider.enabled = false;
 				//directionalCollider = eastCollider;
 				break;
 			case Globals.Direction.West:
-				southCollider.enabled = false;
-				eastCollider.enabled = false;
-				northCollider.enabled = false;
 				westCollider.enabled = true;
 				//directionalCollider = westCollider;
 				break;
@@ -96,7 +89,7 @@ public class TurbinePlantObject : PlantGridObject
         }
         if (other.gameObject.CompareTag("Player")) {
         	PlayerGridObject player = other.GetComponent<PlayerGridObject>();
-        	if (player.platforms > 0) {
+        	if (player.platforms == 0) {
         		player.Move(direction);
         	}
         }

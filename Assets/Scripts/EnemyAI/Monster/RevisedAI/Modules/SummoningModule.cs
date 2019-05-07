@@ -94,7 +94,7 @@ public class SummoningModule : MonoBehaviour {
         [Header("Summoning Components")]
         public GameObject summonedGameObject;
         [Range(0, 99)]
-        public int maxNumberOfSpawns;
+        public int maxNumberOfSpawns = 3;
         [Range(0.0f, 3.0f)] //controls max spawns at once
         public float spawnCooldown;
         public TileMap tileMap;

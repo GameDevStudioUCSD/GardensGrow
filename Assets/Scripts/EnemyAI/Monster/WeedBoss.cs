@@ -43,6 +43,7 @@ public class WeedBoss : MonoBehaviour {
         if(f.hp == 0)
         {
             Instantiate(willowSeed, this.gameObject.transform.position, spawnRotation);
+            Destroy(f.gameObject);
         }
         yield return new WaitForSeconds(.5f);
         Destroy(this.gameObject);

@@ -42,6 +42,7 @@ public class ItemDrop : StaticGridObject {
 
             if (Globals.loadedSlot != -1 && pickedUp)
             {
+                //commented out for testing purporses
                 this.gameObject.SetActive(false);
             }
         }

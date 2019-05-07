@@ -16,6 +16,7 @@ public class Globals: MonoBehaviour {
 
     public static bool startCredits = false;
 
+    //PLEASE CHANGE BEFORE BUILDING
     public static bool lavaBossBeaten = false;
     public static bool windBossBeaten = false;
     public static bool caveBossBeaten = false;
@@ -68,7 +69,7 @@ public class Globals: MonoBehaviour {
 
     public static int loadedSlot = 4;
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, true};
-	public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 1};
 	public static int numKeys = 0;
 	public static Vector3 spawnLocation = new Vector3(0.0f, -2.0f, 0.0f);
 

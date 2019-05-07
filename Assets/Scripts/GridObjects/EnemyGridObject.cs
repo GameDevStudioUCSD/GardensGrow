@@ -54,7 +54,7 @@ public class EnemyGridObject : MoveableGridObject {
 
     protected override void Die()
     {
-		animator.SetTrigger("Death");
+        animator.SetTrigger("Death");
         base.Die();
     }
 }

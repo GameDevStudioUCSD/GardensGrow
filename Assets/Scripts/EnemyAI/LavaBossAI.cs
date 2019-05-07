@@ -37,9 +37,11 @@ public class LavaBossAI : KillableGridObject {
 		currentSpawnerIndex = -1; // so boss randomly spawns in any corner
 		state = BossState.StartEmerge;
         p = FindObjectOfType<PlayerGridObject>();
-		//state = BossState.Dormant;
-		//SpawnEnemies();
-	}
+        boat.GetComponent<PlatformGridObject>().delay = 50;
+
+        //state = BossState.Dormant;
+        //SpawnEnemies();
+    }
 
 	// Update is called once per frame
 	protected override void Update() {

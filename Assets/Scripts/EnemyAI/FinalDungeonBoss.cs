@@ -57,8 +57,12 @@ public class FinalDungeonBoss : MonoBehaviour {
     public bool touchedPlayer = false;
 
     public bool spawnedMe = false;
+
+    public GameObject willowSeed;
+    public GameObject weedBoss;
 	// Update is called once per frame
 	void Update () {
+
         //moves tentacle
         if (spawnedActiveTentacle)
         {
@@ -308,5 +312,12 @@ public class FinalDungeonBoss : MonoBehaviour {
             yield return new WaitForEndOfFrame();
             i++;
         }
+    }
+
+    private void OnDisable()
+    {
+        if (currentTentacle) Destroy(currentTentacle);
+        if (currentTentacleLeft) Destroy(currentTentacleLeft);
+        if (currentTentacleRight) Destroy(currentTentacleRight);
     }
 }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class PlatformGridObject : MonoBehaviour {
     private const float moveStep = 0.03125f;
 
+    public int distance;
+    public float speed;
     public Globals.Direction direction;
     public int damage; //units = health points
     public int delay; //units = frames
@@ -84,51 +86,62 @@ public class PlatformGridObject : MonoBehaviour {
                     delayCounter = 0;
                 }
             }
-            else if (turbineMove) {
+            else if (turbineMove)
+            {
                 delayCounter++;
-                if (CheckStop()) {
+                if (CheckStop())
+                {
                     turbineMove = false;
                     return;
                 }
-                if (delayCounter > delay) {
+                if (delayCounter < delay)
+                {
                     bool foundTurbine = false;
-                    foreach (GameObject obj in moveList) {
-                        if (!obj) {
+                    foreach (GameObject obj in moveList)
+                    {
+                        if (!obj)
+                        {
                             moveList.Remove(obj);
                             foundTurbine = true;
                             break;
                         }
-						if (obj.CompareTag("Turbine") || obj.CompareTag("Player") || 
-							obj.CompareTag("Plant") || obj.CompareTag("Platform")) {
-	                        if (obj.GetComponent<TurbinePlantObject>())
-	                            foundTurbine = true;
+                        if (obj.CompareTag("Turbine") || obj.CompareTag("Player") ||
+                            obj.CompareTag("Plant") || obj.CompareTag("Platform"))
+                        {
+                            if (obj.GetComponent<TurbinePlantObject>())
+                                foundTurbine = true;
 
-	                        if (direction == Globals.Direction.East) {
-	                            Vector3 position = obj.transform.position;
-	                            position.x += 2 * moveStep;
-	                            obj.transform.position = position;
-	                        }
-	                        else if (direction == Globals.Direction.West) {
-	                            Vector3 position = obj.transform.position;
-	                            position.x -= 2 * moveStep;
-	                            obj.transform.position = position;
-	                        }
-	                        else if (direction == Globals.Direction.North) {
-	                            Vector3 position = obj.transform.position;
-	                            position.y += 2 * moveStep;
-	                            obj.transform.position = position;
-	                        }
-	                        else if (direction == Globals.Direction.South) {
-	                            Vector3 position = obj.transform.position;
-	                            position.y -= 2 * moveStep;
-	                            obj.transform.position = position;
-	                        }
+                            if (direction == Globals.Direction.East)
+                            {
+                                Vector3 position = obj.transform.position;
+                                position.x += 2 * moveStep;
+                                obj.transform.position = position;
+                            }
+                            else if (direction == Globals.Direction.West)
+                            {
+                                Vector3 position = obj.transform.position;
+                                position.x -= 2 * moveStep;
+                                obj.transform.position = position;
+                            }
+                            else if (direction == Globals.Direction.North)
+                            {
+                                Vector3 position = obj.transform.position;
+                                position.y += 2 * moveStep;
+                                obj.transform.position = position;
+                            }
+                            else if (direction == Globals.Direction.South)
+                            {
+                                Vector3 position = obj.transform.position;
+                                position.y -= 2 * moveStep;
+                                obj.transform.position = position;
+                            }
                         }
                     }
-                    if (!foundTurbine) {
+                    if (!foundTurbine)
+                    {
                         hasTurbine = false;
                     }
-                    delayCounter = 0;
+                    //delayCounter = 0;
                 }
             }
             else if (hasTurbine && CheckStart()) {
@@ -136,6 +149,7 @@ public class PlatformGridObject : MonoBehaviour {
             }
         }
     }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -149,6 +163,7 @@ public class PlatformGridObject : MonoBehaviour {
         {
             hasTurbine = false;
             turbineMove = false;
+            delayCounter = 0;
         }
         if(!hasPlayer && hasTurbine)
         {
@@ -158,6 +173,23 @@ public class PlatformGridObject : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            moveList.Add(col.gameObject);
+            PlayerGridObject player = col.GetComponent<PlayerGridObject>();
+            player.platforms++;
+            hasPlayer = true;
+        }
+        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner"))
+        {
+            //there's a bug where the platform is stuck in the middle of lava if it hits a firemonster
+            /*if (col.gameObject.GetComponent<GenericMonsterBehaviour>())
+            {
+                return;
+            }*/
+            KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
+            enemy.TakeDamage(damage);
+        }
         if (!pingPong && col.gameObject.CompareTag("Turbine") && !col.gameObject.GetComponent<TurbinePlantObject>().onPlatform) {
             col.gameObject.GetComponent<TurbinePlantObject>().onPlatform = true; //makes sure turbine can only be on one platform
             if (!turbineMove) {
@@ -179,21 +211,7 @@ public class PlatformGridObject : MonoBehaviour {
             moveList.Add(col.gameObject);
             hasTurbine = true;
             turbineMove = true;
-        }
-        if (col.gameObject.CompareTag("Player")) {
-            moveList.Add(col.gameObject);
-            PlayerGridObject player = col.GetComponent<PlayerGridObject>();
-            player.platforms++;
-            hasPlayer = true;
-        }
-        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("EnemySpawner")) {
-            //there's a bug where the platform is stuck in the middle of lava if it hits a firemonster
-            /*if (col.gameObject.GetComponent<GenericMonsterBehaviour>())
-            {
-                return;
-            }*/
-            KillableGridObject enemy = col.GetComponentInParent<KillableGridObject>();
-            enemy.TakeDamage(damage);
+
         }
     }
 
@@ -242,7 +260,7 @@ public class PlatformGridObject : MonoBehaviour {
             }
             if (moveList[i].CompareTag("Player")) {
                 PlayerGridObject player = moveList[i].GetComponent<PlayerGridObject>();
-                player.platforms--;
+                player.invincible = false;
             }
         }
 
