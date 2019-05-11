@@ -41,7 +41,7 @@ public class PlayerGridObject : MoveableGridObject {
         canvas.UpdateHealth(health);  //update players health from load/Globals
 
         //commented out for testing purposess
-        //this.gameObject.transform.position = Globals.spawnLocation;
+        this.gameObject.transform.position = Globals.spawnLocation;
 
         anim = gameObject.GetComponent<Animation>();
         canMove = true;

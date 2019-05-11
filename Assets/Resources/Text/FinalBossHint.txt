@@ -1,9 +1,3 @@
-Certain tentacles are allergic to certain plants! Memorize this!
-Splattermelon - Red 
-Windflower - Green
-Boxing Cactus - Yellow
-Bomb Cactus - Pink
-Glowroom - Black
-Bananarang - Blue
-Spineapple - Teal
+Hint: Damage the tentacles to make the boss appear, then smack him as hard as you can!
+The tentacles are allergic to plants that look like themselves. 
 -Friendly Neighborhood Gardener

@@ -26,6 +26,7 @@ public class OnTriggerEnterEvent : MonoBehaviour {
         callBacks.Invoke();
 
         if (triggerOnlyOnce)
+            Destroy(this.gameObject);
             this.enabled = false;
     }
 }
