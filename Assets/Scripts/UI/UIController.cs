@@ -291,12 +291,4 @@ public class UIController : MonoBehaviour {
             loadMenuUI.SetActive(false);
         }
     }
-    public void LoadSlot4() //no UI for 4th load slot maybe take out this method?
-    {
-        if (Globals.LoadTheGame(4) == 1)
-        {
-            loadMenuUI.SetActive(false);
-        }
-    }
-
 }

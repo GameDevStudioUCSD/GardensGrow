@@ -68,6 +68,8 @@ public class Globals: MonoBehaviour {
     public static SortedList<PlantData, int> plants = new SortedList<PlantData, int>();
 
     public static int loadedSlot = 4;
+
+    public static List<DialogueNPCTrigger> npcs = new List<DialogueNPCTrigger>();
     public static bool[] unlockedSeeds = {false, false, false, false, false, false, false, false, false};
     public static int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0};
 	public static int numKeys = 0;
@@ -125,8 +127,9 @@ public class Globals: MonoBehaviour {
     }
     public static void SaveTheGame(int saveSlot) //should be 1-4
     {
+        loadedSlot = saveSlot;
         //KEEP PLANTS IN THE SAME ORDER FOR INSTANTIATION IN PLAYERGRIDOBJECT?
-        PlayerPrefsX.SetVector3("respawn"+saveSlot, spawnLocation);
+        PlayerPrefsX.SetVector3("respawn" + saveSlot, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
         PlayerPrefs.SetString("activeScene"+saveSlot, SceneManager.GetActiveScene().name);
         PlayerPrefs.SetInt("playerHealth"+saveSlot, player.health);
 
@@ -135,7 +138,7 @@ public class Globals: MonoBehaviour {
         PlayerPrefsX.SetBool("caveBossBeaten" + saveSlot, caveBossBeaten);
 
         //Debug.Log("SAVING HEALTH AS " + player.health);
-        PlayerPrefsX.SetIntArray("playerInventory"+saveSlot, inventory);
+        PlayerPrefsX.SetIntArray("playerInventory" + saveSlot, inventory);
 
         Vector3[] tempPlantPositions = new Vector3[plants.Count];
         int[] tempPlantTypes = new int[plants.Count];       //need plant type
@@ -151,27 +154,16 @@ public class Globals: MonoBehaviour {
             tempPlantDirections[i] = (int)plantInfo.Key.PlantDirection;
             i++;
         }
-        //also save NPC states
+
         PlayerPrefsX.SetVector3Array("PlantPositions"+saveSlot, tempPlantPositions);
         PlayerPrefsX.SetIntArray("PlantTypes"+saveSlot, tempPlantTypes);
         PlayerPrefsX.SetStringArray("PlantScenes"+saveSlot, tempPlantScenes);
         PlayerPrefsX.SetIntArray("PlantDirections"+saveSlot, tempPlantDirections);
 
-        DialogueNPCTrigger[] npcList = FindObjectsOfType<DialogueNPCTrigger>();
-        
-
-        foreach(DialogueNPCTrigger npc in npcList)
+        foreach(DialogueNPCTrigger n in npcs)
         {
-            npc.saveBool(saveSlot);
+            n.saveRead();
         }
-
-        DialogueTrigger[] signList = FindObjectsOfType<DialogueTrigger>();
-
-        foreach (DialogueTrigger sign in signList)
-        {
-            sign.saveBool(saveSlot);
-        }
-
 
     }
     public static int LoadTheGame(int loadSlot) //should be 1-4
@@ -186,12 +178,11 @@ public class Globals: MonoBehaviour {
         //LOADS THE GAME
         SceneManager.LoadScene(PlayerPrefs.GetString("activeScene" + loadSlot));
 
-        //loadedSlot = loadSlot; TODO which spot?
-
         //change update player next respawn
-        spawnLocation = PlayerPrefsX.GetVector3("respawn"+loadSlot);
-        Globals.player.health = PlayerPrefs.GetInt("playerHealth"+loadSlot);
-        inventory = PlayerPrefsX.GetIntArray("playerInventory"+loadSlot);
+        spawnLocation = PlayerPrefsX.GetVector3("respawn" + loadSlot);
+        Globals.player.health = PlayerPrefs.GetInt("playerHealth" + loadSlot);
+        inventory = PlayerPrefsX.GetIntArray("playerInventory" + loadSlot);
+        print(inventory);
 
         PlayerPrefsX.GetBool("lavaBossBeaten" + loadSlot, lavaBossBeaten);
         PlayerPrefsX.GetBool("windBossBeaten" + loadSlot, windBossBeaten);

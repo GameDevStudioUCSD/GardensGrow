@@ -54,6 +54,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
+        Globals.npcs.Add(this);
         originalPosition = this.gameObject.transform.position;
 
         anim = this.gameObject.GetComponent<Animator>();
@@ -130,6 +131,7 @@ public class DialogueNPCTrigger : MoveableGridObject {
                         exclamationMark.SetActive(false);
                     }
                     readAlready = true;
+                    saveRead();
                     movingUp = false;
                 }
             }
@@ -143,23 +145,11 @@ public class DialogueNPCTrigger : MoveableGridObject {
             dialogue.GetComponentInChildren<DialogueSystem>().LoadText();
         }
     }
-    public void OnDisable()
+    public void saveRead()
     {
-        if (Globals.restartSaveState)
-        {
-            PlayerPrefsX.SetBool("npc" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, false);
-        }
-        else
-        {
-            PlayerPrefsX.SetBool("npc" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, readAlready);
-        }
+        PlayerPrefsX.SetBool("npc" + Application.loadedLevel + "slot" + Globals.loadedSlot + "x" + x + "y" + y + "z" + z, readAlready);
     }
     
-    //maybe deprecate
-    public void saveBool(int saveSlot)
-    {
-        //PlayerPrefsX.SetBool("npc" + saveNumber + "save" + saveSlot, readAlready);
-    }
     public void OnEnable()
     {
         x = gameObject.transform.position.x;

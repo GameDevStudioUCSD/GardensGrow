@@ -27,34 +27,7 @@ public class RangedEnemy : EnemyGridObject {
     {
         uic = FindObjectOfType<UIController>();
     }
-    /*void LateUpdate()
-    {
-        if (!uic.paused && !uic.dialogue)
-        {
-            if (isShooter)
-            {
-                if (counter > shotDelay)
-                {
-                    Shooter();
-                    counter = 0;
-                }
-                counter++;
 
-                if (health <= 0)
-                {
-                    gameObject.SetActive(false);
-                    destroyed = true;
-                    //Destroy(this.gameObject);
-                }
-            }
-            if (health <= 0)
-            {
-                gameObject.SetActive(false);
-                destroyed = true;
-                //Destroy(this.gameObject);
-            }
-        }
-    }*/
     void OnEnable()
     {
         x = this.gameObject.transform.position.x;
@@ -145,22 +118,18 @@ public class RangedEnemy : EnemyGridObject {
                     if (direction == Globals.Direction.South && other.IsTouching(southCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
 						player.TakeDamage(damage);
-						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                     else if (direction == Globals.Direction.North && other.IsTouching(northCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
 						player.TakeDamage(damage);
-						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                     else if (direction == Globals.Direction.East && other.IsTouching(eastCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
 						player.TakeDamage(damage);
-						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                     else if (direction == Globals.Direction.West && other.IsTouching(westCollider.gameObject.GetComponent<BoxCollider2D>()))
                     {
 						player.TakeDamage(damage);
-						player.gameObject.transform.position = Globals.spawnLocation;
                     }
                 }
             }

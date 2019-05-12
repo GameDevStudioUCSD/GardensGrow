@@ -247,6 +247,13 @@ public class KillableGridObject : RotateableGridObject {
             {
                 tm = FindObjectOfType<TileMap>();
             }
+
+            //for lava dungeon
+            LedgeFixer lf = FindObjectOfType<LedgeFixer>();
+            if(lf != null)
+            {
+                lf.moveLedges();
+            }
             StartCoroutine(screenBlackout(this.gameObject.GetComponent<PlayerGridObject>()));
         }
         //Application.LoadLevel(Application.loadedLevel);

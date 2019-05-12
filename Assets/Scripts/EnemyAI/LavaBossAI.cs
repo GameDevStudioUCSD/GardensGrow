@@ -37,7 +37,7 @@ public class LavaBossAI : KillableGridObject {
 		currentSpawnerIndex = -1; // so boss randomly spawns in any corner
 		state = BossState.StartEmerge;
         p = FindObjectOfType<PlayerGridObject>();
-        boat.GetComponent<PlatformGridObject>().delay = 50;
+        boat.GetComponent<PlatformGridObject>().delay = 100;
 
         //state = BossState.Dormant;
         //SpawnEnemies();
@@ -89,17 +89,15 @@ public class LavaBossAI : KillableGridObject {
 	}
 
 	void Hide() {
+
+
+        PlatformGridObject[] boats = FindObjectsOfType<PlatformGridObject>();
 		// Destroy boats
 		int i = 0;
-		while (i < instantiatedBoats.Count)
+		while (i < boats.Length)
         {
-        	GameObject curBoat = instantiatedBoats[i];
-			instantiatedBoats.RemoveAt(i);
-
-        	if (curBoat) {
-				PlatformGridObject thisBoat = curBoat.GetComponent<PlatformGridObject>();
-				thisBoat.Destructor();
-        	}
+			boats[i].Destructor();
+            i++;
         }
 
         // Destroy fireballs
@@ -198,9 +196,6 @@ public class LavaBossAI : KillableGridObject {
 		int numToSummon = health > ENRAGE_HEALTH ? 3 : 6;
 		for (int i = 0; i < numToSummon; i++) {
 			yield return new WaitForSeconds(Random.Range(FIREBALL_MIN_INTERVAL, FIREBALL_MAX_INTERVAL)/1000.0f);
-
-			// Create fireballs
-			// temp fireball location
 
 			Vector3 dropPosition = new Vector3(Random.Range(-4, 4), Random.Range(-2, 2), 0.0f);
 			Fireball fireballObj = (Fireball)Instantiate(fireball, dropPosition, Quaternion.identity);

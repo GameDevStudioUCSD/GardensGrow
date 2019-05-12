@@ -29,12 +29,15 @@ public class PlatformGridObject : MonoBehaviour {
     private bool turbineMove = false;
     private List<GameObject> moveList = new List<GameObject>();
 
+    public Vector3 origPos;
+
     private PlantGridObject plant;
     // Use this for initialization
     void Start() {
         uic = FindObjectOfType<UIController>();
         player = FindObjectOfType<PlayerGridObject>();
         moveList.Add(this.gameObject);
+        origPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
     void Update() {
         if (!uic.paused && !uic.dialogue) {
@@ -244,15 +247,6 @@ public class PlatformGridObject : MonoBehaviour {
 
     // Destroys this boat as well as the plant on it
     public void Destructor() {
-        /*foreach(GameObject obj in moveList)
-        {
-			if (obj.CompareTag("Turbine"))
-			{
-				//PlantGridObject thisPlant = obj.GetComponent<PlantGridObject>();
-				//moveList.Remove(obj);
-				Destroy(obj);
-			}
-        }*/
         for (int i = 0; i < moveList.Count; i++) {
             if (moveList[i].CompareTag("Turbine") || moveList[i].CompareTag("Plant")) {
                 PlantGridObject plant = moveList[i].GetComponent<PlantGridObject>();

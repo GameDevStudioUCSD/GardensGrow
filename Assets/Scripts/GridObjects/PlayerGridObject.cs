@@ -49,6 +49,7 @@ public class PlayerGridObject : MoveableGridObject {
         //dialogue = canvas.dialogUI;
         Globals.player = this;
         Globals.canvas = canvas;
+        //Globals.inventory = PlayerPrefsX.GetIntArray("playerInventory" + Globals.loadedSlot);
     }
 
     // Update is called once per frame

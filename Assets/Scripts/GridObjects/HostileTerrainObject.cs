@@ -27,10 +27,10 @@ public class HostileTerrainObject : TerrainObject {
 		if (other.gameObject.tag == "Player") {
 			PlayerGridObject player = other.GetComponent<PlayerGridObject>();
 			if (player.platforms <= 0) {
-				//player.TakeDamage(damage);
+				player.TakeDamage(100);
                 //player.gameObject.transform.position = Globals.spawnLocation;
                
-                StartCoroutine(screenBlackout());
+                //StartCoroutine(screenBlackout());
 			}
 		}
         RollingBoulder boulder = other.GetComponent<RollingBoulder>();
